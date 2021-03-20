@@ -1,0 +1,10 @@
+.Logo {
+  display: flex;
+  align-content: center;
+}
+
+.Logo_text {
+  font-family: "Oswald", "Lato";
+  text-transform: uppercase;
+  margin-left: 10px;
+}
