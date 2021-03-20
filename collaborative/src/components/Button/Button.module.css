@@ -1,0 +1,7 @@
+.Button {
+  text-decoration: none;
+  padding: 10px 40px;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: filter 0.2s;
+}

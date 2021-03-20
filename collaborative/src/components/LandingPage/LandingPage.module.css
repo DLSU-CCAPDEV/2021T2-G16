@@ -1,0 +1,26 @@
+.LandingPage {
+  background: url("../../assets/LandingPage-Background.svg") no-repeat center
+    20% fixed;
+  background-size: cover;
+  height: 100vh;
+  padding: 20px 60px;
+}
+
+.Navigation {
+  display: flex;
+}
+
+.Navigation_links {
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+  flex: 1;
+}
+
+.Navigation_item {
+  margin-right: 20px;
+}
+
+.Navigation_item:last-of-type {
+  margin-right: 0;
+}
