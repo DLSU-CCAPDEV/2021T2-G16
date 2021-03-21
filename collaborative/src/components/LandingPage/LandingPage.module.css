@@ -2,7 +2,7 @@
   background: url("../../assets/LandingPageBackground.svg") no-repeat center 20%
     fixed;
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
   padding: 20px 60px;
 }
 
