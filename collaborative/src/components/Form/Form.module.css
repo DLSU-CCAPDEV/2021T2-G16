@@ -8,19 +8,6 @@
   gap: 20px;
 }
 
-.Form input {
-  width: 100%;
-  font-size: 16px;
-  padding: 8px 10px;
-  background-color: #e2e4e6;
-  color: #8c8c8c;
-  border: none;
-}
-
-.Form hr {
-  border: 1px solid #b0c3dc48;
-}
-
 .column {
   display: flex;
   flex-direction: column;
@@ -32,6 +19,54 @@
   gap: 15px;
 }
 
+.flex_end {
+  align-self: flex-end;
+}
+
+.flex_center {
+  align-self: center;
+}
+
+.Form a {
+  color: #3d7eeb;
+  text-decoration: none;
+}
+
+.Form input[type="submit"] {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px 40px;
+  border: none;
+  background-color: #35c53f;
+  transition: background 0.2s;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.Form input[type="submit"]:hover {
+  background-color: #31b83a;
+}
+
+.Form input[type="text"] {
+  width: 100%;
+  font-size: 16px;
+  padding: 8px 10px;
+  background-color: #e2e4e6;
+  color: #000000;
+  border: none;
+  font-weight: normal;
+}
+
+::placeholder {
+  color: #8c8c8c;
+  opacity: 0.6;
+}
+
+.Form hr {
+  border: 1px solid #b0c3dc48;
+}
+
 .Form h1 {
   color: #333941;
   font-weight: bold;
@@ -41,8 +76,4 @@
 .Form p {
   font-size: 16px;
   font-weight: lighter;
-}
-
-.Form__right_end {
-  align-self: flex-end;
 }

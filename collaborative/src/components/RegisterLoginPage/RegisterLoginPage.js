@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./RegisterLoginPage.module.css";
+import Button from "../Button/Button";
 import Form from "../Form/Form";
 import Logo from "../Logo/Logo";
 import CloseButton from "../../assets/CloseButton.svg";
@@ -11,7 +12,7 @@ const RegisterLoginPage = () => {
       <Logo />
       <Form width="450px">
         <div column>
-          <Link to="/" end>
+          <Link to="/" flex_end>
             <img src={CloseButton} alt="Close Button" />
           </Link>
           <h1>Registration</h1>
@@ -57,9 +58,11 @@ const RegisterLoginPage = () => {
           By registering a Collaborative account, you confirm that you hereby
           read and agree to the Terms of Service and Privacy Policy.
         </p>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Register Your Account" />
         <hr />
-        <Link to="/login">Already have an account? Log In</Link>
+        <Link to="/login" flex_center>
+          Already have an account? Log In
+        </Link>
       </Form>
     </section>
   );
