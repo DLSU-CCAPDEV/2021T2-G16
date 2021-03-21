@@ -15,12 +15,26 @@
   justify-content: flex-end;
   align-self: center;
   flex: 1;
+  gap: 20px;
 }
 
-.Navigation_item {
-  margin-right: 20px;
+.Hero {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translate(0, -50%);
+  gap: 20px;
 }
 
-.Navigation_item:last-of-type {
-  margin-right: 0;
+.Hero span {
+  font-weight: 700;
+  font-size: 45px;
+  color: white;
+}
+
+.Hero p {
+  color: white;
+  font-size: 16px;
 }

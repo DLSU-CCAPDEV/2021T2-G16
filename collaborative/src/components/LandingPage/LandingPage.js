@@ -9,30 +9,38 @@ const LandingPage = () => {
       <nav className={styles.Navigation}>
         <Logo fontSize={40} />
         <div className={styles.Navigation_links}>
-          <div className={styles.Navigation_item}>
-            <Button
-              backgroundColor="white"
-              color="white"
-              Link
-              linkTo="registration"
-            >
-              Log In
-            </Button>
-          </div>
-          <div className={`${styles.Navigation_item}`}>
-            <Button
-              backgroundColor="#35C53F"
-              color="white"
-              primary
-              bold
-              Link
-              linkTo="registration"
-            >
-              Register
-            </Button>
-          </div>
+          <Button backgroundColor="white" color="white" Link linkTo="login">
+            Log In
+          </Button>
+          <Button
+            backgroundColor="#35C53F"
+            color="white"
+            primary
+            bold
+            Link
+            linkTo="registration"
+          >
+            Register
+          </Button>
         </div>
       </nav>
+      <div className={styles.Hero}>
+        <span>
+          Collaborative,
+          <br />
+          all-in-one
+          <br />
+          project
+          <br />
+          management
+          <br />
+          application
+        </span>
+        <p>
+          Cooperate. Innovate. Deliver.
+          <br />A tool for collaborative teams.
+        </p>
+      </div>
     </section>
   );
 };
