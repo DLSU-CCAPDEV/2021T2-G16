@@ -1,0 +1,48 @@
+.Form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 100%;
+  padding: 20px;
+  border-radius: 5px;
+  gap: 20px;
+}
+
+.Form input {
+  width: 100%;
+  font-size: 16px;
+  padding: 8px 10px;
+  background-color: #e2e4e6;
+  color: #8c8c8c;
+  border: none;
+}
+
+.Form hr {
+  border: 1px solid #b0c3dc48;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.Form h1 {
+  color: #333941;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.Form p {
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+.Form__right_end {
+  align-self: flex-end;
+}
