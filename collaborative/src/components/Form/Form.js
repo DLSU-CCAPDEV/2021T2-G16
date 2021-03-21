@@ -16,6 +16,7 @@ const renderChildren = (children) => {
               ? styles.flex_center
               : null
           }
+          onClick={clearForm}
         >
           {item}
         </div>
@@ -42,6 +43,10 @@ const renderChildren = (children) => {
   });
 };
 
+const clearForm = () => {
+  document.getElementById("form").reset();
+};
+
 const Form = ({ children, width }) => {
   const history = useHistory();
   const handleSubmit = useCallback(() => history.push(`/${linkTo}`), [history]);
@@ -49,11 +54,14 @@ const Form = ({ children, width }) => {
   return (
     <form
       className={styles.Form}
+      id="form"
       style={{ width }}
       action="#"
       method="post"
       onSubmit={(event) => {
         event.preventDefault();
+        console.log(event);
+        console.log(event.target[0].value);
         handleSubmit();
       }}
     >

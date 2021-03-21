@@ -1,7 +1,21 @@
 import { combineReducers } from "redux";
 
-const dummyReducer = () => {
-  return "REPLACE ME";
+const userReducer = (userDatabase = [], action) => {
+  if (action.type === "USER_REGISTRATION") {
+    return [...userDatabase, action.payload];
+  } else {
+    return userDatabase;
+  }
 };
 
-export default combineReducers({ dummy: dummyReducer });
+const currentUserReducer = (currentUser = null, action) => {
+  if (action.type === "USER_LOGIN") {
+  } else {
+    return currentUser;
+  }
+};
+
+export default combineReducers({
+  userReducer,
+  currentUser: currentUserReducer,
+});

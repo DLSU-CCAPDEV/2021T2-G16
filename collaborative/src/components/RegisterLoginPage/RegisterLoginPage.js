@@ -44,10 +44,10 @@ const renderForm = ({ pathname }) => {
           required
         />
         <input
-          type="text"
+          type="password"
           name="name-input"
           id="passwordInput"
-          placeholder="Your super secure password"
+          placeholder="Your Super Secure Password"
           required
         />
       </div>
@@ -83,10 +83,10 @@ const renderForm = ({ pathname }) => {
           required
         />
         <input
-          type="text"
+          type="password"
           name="name-input"
           id="passwordInput"
-          placeholder="Your password"
+          placeholder="Your Password"
           required
         />
       </div>
