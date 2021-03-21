@@ -64,6 +64,40 @@ const RegisterLoginPage = () => {
           Already have an account? Log In
         </Link>
       </Form>
+      <Form width="450px">
+        <div column>
+          <Link to="/" flex_end>
+            <img src={CloseButton} alt="Close Button" />
+          </Link>
+          <h1>Log In</h1>
+          <p>
+            Welcome back! It is nice to see you again. Please fill-in the
+            credentials of your Collaborative account.
+          </p>
+        </div>
+        <hr />
+        <div column>
+          <input
+            type="text"
+            name="name-input"
+            id="emailInput"
+            placeholder="Your Email"
+            required
+          />
+          <input
+            type="text"
+            name="name-input"
+            id="passwordInput"
+            placeholder="Your password"
+            required
+          />
+        </div>
+        <input type="submit" value="Register Your Account" />
+        <hr />
+        <Link to="/registration" flex_center>
+          Don’t have an account yet? Register here
+        </Link>
+      </Form>
     </section>
   );
 };
