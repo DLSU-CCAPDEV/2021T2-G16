@@ -27,11 +27,6 @@
   align-self: center;
 }
 
-.Form a {
-  color: #3d7eeb;
-  text-decoration: none;
-}
-
 .Form input[type="submit"] {
   width: 100%;
   font-size: 16px;
@@ -73,7 +68,14 @@
   font-size: 30px;
 }
 
-.Form p {
+.Form p,
+.Form span {
   font-size: 16px;
   font-weight: lighter;
+  text-align: justify;
+}
+
+.Form a {
+  color: #3d7eeb;
+  text-decoration: none;
 }
