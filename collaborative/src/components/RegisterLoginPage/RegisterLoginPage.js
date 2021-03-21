@@ -55,7 +55,7 @@ const renderForm = ({ pathname }) => {
         By registering a Collaborative account, you confirm that you hereby read
         and agree to the Terms of Service and Privacy Policy.
       </p>
-      <input type="submit" value="Register Your Account" />
+      <input type="submit" value="Register Your Account" linkTo="homepage" />
       <hr />
       <Link to="/login" flex_center>
         Already have an account? Log In
@@ -90,7 +90,7 @@ const renderForm = ({ pathname }) => {
           required
         />
       </div>
-      <input type="submit" value="Register Your Account" />
+      <input type="submit" value="Register Your Account" linkTo="homepage" />
       <hr />
       <Link to="/registration" flex_center>
         Don’t have an account yet? Register here
