@@ -19,14 +19,14 @@ const LandingPage = () => {
               Log In
             </Button>
           </div>
-          <div className={styles.Navigation_item}>
+          <div className={`${styles.Navigation_item}`}>
             <Button
               backgroundColor="#35C53F"
               color="white"
               primary
+              bold
               Link
               linkTo="registration"
-              className={styles.Navigation_item}
             >
               Register
             </Button>

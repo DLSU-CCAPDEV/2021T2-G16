@@ -15,20 +15,33 @@ class Button extends React.Component {
     this.setState({ hoveredOn: !this.state.hoveredOn });
   };
 
-  renderStyle = ({
-    primary,
-    color,
-    backgroundColor,
-    hoverColor,
-    hoverBackgroundColor,
-  }) => {
-    let style;
+  renderStyle = ({ primary, color, backgroundColor, bold }) => {
+    let Color = require("color");
+    let primaryColor = Color(backgroundColor);
+    let darkenedPrimaryColor = primaryColor.darken(0.08);
+    let style = {};
 
     if (primary) {
-      return { backgroundColor, color };
+      style = {
+        backgroundColor: this.state.hoveredOn
+          ? darkenedPrimaryColor
+          : primaryColor,
+        color: color,
+      };
     } else {
-      return { border: "1px solid " + primary ? backgroundColor : color };
+      style = {
+        backgroundColor: this.state.hoveredOn ? color : "transparent",
+        color: this.state.hoveredOn ? "black" : color,
+      };
     }
+
+    //  Apply Border to all
+    style.border = `1px solid ${
+      this.state.hoveredOn && primary ? darkenedPrimaryColor : primaryColor
+    }`;
+    style.fontWeight = bold ? "700" : "500";
+
+    return style;
   };
 
   render() {
