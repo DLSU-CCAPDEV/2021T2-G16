@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import styles from "./Form.module.css";
 
 const renderChildren = (children) => {
@@ -33,19 +34,20 @@ const renderChildren = (children) => {
   });
 };
 
-const handleSubmit = (event) => {
-  alert("handled");
-  event.preventDefault();
-};
-
 const Form = ({ children, width }) => {
+  const history = useHistory();
+  const handleSubmit = useCallback(() => history.push("/wadwadawd"), [history]);
+
   return (
     <form
       className={styles.Form}
       style={{ width }}
       action="#"
       method="post"
-      onSubmit={handleSubmit}
+      onSubmit={(event) => {
+        event.preventDefault();
+        handleSubmit();
+      }}
     >
       {renderChildren(children)}
     </form>
