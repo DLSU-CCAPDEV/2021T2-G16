@@ -7,7 +7,11 @@ import CloseButton from "../../assets/CloseButton.svg";
 
 const renderForm = ({ pathname }) => {
   return pathname === "/registration" ? (
-    <Form width="450px" purpose="registration">
+    <Form
+      width="450px"
+      purpose="registration"
+      errorText="This account already exists!"
+    >
       <div column>
         <Link to="/" flex_end>
           <img src={CloseButton} alt="Close Button" />
@@ -62,7 +66,11 @@ const renderForm = ({ pathname }) => {
       </Link>
     </Form>
   ) : (
-    <Form width="400px" purpose="login">
+    <Form
+      width="400px"
+      purpose="login"
+      errorText="The email and password provided is incorrect. Please try again."
+    >
       <div column>
         <Link to="/" flex_end>
           <img src={CloseButton} alt="Close Button" />

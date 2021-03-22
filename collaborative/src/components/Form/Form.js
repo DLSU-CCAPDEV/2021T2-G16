@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogin, userRegistration } from "../../actions/index";
@@ -11,6 +11,7 @@ const clearForm = () => {
 var linkTo = "";
 
 const Form = ({
+  ErrorText,
   children,
   width,
   purpose,
@@ -19,6 +20,7 @@ const Form = ({
   userDatabase,
 }) => {
   const [formData, updateFormData] = useState({});
+  const [hasError, updateError] = useState(false);
   const history = useHistory();
   const handleForwardToLink = useCallback(() => history.push(`/${linkTo}`), [
     history,
@@ -33,7 +35,7 @@ const Form = ({
   };
 
   const handleOnSubmit = (event, forwardToLink) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     switch (purpose) {
       case "login":
@@ -46,9 +48,8 @@ const Form = ({
           userLogin(formData);
         }
 
-        //  Account does not exists
+        //  Account credentials mismatches
         else {
-          console.log("Account does not exists!");
         }
         break;
       case "registration":
@@ -63,7 +64,7 @@ const Form = ({
 
         //  Account already exists
         else {
-          console.log("Account already exists");
+          updateError(!hasError);
         }
         break;
       default:
@@ -124,6 +125,14 @@ const Form = ({
     });
   };
 
+  const renderErrorText = () => {
+    if (hasError) {
+      return <span className={styles.ErrorText}>{ErrorText}</span>;
+    } else {
+      return <span>No Error</span>;
+    }
+  };
+
   return (
     <form
       className={styles.Form}
@@ -134,6 +143,7 @@ const Form = ({
       onSubmit={(event) => handleOnSubmit(event, handleForwardToLink)}
     >
       {renderChildren(children)}
+      {renderErrorText()}
     </form>
   );
 };
