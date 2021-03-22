@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import HomePage from "../HomePage/HomePage";
 import LandingPage from "../LandingPage/LandingPage";
-import RegisterLoginPage from "../RegisterLoginPage/RegisterLoginPage";
+import LoginPage from "../LoginPage/LoginPage";
+import RegisterPage from "../RegisterPage/RegistrationPage";
 import "./App.css";
 
 const App = () => {
@@ -11,11 +12,13 @@ const App = () => {
       <div>
         <Route path="/" exact component={LandingPage} />
         <Route path="/homepage" exact component={HomePage} />
-        <Route
+        <Route path="/registration" exact component={RegisterPage} />
+        <Route path="/login" exact component={LoginPage} />
+        {/* <Route
           path={["/login", "/registration"]}
           exact
           component={RegisterLoginPage}
-        />
+        /> */}
       </div>
     </BrowserRouter>
   );

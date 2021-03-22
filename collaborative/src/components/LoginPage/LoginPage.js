@@ -1,0 +1,55 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./LoginPage.module.css";
+import Form from "../Form/Form";
+import Logo from "../Logo/Logo";
+import CloseButton from "../../assets/CloseButton.svg";
+
+const LoginPage = () => {
+  return (
+    <section className={styles.LoginPage}>
+      <Logo />
+      <Form
+        width="400px"
+        formPurpose="login"
+        errorText="The email and password provided is incorrect. Please try again."
+        linkTo="/homepage"
+      >
+        <div column>
+          <Link to="/" flex_end>
+            <img src={CloseButton} alt="Close Button" />
+          </Link>
+          <h1>Log In</h1>
+          <p>
+            Welcome back! It is nice to see you again. Please fill-in the
+            credentials of your Collaborative account.
+          </p>
+        </div>
+        <hr />
+        <div column>
+          <input
+            type="text"
+            name="name-input"
+            id="emailInput"
+            placeholder="Your Email"
+            required
+          />
+          <input
+            type="password"
+            name="name-input"
+            id="passwordInput"
+            placeholder="Your Password"
+            required
+          />
+        </div>
+        <input type="submit" value="Log In" />
+        <hr />
+        <Link to="/registration" flex_center>
+          Don’t have an account yet? Register here
+        </Link>
+      </Form>
+    </section>
+  );
+};
+
+export default LoginPage;

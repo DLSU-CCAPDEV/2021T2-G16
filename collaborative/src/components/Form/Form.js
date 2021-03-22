@@ -1,28 +1,24 @@
 import React, { useCallback, useEffect, useState } from "react";
+import $ from "jquery";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogin, userRegistration } from "../../actions/index";
 import styles from "./Form.module.css";
 
-const clearForm = () => {
-  document.getElementById("form").reset();
-};
-
-var linkTo = "";
-
 const Form = ({
-  ErrorText,
+  errorText,
   children,
   width,
-  purpose,
+  formPurpose,
   userLogin,
   userRegistration,
   userDatabase,
+  linkTo,
 }) => {
   const [formData, updateFormData] = useState({});
   const [hasError, updateError] = useState(false);
   const history = useHistory();
-  const handleForwardToLink = useCallback(() => history.push(`/${linkTo}`), [
+  const handleForwardToLink = useCallback(() => history.push(`${linkTo}`), [
     history,
   ]);
 
@@ -35,21 +31,25 @@ const Form = ({
   };
 
   const handleOnSubmit = (event, forwardToLink) => {
-    // event.preventDefault();
+    event.preventDefault();
 
-    switch (purpose) {
+    switch (formPurpose) {
       case "login":
         //  Login into account
         if (
           userDatabase.find(
-            (item) => item.emailInput === formData.emailInput
+            (item) =>
+              item.emailInput === formData.emailInput &&
+              item.passwordInput === formData.passwordInput
           ) !== undefined
         ) {
           userLogin(formData);
+          forwardToLink();
         }
 
         //  Account credentials mismatches
         else {
+          updateError(true);
         }
         break;
       case "registration":
@@ -60,21 +60,20 @@ const Form = ({
           ) === undefined
         ) {
           userRegistration(formData);
+          forwardToLink();
         }
 
         //  Account already exists
         else {
-          updateError(!hasError);
+          updateError(true);
         }
         break;
       default:
         console.log("ERROR in Form.js. Form has no purpose");
     }
-
-    //  TODO account exists / wrong credentials
-    forwardToLink();
   };
 
+  //  TODO: Refactor this in jQuery
   const renderChildren = (children) => {
     return children.map((item) => {
       if (item.props.to !== undefined) {
@@ -87,7 +86,6 @@ const Form = ({
                 ? styles.flex_center
                 : null
             }
-            onClick={clearForm}
           >
             {item}
           </div>
@@ -102,22 +100,17 @@ const Form = ({
               </div>
             );
           case "input":
-            if (item.props.type === "submit") {
-              linkTo = item.props.linkTo;
-              return item;
-            } else {
-              let props = item.props;
-              return (
-                <input
-                  type={props.type}
-                  id={props.id}
-                  name={props.name}
-                  placeholder={props.placeholder}
-                  required={props.required}
-                  onChange={handleOnChange}
-                />
-              );
-            }
+            let props = item.props;
+            return (
+              <input
+                type={props.type}
+                id={props.id}
+                name={props.name}
+                placeholder={props.placeholder}
+                required={props.required}
+                onChange={(event) => handleOnChange(event)}
+              />
+            );
           default:
             return item;
         }
@@ -125,13 +118,16 @@ const Form = ({
     });
   };
 
-  const renderErrorText = () => {
-    if (hasError) {
-      return <span className={styles.ErrorText}>{ErrorText}</span>;
-    } else {
-      return <span>No Error</span>;
+  useEffect(() => {
+    if (hasError && $(`.${styles.ErrorText}`).get().length === 0) {
+      $(`<span class=${styles.ErrorText}>${errorText}</span>`).insertBefore(
+        $("input")
+          .get()
+          .find((item) => item.type === "submit")
+      );
+      updateError(false);
     }
-  };
+  }, [hasError]);
 
   return (
     <form
@@ -142,8 +138,7 @@ const Form = ({
       method="post"
       onSubmit={(event) => handleOnSubmit(event, handleForwardToLink)}
     >
-      {renderChildren(children)}
-      {renderErrorText()}
+      {renderChildren(children, formData, updateFormData)}
     </form>
   );
 };
