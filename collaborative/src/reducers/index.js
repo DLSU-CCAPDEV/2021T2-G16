@@ -1,18 +1,22 @@
 import { combineReducers } from "redux";
 
 const userReducer = (userDatabase = [], action) => {
-  if (action.type === "USER_REGISTRATION") {
-    return [...userDatabase, action.payload];
-  } else {
-    return userDatabase;
+  switch (action.type) {
+    case "USER_REGISTRATION":
+      return [...userDatabase, action.payload];
+    default:
+      return userDatabase;
   }
 };
 
 const currentUserReducer = (currentUser = null, action) => {
-  if (action.type === "USER_LOGIN") {
-    return action.payload;
-  } else {
-    return currentUser;
+  switch (action.type) {
+    case "USER_LOGIN":
+      return action.payload;
+    case "USER_LOGOUT":
+      return {};
+    default:
+      return currentUser;
   }
 };
 

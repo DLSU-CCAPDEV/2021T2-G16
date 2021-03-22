@@ -37,7 +37,7 @@ const renderForm = ({ pathname }) => {
           />
         </div>
         <input
-          type="email"
+          type="text"
           name="name-input"
           id="emailInput"
           placeholder="Your Email"
@@ -76,7 +76,7 @@ const renderForm = ({ pathname }) => {
       <hr />
       <div column>
         <input
-          type="email"
+          type="text"
           name="name-input"
           id="emailInput"
           placeholder="Your Email"

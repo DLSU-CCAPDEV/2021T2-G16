@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { userLogin } from "../../actions/index";
+import { userLogin, userRegistration } from "../../actions/index";
 import styles from "./Form.module.css";
 
 const clearForm = () => {
@@ -10,7 +10,14 @@ const clearForm = () => {
 
 var linkTo = "";
 
-const Form = ({ children, width, purpose, userLogin }) => {
+const Form = ({
+  children,
+  width,
+  purpose,
+  userLogin,
+  userRegistration,
+  userDatabase,
+}) => {
   const [formData, updateFormData] = useState({});
   const history = useHistory();
   const handleForwardToLink = useCallback(() => history.push(`/${linkTo}`), [
@@ -30,10 +37,34 @@ const Form = ({ children, width, purpose, userLogin }) => {
 
     switch (purpose) {
       case "login":
-        userLogin(formData);
+        //  Login into account
+        if (
+          userDatabase.find(
+            (item) => item.emailInput === formData.emailInput
+          ) !== undefined
+        ) {
+          userLogin(formData);
+        }
+
+        //  Account does not exists
+        else {
+          console.log("Account does not exists!");
+        }
         break;
       case "registration":
-        console.log("registration");
+        //  Create a new account
+        if (
+          userDatabase.find(
+            (item) => item.emailInput === formData.emailInput
+          ) === undefined
+        ) {
+          userRegistration(formData);
+        }
+
+        //  Account already exists
+        else {
+          console.log("Account already exists");
+        }
         break;
       default:
         console.log("ERROR in Form.js. Form has no purpose");
@@ -107,6 +138,8 @@ const Form = ({ children, width, purpose, userLogin }) => {
   );
 };
 
-const mapStateToProps = (state) => {};
+const mapStateToProps = (state) => {
+  return { userDatabase: state.userReducer };
+};
 
-export default connect(null, { userLogin })(Form);
+export default connect(mapStateToProps, { userLogin, userRegistration })(Form);
