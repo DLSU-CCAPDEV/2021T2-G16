@@ -10,6 +10,7 @@ const userReducer = (userDatabase = [], action) => {
 
 const currentUserReducer = (currentUser = null, action) => {
   if (action.type === "USER_LOGIN") {
+    return action.payload;
   } else {
     return currentUser;
   }
@@ -17,5 +18,5 @@ const currentUserReducer = (currentUser = null, action) => {
 
 export default combineReducers({
   userReducer,
-  currentUser: currentUserReducer,
+  currentUserReducer,
 });

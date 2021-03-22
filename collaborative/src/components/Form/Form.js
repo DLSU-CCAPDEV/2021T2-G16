@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from "react";
+import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { userLogin } from "../../actions/index";
 import styles from "./Form.module.css";
 
 const clearForm = () => {
@@ -8,10 +10,10 @@ const clearForm = () => {
 
 var linkTo = "";
 
-const Form = ({ children, width }) => {
+const Form = ({ children, width, purpose, userLogin }) => {
   const [formData, updateFormData] = useState({});
   const history = useHistory();
-  const forwardToLink = useCallback(() => history.push(`/${linkTo}`), [
+  const handleForwardToLink = useCallback(() => history.push(`/${linkTo}`), [
     history,
   ]);
 
@@ -25,6 +27,18 @@ const Form = ({ children, width }) => {
 
   const handleOnSubmit = (event, forwardToLink) => {
     event.preventDefault();
+
+    switch (purpose) {
+      case "login":
+        userLogin(formData);
+        break;
+      case "registration":
+        console.log("registration");
+        break;
+      default:
+        console.log("ERROR in Form.js. Form has no purpose");
+    }
+
     //  TODO account exists / wrong credentials
     forwardToLink();
   };
@@ -86,11 +100,13 @@ const Form = ({ children, width }) => {
       style={{ width }}
       action="#"
       method="post"
-      onSubmit={(event) => handleOnSubmit(event, forwardToLink)}
+      onSubmit={(event) => handleOnSubmit(event, handleForwardToLink)}
     >
       {renderChildren(children)}
     </form>
   );
 };
 
-export default Form;
+const mapStateToProps = (state) => {};
+
+export default connect(null, { userLogin })(Form);
