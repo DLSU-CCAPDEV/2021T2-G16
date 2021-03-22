@@ -62,7 +62,7 @@ const renderForm = ({ pathname }) => {
       </Link>
     </Form>
   ) : (
-    <Form width="450px">
+    <Form width="400px">
       <div column>
         <Link to="/" flex_end>
           <img src={CloseButton} alt="Close Button" />
