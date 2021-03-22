@@ -16,7 +16,7 @@ const HomePage = ({ currentUser }) => {
     return (
       <section className={styles.HomePage}>
         <div className={styles.MainContent}>
-          <h1>{currentUser.emailInput}</h1>
+          <h1>Welcome, {currentUser.firstNameInput}</h1>
           <Link to="/login" exact>
             LINK
           </Link>

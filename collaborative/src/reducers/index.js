@@ -1,6 +1,11 @@
 import { combineReducers } from "redux";
 
-const userReducer = (userDatabase = [], action) => {
+const userReducer = (
+  userDatabase = [
+    { firstNameInput: "TEST USER", emailInput: "a", passwordInput: "a" },
+  ],
+  action
+) => {
   switch (action.type) {
     case "USER_REGISTRATION":
       return [...userDatabase, action.payload];

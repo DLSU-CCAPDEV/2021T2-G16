@@ -15,10 +15,17 @@ export const userRegistration = ({
   };
 };
 
-export const userLogin = ({ emailInput, passwordInput }) => {
+export const userLogin = ({
+  firstNameInput,
+  lastNameInput,
+  emailInput,
+  passwordInput,
+}) => {
   return {
     type: "USER_LOGIN",
     payload: {
+      firstNameInput,
+      lastNameInput,
       emailInput,
       passwordInput,
     },

@@ -32,18 +32,19 @@ const Form = ({
 
   const handleOnSubmit = (event, forwardToLink) => {
     event.preventDefault();
+    let userAccount;
 
     switch (formPurpose) {
       case "login":
         //  Login into account
         if (
-          userDatabase.find(
+          (userAccount = userDatabase.find(
             (item) =>
               item.emailInput === formData.emailInput &&
               item.passwordInput === formData.passwordInput
-          ) !== undefined
+          )) !== undefined
         ) {
-          userLogin(formData);
+          userLogin(userAccount);
           forwardToLink();
         }
 
