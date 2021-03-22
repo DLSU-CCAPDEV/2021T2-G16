@@ -1,4 +1,4 @@
-[![Landing Page](./github-assets/Collaborative.png)]
+![Landing Page](./github-assets/Collaborative.png)
 # Collaborative
 Decsription
 
