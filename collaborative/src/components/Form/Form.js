@@ -1,8 +1,9 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./Form.module.css";
 
 var linkTo = "";
+var initialFormData = {};
 
 const renderChildren = (children) => {
   return children.map((item) => {
@@ -33,8 +34,9 @@ const renderChildren = (children) => {
         case "input":
           if (item.props.type === "submit") {
             linkTo = item.props.linkTo;
+          } else {
+            initialFormData[item.props.id] = null;
           }
-
           return item;
         default:
           return item;
@@ -48,8 +50,19 @@ const clearForm = () => {
 };
 
 const Form = ({ children, width }) => {
+  const [formData, updateFormData] = useState(initialFormData);
   const history = useHistory();
-  const handleSubmit = useCallback(() => history.push(`/${linkTo}`), [history]);
+  const forwardToLink = useCallback(() => history.push(`/${linkTo}`), [
+    history,
+  ]);
+
+  const handleOnSubmit = (event, forwardToLink) => {
+    event.preventDefault();
+    // console.log(event);
+    // console.log(event.target[0].value);
+    //  TODO account exists / wrong credentials
+    forwardToLink();
+  };
 
   return (
     <form
@@ -58,12 +71,7 @@ const Form = ({ children, width }) => {
       style={{ width }}
       action="#"
       method="post"
-      onSubmit={(event) => {
-        event.preventDefault();
-        console.log(event);
-        console.log(event.target[0].value);
-        handleSubmit();
-      }}
+      onSubmit={(event) => handleOnSubmit(event, forwardToLink)}
     >
       {renderChildren(children)}
     </form>
