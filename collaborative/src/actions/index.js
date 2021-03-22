@@ -1,9 +1,21 @@
-// export const dummyActionCreater = (data = [], action) => {
-//   return data;
-// };
+export const userRegistration = ({
+  firstNameInput,
+  lastNameInput,
+  emailInput,
+  passwordInput,
+}) => {
+  return {
+    type: "USER_REGISTRATION",
+    payload: {
+      firstNameInput,
+      lastNameInput,
+      emailInput,
+      passwordInput,
+    },
+  };
+};
 
 export const userLogin = ({ emailInput, passwordInput }) => {
-  console.log(emailInput, passwordInput);
   return {
     type: "USER_LOGIN",
     payload: {
