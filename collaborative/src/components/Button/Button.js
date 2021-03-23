@@ -58,7 +58,7 @@ class Button extends React.Component {
         </Link>
       );
     } else {
-      return <a>{this.props.text}</a>;
+      return <a href="#">{this.props.text}</a>;
     }
   }
 }

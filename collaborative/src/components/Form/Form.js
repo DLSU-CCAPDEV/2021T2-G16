@@ -18,9 +18,10 @@ const Form = ({
   const [formData, updateFormData] = useState({});
   const [hasError, updateError] = useState(false);
   const history = useHistory();
-  const handleForwardToLink = useCallback(() => history.push(`${linkTo}`), [
-    history,
-  ]);
+  const handleForwardToLink = useCallback(
+    () => history.push(linkTo !== undefined ? `${linkTo}` : "/"),
+    [history]
+  );
 
   const handleOnChange = (event) => {
     //  TODO hide password
@@ -76,6 +77,8 @@ const Form = ({
 
   //  TODO: Refactor this in jQuery
   const renderChildren = (children) => {
+    let keyIndex = 1; //  Surppress unique key prop requirement
+
     return children.map((item) => {
       if (item.props.to !== undefined) {
         return (
@@ -96,7 +99,10 @@ const Form = ({
           //    Get to root elements
           case "div":
             return (
-              <div className={item.props.column ? styles.column : styles.row}>
+              <div
+                className={item.props.column ? styles.column : styles.row}
+                key={keyIndex++}
+              >
                 {renderChildren(item.props.children)}
               </div>
             );

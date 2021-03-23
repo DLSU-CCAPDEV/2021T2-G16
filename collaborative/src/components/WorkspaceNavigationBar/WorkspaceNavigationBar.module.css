@@ -1,0 +1,31 @@
+.WorkspaceNavigationBar {
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  /* Yet To Decide about Box-Shadow: */
+  /* box-shadow: 1px 0 5px 2px rgb(209, 209, 209);  */
+}
+
+.WorkspaceNavigationBar h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.NavigationContent {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Hamburger {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.UserPortrait {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}

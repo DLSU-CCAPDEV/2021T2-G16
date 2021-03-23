@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 
+//  TODO Before production, remove test User
 const userReducer = (
   userDatabase = [
     { firstNameInput: "TEST USER", emailInput: "a", passwordInput: "a" },
@@ -14,7 +15,15 @@ const userReducer = (
   }
 };
 
-const currentUserReducer = (currentUser = null, action) => {
+//  TODO Before production, remove test User
+const currentUserReducer = (
+  currentUser = {
+    firstNameInput: "TEST USER",
+    emailInput: "a",
+    passwordInput: "a",
+  },
+  action
+) => {
   switch (action.type) {
     case "USER_LOGIN":
       return action.payload;
