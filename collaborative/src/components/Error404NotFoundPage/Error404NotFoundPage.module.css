@@ -1,0 +1,18 @@
+.Error404NotFoundPage {
+  color: rgb(255, 55, 55);
+  background-color: rgb(255, 177, 177);
+  padding: 50px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.Error404NotFoundPage h1 {
+  font-size: 100px;
+}
+
+.Error404NotFoundPage h2,
+.Error404NotFoundPage a {
+  font-size: 30px;
+  text-decoration: none;
+}
