@@ -1,4 +1,33 @@
-.MainContent {
-  padding: 20px 50px;
+.HomePage {
   min-height: 100vh;
+  width: 700px;
+  margin: 0 auto;
+}
+
+.Header {
+  display: flex;
+  gap: 35px;
+}
+
+.Header_Text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.Header_Text h1 {
+  color: #333941;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.Header_Text p {
+  line-height: 150%;
+  color: #8c8c8c;
+  text-align: justify;
+}
+
+.Header_Column {
+  flex-basis: 20%;
 }

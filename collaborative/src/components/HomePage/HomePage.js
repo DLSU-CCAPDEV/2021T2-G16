@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { connect } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import HomePage_Icon from "../../assets/HomePage_Icon.svg";
 import styles from "../HomePage/HomePage.module.css";
 
 const HomePage = ({ currentUser }) => {
@@ -15,11 +16,16 @@ const HomePage = ({ currentUser }) => {
   } else {
     return (
       <section className={styles.HomePage}>
-        <div className={styles.MainContent}>
-          <h1>Welcome, {currentUser.firstNameInput}</h1>
-          <Link to="/login" exact>
-            LINK
-          </Link>
+        <div className={styles.Header}>
+          <img src={HomePage_Icon} alt="Your Workspace" />
+          <div className={styles.Header_Text}>
+            <h1>Welcome to your workstation, {currentUser.firstNameInput}!</h1>
+            <p>
+              Collaborative provides you with your own battlestation. Through
+              this page, you can overseer your upcoming tasks, and access your
+              utmost important projects.
+            </p>
+          </div>
         </div>
       </section>
     );
