@@ -1,0 +1,7 @@
+.Workspace {
+  display: flex;
+}
+
+.Workspace_Content {
+  flex-basis: 100%;
+}

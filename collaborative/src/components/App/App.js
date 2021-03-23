@@ -7,17 +7,37 @@ import LoginPage from "../LoginPage/LoginPage";
 import WorkspaceNavigationBar from "../WorkspaceNavigationBar/WorkspaceNavigationBar";
 import RegisterPage from "../RegisterPage/RegistrationPage";
 import SideBar from "../SideBar/SideBar";
+import styles from "./App.module.css";
 import "./App.css";
+
+const WorkRoute = ({ exact, path, component: Component }) => (
+  <Route
+    exact={exact}
+    path={path}
+    render={(props) => (
+      <div>
+        <WorkspaceNavigationBar />
+        <div className={styles.Workspace}>
+          <SideBar />
+          <div className={styles.Workspace_Content}>
+            <Component />
+          </div>
+        </div>
+      </div>
+    )}
+  />
+);
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={LandingPage} />
-      <Route path="/registration" exact component={RegisterPage} />
-      <Route path="/login" exact component={LoginPage} />
-      <Route path={["/homepage"]} component={WorkspaceNavigationBar} />
-      <Route path={["/homepage"]} component={SideBar} />
-      <Route path="/homepage" exact component={HomePage} />
+      <Switch>
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/registration" exact component={RegisterPage} />
+        <Route path="/login" exact component={LoginPage} />
+        <WorkRoute path="/homepage" exact component={HomePage} />
+        <Route component={Error404NotFoundPage} />
+      </Switch>
     </BrowserRouter>
   );
 };
