@@ -15,13 +15,11 @@ const WorkRoute = ({ exact, path, component: Component }) => (
     exact={exact}
     path={path}
     render={(props) => (
-      <div>
-        <WorkspaceNavigationBar />
-        <div className={styles.Workspace}>
-          <SideBar />
-          <div className={styles.Workspace_Content}>
-            <Component />
-          </div>
+      <div className={styles.WorkSpace} style={{ height: "100vh" }}>
+        <SideBar />
+        <div className={styles.WorkSpace_Content}>
+          <WorkspaceNavigationBar />
+          <Component props={props} />
         </div>
       </div>
     )}

@@ -1,7 +1,10 @@
-.Workspace {
+.WorkSpace {
   display: flex;
+  flex: 0 0 100%;
 }
 
-.Workspace_Content {
-  flex-basis: 100%;
+.WorkSpace_Content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }

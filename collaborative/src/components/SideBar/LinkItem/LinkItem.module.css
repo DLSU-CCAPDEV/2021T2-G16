@@ -1,0 +1,21 @@
+.LinkItem {
+  color: #c0c0c0;
+  display: flex;
+  padding: 7px 0 7px 30px;
+  gap: 15px;
+  text-decoration: none;
+}
+
+.LinkItem:hover {
+  color: #e2e2e2;
+  background-color: #252e3f;
+}
+
+.LinkItem img {
+  width: 20px;
+  height: auto;
+}
+
+.LinkItem span {
+  font-size: 16px;
+}
