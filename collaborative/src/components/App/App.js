@@ -4,9 +4,11 @@ import Error404NotFoundPage from "../Error404NotFoundPage/Error404NotFoundPage";
 import HomePage from "../HomePage/HomePage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
-import WorkspaceNavigationBar from "../WorkspaceNavigationBar/WorkspaceNavigationBar";
+import ProjectPage from "../ProjectPage/ProjectPage";
 import RegisterPage from "../RegisterPage/RegistrationPage";
 import SideBar from "../SideBar/SideBar";
+import TaskPage from "../TaskPage/TaskPage";
+import WorkspaceNavigationBar from "../WorkspaceNavigationBar/WorkspaceNavigationBar";
 import styles from "./App.module.css";
 import "./App.css";
 
@@ -34,6 +36,8 @@ const App = () => {
         <Route path="/registration" exact component={RegisterPage} />
         <Route path="/login" exact component={LoginPage} />
         <WorkRoute path="/homepage" exact component={HomePage} />
+        <WorkRoute path="/projects" exact component={ProjectPage} />
+        <WorkRoute path="/tasks" exact component={TaskPage} />
         <Route component={Error404NotFoundPage} />
       </Switch>
     </BrowserRouter>
