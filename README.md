@@ -9,4 +9,4 @@ Decsription
 4. Deploy the Project to your Local Browser through <br /> `npm start`
 
 ## Bugs
-If a bug is encountered, please do not hesitate to [open a new issue here](https://github.com/ProgrammerNammer/DSC-react/issues/new). Include what the circumstances were and any other information needed in replicating your issue. Remember, a well-documented Bug Report is as good as a solved one! 
+If a bug is encountered, please do not hesitate to [open a new issue here](https://github.com/DLSU-CCAPDEV/2021T2-G16/issues/new). Include what the circumstances were and any other information needed in replicating your issue. Remember, a well-documented Bug Report is as good as a solved one! 
