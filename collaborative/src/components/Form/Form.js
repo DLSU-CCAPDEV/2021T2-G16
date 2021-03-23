@@ -3,6 +3,7 @@ import $ from "jquery";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogin, userRegistration } from "../../actions/index";
+import Warning_Logo from "../../assets/Warning_Logo.svg";
 import styles from "./Form.module.css";
 
 const Form = ({
@@ -127,7 +128,9 @@ const Form = ({
 
   useEffect(() => {
     if (hasError && $(`.${styles.ErrorText}`).get().length === 0) {
-      $(`<span class=${styles.ErrorText}>${errorText}</span>`).insertBefore(
+      $(
+        `<div class=${styles.ErrorText}><img src=${Warning_Logo} /><span>${errorText}</span></div>`
+      ).insertBefore(
         $("input")
           .get()
           .find((item) => item.type === "submit")

@@ -29,6 +29,16 @@
 
 .ErrorText {
   color: red;
+  display: flex;
+  gap: 10px;
+}
+
+.ErrorText img {
+  width: 35px;
+}
+
+.ErrorText span {
+  align-self: center;
 }
 
 .Form input[type="submit"] {
