@@ -49,7 +49,7 @@ const SideBar = ({ handleOnClick }) => {
     <aside className={styles.SideBar}>
       <div className={styles.TopHeader}>
         <div className={`${styles.Header} ${styles.Division}`}>
-          <Logo fontSize="20px" justText />
+          <Logo fontSize="25px" justText />
           <img
             src={Hamburger_Close}
             alt="Grilled Whopper"
