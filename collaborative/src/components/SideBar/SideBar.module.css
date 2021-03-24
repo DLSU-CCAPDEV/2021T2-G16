@@ -1,8 +1,8 @@
 .SideBar {
   background-color: #141a25;
   color: #c0c0c0;
-  width: 300px;
-  padding: 20px 0;
+  width: 275px;
+  padding: 25px 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
