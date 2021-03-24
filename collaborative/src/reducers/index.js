@@ -1,12 +1,8 @@
 import { combineReducers } from "redux";
+import { userDatabaseInject } from "./DataInjection";
 
 //  TODO Before production, remove test User
-const userReducer = (
-  userDatabase = [
-    { firstNameInput: "TEST USER", emailInput: "a", passwordInput: "a" },
-  ],
-  action
-) => {
+const userReducer = (userDatabase = userDatabaseInject, action) => {
   switch (action.type) {
     case "USER_REGISTRATION":
       return [...userDatabase, action.payload];
@@ -15,15 +11,7 @@ const userReducer = (
   }
 };
 
-//  TODO Before production, remove test User
-const currentUserReducer = (
-  currentUser = {
-    firstNameInput: "TEST USER",
-    emailInput: "a",
-    passwordInput: "a",
-  },
-  action
-) => {
+const currentUserReducer = (currentUser = null, action) => {
   switch (action.type) {
     case "USER_LOGIN":
       return action.payload;
