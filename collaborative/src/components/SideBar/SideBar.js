@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styles from "./SideBar.module.css";
 import HomePage_icon from "../../assets/HomePage_Icon.svg";
+import ProjectPage_icon from "../../assets/ProjectPage_Icon.svg";
+import TasksPage_icon from "../../assets/TasksPage_Icon.svg";
 import LinkItem from "./LinkItem/LinkItem";
 import Logo from "../Logo/Logo";
-import { useHistory, useLocation } from "react-router";
+import { useLocation } from "react-router";
 
 const linkItems = [
   {
@@ -14,12 +16,12 @@ const linkItems = [
   {
     to: "/projects",
     text: "Projects",
-    icon: HomePage_icon,
+    icon: ProjectPage_icon,
   },
   {
     to: "/tasks",
     text: "My Tasks",
-    icon: HomePage_icon,
+    icon: TasksPage_icon,
   },
   {
     to: "/homepagedadwad",

@@ -6,13 +6,17 @@
   text-decoration: none;
 }
 
-.LinkItem__Selected {
-  background-color: red;
-}
-
 .LinkItem:hover {
   color: #e2e2e2;
   background-color: #252e3f;
+}
+
+.LinkItem__Selected {
+  background-color: #2f3a4e;
+}
+
+.LinkItem__Selected:hover {
+  background-color: #3a465c;
 }
 
 .LinkItem img {
