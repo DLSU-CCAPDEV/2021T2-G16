@@ -25,9 +25,12 @@ const App = () => {
       path={path}
       render={(props) => (
         <div className={styles.WorkSpace} style={{ height: "100vh" }}>
-          {isSideBarOpen ? <SideBar /> : null}
+          {isSideBarOpen ? <SideBar handleOnClick={handleOnClick} /> : null}
           <div className={styles.WorkSpace_Content}>
-            <WorkspaceNavigationBar handleOnClick={handleOnClick} />
+            <WorkspaceNavigationBar
+              handleOnClick={handleOnClick}
+              isSideBarOpen={isSideBarOpen}
+            />
             <Component props={props} />
           </div>
         </div>

@@ -3,16 +3,18 @@ import styles from "./Logo.module.css";
 import Logo__White from "../../assets/Logo-White.svg";
 import Logo__Color from "../../assets/Logo-Color.svg";
 
-const Logo = ({ primary, fontSize = 40 }) => {
+const Logo = ({ primary, justText, fontSize = 40 }) => {
   const scaleFactor = 1.1;
 
   return (
     <div className={styles.Logo}>
-      <img
-        src={primary ? Logo__Color : Logo__White}
-        alt="Collaborative Logo"
-        style={{ width: fontSize * scaleFactor + "px", height: "auto" }}
-      />
+      {justText ? null : (
+        <img
+          src={primary ? Logo__Color : Logo__White}
+          alt="Collaborative Logo"
+          style={{ width: fontSize * scaleFactor + "px", height: "auto" }}
+        />
+      )}
       <span
         style={{
           color: primary ? "black" : "white",

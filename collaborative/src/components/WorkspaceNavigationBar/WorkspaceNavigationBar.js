@@ -4,7 +4,7 @@ import Hamburger from "../../assets/Hamburger.svg";
 import UserPortrait from "../../assets/UserPortrait.svg";
 import styles from "./WorkspaceNavigationBar.module.css";
 
-const WorkspaceNavigationBar = ({ handleOnClick }) => {
+const WorkspaceNavigationBar = ({ handleOnClick, isSideBarOpen }) => {
   const getHeaderLine = (location) => {
     switch (location) {
       case "/homepage":
@@ -16,12 +16,14 @@ const WorkspaceNavigationBar = ({ handleOnClick }) => {
 
   return (
     <nav className={styles.WorkspaceNavigationBar}>
-      <img
-        src={Hamburger}
-        alt="Cheese Hamburger"
-        className={styles.Hamburger}
-        onClick={handleOnClick}
-      />
+      {isSideBarOpen ? null : (
+        <img
+          src={Hamburger}
+          alt="Cheese Hamburger"
+          className={styles.Hamburger}
+          onClick={handleOnClick}
+        />
+      )}
       <h1>{getHeaderLine(useLocation().pathname)}</h1>
       <div className={styles.NavigationContent}>
         <img

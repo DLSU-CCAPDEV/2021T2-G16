@@ -1,17 +1,35 @@
 .SideBar {
   background-color: #141a25;
   color: #c0c0c0;
-  width: 300px;
+  width: 275px;
   padding: 20px 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+.SideBar hr {
+  border-color: #373e4b;
+}
+
 .Division {
   padding-left: 30px;
 }
 
-.SideBar hr {
-  border-color: #373e4b;
+.TopHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Header {
+  display: flex;
+}
+
+.Hamburger_Close {
+  cursor: pointer;
+  width: 40px;
+  height: auto;
+  margin-left: auto;
+  margin-right: 20px;
 }
