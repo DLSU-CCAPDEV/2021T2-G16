@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Error404NotFoundPage from "../Error404NotFoundPage/Error404NotFoundPage";
 import HomePage from "../HomePage/HomePage";
@@ -12,32 +12,38 @@ import WorkspaceNavigationBar from "../WorkspaceNavigationBar/WorkspaceNavigatio
 import styles from "./App.module.css";
 import "./App.css";
 
-const WorkRoute = ({ exact, path, component: Component }) => (
-  <Route
-    exact={exact}
-    path={path}
-    render={(props) => (
-      <div className={styles.WorkSpace} style={{ height: "100vh" }}>
-        <SideBar />
-        <div className={styles.WorkSpace_Content}>
-          <WorkspaceNavigationBar />
-          <Component props={props} />
-        </div>
-      </div>
-    )}
-  />
-);
-
 const App = () => {
+  const [isSideBarOpen, toggleSideBar] = useState(false);
+
+  const handleOnClick = () => {
+    toggleSideBar(!isSideBarOpen);
+  };
+
+  const WorkRoute = ({ exact, path, Component }) => (
+    <Route
+      exact={exact}
+      path={path}
+      render={(props) => (
+        <div className={styles.WorkSpace} style={{ height: "100vh" }}>
+          {isSideBarOpen ? <SideBar /> : null}
+          <div className={styles.WorkSpace_Content}>
+            <WorkspaceNavigationBar handleOnClick={handleOnClick} />
+            <Component props={props} />
+          </div>
+        </div>
+      )}
+    />
+  );
+
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/registration" exact component={RegisterPage} />
         <Route path="/login" exact component={LoginPage} />
-        <WorkRoute path="/homepage" exact component={HomePage} />
-        <WorkRoute path="/projects" exact component={ProjectPage} />
-        <WorkRoute path="/tasks" exact component={TaskPage} />
+        <WorkRoute path="/homepage" exact Component={HomePage} />
+        <WorkRoute path="/projects" exact Component={ProjectPage} />
+        <WorkRoute path="/tasks" exact Component={TaskPage} />
         <Route component={Error404NotFoundPage} />
       </Switch>
     </BrowserRouter>
