@@ -6,6 +6,10 @@
   text-decoration: none;
 }
 
+.LinkItem__Selected {
+  background-color: red;
+}
+
 .LinkItem:hover {
   color: #e2e2e2;
   background-color: #252e3f;

@@ -129,7 +129,10 @@ const Form = ({
   useEffect(() => {
     if (hasError && $(`.${styles.ErrorText}`).get().length === 0) {
       $(
-        `<div class=${styles.ErrorText}><img src=${Warning_Logo} /><span>${errorText}</span></div>`
+        `<div class=${styles.ErrorText}>
+          <img src=${Warning_Logo} />
+          <span>${errorText}</span>
+         </div>`
       ).insertBefore(
         $("input")
           .get()
