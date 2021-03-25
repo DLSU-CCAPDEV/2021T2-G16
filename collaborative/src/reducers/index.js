@@ -22,7 +22,17 @@ const currentUserReducer = (currentUser = userDatabaseInject[0], action) => {
   }
 };
 
+const projectDatabaseReducer = (projectDatabaseReducer = [], action) => {
+  switch (action.type) {
+    case "PROJECT_CREATE":
+      return [...projectDatabaseReducer, action];
+    default:
+      return projectDatabaseReducer;
+  }
+};
+
 export default combineReducers({
   userReducer,
   currentUserReducer,
+  projectDatabaseReducer,
 });
