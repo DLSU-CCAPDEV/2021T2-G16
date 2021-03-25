@@ -9,6 +9,10 @@ const WorkspaceNavigationBar = ({ handleOnClick, isSideBarOpen }) => {
     switch (location) {
       case "/homepage":
         return "Homepage";
+      case "/projects":
+        return "Projects";
+      case "/tasks":
+        return "My Tasks";
       default:
         return "[Unnamed Header]";
     }
