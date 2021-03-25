@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { userDatabaseInject } from "./DataInjection";
+import { userDatabaseInject, projectDatabaseInject } from "./DataInjection";
 
 const userReducer = (userDatabase = userDatabaseInject, action) => {
   switch (action.type) {
@@ -22,7 +22,10 @@ const currentUserReducer = (currentUser = userDatabaseInject[0], action) => {
   }
 };
 
-const projectDatabaseReducer = (projectDatabaseReducer = [], action) => {
+const projectDatabaseReducer = (
+  projectDatabaseReducer = projectDatabaseInject,
+  action
+) => {
   switch (action.type) {
     case "PROJECT_CREATE":
       return [...projectDatabaseReducer, action];

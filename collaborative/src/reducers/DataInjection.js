@@ -37,3 +37,19 @@ export const userDatabaseInject = [
       "KP0c@vGu7ysp4EgoFHOUdqv*Tb#m2^K8NW^T!cc8KO!XSOn&K#yUz25DJmYzFTGCq9lrTjy#",
   },
 ];
+
+export const projectDatabaseInject = [
+  {
+    emailInput: "a",
+    members: [{ emailInput: "Qazujm@daporta.com.eu" }],
+    description:
+      "This is a test project purposely made for fake data injection.",
+    kanbanID: "",
+  },
+  {
+    emailInput: "OPFracture@yahoo.com",
+    members: [{ emailInput: "Qazujm@daporta.com.eu" }],
+    description: "",
+    kanbanID: "",
+  },
+];

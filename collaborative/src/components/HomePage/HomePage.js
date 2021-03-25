@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import HomePage_Logo from "../../assets/HomePage_Logo.svg";
+import ProjectPreviewList from "../ProjectPreviewList/ProjectPreviewList";
 import styles from "../HomePage/HomePage.module.css";
 
 const HomePage = ({ currentUser }) => {
@@ -27,6 +28,7 @@ const HomePage = ({ currentUser }) => {
             </p>
           </div>
         </div>
+        <ProjectPreviewList />
       </section>
     );
   }

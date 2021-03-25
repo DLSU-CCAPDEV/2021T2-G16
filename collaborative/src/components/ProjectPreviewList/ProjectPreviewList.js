@@ -3,19 +3,22 @@ import { connect } from "react-redux";
 import ProjectPreviewItem from "./ProjectPreviewItem/ProjectPreviewItem";
 import styles from "./ProjectPreviewList.module.css";
 
-const ProjectPreviewList = ({ primary, projectItems }) => {
-  const renderItems = projectItems.map((item) => <ProjectPreviewItem />);
-
-  return <div>{console.table(projectItems)}</div>;
-  //   return <div>{renderItems}</div>;
+const ProjectPreviewList = ({ primary, projectItems = [] }) => {
+  // return <div>{() => projectItems.map((item) => <ProjectPreviewItem />)}</div>;
+  console.log(projectItems);
+  return (
+    <div>
+      <h1>{projectItems.description}</h1>
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => {
-  const { projectDatabaseUser, currentUserReducer } = state;
+  const { projectDatabaseReducer, currentUserReducer } = state;
 
   return {
-    projectItems: projectDatabaseUser.find(
-      item.userEmail === currentUserReducer
+    projectItems: projectDatabaseReducer.find(
+      (item) => item.emailInput === currentUserReducer.emailInput
     ),
   };
 };
