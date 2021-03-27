@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import styles from "./ProjectPreviewItem.module.css";
 import "./ProjectPreview.css";
 
-const ProjectPreviewItem = ({ itemProp }) => {
+const ProjectPreviewItem = ({ itemProp, newProject }) => {
   const [isHoveredOn, toggleHover] = useState(false);
 
   return (
     <div
-      title={itemProp.projectName}
+      title={newProject ? "New Project" : itemProp.projectName}
       onMouseEnter={() => toggleHover(true)}
       onMouseLeave={() => toggleHover(false)}
       className={`${styles.ProjectPreviewItem} ${
@@ -16,13 +16,17 @@ const ProjectPreviewItem = ({ itemProp }) => {
           : styles.ProjectPreviewItem__inactive
       }`}
     >
-      <div className={styles.Picture} />
+      <div
+        className={`${styles.Picture} ${
+          newProject ? styles.Add : styles.Existing
+        }`}
+      />
       <span
         className={`${styles.Title} ${
           isHoveredOn ? styles.Title__active : styles.Title__inactive
         }`}
       >
-        {itemProp.projectName}
+        {newProject ? "New Project" : itemProp.projectName}
       </span>
     </div>
   );

@@ -42,36 +42,10 @@ export const projectDatabaseInject = [
   {
     emailInput: "a",
     members: [{ emailInput: "Qazujm@daporta.com.eu" }],
-    projectName: "Test Project awdaio awdnao wwad adj awad wadwad",
+    projectName: "Test Project.",
     backgroundID: "1",
     description:
       "This is a test project purposely made for fake data injection.",
-    kanbanID: "",
-  },
-  {
-    emailInput: "a",
-    members: [{ emailInput: "Qazujm@daporta.com.eu" }],
-    projectName: "Test Project awdaio awdnao wwad adj awad wadwad",
-    backgroundID: "1",
-    description:
-      "This is a test project purposely made for fake data injection.",
-    kanbanID: "",
-  },
-  {
-    emailInput: "a",
-    members: [{ emailInput: "Qazujm@daporta.com.eu" }],
-    projectName: "Test Project awdaio awdnao wwad adj awad wadwad",
-    backgroundID: "1",
-    description:
-      "This is a test project purposely made for fake data injection.",
-    kanbanID: "",
-  },
-  {
-    emailInput: "OPFracture@yahoo.com",
-    members: [{ emailInput: "Qazujm@daporta.com.eu" }],
-    projectName: "Altruuzi House Contest",
-    backgroundID: "1",
-    description: "",
     kanbanID: "",
   },
 ];
