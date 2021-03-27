@@ -4,20 +4,18 @@ import ProjectPreviewItem from "./ProjectPreviewItem/ProjectPreviewItem";
 import styles from "./ProjectPreviewList.module.css";
 
 const ProjectPreviewList = ({ primary, projectItems = [] }) => {
-  // return <div>{() => projectItems.map((item) => <ProjectPreviewItem />)}</div>;
-  console.log(projectItems);
-  return (
-    <div>
-      <h1>{projectItems.description}</h1>
-    </div>
-  );
+  const renderProjectItems = () => {
+    return projectItems.map((item) => <ProjectPreviewItem itemProp={item} />);
+  };
+
+  return <div className={styles.ProjectPreviewList}>{renderProjectItems()}</div>;
 };
 
 const mapStateToProps = (state) => {
   const { projectDatabaseReducer, currentUserReducer } = state;
 
   return {
-    projectItems: projectDatabaseReducer.find(
+    projectItems: projectDatabaseReducer.filter(
       (item) => item.emailInput === currentUserReducer.emailInput
     ),
   };

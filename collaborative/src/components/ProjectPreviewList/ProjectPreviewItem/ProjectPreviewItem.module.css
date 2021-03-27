@@ -1,0 +1,34 @@
+.ProjectPreviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 175px;
+}
+
+.Picture {
+  width: 175px;
+  height: 125px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(
+    0deg,
+    rgba(107, 166, 220, 0.9),
+    rgba(107, 166, 220, 0.9)
+  );
+  padding: 10px;
+}
+
+.Title {
+  width: 130px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 700;
+  color: #151b26;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 130px;
+}
+
+.ProjectPreviewItem__new {
+}
