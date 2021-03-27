@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./ProjectPreviewItem.module.css";
-import "./ProjectPreview.css";
 
 const ProjectPreviewItem = ({ itemProp, newProject }) => {
   const [isHoveredOn, toggleHover] = useState(false);

@@ -5,17 +5,16 @@
   padding: 15px;
   border-radius: 10px;
   overflow: hidden;
-  transition: all 0.5s, max-height 0.2s;
+  min-height: 184px;
+  transition: all 0.5s;
 }
 
 .ProjectPreviewItem__active {
   background-color: #e9e9e9;
-  max-height: 220px;
 }
 
 .ProjectPreviewItem__inactive {
   background-color: white;
-  max-height: 184px;
   transition: all 0s;
 }
 
@@ -43,14 +42,11 @@
 }
 
 .Title__active {
-  white-space: normal;
-  overflow: hidden;
 }
 
 .Add {
-  border: 2px #333941 dashed;
-
   background: url("../../../assets/NewProject_Icon.svg") center no-repeat;
+  border: 2px #333941 dashed;
 }
 
 .Existing {
