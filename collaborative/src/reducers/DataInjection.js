@@ -48,4 +48,31 @@ export const projectDatabaseInject = [
       "This is a test project purposely made for fake data injection.",
     kanbanID: "",
   },
+  {
+    emailInput: "a",
+    members: [{ emailInput: "Qazujm@daporta.com.eu" }],
+    projectName: "Test Project.",
+    backgroundID: "1",
+    description:
+      "This is a test project purposely made for fake data injection.",
+    kanbanID: "",
+  },
+  {
+    emailInput: "a",
+    members: [{ emailInput: "Qazujm@daporta.com.eu" }],
+    projectName: "Test Project.",
+    backgroundID: "1",
+    description:
+      "This is a test project purposely made for fake data injection.",
+    kanbanID: "",
+  },
+  {
+    emailInput: "a",
+    members: [{ emailInput: "Qazujm@daporta.com.eu" }],
+    projectName: "Test Project.",
+    backgroundID: "1",
+    description:
+      "This is a test project purposely made for fake data injection.",
+    kanbanID: "",
+  },
 ];
