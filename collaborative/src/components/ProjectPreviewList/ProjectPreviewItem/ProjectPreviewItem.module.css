@@ -2,12 +2,29 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 175px;
+  padding: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.5s, max-height 2s ease-out;
+}
+
+.ProjectPreviewItem__new {
+}
+
+.ProjectPreviewItem__active {
+  background-color: #e9e9e9;
+  max-height: 400px;
+}
+
+.ProjectPreviewItem__inactive {
+  background-color: white;
+  max-height: 184px;
+  transition: all 0s;
 }
 
 .Picture {
   width: 175px;
-  height: 125px;
+  min-height: 125px;
   border-radius: 20px;
   overflow: hidden;
   background: linear-gradient(
@@ -19,16 +36,20 @@
 }
 
 .Title {
-  width: 130px;
   margin-left: auto;
   margin-right: auto;
   font-weight: 700;
   color: #151b26;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 130px;
+  max-width: 170px;
+  text-align: center;
 }
 
-.ProjectPreviewItem__new {
+.Title__inactive {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Title__active {
+  white-space: normal;
 }
