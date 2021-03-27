@@ -2,6 +2,9 @@
   width: 900px;
   margin: 0 auto;
   padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
 
 .Header {
@@ -30,4 +33,39 @@
 
 .Header_Column {
   flex-basis: 20%;
+}
+
+.List {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ListHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ListHeader_Text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ListHeader_Text img {
+  width: 20px;
+  height: auto;
+}
+
+.ListHeader_Text span {
+  font-size: 22px;
+  color: #333941;
+}
+
+.ListHeader_Text a {
+  font-weight: 700;
+  text-decoration: none;
+  color: #3ea8ff;
+  margin-left: auto;
 }

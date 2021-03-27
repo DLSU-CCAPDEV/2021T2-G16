@@ -1,7 +1,8 @@
 import React, { useCallback } from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import HomePage_Logo from "../../assets/HomePage_Logo.svg";
+import Project_Icon__Black from "../../assets/Projects_Icon__Black.svg";
 import ProjectPreviewList from "../ProjectPreviewList/ProjectPreviewList";
 import styles from "../HomePage/HomePage.module.css";
 
@@ -28,7 +29,17 @@ const HomePage = ({ currentUser }) => {
             </p>
           </div>
         </div>
-        <ProjectPreviewList />
+        <div className={styles.List}>
+          <div className={styles.ListHeader}>
+            <div className={styles.ListHeader_Text}>
+              <img src={Project_Icon__Black} alt="Project_Icon" />
+              <span>Projects</span>
+              <Link to="/projects">See all my projects</Link>
+            </div>
+            <hr />
+          </div>
+          <ProjectPreviewList />
+        </div>
       </section>
     );
   }

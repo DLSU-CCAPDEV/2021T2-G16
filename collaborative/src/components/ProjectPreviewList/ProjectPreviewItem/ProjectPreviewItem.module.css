@@ -19,7 +19,7 @@
 }
 
 .Picture {
-  width: 175px;
+  min-width: 175px;
   min-height: 125px;
   border-radius: 20px;
   overflow: hidden;
@@ -29,7 +29,6 @@
 .Title {
   margin-left: auto;
   margin-right: auto;
-  font-weight: 700;
   color: #151b26;
   max-width: 170px;
   text-align: center;
