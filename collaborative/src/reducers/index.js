@@ -4,6 +4,16 @@ import { userDatabaseInject, projectDatabaseInject } from "./DataInjection";
 const userReducer = (userDatabase = userDatabaseInject, action) => {
   switch (action.type) {
     case "USER_REGISTRATION":
+      const newUniqueID =
+        Math.max.apply(
+          Math,
+          userDatabase.map(function (item) {
+            return item.uniqueID;
+          })
+        ) + 1;
+
+      action.payload.uniqueID = newUniqueID;
+
       return [...userDatabase, action.payload];
     default:
       return userDatabase;

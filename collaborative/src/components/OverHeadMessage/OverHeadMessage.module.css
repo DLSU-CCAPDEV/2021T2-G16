@@ -5,6 +5,7 @@
   border: 1px solid gainsboro;
   box-shadow: 0px 0px 5px 1px gainsboro;
   overflow: hidden;
+  display: inline-block;
 }
 
 .Item {

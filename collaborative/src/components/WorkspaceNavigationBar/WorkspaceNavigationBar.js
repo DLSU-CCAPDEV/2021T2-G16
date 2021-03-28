@@ -12,6 +12,7 @@ const WorkspaceNavigationBar = ({
   isSideBarOpen,
   userLogout,
   handleOnClickToggleSideBar,
+  currentUser,
 }) => {
   //  TODO customize a hook inside of OverHeadMessage that will manage itself
   const [isMenuOpen, toggleMenuOpen] = useState(false);
@@ -55,10 +56,7 @@ const WorkspaceNavigationBar = ({
         />
         {isMenuOpen ? (
           <div className={styles.Menu}>
-            <OverHeadMessage
-              width="100"
-              closeMenu={() => handleOnClickToggleMenu()}
-            >
+            <OverHeadMessage closeMenu={() => handleOnClickToggleMenu()}>
               <Link
                 to="/"
                 onClick={() => {
@@ -66,6 +64,9 @@ const WorkspaceNavigationBar = ({
                 }}
               >
                 Log Out
+              </Link>
+              <Link to={`/UserProfile=${currentUser.uniqueID}`}>
+                My Profile
               </Link>
             </OverHeadMessage>
           </div>
@@ -75,4 +76,8 @@ const WorkspaceNavigationBar = ({
   );
 };
 
-export default connect(null, { userLogout })(WorkspaceNavigationBar);
+const mapStateToProps = (state) => {
+  return { currentUser: state.currentUserReducer };
+};
+
+export default connect(mapStateToProps, { userLogout })(WorkspaceNavigationBar);
