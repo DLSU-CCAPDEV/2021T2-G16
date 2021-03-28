@@ -17,7 +17,7 @@ const ProjectPreviewList = ({ primary, projectItems = [] }) => {
 
       return projectItems.map((item) => {
         counter++;
-        console.log(counter + " < " + maximumTreshold);
+
         return counter < maximumTreshold ? (
           <ProjectPreviewItem itemProp={item} />
         ) : (

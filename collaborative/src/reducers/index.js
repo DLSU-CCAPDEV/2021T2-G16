@@ -16,7 +16,7 @@ const currentUserReducer = (currentUser = userDatabaseInject[0], action) => {
     case "USER_LOGIN":
       return action.payload;
     case "USER_LOGOUT":
-      return {};
+      return null;
     default:
       return currentUser;
   }

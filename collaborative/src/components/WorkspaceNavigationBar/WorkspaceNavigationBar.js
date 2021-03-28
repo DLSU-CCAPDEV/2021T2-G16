@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Hamburger from "../../assets/Hamburger.svg";
+import OverHeadMessage from "../OverHeadMessage/OverHeadMessage";
 import UserPortrait from "../../assets/UserPortrait.svg";
+import { userLogout } from "../../actions";
 import styles from "./WorkspaceNavigationBar.module.css";
 
-const WorkspaceNavigationBar = ({ handleOnClick, isSideBarOpen }) => {
+const WorkspaceNavigationBar = ({ isSideBarOpen, userLogout }) => {
+  //  TODO customize a hook inside of OverHeadMessage that will manage itself
+  const [isMenuOpen, toggleMenuOpen] = useState(false);
+
+  const handleOnClick = () => {
+    toggleMenuOpen(!isMenuOpen);
+    // if (isMenuOpen) {
+    //   alert("Invoked");
+    //   toggleMenuOpen(false);
+    //   document.removeEventListener("click", () => alert("Clicked Outside"));
+    // } else {
+    //   toggleMenuOpen(true);
+    //   document.addEventListener("click", () => alert("Click"));
+    // }
+  };
+
   const getHeaderLine = (location) => {
     switch (location) {
       case "/homepage":
@@ -25,7 +44,7 @@ const WorkspaceNavigationBar = ({ handleOnClick, isSideBarOpen }) => {
           src={Hamburger}
           alt="Cheese Hamburger"
           className={styles.Hamburger}
-          onClick={handleOnClick}
+          // onClick={() => }
         />
       )}
       <h1>{getHeaderLine(useLocation().pathname)}</h1>
@@ -34,10 +53,23 @@ const WorkspaceNavigationBar = ({ handleOnClick, isSideBarOpen }) => {
           src={UserPortrait}
           alt="User Portrait"
           className={styles.UserPortrait}
+          onClick={() => handleOnClick()}
         />
+        {isMenuOpen ? (
+          <OverHeadMessage width="200">
+            <Link
+              to="/"
+              onClick={() => {
+                userLogout();
+              }}
+            >
+              Log Out
+            </Link>
+          </OverHeadMessage>
+        ) : null}
       </div>
     </nav>
   );
 };
 
-export default WorkspaceNavigationBar;
+export default connect(null, { userLogout })(WorkspaceNavigationBar);
