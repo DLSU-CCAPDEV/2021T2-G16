@@ -50,9 +50,7 @@ const WorkspaceNavigationBar = ({
           alt="User Portrait"
           className={styles.UserPortrait}
           onClick={() => {
-            if (!isMenuOpen) {
-              handleOnClickToggleMenu();
-            }
+            handleOnClickToggleMenu();
           }}
         />
         {isMenuOpen ? (
