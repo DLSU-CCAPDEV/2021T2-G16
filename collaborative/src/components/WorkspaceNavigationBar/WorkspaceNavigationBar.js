@@ -8,21 +8,25 @@ import UserPortrait from "../../assets/UserPortrait.svg";
 import { userLogout } from "../../actions";
 import styles from "./WorkspaceNavigationBar.module.css";
 
-const WorkspaceNavigationBar = ({ isSideBarOpen, userLogout }) => {
+const WorkspaceNavigationBar = ({
+  isSideBarOpen,
+  userLogout,
+  handleOnClick,
+}) => {
   //  TODO customize a hook inside of OverHeadMessage that will manage itself
   const [isMenuOpen, toggleMenuOpen] = useState(false);
 
-  const handleOnClick = () => {
-    toggleMenuOpen(!isMenuOpen);
-    // if (isMenuOpen) {
-    //   alert("Invoked");
-    //   toggleMenuOpen(false);
-    //   document.removeEventListener("click", () => alert("Clicked Outside"));
-    // } else {
-    //   toggleMenuOpen(true);
-    //   document.addEventListener("click", () => alert("Click"));
-    // }
-  };
+  // const handleOnClick = () => {
+  //   toggleMenuOpen(!isMenuOpen);
+  // if (isMenuOpen) {
+  //   alert("Invoked");
+  //   toggleMenuOpen(false);
+  //   document.removeEventListener("click", () => alert("Clicked Outside"));
+  // } else {
+  //   toggleMenuOpen(true);
+  //   document.addEventListener("click", () => alert("Click"));
+  // }
+  // };
 
   const getHeaderLine = (location) => {
     switch (location) {
@@ -44,7 +48,7 @@ const WorkspaceNavigationBar = ({ isSideBarOpen, userLogout }) => {
           src={Hamburger}
           alt="Cheese Hamburger"
           className={styles.Hamburger}
-          // onClick={() => }
+          onClick={() => handleOnClick()}
         />
       )}
       <h1>{getHeaderLine(useLocation().pathname)}</h1>
@@ -53,7 +57,7 @@ const WorkspaceNavigationBar = ({ isSideBarOpen, userLogout }) => {
           src={UserPortrait}
           alt="User Portrait"
           className={styles.UserPortrait}
-          onClick={() => handleOnClick()}
+          // onClick={() => handleOnClick()}
         />
         {isMenuOpen ? (
           <OverHeadMessage width="200">
