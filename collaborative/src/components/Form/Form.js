@@ -76,7 +76,7 @@ const Form = ({
     }
   };
 
-  //  TODO: Refactor this in jQuery
+  //  TODO: Refactor this using React.Children.map() function
   const renderChildren = (children) => {
     let keyIndex = 1; //  Surppress unique key prop requirement
 

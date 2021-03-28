@@ -12,8 +12,6 @@ const HomePage = ({ currentUser }) => {
     history,
   ]);
 
-  console.log(currentUser);
-
   if (!currentUser) {
     handleNoCurrentUser();
     return null;

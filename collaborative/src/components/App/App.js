@@ -15,7 +15,7 @@ import "./App.css";
 const App = () => {
   const [isSideBarOpen, toggleSideBar] = useState(false);
 
-  const handleOnClick = () => {
+  const handleOnClickToggleSideBar = () => {
     toggleSideBar(!isSideBarOpen);
   };
 
@@ -25,10 +25,12 @@ const App = () => {
       path={path}
       render={(props) => (
         <div className={styles.WorkSpace} style={{ height: "100vh" }}>
-          {isSideBarOpen ? <SideBar handleOnClick={handleOnClick} /> : null}
+          {isSideBarOpen ? (
+            <SideBar handleOnClick={handleOnClickToggleSideBar} />
+          ) : null}
           <div className={styles.WorkSpace_Content}>
             <WorkspaceNavigationBar
-              handleOnClick={handleOnClick}
+              handleOnClickToggleSideBar={handleOnClickToggleSideBar}
               isSideBarOpen={isSideBarOpen}
             />
             <Component props={props} />

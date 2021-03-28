@@ -11,22 +11,14 @@ import styles from "./WorkspaceNavigationBar.module.css";
 const WorkspaceNavigationBar = ({
   isSideBarOpen,
   userLogout,
-  handleOnClick,
+  handleOnClickToggleSideBar,
 }) => {
   //  TODO customize a hook inside of OverHeadMessage that will manage itself
   const [isMenuOpen, toggleMenuOpen] = useState(false);
 
-  // const handleOnClick = () => {
-  //   toggleMenuOpen(!isMenuOpen);
-  // if (isMenuOpen) {
-  //   alert("Invoked");
-  //   toggleMenuOpen(false);
-  //   document.removeEventListener("click", () => alert("Clicked Outside"));
-  // } else {
-  //   toggleMenuOpen(true);
-  //   document.addEventListener("click", () => alert("Click"));
-  // }
-  // };
+  const handleOnClickToggleMenu = () => {
+    toggleMenuOpen(!isMenuOpen);
+  };
 
   const getHeaderLine = (location) => {
     switch (location) {
@@ -48,7 +40,7 @@ const WorkspaceNavigationBar = ({
           src={Hamburger}
           alt="Cheese Hamburger"
           className={styles.Hamburger}
-          onClick={() => handleOnClick()}
+          onClick={() => handleOnClickToggleSideBar()}
         />
       )}
       <h1>{getHeaderLine(useLocation().pathname)}</h1>
@@ -57,19 +49,28 @@ const WorkspaceNavigationBar = ({
           src={UserPortrait}
           alt="User Portrait"
           className={styles.UserPortrait}
-          // onClick={() => handleOnClick()}
+          onClick={() => {
+            if (!isMenuOpen) {
+              handleOnClickToggleMenu();
+            }
+          }}
         />
         {isMenuOpen ? (
-          <OverHeadMessage width="200">
-            <Link
-              to="/"
-              onClick={() => {
-                userLogout();
-              }}
+          <div className={styles.Menu}>
+            <OverHeadMessage
+              width="100"
+              closeMenu={() => handleOnClickToggleMenu()}
             >
-              Log Out
-            </Link>
-          </OverHeadMessage>
+              <Link
+                to="/"
+                onClick={() => {
+                  userLogout();
+                }}
+              >
+                Log Out
+              </Link>
+            </OverHeadMessage>
+          </div>
         ) : null}
       </div>
     </nav>
