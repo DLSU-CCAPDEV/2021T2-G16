@@ -24,21 +24,16 @@ const Form = ({
     [history]
   );
 
-  const handleOnChange = (event) => {
-    //  TODO hide password
-    updateFormData({
-      ...formData,
-      [event.target.id]: event.target.value.trim(),
-    });
-  };
-
   const handleOnSubmit = (event, forwardToLink) => {
     event.preventDefault();
     let userAccount;
 
     switch (formPurpose) {
       case "login":
-        //  Login into account
+        /**
+         *  If the credentials matches an existing account,
+         *  then allow the User to log-in.
+         */
         if (
           (userAccount = userDatabase.find(
             (item) =>
@@ -48,15 +43,20 @@ const Form = ({
         ) {
           userLogin(userAccount);
           forwardToLink();
-        }
-
-        //  Account credentials mismatches
-        else {
+        } else {
+          /**
+           *  Otherwise, prevent User log-in and display ERROR
+           *  text
+           */
           updateError(true);
         }
         break;
+
       case "registration":
-        //  Create a new account
+        /**
+         *  If the account does not yet exists, then
+         *  register the User into their new account
+         */
         if (
           userDatabase.find(
             (item) => item.emailInput === formData.emailInput
@@ -64,16 +64,26 @@ const Form = ({
         ) {
           userRegistration(formData);
           forwardToLink();
-        }
-
-        //  Account already exists
-        else {
+        } else {
+          /**
+           *  Otherwise, prevent User from registering and
+           *  display ERROR text
+           */
           updateError(true);
         }
         break;
+
       default:
         console.log("ERROR in Form.js. Form has no purpose");
     }
+  };
+
+  //  Get the data inside the Input(s)
+  const handleOnChange = (event) => {
+    updateFormData({
+      ...formData,
+      [event.target.id]: event.target.value.trim(),
+    });
   };
 
   const renderChildren = (children, initialValue) => {
@@ -121,6 +131,7 @@ const Form = ({
     });
   };
 
+  //  Insert the ERROR text
   useEffect(() => {
     if (hasError && $(`.${styles.ErrorText}`).get().length === 0) {
       $(
