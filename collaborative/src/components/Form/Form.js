@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import $ from "jquery";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { userLogin, userRegistration } from "../../actions/index";
 import Warning_Logo from "../../assets/Warning_Logo.svg";
 import styles from "./Form.module.css";
@@ -76,12 +76,11 @@ const Form = ({
     }
   };
 
-  //  TODO: Refactor this using React.Children.map() function
   const renderChildren = (children) => {
     let keyIndex = 1; //  Surppress unique key prop requirement
 
-    return children.map((item) => {
-      if (item.props.to !== undefined) {
+    return React.Children.map(children, (item) => {
+      if (item.type === Link) {
         return (
           <div
             className={
