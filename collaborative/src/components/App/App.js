@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import Error404NotFoundPage from "../Error404NotFoundPage/Error404NotFoundPage";
@@ -46,6 +46,7 @@ const App = ({ userDatabase }) => {
     return userDatabase.map((item) => (
       <Route
         path={`/userprofile=${item.uniqueID}`}
+        key={`userprofile-${item.uniqueID}`}
         render={(props) => (
           <UserProfilePage
             props={props}

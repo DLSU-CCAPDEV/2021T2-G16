@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./SideBar.module.css";
 import Hamburger_Close from "../../assets/Hamburger_Close.svg";
 import HomePage_icon from "../../assets/HomePage_Icon.svg";

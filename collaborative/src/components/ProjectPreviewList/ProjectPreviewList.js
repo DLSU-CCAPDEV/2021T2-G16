@@ -1,5 +1,4 @@
 import React from "react";
-import $ from "jquery";
 import { connect } from "react-redux";
 import ProjectPreviewItem from "./ProjectPreviewItem/ProjectPreviewItem";
 import styles from "./ProjectPreviewList.module.css";
