@@ -79,50 +79,27 @@ const Form = ({
   const renderChildren = (children) => {
     let keyIndex = 1; //  Surppress unique key prop requirement
 
-    return React.Children.map(children, (item) => {
-      if (item.type === Link) {
-        return (
-          <div
-            className={
-              item.props.flex_end
-                ? styles.flex_end
-                : null || item.props.flex_center
-                ? styles.flex_center
-                : null
-            }
-          >
-            {item}
-          </div>
-        );
-      } else {
-        switch (item.type) {
-          //    Get to root elements
-          case "div":
-            return (
-              <div
-                className={item.props.column ? styles.column : styles.row}
-                key={keyIndex++}
-              >
-                {renderChildren(item.props.children)}
-              </div>
-            );
-          case "input":
-            let props = item.props;
-            return (
-              <input
-                type={props.type}
-                id={props.id}
-                name={props.name}
-                placeholder={props.placeholder}
-                required={props.required}
-                onChange={(event) => handleOnChange(event)}
-              />
-            );
-          default:
-            return item;
+    return (function render() {
+      return React.Children.map(children, (item) => {
+        if (item.type === Link) {
+          return (
+            <div
+              className={
+                item.props.flex_end
+                  ? styles.flex_end
+                  : null || item.props.flex_center
+                  ? styles.flex_center
+                  : null
+              }
+            >
+              {item}
+            </div>
+          );
+        } else {
+          return item;
         }
-      }
-    });
+      });
+    })();
   };
 
   useEffect(() => {
