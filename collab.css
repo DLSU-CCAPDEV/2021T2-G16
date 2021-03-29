@@ -25,14 +25,19 @@ html
     color: #333941
 }
 
+.headName
+{
+    margin-top: auto;
+    margin-bottom:auto;
+    font-family: 'Lato', sans-serif;
+}
 #mainTask
 {
     border: 1px solid #c0c0c0;
-    padding: 10px;
+    padding: 1%;
     box-shadow: 0 0 5px 3px #c0c0c0;
     margin-left: 12%;
     margin-right: 10%;
-    
     border-radius: 25px;
 }
 
