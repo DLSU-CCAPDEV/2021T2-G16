@@ -78,10 +78,13 @@ const Form = ({
 
   const renderChildren = (children, initialValue) => {
     return React.Children.map(children, (item) => {
-      //  Render root components
+      //  Get into Root components
       if (item.type === "div") {
         return renderChildren(item.props.children, initialValue);
-      } else if (item.type === Link) {
+      }
+
+      //  Put into Wrapper Link components
+      else if (item.type === Link) {
         return (
           <div
             className={
@@ -95,7 +98,25 @@ const Form = ({
             {item}
           </div>
         );
-      } else {
+      }
+
+      //  Overseer the data inside Input components
+      else if (item.type === "input") {
+        let { props } = item;
+        return (
+          <input
+            type={props.type}
+            id={props.id}
+            name={props.name}
+            placeholder={props.placeholder}
+            required={props.required}
+            onChange={(event) => handleOnChange(event)}
+          />
+        );
+      }
+
+      //  Otherwise, put into Wrapper and render as it is
+      else {
         return item;
       }
     });
