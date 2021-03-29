@@ -76,30 +76,29 @@ const Form = ({
     }
   };
 
-  const renderChildren = (children) => {
-    let keyIndex = 1; //  Surppress unique key prop requirement
-
-    return (function render() {
-      return React.Children.map(children, (item) => {
-        if (item.type === Link) {
-          return (
-            <div
-              className={
-                item.props.flex_end
-                  ? styles.flex_end
-                  : null || item.props.flex_center
-                  ? styles.flex_center
-                  : null
-              }
-            >
-              {item}
-            </div>
-          );
-        } else {
-          return item;
-        }
-      });
-    })();
+  const renderChildren = (children, initialValue) => {
+    return React.Children.map(children, (item) => {
+      //  Render root components
+      if (item.type === "div") {
+        return renderChildren(item.props.children, initialValue);
+      } else if (item.type === Link) {
+        return (
+          <div
+            className={
+              item.props.flex_end
+                ? styles.flex_end
+                : null || item.props.flex_center
+                ? styles.flex_center
+                : null
+            }
+          >
+            {item}
+          </div>
+        );
+      } else {
+        return item;
+      }
+    });
   };
 
   useEffect(() => {
@@ -127,7 +126,7 @@ const Form = ({
       method="post"
       onSubmit={(event) => handleOnSubmit(event, handleForwardToLink)}
     >
-      {renderChildren(children, formData, updateFormData)}
+      {renderChildren(children, 1)}
     </form>
   );
 };
