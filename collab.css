@@ -12,8 +12,6 @@ html
 {
     display:flex;
     flex-direction: column;
-    width : 100%;
-    height : 100%;
 }
 
 #header
@@ -32,4 +30,25 @@ html
 {
     display: flex;
     flex-direction: row;
+}
+
+#projectHeader
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 12%;
+    font-weight: bold;
+    font-family: 'Lato' , sans-serif;
+    margin-top: 5%;
+}
+
+#seeProject
+{
+    margin-left : 70%; 
+    margin-top: auto; 
+    margin-bottom: auto ; 
+    font-size : 18pt; 
+    color : #6DCDFF; 
+    text-decoration : none ; 
+    line-height : 256.5%
 }
