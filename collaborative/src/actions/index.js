@@ -16,6 +16,7 @@ export const userRegistration = ({
 };
 
 export const userLogin = ({
+  uniqueID,
   firstNameInput,
   lastNameInput,
   emailInput,
@@ -24,6 +25,7 @@ export const userLogin = ({
   return {
     type: "USER_LOGIN",
     payload: {
+      uniqueID,
       firstNameInput,
       lastNameInput,
       emailInput,
