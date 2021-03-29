@@ -88,12 +88,10 @@ const Form = ({
         return (
           <div
             className={
-              item.props.flex_end
-                ? styles.flex_end
-                : null || item.props.flex_center
-                ? styles.flex_center
-                : null
+              (item.props.flex_end ? styles.flex_end : null) ||
+              (item.props.flex_center ? styles.flex_center : null)
             }
+            key={++initialValue}
           >
             {item}
           </div>
@@ -111,13 +109,14 @@ const Form = ({
             placeholder={props.placeholder}
             required={props.required}
             onChange={(event) => handleOnChange(event)}
+            key={++initialValue}
           />
         );
       }
 
       //  Otherwise, put into Wrapper and render as it is
       else {
-        return item;
+        return <div key={++initialValue}>{item}</div>;
       }
     });
   };
