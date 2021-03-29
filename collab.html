@@ -1,9 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="collab.css">
 
-</head>
+
+</head> 
 <body>
+    <div id="mainDiv">
+        <!-- Side Bar From W3 -->
+        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none; background-color: #141A25; color : #C0C0C0" id="mySidebar">
+            <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close</button>
+            <a href="#" class="w3-bar-item w3-button">Homespace</a>
+            <a href="#" class="w3-bar-item w3-button">Project</a>
+            <a href="#" class="w3-bar-item w3-button">Task</a>
+            <a href="#" class="w3-bar-item w3-button">Notification</a>
+        </div>
+        <div id="header">
 
+            <button id = "sideButton" style = "border: none; background-color : #FFFFFF" onmouseover = "hover()" onmouseout = "out()"  onclick = "w3_open()"> 
+                <img src = "lines.png"> 
+            </button>
+            <h2>Homespace</h2>
+
+        </div>
+        <div id="welcomeDiv">
+
+        </div>
+        <div id="projectHeader">
+
+        </div>
+        <div id="project">
+
+        </div>
+        <div id="taskHeader">
+
+        </div>
+        <div id="task">
+
+        </div>
+
+
+
+    </div>
+
+    <script>
+        function out() {
+            document.getElementById("sideButton").style.backgroundColor = "#FFFFFF";
+        }
+        function hover() {
+            document.getElementById("sideButton").style.backgroundColor = "#C0C0C0";
+        }
+        function w3_open() {
+            document.getElementById("mySidebar").style.width = "25%";
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("openNav").style.display = 'none';
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("openNav").style.display = "inline-block";
+        }
+    </script>
 </body>
 </html>
