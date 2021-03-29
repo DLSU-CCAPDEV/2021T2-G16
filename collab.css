@@ -1,6 +1,6 @@
 html
 {
-    zoom : 80%;
+    zoom : 70%;
     font-family: 'Lato', sans-serif;
 }
 
@@ -28,7 +28,8 @@ html
     height : 10%;
 }
 
-#sidebar
+#welcomeDiv
 {
-    width: 360px;
+    display: flex;
+    flex-direction: row;
 }
