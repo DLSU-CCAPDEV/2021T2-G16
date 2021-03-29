@@ -21,7 +21,7 @@ const UserProfilePage = ({ userAccount, currentUser }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { currentUser: state.currentUser };
+  return { currentUser: state.currentUserReducer };
 };
 
 export default connect(mapStateToProps)(UserProfilePage);
