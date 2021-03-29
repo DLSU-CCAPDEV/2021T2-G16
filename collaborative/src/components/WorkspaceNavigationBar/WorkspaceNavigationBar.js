@@ -65,7 +65,7 @@ const WorkspaceNavigationBar = ({
               >
                 Log Out
               </Link>
-              <Link to={`/UserProfile=${currentUser.uniqueID}`}>
+              <Link to={`/userprofile=${currentUser.uniqueID}`}>
                 My Profile
               </Link>
             </OverHeadMessage>

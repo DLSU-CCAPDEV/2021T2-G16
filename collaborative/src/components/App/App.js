@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 import Error404NotFoundPage from "../Error404NotFoundPage/Error404NotFoundPage";
 import HomePage from "../HomePage/HomePage";
 import LandingPage from "../LandingPage/LandingPage";
@@ -8,11 +9,12 @@ import ProjectPage from "../ProjectPage/ProjectPage";
 import RegisterPage from "../RegisterPage/RegistrationPage";
 import SideBar from "../SideBar/SideBar";
 import TaskPage from "../TaskPage/TaskPage";
+import UserProfilePage from "../UserProfilePage/UserProfilePage";
 import WorkspaceNavigationBar from "../WorkspaceNavigationBar/WorkspaceNavigationBar";
 import styles from "./App.module.css";
 import "./App.css";
 
-const App = () => {
+const App = ({ userDatabase }) => {
   const [isSideBarOpen, toggleSideBar] = useState(false);
 
   const handleOnClickToggleSideBar = () => {
@@ -40,6 +42,22 @@ const App = () => {
     />
   );
 
+  const renderUserProfilePage = () => {
+    return userDatabase.map((item) => (
+      <Route
+        path={`/userprofile=${item.uniqueID}`}
+        render={(props) => (
+          <UserProfilePage
+            props={props}
+            userAccount={userDatabase.find(
+              (account) => account.uniqueID === item.uniqueID
+            )}
+          />
+        )}
+      />
+    ));
+  };
+
   return (
     <BrowserRouter>
       <Switch>
@@ -49,10 +67,15 @@ const App = () => {
         <WorkRoute path="/homepage" exact Component={HomePage} />
         <WorkRoute path="/projects" exact Component={ProjectPage} />
         <WorkRoute path="/tasks" exact Component={TaskPage} />
+        {renderUserProfilePage()}
         <Route component={Error404NotFoundPage} />
       </Switch>
     </BrowserRouter>
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return { userDatabase: state.userReducer };
+};
+
+export default connect(mapStateToProps)(App);
