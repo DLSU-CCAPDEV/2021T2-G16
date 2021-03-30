@@ -44,6 +44,12 @@
 .ListHeader {
   display: flex;
   flex-direction: column;
+  gap: 30px;
+}
+
+.ListHeader_Divider {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 

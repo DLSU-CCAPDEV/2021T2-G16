@@ -1,16 +1,28 @@
 import React from "react";
+import { connect } from "react-redux";
+import TaskPreviewItem from "./TaskPreviewItem/TaskPreviewItem";
 import styles from "./TaskPreviewList.module.css";
 
-const TaskPreviewList = ({ children }) => {
-  const renderElements = (children) => {
-    return children.map((item) => <h1>Item</h1>);
+const TaskPreviewList = ({ taskItems = [] }) => {
+  const renderTaskItems = () => {
+    return taskItems.map((item) => <TaskPreviewItem taskProps={item} />);
   };
 
   return (
     <div className={styles.TaskPreviewList}>
-      <ul>{renderElements(children)}</ul>
+      <ul className={styles.List}>{renderTaskItems()}</ul>
     </div>
   );
 };
 
-export default TaskPreviewList;
+const mapStateToProps = (state) => {
+  const { taskReducer, currentUserReducer } = state;
+
+  return {
+    taskItems: taskReducer.filter(
+      (item) => item.uniqueID === currentUserReducer.uniqueID
+    ),
+  };
+};
+
+export default connect(mapStateToProps)(TaskPreviewList);

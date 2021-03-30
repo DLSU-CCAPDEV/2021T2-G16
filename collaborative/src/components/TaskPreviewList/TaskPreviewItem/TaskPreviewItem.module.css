@@ -1,0 +1,10 @@
+.TaskPreviewItem {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.Priority {
+  margin-left: auto;
+}

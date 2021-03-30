@@ -1,5 +1,9 @@
 import { combineReducers } from "redux";
-import { userDatabaseInject, projectDatabaseInject } from "./DataInjection";
+import {
+  userDatabaseInject,
+  projectDatabaseInject,
+  taskDatabseInject,
+} from "./DataInjection";
 
 const userReducer = (userDatabase = userDatabaseInject, action) => {
   switch (action.type) {
@@ -45,7 +49,7 @@ const projectReducer = (
   }
 };
 
-const taskReducer = (taskDatabaseReducer = [], action) => {
+const taskReducer = (taskDatabaseReducer = taskDatabseInject, action) => {
   switch (action.type) {
     case "TASK_CREATE":
       return [...taskDatabaseReducer, action.payload];

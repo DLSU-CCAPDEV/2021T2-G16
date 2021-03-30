@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import HomePage_Logo from "../../assets/HomePage_Logo.svg";
 import Project_Icon__Black from "../../assets/Projects_Icon__Black.svg";
 import ProjectPreviewList from "../ProjectPreviewList/ProjectPreviewList";
+import TaskPrevewList from "../TaskPreviewList/TaskPreviewList";
 import Tasks_Icon__Black from "../../assets/Tasks_Icon__Black.svg";
 import styles from "../HomePage/HomePage.module.css";
 
@@ -32,30 +33,35 @@ const HomePage = ({ currentUser }) => {
         </div>
         <div className={styles.List}>
           <div className={styles.ListHeader}>
-            <div className={styles.ListHeader_Text}>
-              <img
-                src={Tasks_Icon__Black}
-                alt="Tasks_Icon"
-                className={styles.TaskIcon}
-              />
-              <span>My Tasks</span>
-              <Link to="/tasks">See all my tasks</Link>
+            <div className={styles.ListHeader_Divider}>
+              <div className={styles.ListHeader_Text}>
+                <img
+                  src={Tasks_Icon__Black}
+                  alt="Tasks_Icon"
+                  className={styles.TaskIcon}
+                />
+                <span>My Tasks</span>
+                <Link to="/tasks">See all my tasks</Link>
+              </div>
+              <hr />
             </div>
-            <hr />
+            <TaskPrevewList />
           </div>
         </div>
         <div className={styles.List}>
           <div className={styles.ListHeader}>
-            <div className={styles.ListHeader_Text}>
-              <img
-                src={Project_Icon__Black}
-                alt="Project_Icon"
-                className={styles.ProjectIcon}
-              />
-              <span>Projects</span>
-              <Link to="/projects">See all my projects</Link>
+            <div className={styles.ListHeader_Divider}>
+              <div className={styles.ListHeader_Text}>
+                <img
+                  src={Project_Icon__Black}
+                  alt="Project_Icon"
+                  className={styles.ProjectIcon}
+                />
+                <span>Projects</span>
+                <Link to="/projects">See all my projects</Link>
+              </div>
+              <hr />
             </div>
-            <hr />
           </div>
           <ProjectPreviewList />
         </div>
