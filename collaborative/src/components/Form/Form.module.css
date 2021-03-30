@@ -30,6 +30,7 @@
 .ErrorText {
   color: red;
   display: flex;
+  text-align: left;
   gap: 10px;
 }
 

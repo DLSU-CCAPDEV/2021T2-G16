@@ -22,7 +22,7 @@ const LoginPage = ({ currentUser }) => {
         <Form
           width="400px"
           formPurpose="login"
-          errorText="The email and password provided is incorrect. Please try again."
+          errorText="Sorry. The email and password provided is incorrect. Please try again."
           linkTo="/homepage"
         >
           <div column>

@@ -11,30 +11,15 @@ const ProjectPreviewList = ({ primary, projectItems = [] }) => {
     projectPreviewItemWidth;
 
   const renderProjectItems = () => {
-    if (projectItems.length >= maximumTreshold) {
-      let counter = 0;
-
-      return projectItems.map((item) => {
-        counter++;
-
-        return counter < maximumTreshold ? (
+    return [
+      ...projectItems.map((item, index) => {
+        return index + 1 > maximumTreshold ||
+          index === projectItems.length ? null : (
           <ProjectPreviewItem itemProp={item} />
-        ) : (
-          <ProjectPreviewItem itemProp={item} newProject />
         );
-      });
-    } else {
-      // TODO check if renderedItems is needed
-      const renderedItems = [];
-
-      return [
-        ...renderedItems,
-        projectItems.map((item) => {
-          return <ProjectPreviewItem itemProp={item} />;
-        }),
-        <ProjectPreviewItem newProject />,
-      ];
-    }
+      }),
+      <ProjectPreviewItem newProject />,
+    ];
   };
 
   return (
