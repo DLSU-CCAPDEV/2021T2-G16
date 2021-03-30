@@ -4,13 +4,14 @@ import { userDatabaseInject, projectDatabaseInject } from "./DataInjection";
 const userReducer = (userDatabase = userDatabaseInject, action) => {
   switch (action.type) {
     case "USER_REGISTRATION":
-      const newUniqueID =
-        Math.max.apply(
-          Math,
-          userDatabase.map(function (item) {
-            return item.uniqueID;
-          })
-        ) + 1;
+      const highestID = Math.max.apply(
+        Math,
+        userDatabase.map(function (item) {
+          return item.uniqueID;
+        })
+      );
+
+      const newUniqueID = highestID + 1;
 
       action.payload.uniqueID = newUniqueID;
 
@@ -33,20 +34,30 @@ const currentUserReducer = (currentUser = userDatabaseInject[0], action) => {
   }
 };
 
-const projectDatabaseReducer = (
+const projectReducer = (
   projectDatabaseReducer = projectDatabaseInject,
   action
 ) => {
   switch (action.type) {
     case "PROJECT_CREATE":
-      return [...projectDatabaseReducer, action];
+      return [...projectDatabaseReducer, action.payload];
     default:
       return projectDatabaseReducer;
   }
 };
 
+const taskReducer = (taskDatabaseReducer = [], action) => {
+  switch (action.type) {
+    case "TASK_CREATE":
+      return [...taskDatabaseReducer, action.payload];
+    default:
+      return taskDatabaseReducer;
+  }
+};
+
 export default combineReducers({
-  userReducer,
   currentUserReducer,
-  projectDatabaseReducer,
+  projectReducer,
+  taskReducer,
+  userReducer,
 });
