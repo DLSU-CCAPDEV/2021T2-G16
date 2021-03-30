@@ -24,7 +24,14 @@ const TaskPreviewList = ({ taskItems = [] }) => {
         <span className={styles.Header_Priority}>Priority</span>
       </div>
       <hr />
-      <ul className={styles.List}>{renderTaskItems()}</ul>
+      {taskItems.length >= 1 ? (
+        <ul className={styles.List}>{renderTaskItems()}</ul>
+      ) : (
+        <div className={styles.Message}>
+          <span>[IMAGE HERE OF BALLOONS]</span>
+          <span>Congratulations! You currently have no impending tasks.</span>
+        </div>
+      )}
     </div>
   );
 };

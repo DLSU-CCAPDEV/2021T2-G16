@@ -40,3 +40,15 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.Message {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.Message span {
+  font-size: 18px;
+  color: #a4acb6;
+  text-align: center;
+}
