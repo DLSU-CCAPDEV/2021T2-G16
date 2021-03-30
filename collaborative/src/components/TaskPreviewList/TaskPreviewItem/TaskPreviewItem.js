@@ -1,4 +1,5 @@
 import React from "react";
+import CheckMark from "../../../assets/Checkmark.svg";
 import PrioritySignal from "../PrioritySignal/PrioritySignal";
 import styles from "./TaskPreviewItem.module.css";
 
@@ -17,6 +18,7 @@ const TaskPreviewItem = ({ taskProps }) => {
 
   return (
     <li className={styles.TaskPreviewItem}>
+      <img src={CheckMark} alt="Check this Task" />
       <span>{taskProps.taskName}</span>
       <div className={styles.Priority}>{renderPriority()}</div>
     </li>

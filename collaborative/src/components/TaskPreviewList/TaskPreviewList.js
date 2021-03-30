@@ -5,11 +5,25 @@ import styles from "./TaskPreviewList.module.css";
 
 const TaskPreviewList = ({ taskItems = [] }) => {
   const renderTaskItems = () => {
-    return taskItems.map((item) => <TaskPreviewItem taskProps={item} />);
+    return taskItems.map((item, index) => {
+      return index < taskItems.length - 1 ? (
+        <div className={styles.Item__Border}>
+          <TaskPreviewItem taskProps={item} />
+          <hr />
+        </div>
+      ) : (
+        <TaskPreviewItem taskProps={item} />
+      );
+    });
   };
 
   return (
     <div className={styles.TaskPreviewList}>
+      <div className={styles.Header}>
+        <span className={styles.Header_Name}>Task Name</span>
+        <span className={styles.Header_Priority}>Priority</span>
+      </div>
+      <hr />
       <ul className={styles.List}>{renderTaskItems()}</ul>
     </div>
   );

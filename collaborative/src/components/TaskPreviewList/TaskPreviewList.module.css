@@ -1,12 +1,41 @@
 .TaskPreviewList {
   background-color: white;
-  padding: 20px;
+  padding: 20px 30px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 5px 3px #c0c0c0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.TaskPreviewList hr {
+  border: 1px solid #b0c3dc65;
+}
+
+.Header {
+  color: #a4acb6;
+  font-size: 14px;
+  display: flex;
+}
+
+.Header_Name {
+  margin-left: 40px;
+}
+
+.Header_Priority {
+  margin-left: auto;
+  width: 100px;
+  text-align: center;
 }
 
 .List {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Item__Border {
   display: flex;
   flex-direction: column;
   gap: 10px;
