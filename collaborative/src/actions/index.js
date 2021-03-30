@@ -17,19 +17,19 @@ export const userRegistration = ({
 
 export const userLogin = ({
   uniqueID,
-  firstNameInput,
-  lastNameInput,
-  emailInput,
-  passwordInput,
+  firstName,
+  lastName,
+  email,
+  password,
 }) => {
   return {
     type: "USER_LOGIN",
     payload: {
       uniqueID,
-      firstName: firstNameInput,
-      lastName: lastNameInput,
-      email: emailInput,
-      password: passwordInput,
+      firstName,
+      lastName,
+      email,
+      password,
     },
   };
 };

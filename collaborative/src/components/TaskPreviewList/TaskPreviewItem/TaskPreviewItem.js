@@ -4,8 +4,6 @@ import PrioritySignal from "../PrioritySignal/PrioritySignal";
 import styles from "./TaskPreviewItem.module.css";
 
 const TaskPreviewItem = ({ taskProps }) => {
-  console.table(taskProps);
-
   const renderPriority = () => {
     if (taskProps.priority === "high") {
       return <PrioritySignal high />;
