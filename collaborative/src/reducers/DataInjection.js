@@ -73,3 +73,30 @@ export const projectDatabaseInject = [
     kanbanID: "",
   },
 ];
+
+export const taskDatabseInject = [
+  {
+    uniqueID: "1",
+    taskName: "Test Task Name",
+    kanbanID: "",
+    priority: "high",
+  },
+  {
+    uniqueID: "1",
+    taskName: "Test Task Name",
+    kanbanID: "",
+    priority: "low",
+  },
+  {
+    uniqueID: "1",
+    taskName: "Test Task Name",
+    kanbanID: "",
+    priority: "medium",
+  },
+  {
+    uniqueID: "1",
+    taskName: "Test Task Name",
+    kanbanID: "",
+    priority: "high",
+  },
+];
