@@ -1,18 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import TaskPreviewItem from "./TaskPreviewItem/TaskPreviewItem";
 import styles from "./TaskPreviewList.module.css";
 
 const TaskPreviewList = ({ taskItems = [] }) => {
   const renderTaskItems = () => {
     return taskItems.map((item, index) => {
-      return index < taskItems.length - 1 ? (
+      return index + 1 < 5 ? (
         <div className={styles.Item__Border}>
           <TaskPreviewItem taskProps={item} />
           <hr />
         </div>
       ) : (
-        <TaskPreviewItem taskProps={item} />
+        <Link to="/tasks" className={styles.Item_More}>
+          See More...
+        </Link>
       );
     });
   };

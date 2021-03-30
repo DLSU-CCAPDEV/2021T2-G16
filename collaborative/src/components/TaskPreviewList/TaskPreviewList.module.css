@@ -41,6 +41,13 @@
   gap: 10px;
 }
 
+.Item_More {
+  text-decoration: none;
+  margin-left: 40px;
+  color: #3ea8ff;
+  font-weight: 700;
+}
+
 .Message {
   display: flex;
   flex-direction: column;

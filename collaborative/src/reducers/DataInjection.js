@@ -117,4 +117,10 @@ export const taskDatabseInject = [
     kanbanID: "",
     priority: "high",
   },
+  {
+    uniqueID: "1",
+    taskName: "Test Task Name",
+    kanbanID: "",
+    priority: "low",
+  },
 ];
