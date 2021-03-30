@@ -1,0 +1,19 @@
+.PrioritySignal {
+  width: 90px;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 20px;
+  color: white;
+}
+
+.High {
+  background-color: #ff4d4d;
+}
+
+.Medium {
+  background-color: #ffa24d;
+}
+
+.Low {
+  background-color: #4bff58;
+}

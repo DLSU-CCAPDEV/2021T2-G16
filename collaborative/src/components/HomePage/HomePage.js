@@ -59,7 +59,6 @@ const HomePage = ({ currentUser }) => {
           </div>
           <ProjectPreviewList />
         </div>
-        <Link to="/registration">HERE</Link>
       </section>
     );
   }
