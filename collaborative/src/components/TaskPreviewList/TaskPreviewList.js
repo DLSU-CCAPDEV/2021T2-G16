@@ -1,16 +1,16 @@
 import React from "react";
-import styles from "./TaskList.module.css";
+import styles from "./TaskPreviewList.module.css";
 
-const TaskList = ({ children }) => {
+const TaskPreviewList = ({ children }) => {
   const renderElements = (children) => {
     return children.map((item) => <h1>Item</h1>);
   };
 
   return (
-    <div className={styles.TaskList}>
+    <div className={styles.TaskPreviewList}>
       <ul>{renderElements(children)}</ul>
     </div>
   );
 };
 
-export default TaskList;
+export default TaskPreviewList;

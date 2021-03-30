@@ -1,5 +1,5 @@
 import React from "react";
 
-const TaskItem = () => {};
+const TaskPreviewItem = () => {};
 
 export default TaskItem;
