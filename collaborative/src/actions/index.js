@@ -40,16 +40,11 @@ export const userLogout = () => {
   };
 };
 
-export const projectCreate = ({
-  emailInput,
-  projectName,
-  decsription,
-  members,
-}) => {
+export const projectCreate = ({ email, projectName, decsription, members }) => {
   return {
     type: "PROJECT_CREATE",
     payload: {
-      emailInput,
+      email,
       projectName,
       decsription,
       members,
