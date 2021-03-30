@@ -37,8 +37,8 @@ const Form = ({
         if (
           (userAccount = userDatabase.find(
             (item) =>
-              item.emailInput === formData.emailInput &&
-              item.passwordInput === formData.passwordInput
+              item.email === formData.emailInput &&
+              item.password === formData.passwordInput
           )) !== undefined
         ) {
           userLogin(userAccount);
@@ -58,9 +58,8 @@ const Form = ({
          *  register the User into their new account
          */
         if (
-          userDatabase.find(
-            (item) => item.emailInput === formData.emailInput
-          ) === undefined
+          userDatabase.find((item) => item.email === formData.emailInput) ===
+          undefined
         ) {
           userRegistration(formData);
           forwardToLink();
@@ -74,7 +73,7 @@ const Form = ({
         break;
 
       default:
-        console.log("ERROR in Form.js. Form has no purpose");
+        console.log("WARNING. Form has no purpose");
     }
   };
 

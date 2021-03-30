@@ -24,6 +24,7 @@ const ProjectPreviewList = ({ primary, projectItems = [] }) => {
         );
       });
     } else {
+      // TODO check if renderedItems is needed
       const renderedItems = [];
 
       return [
@@ -42,11 +43,11 @@ const ProjectPreviewList = ({ primary, projectItems = [] }) => {
 };
 
 const mapStateToProps = (state) => {
-  const { projectDatabaseReducer, currentUserReducer } = state;
+  const { projectReducer, currentUserReducer } = state;
 
   return {
-    projectItems: projectDatabaseReducer.filter(
-      (item) => item.emailInput === currentUserReducer.emailInput
+    projectItems: projectReducer.filter(
+      (item) => item.uniqueID === currentUserReducer.uniqueID
     ),
   };
 };

@@ -1,7 +1,7 @@
 .HomePage {
   width: 900px;
   margin: 0 auto;
-  padding-top: 30px;
+  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -53,11 +53,6 @@
   gap: 10px;
 }
 
-.ListHeader_Text img {
-  width: 20px;
-  height: auto;
-}
-
 .ListHeader_Text span {
   font-size: 22px;
   color: #333941;
@@ -68,4 +63,14 @@
   text-decoration: none;
   color: #3ea8ff;
   margin-left: auto;
+}
+
+.ProjectIcon {
+  width: 20px;
+  height: auto;
+}
+
+.TaskIcon {
+  width: 22px;
+  height: 22px;
 }

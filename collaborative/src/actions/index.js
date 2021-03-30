@@ -7,10 +7,10 @@ export const userRegistration = ({
   return {
     type: "USER_REGISTRATION",
     payload: {
-      firstNameInput,
-      lastNameInput,
-      emailInput,
-      passwordInput,
+      firstName: firstNameInput,
+      lastName: lastNameInput,
+      email: emailInput,
+      password: passwordInput,
     },
   };
 };
@@ -26,10 +26,10 @@ export const userLogin = ({
     type: "USER_LOGIN",
     payload: {
       uniqueID,
-      firstNameInput,
-      lastNameInput,
-      emailInput,
-      passwordInput,
+      firstName: firstNameInput,
+      lastName: lastNameInput,
+      email: emailInput,
+      password: passwordInput,
     },
   };
 };

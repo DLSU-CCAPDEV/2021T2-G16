@@ -25,7 +25,6 @@ const userReducer = (userDatabase = userDatabaseInject, action) => {
 const currentUserReducer = (currentUser = userDatabaseInject[0], action) => {
   switch (action.type) {
     case "USER_LOGIN":
-      console.table(action.payload);
       return action.payload;
     case "USER_LOGOUT":
       return null;
