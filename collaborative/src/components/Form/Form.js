@@ -37,7 +37,7 @@ const Form = ({
         if (
           (userAccount = userDatabase.find(
             (item) =>
-              item.email === formData.emailInput &&
+              item.email.toLowerCase() === formData.emailInput.toLowerCase() &&
               item.password === formData.passwordInput
           )) !== undefined
         ) {
@@ -58,8 +58,10 @@ const Form = ({
          *  register the User into their new account
          */
         if (
-          userDatabase.find((item) => item.email === formData.emailInput) ===
-          undefined
+          userDatabase.find(
+            (item) =>
+              item.email.toLowerCase() === formData.emailInput.toLowerCase()
+          ) === undefined
         ) {
           userRegistration(formData);
           forwardToLink();
