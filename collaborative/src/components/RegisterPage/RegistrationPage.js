@@ -16,7 +16,6 @@ const RegistrationPage = ({ currentUser }) => {
     handleNoCurrentUser();
     return null;
   } else {
-    console.log(currentUser);
     return (
       <section className={styles.RegistrationPage}>
         <Logo />
