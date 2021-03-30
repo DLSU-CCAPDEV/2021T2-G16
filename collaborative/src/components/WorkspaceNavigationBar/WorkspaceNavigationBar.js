@@ -56,7 +56,13 @@ const WorkspaceNavigationBar = ({
         />
         {isMenuOpen ? (
           <div className={styles.Menu}>
-            <OverHeadMessage closeMenu={() => handleOnClickToggleMenu()}>
+            <OverHeadMessage
+              closeMenu={() => handleOnClickToggleMenu()}
+              width="150"
+            >
+              <Link to={`/userprofile=${currentUser.uniqueID}`}>
+                My Profile
+              </Link>
               <Link
                 to="/"
                 onClick={() => {
@@ -64,9 +70,6 @@ const WorkspaceNavigationBar = ({
                 }}
               >
                 Log Out
-              </Link>
-              <Link to={`/userprofile=${currentUser.uniqueID}`}>
-                My Profile
               </Link>
             </OverHeadMessage>
           </div>

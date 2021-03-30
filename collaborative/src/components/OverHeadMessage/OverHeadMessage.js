@@ -1,5 +1,6 @@
 import React from "react";
 import $ from "jquery";
+import { Link } from "react-router-dom";
 import stylesWorkspace from "../WorkspaceNavigationBar/WorkspaceNavigationBar.module.css";
 import styles from "./OverHeadMessage.module.css";
 
@@ -28,7 +29,16 @@ class OverHeadMessage extends React.Component {
         style={{ width: this.props.width + "px" }}
       >
         {React.Children.map(this.props.children, (item) => {
-          return <div className={styles.Item}>{item}</div>;
+          if (item.type === Link) {
+            console.log(item);
+            return (
+              <Link className={styles.Item} to={item.props.to}>
+                {item.props.children}
+              </Link>
+            );
+          } else {
+            return item;
+          }
         })}
       </div>
     );
