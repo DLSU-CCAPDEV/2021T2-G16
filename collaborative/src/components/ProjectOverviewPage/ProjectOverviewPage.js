@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import styles from "./ProjectOverviewPage.module.css";
 
 const ProjectOverviewPage = ({ projectItems }) => {
-  return <section className={styles.ProjectOverviewPage}>a</section>;
+  return (
+    <section className={`scopedPage ${styles.ProjectOverviewPage}`}>a</section>
+  );
 };
 
 const mapStateToProps = (state) => {

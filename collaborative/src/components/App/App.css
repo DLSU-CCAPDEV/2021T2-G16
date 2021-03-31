@@ -7,3 +7,12 @@
   margin: 0;
   padding: 0;
 }
+
+.scopedPage {
+  width: 900px;
+  margin: 0 auto;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}

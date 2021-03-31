@@ -19,7 +19,7 @@ const HomePage = ({ currentUser }) => {
     return null;
   } else {
     return (
-      <section className={styles.HomePage}>
+      <section className={`scopedPage ${styles.HomePage}`}>
         <div className={styles.Header}>
           <img src={HomePage_Logo} alt="Your Workspace" />
           <div className={styles.Header_Text}>
