@@ -19,7 +19,7 @@ const ProjectOverviewPage = ({ projectItems }) => {
             </div>
           </div>
         </div>
-        <ProjectPreviewList noTreshold horizontalScroll />
+        <ProjectPreviewList noTreshold horizontalScroll onlyFavourites />
       </div>
       <div className={styles.List}>
         <div className={styles.ListHeader}>

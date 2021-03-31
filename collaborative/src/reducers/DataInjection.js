@@ -47,8 +47,9 @@ export const userDatabaseInject = [
 export const projectDatabaseInject = [
   {
     uniqueID: "1",
+    favoured: true,
     members: [{ uniqueID: "6" }],
-    projectName: "Test Project.",
+    projectName: "Test Project - Favourite 1",
     backgroundID: "1",
     description:
       "This is a test project purposely made for fake data injection.",
@@ -56,8 +57,9 @@ export const projectDatabaseInject = [
   },
   {
     uniqueID: "1",
+    favoured: true,
     members: [{ uniqueID: "6" }],
-    projectName: "Test Project.",
+    projectName: "Test Project - Favourite 2",
     backgroundID: "1",
     description:
       "This is a test project purposely made for fake data injection.",
@@ -65,8 +67,9 @@ export const projectDatabaseInject = [
   },
   {
     uniqueID: "1",
+    favoured: true,
     members: [{ uniqueID: "6" }],
-    projectName: "Test Project.",
+    projectName: "Test Project - Favourite 3",
     backgroundID: "1",
     description:
       "This is a test project purposely made for fake data injection.",
@@ -74,8 +77,9 @@ export const projectDatabaseInject = [
   },
   {
     uniqueID: "1",
+    favoured: false,
     members: [{ uniqueID: "6" }],
-    projectName: "Test Project.",
+    projectName: "Test Project - 1",
     backgroundID: "1",
     description:
       "This is a test project purposely made for fake data injection.",
@@ -83,8 +87,9 @@ export const projectDatabaseInject = [
   },
   {
     uniqueID: "1",
+    favoured: false,
     members: [{ uniqueID: "6" }],
-    projectName: "Test Project.",
+    projectName: "Test Project - 2",
     backgroundID: "1",
     description:
       "This is a test project purposely made for fake data injection.",
@@ -92,8 +97,9 @@ export const projectDatabaseInject = [
   },
   {
     uniqueID: "1",
+    favoured: false,
     members: [{ uniqueID: "6" }],
-    projectName: "Test Project.",
+    projectName: "Test Project - 3",
     backgroundID: "1",
     description:
       "This is a test project purposely made for fake data injection.",
@@ -101,6 +107,7 @@ export const projectDatabaseInject = [
   },
   {
     uniqueID: "3",
+    favoured: false,
     members: [],
     projectName: "Memorial Queza",
     backgroundID: "2",

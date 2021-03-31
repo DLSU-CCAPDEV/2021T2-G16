@@ -7,6 +7,7 @@ const ProjectPreviewList = ({
   projectItems = [],
   noTreshold,
   horizontalScroll,
+  onlyFavourites,
 }) => {
   const projectPreviewListWidth = 900;
   const projectPreviewItemWidth = 205;
@@ -17,12 +18,21 @@ const ProjectPreviewList = ({
   const renderProjectItems = () => {
     return [
       ...projectItems.map((item, index) => {
-        return (index + 1 > maximumTreshold || index === projectItems.length) &&
-          (!horizontalScroll || !noTreshold) ? null : (
-          <div>
-            <ProjectPreviewItem itemProp={item} />
-          </div>
-        );
+        console.table(item);
+        if (
+          (index + 1 > maximumTreshold ||
+            index === projectItems.length ||
+            (horizontalScroll && noTreshold)) &&
+          ((onlyFavourites && item.favoured) || !onlyFavourites)
+        ) {
+          return (
+            <div>
+              <ProjectPreviewItem itemProp={item} />
+            </div>
+          );
+        } else {
+          return null;
+        }
       }),
       noTreshold ? null : <ProjectPreviewItem newProject />,
     ];
