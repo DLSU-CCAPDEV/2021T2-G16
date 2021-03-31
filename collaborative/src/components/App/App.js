@@ -35,7 +35,9 @@ const App = ({ userDatabase }) => {
               handleOnClickToggleSideBar={handleOnClickToggleSideBar}
               isSideBarOpen={isSideBarOpen}
             />
-            <Component props={props} />
+            <div className={styles.Content_Main}>
+              <Component props={props} />
+            </div>
           </div>
         </div>
       )}

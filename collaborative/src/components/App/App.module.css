@@ -8,3 +8,7 @@
   flex-direction: column;
   flex: 1;
 }
+
+.Content_Main {
+  overflow-y: auto;
+}
