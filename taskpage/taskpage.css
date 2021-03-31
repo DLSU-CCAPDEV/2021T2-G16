@@ -6,6 +6,27 @@ html
 
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
+.popup {
+  display: none; 
+  position: fixed;
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.popup-content {
+  background-color: #ffffff;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
 .priority
 {
     position:absolute; 
@@ -56,20 +77,15 @@ html
     border-top: 4px solid #c0c0c0;
     border-bottom: 4px solid #c0c0c0;
     padding: 1%;
-    margin-left: 10%;
-    margin-right: 8%;
-    margin-top: 1%;
+    margin:auto
 }
 
 #editTask
 {
-    border: 1px solid #c0c0c0;
+    border-top: 4px solid #c0c0c0;
+    border-bottom: 4px solid #c0c0c0;
     padding: 1%;
-    box-shadow: 0 0 5px 3px #c0c0c0;
-    margin-left: 10%;
-    margin-right: 8%;
-    border-radius: 25px;
-    margin-top: 1%;
+    margin: auto;
 }
 
 #taskHeader
