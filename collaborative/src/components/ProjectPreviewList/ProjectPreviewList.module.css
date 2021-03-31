@@ -1,6 +1,8 @@
 .ProjectPreviewList {
   display: flex;
-  padding: 0 15px 20px 15px;
+  padding: 0 15px 0px 15px;
   gap: 18px;
   overflow-x: auto;
+  min-height: 250px;
+  max-height: 250px;
 }
