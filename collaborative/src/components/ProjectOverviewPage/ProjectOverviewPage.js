@@ -17,6 +17,7 @@ const ProjectOverviewPage = ({ projectItems }) => {
               /> */}
               <span>Favourite Boards</span>
             </div>
+            <hr />
           </div>
         </div>
         <ProjectPreviewList noTreshold horizontalScroll onlyFavourites />
@@ -32,6 +33,7 @@ const ProjectOverviewPage = ({ projectItems }) => {
               /> */}
               <span>All My Boards</span>
             </div>
+            <hr />
           </div>
         </div>
         <ProjectPreviewList noTreshold horizontalScroll />
