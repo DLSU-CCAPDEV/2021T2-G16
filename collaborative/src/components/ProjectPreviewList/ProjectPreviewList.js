@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import ProjectPreviewItem from "./ProjectPreviewItem/ProjectPreviewItem";
 import styles from "./ProjectPreviewList.module.css";
 
-const ProjectPreviewList = ({ primary, projectItems = [] }) => {
+const ProjectPreviewList = ({ projectItems = [] }) => {
   const projectPreviewListWidth = 900;
   const projectPreviewItemWidth = 205;
   const maximumTreshold =

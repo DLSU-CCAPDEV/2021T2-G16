@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import styles from "./ProjectOverviewPage.module.css";
 
-const ProjectOverviewPage = ({ projectItems }) => {
-  return <section className={styles.ProjectOverviewPage}>a</section>;
+const ProjectPage = ({ projectItems }) => {
+  return <section>a</section>;
 };
 
 const mapStateToProps = (state) => {
@@ -16,4 +15,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ProjectOverviewPage);
+export default connect(mapStateToProps)(ProjectPage);

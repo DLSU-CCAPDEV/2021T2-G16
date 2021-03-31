@@ -6,15 +6,17 @@ import HomePage from "../HomePage/HomePage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import ProjectOverviewPage from "../ProjectOverviewPage/ProjectOverviewPage";
+import ProjectPage from "../ProjectPage/ProjectPage";
 import RegisterPage from "../RegisterPage/RegistrationPage";
 import SideBar from "../SideBar/SideBar";
 import TaskPage from "../TaskPage/TaskPage";
 import UserProfilePage from "../UserProfilePage/UserProfilePage";
 import WorkspaceNavigationBar from "../WorkspaceNavigationBar/WorkspaceNavigationBar";
+import { formalizeProjectName } from "../../logic";
 import styles from "./App.module.css";
 import "./App.css";
 
-const App = ({ userDatabase }) => {
+const App = ({ userDatabase, projectDatabase }) => {
   const [isSideBarOpen, toggleSideBar] = useState(false);
 
   const handleOnClickToggleSideBar = () => {
@@ -45,18 +47,22 @@ const App = ({ userDatabase }) => {
   );
 
   const renderUserProfilePage = () => {
-    return userDatabase.map((item) => (
+    return userDatabase.map((user) => (
       <Route
-        path={`/userprofile=${item.uniqueID}`}
-        key={`userprofile-${item.uniqueID}`}
-        render={(props) => (
-          <UserProfilePage
-            props={props}
-            userAccount={userDatabase.find(
-              (account) => account.uniqueID === item.uniqueID
-            )}
-          />
-        )}
+        path={`/userprofile=${user.uniqueID}`}
+        key={`userprofile-${user.uniqueID}`}
+        render={(props) => <UserProfilePage props={props} userAccount={user} />}
+      />
+    ));
+  };
+
+  const renderProjectPages = () => {
+    return projectDatabase.map((project) => (
+      <Route
+        path={`/projects/project=${formalizeProjectName(project.projectName)}`}
+        render={(props) => {
+          <ProjectPage props={props} project={project} />;
+        }}
       />
     ));
   };
@@ -71,6 +77,7 @@ const App = ({ userDatabase }) => {
         <WorkRoute path="/projects" exact Component={ProjectOverviewPage} />
         <WorkRoute path="/tasks" exact Component={TaskPage} />
         {renderUserProfilePage()}
+        {renderProjectPages()}
         <Route component={Error404NotFoundPage} />
       </Switch>
     </BrowserRouter>
@@ -78,7 +85,10 @@ const App = ({ userDatabase }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { userDatabase: state.userReducer };
+  return {
+    userDatabase: state.userReducer,
+    projectDatabase: state.projectReducer,
+  };
 };
 
 export default connect(mapStateToProps)(App);
