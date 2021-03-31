@@ -14,18 +14,28 @@ const TaskPreviewList = ({ taskItems = [], taskDelete, primary }) => {
   const renderTaskItems = () => {
     const tasksTreshold = 5;
 
-    return taskItems.map((item, index) => {
-      return index + 1 < tasksTreshold || primary ? (
-        <div className={styles.Item__Border}>
-          <TaskPreviewItem taskProps={item} handleOnDelete={handleOnDelete} />
-          <hr />
-        </div>
-      ) : (
+    return [
+      ...taskItems.map((item, index) => {
+        if (index + 1 < tasksTreshold || primary) {
+          return (
+            <div className={styles.Item__Border}>
+              <TaskPreviewItem
+                taskProps={item}
+                handleOnDelete={handleOnDelete}
+              />
+              <hr />
+            </div>
+          );
+        } else {
+          return null;
+        }
+      }),
+      taskItems.length >= 5 && !primary ? (
         <Link to="/tasks" className={styles.Item_More}>
           See More...
         </Link>
-      );
-    });
+      ) : null,
+    ];
   };
 
   return (
