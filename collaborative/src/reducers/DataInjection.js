@@ -82,6 +82,24 @@ export const projectDatabaseInject = [
     kanbanID: "",
   },
   {
+    uniqueID: "1",
+    members: [{ uniqueID: "6" }],
+    projectName: "Test Project.",
+    backgroundID: "1",
+    description:
+      "This is a test project purposely made for fake data injection.",
+    kanbanID: "",
+  },
+  {
+    uniqueID: "1",
+    members: [{ uniqueID: "6" }],
+    projectName: "Test Project.",
+    backgroundID: "1",
+    description:
+      "This is a test project purposely made for fake data injection.",
+    kanbanID: "",
+  },
+  {
     uniqueID: "3",
     members: [],
     projectName: "Memorial Queza",

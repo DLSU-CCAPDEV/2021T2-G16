@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import ProjectPreviewItem from "./ProjectPreviewItem/ProjectPreviewItem";
 import styles from "./ProjectPreviewList.module.css";
 
-const ProjectPreviewList = ({ projectItems = [] }) => {
+const ProjectPreviewList = ({
+  projectItems = [],
+  noTreshold,
+  horizontalScroll,
+}) => {
   const projectPreviewListWidth = 900;
   const projectPreviewItemWidth = 205;
   const maximumTreshold =
@@ -13,12 +17,14 @@ const ProjectPreviewList = ({ projectItems = [] }) => {
   const renderProjectItems = () => {
     return [
       ...projectItems.map((item, index) => {
-        return index + 1 > maximumTreshold ||
-          index === projectItems.length ? null : (
-          <ProjectPreviewItem itemProp={item} />
+        return (index + 1 > maximumTreshold || index === projectItems.length) &&
+          !horizontalScroll ? null : (
+          <div>
+            <ProjectPreviewItem itemProp={item} />
+          </div>
         );
       }),
-      <ProjectPreviewItem newProject />,
+      noTreshold ? null : <ProjectPreviewItem newProject />,
     ];
   };
 
