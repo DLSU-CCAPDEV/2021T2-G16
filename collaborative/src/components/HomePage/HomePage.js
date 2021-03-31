@@ -36,23 +36,6 @@ const HomePage = ({ currentUser }) => {
             <div className={styles.ListHeader_Divider}>
               <div className={styles.ListHeader_Text}>
                 <img
-                  src={Tasks_Icon__Black}
-                  alt="Tasks_Icon"
-                  className={styles.TaskIcon}
-                />
-                <span>My Tasks</span>
-                <Link to="/tasks">See all my tasks</Link>
-              </div>
-              <hr />
-            </div>
-            <TaskPrevewList />
-          </div>
-        </div>
-        <div className={styles.List}>
-          <div className={styles.ListHeader}>
-            <div className={styles.ListHeader_Divider}>
-              <div className={styles.ListHeader_Text}>
-                <img
                   src={Project_Icon__Black}
                   alt="Project_Icon"
                   className={styles.ProjectIcon}
@@ -64,6 +47,23 @@ const HomePage = ({ currentUser }) => {
             </div>
           </div>
           <ProjectPreviewList />
+        </div>
+        <div className={styles.List}>
+          <div className={styles.ListHeader}>
+            <div className={styles.ListHeader_Divider}>
+              <div className={styles.ListHeader_Text}>
+                <img
+                  src={Tasks_Icon__Black}
+                  alt="Tasks_Icon"
+                  className={styles.TaskIcon}
+                />
+                <span>My Tasks</span>
+                <Link to="/tasks">See all my tasks</Link>
+              </div>
+              <hr />
+            </div>
+            <TaskPrevewList />
+          </div>
         </div>
       </section>
     );
