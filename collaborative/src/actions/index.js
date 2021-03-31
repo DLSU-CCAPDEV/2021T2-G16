@@ -51,3 +51,12 @@ export const projectCreate = ({ email, projectName, decsription, members }) => {
     },
   };
 };
+
+export const taskDelete = (taskProp) => {
+  return {
+    type: "TASK_DELETE",
+    payload: {
+      taskProp,
+    },
+  };
+};

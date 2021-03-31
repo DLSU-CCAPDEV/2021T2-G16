@@ -2,15 +2,20 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Confetti from "../../assets/Confetti.svg";
+import { taskDelete } from "../../actions";
 import TaskPreviewItem from "./TaskPreviewItem/TaskPreviewItem";
 import styles from "./TaskPreviewList.module.css";
 
-const TaskPreviewList = ({ taskItems = [] }) => {
+const TaskPreviewList = ({ taskItems = [], taskDelete }) => {
+  const handleOnDelete = (taskProps) => {
+    taskDelete(taskProps);
+  };
+
   const renderTaskItems = () => {
     return taskItems.map((item, index) => {
       return index + 1 < 5 ? (
         <div className={styles.Item__Border}>
-          <TaskPreviewItem taskProps={item} />
+          <TaskPreviewItem taskProps={item} handleOnDelete={handleOnDelete} />
           <hr />
         </div>
       ) : (
@@ -50,4 +55,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(TaskPreviewList);
+export default connect(mapStateToProps, { taskDelete })(TaskPreviewList);

@@ -4,7 +4,7 @@ import CheckMark__Checked from "../../../assets/Checkmark__Checked.svg";
 import PrioritySignal from "../PrioritySignal/PrioritySignal";
 import styles from "./TaskPreviewItem.module.css";
 
-const TaskPreviewItem = ({ taskProps }) => {
+const TaskPreviewItem = ({ taskProps, handleOnDelete }) => {
   const [isHoveredOn, toggleHover] = useState(false);
 
   const renderPriority = () => {
@@ -23,6 +23,7 @@ const TaskPreviewItem = ({ taskProps }) => {
         src={isHoveredOn ? CheckMark__Checked : CheckMark}
         onMouseEnter={() => toggleHover(true)}
         onMouseLeave={() => toggleHover(false)}
+        onClick={() => handleOnDelete(taskProps)}
         alt="Check this Task"
       />
       <span>{taskProps.taskName}</span>

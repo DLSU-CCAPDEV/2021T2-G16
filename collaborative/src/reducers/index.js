@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { isEqual } from "lodash";
 import {
   userDatabaseInject,
   projectDatabaseInject,
@@ -54,6 +55,10 @@ const taskReducer = (taskDatabaseReducer = taskDatabseInject, action) => {
   switch (action.type) {
     case "TASK_CREATE":
       return [...taskDatabaseReducer, action.payload];
+    case "TASK_DELETE":
+      return taskDatabaseReducer.filter(
+        (item) => !isEqual(item, action.payload.taskProp)
+      );
     default:
       return taskDatabaseReducer;
   }
