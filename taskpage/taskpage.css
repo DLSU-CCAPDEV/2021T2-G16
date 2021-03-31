@@ -6,6 +6,29 @@ html
 
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
+.priority
+{
+    position:absolute; 
+    left : 85.7%; 
+    margin-top: auto; 
+    margin-bottom: auto;
+}
+.headName
+{
+    margin-top: auto;
+    margin-bottom:auto;
+    font-family: 'Lato', sans-serif;
+}
+
+.editButton
+{
+    font-size: 14pt;
+    color: #C0c0c0;
+    margin-top: auto;
+    margin-bottom: auto;
+    position:relative;
+    left: 10px;
+}
 
 #mainDiv
 {
@@ -18,4 +41,54 @@ html
 {
     display:flex;
     flex-direction: row;
+}
+
+#mainTask
+{
+    padding: 1%;
+    margin-left: 10%;
+    margin-right: 8%;
+    margin-top: 1%;
+}
+
+#addTask
+{
+    border-top: 4px solid #c0c0c0;
+    border-bottom: 4px solid #c0c0c0;
+    padding: 1%;
+    margin-left: 10%;
+    margin-right: 8%;
+    margin-top: 1%;
+}
+
+#editTask
+{
+    border: 1px solid #c0c0c0;
+    padding: 1%;
+    box-shadow: 0 0 5px 3px #c0c0c0;
+    margin-left: 10%;
+    margin-right: 8%;
+    border-radius: 25px;
+    margin-top: 1%;
+}
+
+#taskHeader
+{
+    display: flex;
+    flex-direction: row;
+    padding-left: 10%;
+    margin-top: 1%;
+    font-weight: bold;
+    font-family: 'Lato' , sans-serif;
+}
+
+
+#addButton
+{
+    margin-left : 70%; 
+    margin-top: auto; 
+    margin-bottom: auto ; 
+    font-size : 25pt; 
+    color : #6DCDFF; 
+    text-decoration : none ; 
 }

@@ -19,7 +19,7 @@
         <!-- Link by changing # -->
         <a href="collab.html" class="w3-bar-item w3-button"><img src="png/homespace.png"><text style="margin-left : 10px">Homespace</text></a>
         <a href="#" class="w3-bar-item w3-button"><img src="png/projects.png"><text style="margin-left : 10px">Project</text></a>
-        <a href="#" class="w3-bar-item w3-button"><img src="png/tasks.png"><text style="margin-left : 10px">Task</text></a>
+        <a href="taskpage.html" class="w3-bar-item w3-button"><img src="png/tasks.png"><text style="margin-left : 10px">Task</text></a>
         <a href="#" class="w3-bar-item w3-button"><img src="png/notification.png"><text style="margin-left : 10px">Notification</text></a>
 
     </div>
@@ -31,18 +31,85 @@
             <button id="sideButton" style="border: none; background-color : #FFFFFF; margin-left:5%" onmouseover="hover()" onmouseout="out()" onclick="w3_open()">
                 <img src="png/lines.png">
             </button>
-            <h2 style="font-size: 30pt ;margin-left: 1% ; color : #000000; font-family: 'Lato', sans-serif;">Homespace</h2>
+            <h2 style="font-size: 30pt ;margin-left: 1% ; color : #000000; font-family: 'Lato', sans-serif;">Tasks</h2>
     
             <!-- Link by changing # -->
-            <a href="#" style="margin-left : 75%; margin-top: 10px;"> <img src="png/accountlogo.png" width="57px" height="57px"> </a>
+            <a href="#" style="margin-left : 80%; margin-top: 10px;"> <img src="png/accountlogo.png" width="57px" height="57px"> </a>
     
         </div>
-    
+        
+
+
+        <div id="taskHeader">
+
+            <a href="#" id="addButton" style="margin-left: 80%" onclick = "addTask_open()">+ Add Tasks</a>
+        </div>
+        <div id="task">
+            <div id="mainTask">
+                <div style="border-bottom: 1px solid #C0c0c0; display:flex; flex-direction: row;">
+                    <text class="headName" style="margin-left: 7% ; font-size : 14pt ; color: #C0c0c0">Task Name</text>
+                    <text class="headName" style="margin-left: 82% ; font-size : 14pt; color: #c0c0c0">Priority</text>
+                </div>
+                <div style="border-bottom: 1px solid #C0c0c0; padding:10px ;display:flex; flex-direction: row;">
+                    <a href="#" class="editButton">Edit</a>
+                    <text class="headName" style="margin-left: 2% ; font-size : 16pt"><img src="png/Checkmark.png" style="margin: auto"> [Task Name]</text>
+                    <img src="png/high.png" class = "priority">
+                </div>
+        
+                <div style="border-bottom: 1px solid #C0c0c0; padding:10px ;display:flex; flex-direction: row;">
+                    <a href="#" class = "editButton">Edit</a>
+                    <text class="headName" style="margin-left: 2% ; font-size : 16pt"><img src="png/Checkmark.png" style="margin: auto"> [Task Name]</text>
+                    <img src="png/medium.png" class = "priority">
+                </div>
+        
+                <div style="border-bottom: 1px solid #C0c0c0; padding:10px ;display:flex; flex-direction: row;">
+                    <a href="#" class="editButton">Edit</a>
+                    <text class="headName" style="margin-left: 2% ; font-size : 16pt"><img src="png/Checkmark.png" style="margin: auto"> [Task Name]</text>
+                    <img src="png/low.png" class = "priority">
+                </div>
+        
+                <div style="border-bottom: 1px solid #C0c0c0; padding:10px ;display:flex; flex-direction: row;">
+                    <a href="#" class="editButton">Edit</a>
+                    <text class="headName" style="margin-left: 2% ; font-size : 16pt"><img src="png/Checkmark.png" style="margin: auto"> [Task Name]</text>
+                    <img src="png/high.png" class = "priority">
+                </div>
+        
+                <div style="padding:10px ;display:flex; flex-direction: row;">
+                    <a href="#" class="editButton">Edit</a>
+                    <text class="headName" style="margin-left: 2% ; font-size : 16pt"><img src="png/Checkmark.png" style="margin: auto"> [Task Name]</text>
+                    <img src="png/medium.png" class = "priority">
+                </div>
+            </div>
+
+            <div id = "addTask" style = "display : none">
+                <br>
+                <text class = "headName" style = "font-size: 24pt; font-weight: bold">Add Tasks</text>
+                <div style = "display: flex; flex-direction: row">
+                    
+                
+                    
+                </div>
+
+                <br>
+            </div>
+
+            <div id = "editTask" style = "display: none">
+            
+            
+            </div>
+
+
+
+        </div>
+
     
     </div>
 
 
     <script>
+        var addTask = document.getElementById("addTask");
+        var editTask = document.getElementById("editTask");
+
         function out() {
             document.getElementById("sideButton").style.backgroundColor = "#FFFFFF";
         }
@@ -57,6 +124,20 @@
             document.getElementById("mainDiv").style.marginLeft = "0%";
             document.getElementById("sidebar").style.display = "none";
         }
+
+        function addTask_open() {
+            addTask.style.display = "block";
+        }
+        function addTask_close() {
+            addTask.style.display = "none";
+        }
+        function editTask_open() {
+            editTask.style.display = "block";
+        }
+        function editTask_close() {
+            editTask.style.display = "none";
+        }
+        
     </script>
 </body>
 
