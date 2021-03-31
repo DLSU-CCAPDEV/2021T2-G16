@@ -1,12 +1,18 @@
 .TaskPreviewList {
   background-color: white;
-  padding: 20px 30px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 5px 3px #c0c0c0;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.TaskPreviewList__Primary {
+}
+
+.TaskPreviewList_Secondary {
+  box-shadow: 0 0 5px 3px #c0c0c0;
+  padding: 20px 30px;
 }
 
 .TaskPreviewList hr {

@@ -1,7 +1,8 @@
 import React from "react";
-import styles from "./LandingPage.module.css";
+import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import Logo from "../Logo/Logo";
+import styles from "./LandingPage.module.css";
 
 const LandingPage = () => {
   return (
@@ -9,18 +10,11 @@ const LandingPage = () => {
       <nav className={styles.Navigation}>
         <Logo fontSize={40} />
         <div className={styles.Navigation_links}>
-          <Button backgroundColor="white" color="white" Link linkTo="login">
-            Log In
+          <Button backgroundColor="white" color="white">
+            <Link to="/login">Log In</Link>
           </Button>
-          <Button
-            backgroundColor="#35C53F"
-            color="white"
-            primary
-            bold
-            Link
-            linkTo="registration"
-          >
-            Register
+          <Button backgroundColor="#35C53F" color="white" primary>
+            <Link to="/registration">Register</Link>
           </Button>
         </div>
       </nav>

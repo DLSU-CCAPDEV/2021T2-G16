@@ -53,8 +53,6 @@ const Button = ({
     }
   };
 
-  console.table(children);
-
   return renderElement();
   // return
   // if (Link) {

@@ -5,7 +5,9 @@ import styles from "./ProjectOverviewPage.module.css";
 
 const ProjectOverviewPage = ({ projectItems }) => {
   return (
-    <section className={`scopedPage ${styles.ProjectOverviewPage}`}>
+    <section
+      className={`narrowPage minisculePage ${styles.ProjectOverviewPage}`}
+    >
       <div className={styles.List}>
         <div className={styles.ListHeader}>
           <div className={styles.ListHeader_Divider}>

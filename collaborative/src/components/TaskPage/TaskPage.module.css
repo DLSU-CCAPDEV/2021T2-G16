@@ -1,2 +1,13 @@
 .TaskPage {
+  padding: 20px 0 100px 0;
+  position: relative;
+}
+
+.AddTask {
+  position: sticky;
+  bottom: 20px;
+  align-self: flex-end;
+  padding: 10px 30px;
+  color: white;
+  background-color: #3ea8ff;
 }

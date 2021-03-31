@@ -6,14 +6,16 @@ import { taskDelete } from "../../actions";
 import TaskPreviewItem from "./TaskPreviewItem/TaskPreviewItem";
 import styles from "./TaskPreviewList.module.css";
 
-const TaskPreviewList = ({ taskItems = [], taskDelete }) => {
+const TaskPreviewList = ({ taskItems = [], taskDelete, primary }) => {
   const handleOnDelete = (taskProps) => {
     taskDelete(taskProps);
   };
 
   const renderTaskItems = () => {
+    const tasksTreshold = 5;
+
     return taskItems.map((item, index) => {
-      return index + 1 < 5 ? (
+      return index + 1 < tasksTreshold || primary ? (
         <div className={styles.Item__Border}>
           <TaskPreviewItem taskProps={item} handleOnDelete={handleOnDelete} />
           <hr />
@@ -27,7 +29,13 @@ const TaskPreviewList = ({ taskItems = [], taskDelete }) => {
   };
 
   return (
-    <div className={styles.TaskPreviewList}>
+    <div
+      className={`${styles.TaskPreviewList} ${
+        primary
+          ? styles.TaskPreviewList_Primary
+          : styles.TaskPreviewList_Secondary
+      }`}
+    >
       <div className={styles.Header}>
         <span className={styles.Header_Name}>Task Name</span>
         <span className={styles.Header_Priority}>Priority</span>
