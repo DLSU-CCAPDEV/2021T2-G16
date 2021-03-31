@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Confetti from "../../assets/Confetti.svg";
 import TaskPreviewItem from "./TaskPreviewItem/TaskPreviewItem";
 import styles from "./TaskPreviewList.module.css";
 
@@ -31,7 +32,7 @@ const TaskPreviewList = ({ taskItems = [] }) => {
         <ul className={styles.List}>{renderTaskItems()}</ul>
       ) : (
         <div className={styles.Message}>
-          <span>[IMAGE HERE OF BALLOONS]</span>
+          <img src={Confetti} alt="Confetti!" />
           <span>Congratulations! You currently have no impending tasks.</span>
         </div>
       )}
