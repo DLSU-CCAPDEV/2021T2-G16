@@ -54,6 +54,22 @@ const projectReducer = (
 const taskReducer = (taskDatabaseReducer = taskDatabseInject, action) => {
   switch (action.type) {
     case "TASK_CREATE":
+      //  TODO make task uniqueID
+      // const highestID = Math.max.apply(
+      //   Math,
+      //   taskDatabaseReducer.map(function (item) {
+      //     return ;
+      //   })
+      // );
+
+      // const newUniqueID = highestID + 1;
+
+      // action.payload.uniqueID = newUniqueID;
+
+      return [...userDatabase, action.payload];
+    default:
+      return userDatabase;
+
       return [...taskDatabaseReducer, action.payload];
     case "TASK_DELETE":
       return taskDatabaseReducer.filter(
