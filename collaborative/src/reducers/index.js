@@ -65,11 +65,6 @@ const taskReducer = (taskDatabaseReducer = taskDatabseInject, action) => {
       // const newUniqueID = highestID + 1;
 
       // action.payload.uniqueID = newUniqueID;
-
-      return [...userDatabase, action.payload];
-    default:
-      return userDatabase;
-
       return [...taskDatabaseReducer, action.payload];
     case "TASK_DELETE":
       return taskDatabaseReducer.filter(
