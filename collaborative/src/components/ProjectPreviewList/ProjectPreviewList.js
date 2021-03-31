@@ -18,7 +18,7 @@ const ProjectPreviewList = ({
     return [
       ...projectItems.map((item, index) => {
         return (index + 1 > maximumTreshold || index === projectItems.length) &&
-          !horizontalScroll ? null : (
+          (!horizontalScroll || !noTreshold) ? null : (
           <div>
             <ProjectPreviewItem itemProp={item} />
           </div>

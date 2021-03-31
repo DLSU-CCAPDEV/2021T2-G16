@@ -17,7 +17,21 @@ const ProjectOverviewPage = ({ projectItems }) => {
               /> */}
               <span>Favourite Boards</span>
             </div>
-            <hr />
+          </div>
+        </div>
+        <ProjectPreviewList noTreshold horizontalScroll />
+      </div>
+      <div className={styles.List}>
+        <div className={styles.ListHeader}>
+          <div className={styles.ListHeader_Divider}>
+            <div className={styles.ListHeader_Text}>
+              {/* <img
+                src={Project_Icon__Black}
+                alt="Project_Icon"
+                className={styles.ProjectIcon}
+              /> */}
+              <span>All My Boards</span>
+            </div>
           </div>
         </div>
         <ProjectPreviewList noTreshold horizontalScroll />
