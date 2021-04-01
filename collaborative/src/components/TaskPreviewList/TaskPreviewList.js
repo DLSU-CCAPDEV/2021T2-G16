@@ -23,6 +23,7 @@ const TaskPreviewList = ({ taskItems = [], taskDelete, primary }) => {
                 <TaskPreviewItem
                   taskProps={item}
                   handleOnDelete={handleOnDelete}
+                  primary={primary}
                 />
               </div>
               {primary && index + 1 === taskItems.length ? null : <hr />}
@@ -49,7 +50,15 @@ const TaskPreviewList = ({ taskItems = [], taskDelete, primary }) => {
       }`}
     >
       <div className={styles.Header}>
-        <span className={styles.Header_Name}>Task Name</span>
+        <span
+          className={
+            primary
+              ? styles.Header_name__Primary
+              : styles.Header_Name__Secondary
+          }
+        >
+          Task Name
+        </span>
         <span
           className={`${styles.Header_Priority} ${
             primary ? styles.Header_Priority__Primary : null

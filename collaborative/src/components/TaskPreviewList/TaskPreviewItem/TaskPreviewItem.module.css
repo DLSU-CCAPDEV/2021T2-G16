@@ -3,16 +3,30 @@
   padding: 0;
   display: flex;
   align-items: center;
+  gap: 2px;
 }
 
-.TaskPreviewItem img {
+.TaskPreviewItem_Edit {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  padding: 5px 1px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.TaskPreviewItem_Edit:hover {
+  background-color: gainsboro;
+}
+
+.TaskPreviewItem_Check {
   cursor: pointer;
   height: 30px;
   width: 30px;
 }
 
 .TaskPreviewItem span {
-  margin-left: 15px;
+  margin-left: 10px;
 }
 
 .Priority {

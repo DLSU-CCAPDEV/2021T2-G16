@@ -24,7 +24,11 @@
   display: flex;
 }
 
-.Header_Name {
+.Header_name__Primary {
+  margin-left: 75px;
+}
+
+.Header_Name__Secondary {
   margin-left: 45px;
 }
 
