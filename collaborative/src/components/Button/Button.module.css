@@ -1,10 +1,13 @@
 .Button {
   text-decoration: none;
   padding: 10px 40px;
-  border-radius: 5px;
   transition: background 0.2s, border 0.2s;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
-.Button a {
-  text-decoration: none;
+.Button img {
+  width: 14px;
+  height: 14px;
 }

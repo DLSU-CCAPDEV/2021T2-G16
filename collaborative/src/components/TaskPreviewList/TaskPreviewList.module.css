@@ -1,10 +1,8 @@
 .TaskPreviewList {
   background-color: white;
-  border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .TaskPreviewList__Primary {
@@ -13,6 +11,7 @@
 .TaskPreviewList_Secondary {
   box-shadow: 0 0 5px 3px #c0c0c0;
   padding: 20px 30px;
+  border-radius: 10px;
 }
 
 .TaskPreviewList hr {
@@ -35,16 +34,24 @@
   text-align: center;
 }
 
+.Header_Priority__Primary {
+  padding-right: 110px;
+}
+
 .List {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  overflow-y: auto;
+}
+
+.List_Primary {
+  padding-right: 20px;
 }
 
 .Item__Border {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  padding: 10px 0;
 }
 
 .Item_More {

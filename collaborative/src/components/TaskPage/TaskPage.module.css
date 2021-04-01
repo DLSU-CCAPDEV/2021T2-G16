@@ -1,13 +1,29 @@
 .TaskPage {
-  padding: 20px 0 100px 0;
+  padding: 20px 0 0 0;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.AddTask {
-  position: sticky;
-  bottom: 20px;
-  align-self: flex-end;
-  padding: 10px 30px;
-  color: white;
-  background-color: #3ea8ff;
+.List {
+  overflow-x: auto;
+  flex-grow: 1;
+}
+
+.TaskPage_Footer {
+  flex-basis: 0;
+  padding: 15px;
+  box-shadow: -1px 0 5px 2px rgba(209, 209, 209, 0.575);
+}
+
+.Footer_Content {
+  width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.Column_1 {
+  flex: 1;
 }

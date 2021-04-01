@@ -18,12 +18,14 @@ const TaskPreviewList = ({ taskItems = [], taskDelete, primary }) => {
       ...taskItems.map((item, index) => {
         if (index + 1 < tasksTreshold || primary) {
           return (
-            <div className={styles.Item__Border}>
-              <TaskPreviewItem
-                taskProps={item}
-                handleOnDelete={handleOnDelete}
-              />
-              <hr />
+            <div>
+              <div className={styles.Item__Border}>
+                <TaskPreviewItem
+                  taskProps={item}
+                  handleOnDelete={handleOnDelete}
+                />
+              </div>
+              {primary && index + 1 === taskItems.length ? null : <hr />}
             </div>
           );
         } else {
@@ -48,11 +50,21 @@ const TaskPreviewList = ({ taskItems = [], taskDelete, primary }) => {
     >
       <div className={styles.Header}>
         <span className={styles.Header_Name}>Task Name</span>
-        <span className={styles.Header_Priority}>Priority</span>
+        <span
+          className={`${styles.Header_Priority} ${
+            primary ? styles.Header_Priority__Primary : null
+          }`}
+        >
+          Priority
+        </span>
       </div>
       <hr />
       {taskItems.length >= 1 ? (
-        <ul className={styles.List}>{renderTaskItems()}</ul>
+        <ul
+          className={`${styles.List} ${primary ? styles.List_Primary : null}`}
+        >
+          {renderTaskItems()}
+        </ul>
       ) : (
         <div className={styles.Message}>
           <img src={Confetti} alt="Confetti!" />

@@ -8,6 +8,8 @@ const Button = ({
   primary,
   bold,
   children,
+  smooth,
+  fontSize = "16",
 }) => {
   const [isHoveredOn, toggleHover] = useState(false);
 
@@ -32,7 +34,10 @@ const Button = ({
     style.border = `1px solid ${
       isHoveredOn && primary ? darkenedPrimaryColor : primaryColor
     }`;
+
     style.fontWeight = bold ? "700" : "500";
+    style.borderRadius = smooth ? "50px" : "5px";
+    style.fontSize = fontSize + "px";
 
     return style;
   };
@@ -50,26 +55,21 @@ const Button = ({
           {children.props.children}
         </Link>
       );
+    } else {
+      return (
+        <div
+          onMouseEnter={() => toggleHover(true)}
+          onMouseLeave={() => toggleHover(false)}
+          className={styles.Button}
+          style={renderStyle()}
+        >
+          {children}
+        </div>
+      );
     }
   };
 
   return renderElement();
-  // return
-  // if (Link) {
-  //   return (
-  //     <Link
-  //       to={"/" + this.props.linkTo}
-  //       onMouseEnter={() => toggleHover(true)}
-  //       onMouseLeave={() => toggleHover(false)}
-  //       className={styles.Button}
-  //       style={this.renderStyle(this.props)}
-  //     >
-  //       {this.props.children}
-  //     </Link>
-  //   );
-  // } else {
-  //   return <a href="#">{this.props.text}</a>;
-  // }
 };
 
 export default Button;
