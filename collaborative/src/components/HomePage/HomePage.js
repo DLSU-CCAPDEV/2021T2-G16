@@ -19,6 +19,7 @@ const HomePage = ({ currentUser }) => {
     handleOnEdit();
 
     //  TODO pass the respective task item
+    alert("Wishing to edit - from HomePage");
   };
 
   if (!currentUser) {
