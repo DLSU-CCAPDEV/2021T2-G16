@@ -60,11 +60,19 @@
   font-size: 30px;
 }
 
-.Form p,
-.Form span {
+.Form p {
   font-size: 16px;
   font-weight: lighter;
   text-align: justify;
+}
+
+.Form label,
+.Form span {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #8c8c8c;
+  font-weight: 700;
+  font-size: 14px;
 }
 
 .Form a {
@@ -74,13 +82,18 @@
 
 .Form textarea {
   line-height: 150%;
-  padding: 5px;
+  padding: 5px 10px;
   font-size: 16px;
   min-width: 100%;
   max-width: 100%;
   min-height: 175px;
   max-height: 175px;
   border-color: gainsboro;
+  resize: none;
+}
+
+.Form select {
+  padding: 2px 15px;
 }
 
 .Input {

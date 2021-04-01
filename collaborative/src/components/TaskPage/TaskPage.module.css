@@ -6,6 +6,10 @@
   height: 100%;
 }
 
+.Priorities {
+  background-color: rebeccapurple;
+}
+
 .List {
   overflow-x: auto;
   /* TODO: Change this hacky attribute  */

@@ -34,7 +34,7 @@ const TaskPage = () => {
       >
         <Form
           width="600px"
-          formPurpose="registration"
+          formPurpose="addTask"
           errorText="This email is already used."
           linkTo="/login"
         >
@@ -45,23 +45,35 @@ const TaskPage = () => {
             clickable
             flex__end
           />
-          <h1>Create a New Task</h1>
-          <input
-            type="text"
-            name="task-name-input"
-            id="taskNameInput"
-            placeholder="Task Name"
-            required
-            editableText
-          />
-          <span>Task Description</span>
-          <textarea
-            name="descriptionInput"
-            placeholder="My utmost important task description."
-          />
-          <div column>
-            <input type="submit" value="Create Task" />
+          <label for="taskNameInput">
+            <h1 style={{ textTransform: "capitalize" }}>Create a New Task</h1>
+          </label>
+          <div Column>
+            <input
+              type="text"
+              name="task-name-input"
+              id="taskNameInput"
+              placeholder="Task Name"
+              required
+              editableText
+            />
+            <div Column>
+              <label for="descriptionInput">Task Description</label>
+              <textarea
+                id="descriptionInput"
+                placeholder="My utmost important task description."
+              />
+            </div>
+            <div>
+              <label for="priorities">Priority</label>
+              <select id="priorities" name="priorityInput" required>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
           </div>
+          <input type="submit" value="Create Task" />
         </Form>
       </Popup>
     );
@@ -91,22 +103,25 @@ const TaskPage = () => {
             flex__end
           />
           <h1>Edit Task</h1>
-          <input
-            type="text"
-            name="task-name-input"
-            id="taskNameInput"
-            placeholder="Task Name"
-            required
-            editableText
-          />
-          <span>Task Description</span>
-          <textarea
-            name="descriptionInput"
-            placeholder="My utmost important task description."
-          />
-          <div column>
-            <input type="submit" value="Create Task" />
+          <div>
+            <label for="taskNameInput">Task Name</label>
+            <input
+              type="text"
+              name="task-name-input"
+              id="taskNameInput"
+              placeholder="Task Name"
+              required
+              editableText
+            />
           </div>
+          <div Column>
+            <label for="descriptionInput">Task Description</label>
+            <textarea
+              id="descriptionInput"
+              placeholder="My utmost important task description."
+            />
+          </div>
+          <input type="submit" value="Create Task" />
         </Form>
       </Popup>
     );

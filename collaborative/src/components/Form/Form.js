@@ -74,6 +74,9 @@ const Form = ({
         }
         break;
 
+      case "addTask":
+        break;
+
       default:
         console.log("WARNING. Form has no purpose");
     }
@@ -101,6 +104,7 @@ const Form = ({
     return style;
   };
 
+  //  TODO determine whether or not this needs refactoring, styles are getting too cluttered
   const renderChildren = (children, initialValue) => {
     return React.Children.map(children, (item) => {
       //  Get into Root components
@@ -116,6 +120,7 @@ const Form = ({
 
       //  Overseer the data inside Input components
       else if (item.type === "input") {
+        console.log(item);
         let { props } = item;
         return (
           <input
@@ -125,6 +130,7 @@ const Form = ({
             placeholder={props.placeholder}
             required={props.required}
             onChange={(event) => handleOnChange(event)}
+            value={props.value}
             key={++initialValue}
             className={`${styles.Input} ${
               props.editableText
@@ -138,7 +144,6 @@ const Form = ({
       //  Otherwise, put into Wrapper and render as it is
       else {
         let { props } = item;
-
         return (
           <div
             key={++initialValue}
