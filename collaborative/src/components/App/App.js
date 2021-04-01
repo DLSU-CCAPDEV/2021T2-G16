@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { useCallback, useState } from "react";
+import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import Error404NotFoundPage from "../Error404NotFoundPage/Error404NotFoundPage";
 import HomePage from "../HomePage/HomePage";
@@ -16,35 +16,42 @@ import { formalizeProjectName } from "../../logic";
 import styles from "./App.module.css";
 import "./App.css";
 
-const App = ({ userDatabase, projectDatabase }) => {
+const App = ({ userDatabase, projectDatabase, currentUser }) => {
   const [isSideBarOpen, toggleSideBar] = useState(false);
 
   const handleOnClickToggleSideBar = () => {
     toggleSideBar(!isSideBarOpen);
   };
 
-  const WorkRoute = ({ exact, path, Component }) => (
-    <Route
-      exact={exact}
-      path={path}
-      render={(props) => (
-        <div className={styles.WorkSpace} style={{ height: "100vh" }}>
-          {isSideBarOpen ? (
-            <SideBar handleOnClick={handleOnClickToggleSideBar} />
-          ) : null}
-          <div className={styles.WorkSpace_Content}>
-            <WorkspaceNavigationBar
-              handleOnClickToggleSideBar={handleOnClickToggleSideBar}
-              isSideBarOpen={isSideBarOpen}
-            />
-            <div className={styles.Content_Main}>
-              <Component props={props} />
+  const WorkRoute = ({ exact, path, Component }) => {
+    const history = useHistory();
+    const handleNoCurrentUser = useCallback(() => history.push("/login"), [
+      history,
+    ]);
+
+    return currentUser ? (
+      <Route
+        exact={exact}
+        path={path}
+        render={(props) => (
+          <div className={styles.WorkSpace} style={{ height: "100vh" }}>
+            {isSideBarOpen ? (
+              <SideBar handleOnClick={handleOnClickToggleSideBar} />
+            ) : null}
+            <div className={styles.WorkSpace_Content}>
+              <WorkspaceNavigationBar
+                handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+                isSideBarOpen={isSideBarOpen}
+              />
+              <div className={styles.Content_Main}>
+                <Component props={props} />
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    />
-  );
+        )}
+      />
+    ) : null;
+  };
 
   const renderUserProfilePage = () => {
     return userDatabase.map((user) => (
@@ -88,6 +95,7 @@ const mapStateToProps = (state) => {
   return {
     userDatabase: state.userReducer,
     projectDatabase: state.projectReducer,
+    currentUser: state.currentUserReducer,
   };
 };
 
