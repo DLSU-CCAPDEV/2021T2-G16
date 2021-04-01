@@ -6,7 +6,12 @@ import { taskDelete } from "../../actions";
 import TaskPreviewItem from "./TaskPreviewItem/TaskPreviewItem";
 import styles from "./TaskPreviewList.module.css";
 
-const TaskPreviewList = ({ taskItems = [], taskDelete, primary }) => {
+const TaskPreviewList = ({
+  taskItems = [],
+  taskDelete,
+  primary,
+  handleOnClick,
+}) => {
   const handleOnDelete = (taskProps) => {
     taskDelete(taskProps);
   };
@@ -24,6 +29,7 @@ const TaskPreviewList = ({ taskItems = [], taskDelete, primary }) => {
                   taskProps={item}
                   handleOnDelete={handleOnDelete}
                   primary={primary}
+                  handleOnClick={handleOnClick}
                 />
               </div>
               {primary && index + 1 === taskItems.length ? null : <hr />}

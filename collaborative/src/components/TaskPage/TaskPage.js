@@ -7,10 +7,14 @@ import { isOverflowingVertically } from "../../logic";
 
 // TODO Fix misalignment styling whenever there there is no more scroll
 const TaskPage = () => {
+  const handleOnEdit = () => {
+    alert("Wishing to edit");
+  };
+
   return (
     <section className={`${styles.TaskPage}`}>
       <div className={`narrowPage ${styles.List}`}>
-        <TaskPreviewList primary />
+        <TaskPreviewList primary handleOnClick={handleOnEdit} />
       </div>
       <footer className={styles.TaskPage_Footer}>
         <div className={`${styles.Footer_Content}`}>
