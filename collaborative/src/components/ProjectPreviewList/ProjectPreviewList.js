@@ -34,7 +34,7 @@ const ProjectPreviewList = ({
           return null;
         }
       }),
-      noTreshold ? null : <ProjectPreviewItem newProject />,
+      onlyFavourites ? null : <ProjectPreviewItem newProject />,
     ];
   };
 
