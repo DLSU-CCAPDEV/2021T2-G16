@@ -5,6 +5,7 @@ import TaskPreviewList from "../TaskPreviewList/TaskPreviewList";
 import styles from "./TaskPage.module.css";
 import { isOverflowingVertically } from "../../logic";
 
+// TODO Fix misalignment styling whenever there there is no more scroll
 const TaskPage = () => {
   return (
     <section className={`${styles.TaskPage}`}>
@@ -21,6 +22,9 @@ const TaskPage = () => {
             bold
             fontSize="16"
             smooth
+            onClick={() => {
+              alert("Clicked");
+            }}
           >
             Add Task <img src={New__White} alt="New Project" />
           </Button>

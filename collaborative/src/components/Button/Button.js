@@ -10,8 +10,10 @@ const Button = ({
   children,
   smooth,
   fontSize = "16",
+  onClick,
 }) => {
   const [isHoveredOn, toggleHover] = useState(false);
+  console.log(onClick);
 
   const renderStyle = () => {
     let Color = require("color");
@@ -62,6 +64,7 @@ const Button = ({
           onMouseLeave={() => toggleHover(false)}
           className={styles.Button}
           style={renderStyle()}
+          onClick={onClick}
         >
           {children}
         </div>
