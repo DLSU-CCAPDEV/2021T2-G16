@@ -41,14 +41,30 @@ const TaskPreviewList = ({ taskItems = [], taskDelete, primary }) => {
     ];
   };
 
-  return primary ? (
+  return (
     <div
-      className={`${styles.TaskPreviewList} ${styles.TaskPreviewList_Primary}`}
+      className={`${styles.TaskPreviewList} ${
+        primary
+          ? styles.TaskPreviewList_Primary
+          : styles.TaskPreviewList_Secondary
+      }`}
     >
       <div className={styles.Header}>
-        <span className={styles.Header_name__Primary}>Task Name</span>
         <span
-          className={`${styles.Header_Priority} ${styles.Header_Priority__Primary}`}
+          className={
+            primary
+              ? styles.Header_name__Primary
+              : styles.Header_Name__Secondary
+          }
+        >
+          Task Name
+        </span>
+        <span
+          className={`${styles.Header_Priority} ${
+            primary
+              ? styles.Header_Priority__Primary
+              : styles.Header_Priority__Secondary
+          }`}
         >
           Priority
         </span>
@@ -58,24 +74,6 @@ const TaskPreviewList = ({ taskItems = [], taskDelete, primary }) => {
         <ul className={`${styles.List} ${styles.List_Primary}`}>
           {renderTaskItems()}
         </ul>
-      ) : (
-        <div className={styles.Message}>
-          <img src={Confetti} alt="Confetti!" />
-          <span>Congratulations! You currently have no impending tasks.</span>
-        </div>
-      )}
-    </div>
-  ) : (
-    <div
-      className={`${styles.TaskPreviewList} ${styles.TaskPreviewList_Secondary}`}
-    >
-      <div className={styles.Header}>
-        <span className={styles.Header_Name__Secondary}>Task Name</span>
-        <span className={`${styles.Header_Priority}`}>Priority</span>
-      </div>
-      <hr />
-      {taskItems.length >= 1 ? (
-        <ul className={`${styles.List}`}>{renderTaskItems()}</ul>
       ) : (
         <div className={styles.Message}>
           <img src={Confetti} alt="Confetti!" />

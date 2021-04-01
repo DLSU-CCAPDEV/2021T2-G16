@@ -34,12 +34,14 @@
 
 .Header_Priority {
   margin-left: auto;
-  width: 100px;
-  text-align: center;
 }
 
 .Header_Priority__Primary {
-  padding-right: 110px;
+  margin-right: 65px;
+}
+
+.Header_Priority__Secondary {
+  margin-right: 48px;
 }
 
 .List {
