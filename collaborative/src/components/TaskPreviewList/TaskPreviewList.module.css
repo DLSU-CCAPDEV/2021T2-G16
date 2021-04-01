@@ -24,12 +24,8 @@
   display: flex;
 }
 
-.Header_name__Primary {
+.Header_name {
   margin-left: 75px;
-}
-
-.Header_Name__Secondary {
-  margin-left: 45px;
 }
 
 .Header_Priority {
@@ -41,7 +37,7 @@
 }
 
 .Header_Priority__Secondary {
-  margin-right: 48px;
+  margin-right: 28px;
 }
 
 .List {
@@ -50,8 +46,12 @@
   overflow-y: auto;
 }
 
-.List_Primary {
+.List__Primary {
   padding-right: 20px;
+}
+
+.List__Secondary {
+  padding-right: 0;
 }
 
 .Item__Border {
@@ -62,7 +62,7 @@
 
 .Item_More {
   text-decoration: none;
-  margin-left: 45px;
+  margin-left: 75px;
   color: #3ea8ff;
   font-weight: 700;
   padding-top: 10px;

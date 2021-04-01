@@ -5,7 +5,7 @@ import EditTask from "../../../assets/EditTask.svg";
 import PrioritySignal from "../PrioritySignal/PrioritySignal";
 import styles from "./TaskPreviewItem.module.css";
 
-const TaskPreviewItem = ({ taskProps, handleOnDelete, primary }) => {
+const TaskPreviewItem = ({ taskProps, handleOnDelete }) => {
   const [isHoveredOn, toggleHover] = useState(false);
 
   const renderPriority = () => {
@@ -20,13 +20,11 @@ const TaskPreviewItem = ({ taskProps, handleOnDelete, primary }) => {
 
   return (
     <li className={styles.TaskPreviewItem}>
-      {primary ? (
-        <img
-          src={EditTask}
-          alt="Edit Task"
-          className={styles.TaskPreviewItem_Edit}
-        />
-      ) : null}
+      <img
+        src={EditTask}
+        alt="Edit Task"
+        className={styles.TaskPreviewItem_Edit}
+      />
       <img
         src={isHoveredOn ? CheckMark__Checked : CheckMark}
         onMouseEnter={() => toggleHover(true)}
