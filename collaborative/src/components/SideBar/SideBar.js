@@ -24,11 +24,6 @@ const linkItems = [
     text: "My Tasks",
     icon: TasksPage_icon,
   },
-  {
-    to: "/homepagedadwad",
-    text: "Homadwwaespace",
-    icon: HomePage_icon,
-  },
 ];
 
 const renderLinkItems = (pathname) =>
