@@ -25,7 +25,7 @@ const LoginPage = ({ currentUser }) => {
           errorText="Sorry. The email and password provided is incorrect. Please try again."
           linkTo="/homepage"
         >
-          <div column>
+          <div Column>
             <Link to="/" flex__end>
               <img src={CloseButton} alt="Close Button" />
             </Link>
@@ -36,22 +36,20 @@ const LoginPage = ({ currentUser }) => {
             </p>
           </div>
           <hr />
-          <div column>
-            <input
-              type="text"
-              name="name-input"
-              id="emailInput"
-              placeholder="Your Email"
-              required
-            />
-            <input
-              type="password"
-              name="name-input"
-              id="passwordInput"
-              placeholder="Your Password"
-              required
-            />
-          </div>
+          <input
+            type="text"
+            name="name-input"
+            id="emailInput"
+            placeholder="Your Email"
+            required
+          />
+          <input
+            type="password"
+            name="name-input"
+            id="passwordInput"
+            placeholder="Your Password"
+            required
+          />
           <input type="submit" value="Log In" />
           <hr />
           <Link to="/registration" flex__center>

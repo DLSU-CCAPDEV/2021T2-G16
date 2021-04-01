@@ -95,7 +95,7 @@ const Form = ({
     if (flex__center) {
       style.margin = flex__center ? "0 auto" : null;
     } else if (flex__end) {
-      style.marginLeft = flex__end ? "auto" : null;
+      style.margin = flex__end ? "0 0 0 auto" : null;
     }
 
     return style;
@@ -105,7 +105,13 @@ const Form = ({
     return React.Children.map(children, (item) => {
       //  Get into Root components
       if (item.type === "div") {
-        return renderChildren(item.props.children, initialValue);
+        let { props } = item;
+
+        return (
+          <div className={`${props.Column ? styles.Column : styles.Row}`}>
+            {renderChildren(item.props.children, initialValue)}
+          </div>
+        );
       }
 
       //  Overseer the data inside Input components

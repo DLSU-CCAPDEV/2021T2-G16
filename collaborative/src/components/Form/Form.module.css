@@ -8,13 +8,13 @@
   gap: 20px;
 }
 
-.column {
+.Column {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.row {
+.Row {
   display: flex;
   gap: 15px;
 }

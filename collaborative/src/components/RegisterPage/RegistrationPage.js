@@ -25,7 +25,7 @@ const RegistrationPage = ({ currentUser }) => {
           errorText="This email is already used."
           linkTo="/login"
         >
-          <div column>
+          <div Column>
             <Link to="/" flex__end>
               <img src={CloseButton} alt="Close Button" />
             </Link>
@@ -36,7 +36,7 @@ const RegistrationPage = ({ currentUser }) => {
             </p>
           </div>
           <hr />
-          <div column>
+          <div Column>
             <div>
               <input
                 type="text"
