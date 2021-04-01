@@ -3,6 +3,7 @@ import Button from "../Button/Button";
 import New__White from "../../assets/New__White.svg";
 import TaskPreviewList from "../TaskPreviewList/TaskPreviewList";
 import styles from "./TaskPage.module.css";
+import { isOverflowingVertically } from "../../logic";
 
 const TaskPage = () => {
   return (

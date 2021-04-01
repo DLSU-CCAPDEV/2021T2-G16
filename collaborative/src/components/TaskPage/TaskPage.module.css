@@ -8,7 +8,8 @@
 
 .List {
   overflow-x: auto;
-  flex-grow: 1;
+  /* TODO: Change this hacky attribute  */
+  flex: 1000px;
 }
 
 .TaskPage_Footer {
