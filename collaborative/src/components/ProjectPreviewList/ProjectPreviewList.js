@@ -18,7 +18,6 @@ const ProjectPreviewList = ({
   const renderProjectItems = () => {
     return [
       ...projectItems.map((item, index) => {
-        console.table(item);
         if (
           (index + 1 > maximumTreshold ||
             index === projectItems.length ||

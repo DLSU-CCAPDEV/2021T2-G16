@@ -87,26 +87,25 @@ const Form = ({
     });
   };
 
+  const renderStyle = ({ clickable, flex__end, flex__center }) => {
+    let style = {};
+
+    style.cursor = clickable ? "pointer" : null;
+
+    if (flex__center) {
+      style.margin = flex__center ? "0 auto" : null;
+    } else if (flex__end) {
+      style.marginLeft = flex__end ? "auto" : null;
+    }
+
+    return style;
+  };
+
   const renderChildren = (children, initialValue) => {
     return React.Children.map(children, (item) => {
       //  Get into Root components
       if (item.type === "div") {
         return renderChildren(item.props.children, initialValue);
-      }
-
-      //  Put into Wrapper Link components
-      else if (item.type === Link) {
-        return (
-          <div
-            className={
-              (item.props.flex_end ? styles.flex_end : null) ||
-              (item.props.flex_center ? styles.flex_center : null)
-            }
-            key={++initialValue}
-          >
-            {item}
-          </div>
-        );
       }
 
       //  Overseer the data inside Input components
@@ -121,13 +120,29 @@ const Form = ({
             required={props.required}
             onChange={(event) => handleOnChange(event)}
             key={++initialValue}
+            className={`${styles.Input} ${
+              props.editableText
+                ? styles.Input__EditableText
+                : styles.Input__BoxyText
+            }`}
           />
         );
       }
 
       //  Otherwise, put into Wrapper and render as it is
       else {
-        return <div key={++initialValue}>{item}</div>;
+        let { props } = item;
+
+        return (
+          <div
+            key={++initialValue}
+            style={renderStyle(props)}
+            onClick={props.handleOnClick ? () => props.handleOnClick() : null}
+            placeholder={props.placeholder ? props.placeholder : null}
+          >
+            {item}
+          </div>
+        );
       }
     });
   };

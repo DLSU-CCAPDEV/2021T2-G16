@@ -19,14 +19,6 @@
   gap: 15px;
 }
 
-.flex_end {
-  align-self: flex-end;
-}
-
-.flex_center {
-  align-self: center;
-}
-
 .ErrorText {
   color: red;
   display: flex;
@@ -58,23 +50,6 @@
   background-color: #31b83a;
 }
 
-.Form input[type="text"],
-.Form input[type="email"],
-.Form input[type="password"] {
-  width: 100%;
-  font-size: 16px;
-  padding: 8px 10px;
-  background-color: #e2e4e6;
-  color: #000000;
-  border: none;
-  font-weight: normal;
-}
-
-::placeholder {
-  color: #8c8c8c;
-  opacity: 0.6;
-}
-
 .Form hr {
   border: 1px solid #b0c3dc48;
 }
@@ -95,4 +70,40 @@
 .Form a {
   color: #3d7eeb;
   text-decoration: none;
+}
+
+.Form textarea {
+  line-height: 150%;
+  padding: 5px;
+  font-size: 16px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 175px;
+  max-height: 175px;
+  border-color: gainsboro;
+}
+
+.Input {
+  width: 100%;
+  color: #000000;
+  border: none;
+  font-weight: normal;
+}
+
+::placeholder {
+  color: #8c8c8c;
+  opacity: 0.6;
+}
+
+.Input__BoxyText {
+  padding: 8px 10px;
+  background-color: #e2e4e6;
+  font-size: 16px;
+}
+
+.Input__EditableText {
+  border: none;
+  font-size: 20px;
+  padding: 8px;
+  border-bottom: 1px solid gainsboro;
 }

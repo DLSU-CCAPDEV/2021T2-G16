@@ -29,7 +29,6 @@ class OverHeadMessage extends React.Component {
         style={{ width: this.props.width + "px" }}
       >
         {React.Children.map(this.props.children, (item) => {
-          console.table(item);
           if (item.type === Link) {
             return (
               <Link

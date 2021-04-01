@@ -26,7 +26,7 @@ const RegistrationPage = ({ currentUser }) => {
           linkTo="/login"
         >
           <div column>
-            <Link to="/" flex_end>
+            <Link to="/" flex__end>
               <img src={CloseButton} alt="Close Button" />
             </Link>
             <h1>Registration</h1>
@@ -74,7 +74,7 @@ const RegistrationPage = ({ currentUser }) => {
           </p>
           <input type="submit" value="Register Your Account" />
           <hr />
-          <Link to="/login" flex_center>
+          <Link to="/login" flex__center>
             Already have an account? Log In
           </Link>
         </Form>

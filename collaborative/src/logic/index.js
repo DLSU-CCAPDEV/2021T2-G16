@@ -5,8 +5,6 @@ export const formalizeProjectName = (string) => {
 };
 
 export const isOverflowingVertically = (elementID) => {
-  console.log(elementID);
-  console.table($(`.${elementID}`).get());
   return true;
   // { clientHeight, scrollHeight }
   // return $("#elementID").get()scrollHeight > clientHeight;

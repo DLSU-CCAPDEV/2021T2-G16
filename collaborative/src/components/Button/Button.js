@@ -13,7 +13,6 @@ const Button = ({
   onClick,
 }) => {
   const [isHoveredOn, toggleHover] = useState(false);
-  console.log(onClick);
 
   const renderStyle = () => {
     let Color = require("color");

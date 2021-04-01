@@ -26,7 +26,7 @@ const LoginPage = ({ currentUser }) => {
           linkTo="/homepage"
         >
           <div column>
-            <Link to="/" flex_end>
+            <Link to="/" flex__end>
               <img src={CloseButton} alt="Close Button" />
             </Link>
             <h1>Log In</h1>
@@ -54,7 +54,7 @@ const LoginPage = ({ currentUser }) => {
           </div>
           <input type="submit" value="Log In" />
           <hr />
-          <Link to="/registration" flex_center>
+          <Link to="/registration" flex__center>
             Don’t have an account yet? Register here
           </Link>
         </Form>
