@@ -14,8 +14,9 @@
 
 .TaskPage_Footer {
   flex-basis: 0;
-  padding: 15px;
   box-shadow: -1px 0 5px 2px rgba(209, 209, 209, 0.575);
+  min-height: 80px;
+  padding: 15px;
 }
 
 .Footer_Content {
