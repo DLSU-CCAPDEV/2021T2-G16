@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import Error404NotFoundPage from "../Error404NotFoundPage/Error404NotFoundPage";
 import HomePage from "../HomePage/HomePage";
@@ -24,11 +24,6 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
   };
 
   const WorkRoute = ({ exact, path, Component }) => {
-    const history = useHistory();
-    const handleNoCurrentUser = useCallback(() => history.push("/login"), [
-      history,
-    ]);
-
     return currentUser ? (
       <Route
         exact={exact}
