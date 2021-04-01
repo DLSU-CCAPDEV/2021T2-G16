@@ -13,6 +13,13 @@ const HomePage = ({ currentUser }) => {
   const handleNoCurrentUser = useCallback(() => history.push("/login"), [
     history,
   ]);
+  const handleOnEdit = useCallback(() => history.push("/tasks"), [history]);
+
+  const handleOnClickEdit = () => {
+    handleOnEdit();
+
+    //  TODO pass the respective task item
+  };
 
   if (!currentUser) {
     handleNoCurrentUser();
@@ -62,7 +69,7 @@ const HomePage = ({ currentUser }) => {
               </div>
               <hr />
             </div>
-            <TaskPrevewList />
+            <TaskPrevewList handleOnClick={handleOnClickEdit} />
           </div>
         </div>
       </section>
