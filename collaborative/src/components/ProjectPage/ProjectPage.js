@@ -2,11 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 const ProjectPage = ({ projectItems }) => {
-  return (
-    <section>
-      <h1>HERE</h1>
-    </section>
-  );
+  return <section>{console.log("Went here")}</section>;
 };
 
 const mapStateToProps = (state) => {

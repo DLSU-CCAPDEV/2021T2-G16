@@ -48,12 +48,29 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
     ) : null;
   };
 
+  //  TODO refactor this function to fit with WorkRoute
   const renderUserProfilePage = () => {
     return userDatabase.map((user) => (
       <Route
+        exact
         path={`/userprofile=${user.uniqueID}`}
         key={`userprofile-${user.uniqueID}`}
-        render={(props) => <UserProfilePage props={props} userAccount={user} />}
+        render={(props) => {
+          <div className={styles.WorkSpace} style={{ height: "100vh" }}>
+            {isSideBarOpen ? (
+              <SideBar handleOnClick={handleOnClickToggleSideBar} />
+            ) : null}
+            <div className={styles.WorkSpace_Content}>
+              <WorkspaceNavigationBar
+                handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+                isSideBarOpen={isSideBarOpen}
+              />
+              <div className={styles.Content_Main}>
+                <UserProfilePage props={props} userAccount={user} />
+              </div>
+            </div>
+          </div>;
+        }}
       />
     ));
   };
@@ -61,8 +78,25 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
   const renderProjectPages = () => {
     return projectDatabase.map((project) => (
       <Route
+        exact
         path={`/projects/project=${formalizeProjectName(project.projectName)}`}
-        render={(props) => <ProjectPage props={props} project={project} />}
+        key={`project-${formalizeProjectName(project.projectName)}`}
+        render={(props) => (
+          <div className={styles.WorkSpace} style={{ height: "100vh" }}>
+            {isSideBarOpen ? (
+              <SideBar handleOnClick={handleOnClickToggleSideBar} />
+            ) : null}
+            <div className={styles.WorkSpace_Content}>
+              <WorkspaceNavigationBar
+                handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+                isSideBarOpen={isSideBarOpen}
+              />
+              <div className={styles.Content_Main}>
+                <ProjectPage props={props} project={project} />
+              </div>
+            </div>
+          </div>
+        )}
       />
     ));
   };
