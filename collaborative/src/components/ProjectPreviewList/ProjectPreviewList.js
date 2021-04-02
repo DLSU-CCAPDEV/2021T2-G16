@@ -33,7 +33,7 @@ const ProjectPreviewList = ({
           return null;
         }
       }),
-      onlyFavourites ? null : <ProjectPreviewItem newProject />,
+      !onlyFavourites && <ProjectPreviewItem newProject />,
     ];
   };
 

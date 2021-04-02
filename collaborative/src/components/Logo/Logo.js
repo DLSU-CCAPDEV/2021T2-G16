@@ -8,7 +8,7 @@ const Logo = ({ primary, justText, fontSize = 40 }) => {
 
   return (
     <div className={styles.Logo}>
-      {justText ? null : (
+      {!justText && (
         <img
           src={primary ? Logo__Color : Logo__White}
           alt="Collaborative Logo"
