@@ -1,6 +1,7 @@
 import React from "react";
 import TrelloBoard from "react-trello";
 import { connect } from "react-redux";
+import styles from "./ProjectPage.module.css";
 
 const data = {
   lanes: [
@@ -34,10 +35,25 @@ const data = {
   ],
 };
 
+// TODO check if it is possible to attach a CSS sheet to an inline-style
 const ProjectPage = ({ projectItems }) => {
   return (
     <section>
-      <TrelloBoard data={data} draggable editable canAddLanes editLaneTitle />
+      <TrelloBoard
+        data={data}
+        draggable
+        editable
+        canAddLanes
+        editLaneTitle
+        style={{ backgroundColor: "#F6F8F9" }}
+        cardStyle={{ backgroundColor: "white", borderRadius: "5px" }}
+        laneStyle={{}}
+        components={
+          {
+            // NewLaneSection: () => {},
+          }
+        }
+      />
     </section>
   );
 };
