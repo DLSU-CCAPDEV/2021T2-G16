@@ -6,6 +6,19 @@ import styles from "./ProjectPreviewItem.module.css";
 const ProjectPreviewItem = ({ itemProp, newProject }) => {
   const [isHoveredOn, toggleHover] = useState(false);
 
+  const renderBackground = () => {
+    switch (itemProp.backgroundID) {
+      case "1":
+        return styles.ProjectPreviewItem__1;
+      case "2":
+        return styles.ProjectPreviewItem__2;
+      case "3":
+        return styles.ProjectPreviewItem__3;
+      default:
+        return styles.ProjectPreviewItem__default;
+    }
+  };
+
   return (
     <Link
       to={
@@ -24,7 +37,9 @@ const ProjectPreviewItem = ({ itemProp, newProject }) => {
     >
       <div
         className={`${styles.Picture} ${
-          newProject ? styles.Add : styles.Existing
+          newProject
+            ? styles.ProjectPreviewItem__NewProject
+            : renderBackground()
         }`}
       />
       <span

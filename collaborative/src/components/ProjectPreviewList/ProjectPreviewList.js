@@ -43,7 +43,6 @@ const ProjectPreviewList = ({
 
 const mapStateToProps = (state) => {
   const { projectReducer, currentUserReducer } = state;
-  console.table(projectReducer);
   return {
     projectItems: projectReducer.filter((item) => {
       return item.uniqueID === currentUserReducer.uniqueID;

@@ -87,7 +87,6 @@ const Form = ({
         break;
 
       case "addTask":
-        console.table(formData);
         // taskCreate(formData, currentUser);
         break;
 
@@ -160,7 +159,6 @@ const Form = ({
 
       //  Otherwise, put into Wrapper and render as it is
       else {
-        console.table(item);
         let { props } = item;
 
         return (

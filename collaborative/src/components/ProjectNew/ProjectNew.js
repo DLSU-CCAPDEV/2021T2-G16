@@ -42,6 +42,14 @@ const ProjectNew = () => {
               />
             </div>
           </div>
+          <div>
+            <label for="priorities">Background Image</label>
+            <select id="priorities" name="priorityInput" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
           <input type="submit" value="Create Project" />
         </Form>
       </div>
