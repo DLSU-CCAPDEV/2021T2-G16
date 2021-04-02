@@ -37,7 +37,7 @@ const data = {
 const ProjectPage = ({ projectItems }) => {
   return (
     <section>
-      <TrelloBoard data={data} />
+      <TrelloBoard data={data} draggable editable canAddLanes editLaneTitle />
     </section>
   );
 };
