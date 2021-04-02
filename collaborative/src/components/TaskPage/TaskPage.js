@@ -37,6 +37,7 @@ const TaskPage = () => {
           formPurpose="addTask"
           errorText="This email is already used."
           linkTo="/login"
+          handleOnSubmitCustomized={() => setAddTaskModalStatus(false)}
         >
           <img
             src={CloseButton}

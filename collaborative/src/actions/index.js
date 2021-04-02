@@ -52,6 +52,21 @@ export const projectCreate = ({ email, projectName, decsription, members }) => {
   };
 };
 
+export const taskCreate = (
+  { taskName, taskDescription, priority },
+  { uniqueID }
+) => {
+  console.log(taskName);
+  console.log(taskDescription);
+  console.log(priority);
+  console.log(uniqueID);
+
+  return {
+    type: "TASK_CREATE",
+    payload: {},
+  };
+};
+
 export const taskDelete = (taskProp) => {
   return {
     type: "TASK_DELETE",

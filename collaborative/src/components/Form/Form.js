@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import $ from "jquery";
 import { connect } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import { userLogin, userRegistration } from "../../actions/index";
+import { useHistory } from "react-router-dom";
+import { userLogin, userRegistration, taskCreate } from "../../actions/index";
 import Warning_Logo from "../../assets/Warning_Logo.svg";
 import styles from "./Form.module.css";
 
@@ -14,6 +14,7 @@ const Form = ({
   userLogin,
   userRegistration,
   userDatabase,
+  handleOnSubmitCustomized,
   linkTo,
 }) => {
   const [formData, updateFormData] = useState({});
@@ -75,6 +76,8 @@ const Form = ({
         break;
 
       case "addTask":
+        console.table(formData);
+        // taskCreate(formData, currentUser);
         break;
 
       default:
@@ -120,7 +123,6 @@ const Form = ({
 
       //  Overseer the data inside Input components
       else if (item.type === "input") {
-        console.log(item);
         let { props } = item;
         return (
           <input
@@ -182,7 +184,10 @@ const Form = ({
       style={{ width }}
       action="#"
       method="post"
-      onSubmit={(event) => handleOnSubmit(event, handleForwardToLink)}
+      onSubmit={(event) => {
+        handleOnSubmitCustomized();
+        handleOnSubmit(event, handleForwardToLink);
+      }}
     >
       {renderChildren(children, 1)}
     </form>
@@ -190,7 +195,14 @@ const Form = ({
 };
 
 const mapStateToProps = (state) => {
-  return { userDatabase: state.userReducer };
+  return {
+    userDatabase: state.userReducer,
+    currentUser: state.currentUserReducer,
+  };
 };
 
-export default connect(mapStateToProps, { userLogin, userRegistration })(Form);
+export default connect(mapStateToProps, {
+  userLogin,
+  userRegistration,
+  taskCreate,
+})(Form);
