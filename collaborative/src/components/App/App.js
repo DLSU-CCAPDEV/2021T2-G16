@@ -62,9 +62,7 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
     return projectDatabase.map((project) => (
       <Route
         path={`/projects/project=${formalizeProjectName(project.projectName)}`}
-        render={(props) => {
-          <ProjectPage props={props} project={project} />;
-        }}
+        render={(props) => <ProjectPage props={props} project={project} />}
       />
     ));
   };
