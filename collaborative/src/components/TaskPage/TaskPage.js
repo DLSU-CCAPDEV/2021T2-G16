@@ -14,14 +14,6 @@ const TaskPage = () => {
   const [isAddTaskModalEnabled, setAddTaskModalStatus] = useState(false);
   const [isEditTaskModalEnabled, setEditTaskModalStatus] = useState(false);
 
-  const handleOnEdit = () => {};
-
-  const handleOnCreate = () => {
-    alert("Created");
-  };
-
-  const handleOnClose = () => {};
-
   const renderAddTaskModal = () => {
     return (
       <Popup
@@ -35,7 +27,6 @@ const TaskPage = () => {
         <Form
           width="600px"
           formPurpose="addTask"
-          errorText="This email is already used."
           linkTo="/login"
           handleOnSubmitCustomized={() => setAddTaskModalStatus(false)}
         >
@@ -92,9 +83,9 @@ const TaskPage = () => {
       >
         <Form
           width="600px"
-          formPurpose="registration"
-          errorText="This email is already used."
+          formPurpose="addTask"
           linkTo="/login"
+          handleOnSubmitCustomized={() => setEditTaskModalStatus(false)}
         >
           <img
             src={CloseButton}
@@ -103,9 +94,10 @@ const TaskPage = () => {
             clickable
             flex__end
           />
-          <h1>Edit Task</h1>
-          <div>
-            <label for="taskNameInput">Task Name</label>
+          <label for="taskNameInput">
+            <h1 style={{ textTransform: "capitalize" }}>Edit Task</h1>
+          </label>
+          <div Column>
             <input
               type="text"
               name="task-name-input"
@@ -114,13 +106,21 @@ const TaskPage = () => {
               required
               editableText
             />
-          </div>
-          <div Column>
-            <label for="descriptionInput">Task Description</label>
-            <textarea
-              id="descriptionInput"
-              placeholder="My utmost important task description."
-            />
+            <div Column>
+              <label for="descriptionInput">Task Description</label>
+              <textarea
+                id="descriptionInput"
+                placeholder="My utmost important task description."
+              />
+            </div>
+            <div>
+              <label for="priorities">Priority</label>
+              <select id="priorities" name="priorityInput" required>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
           </div>
           <input type="submit" value="Create Task" />
         </Form>
