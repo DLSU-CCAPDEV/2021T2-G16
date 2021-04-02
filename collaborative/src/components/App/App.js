@@ -23,7 +23,7 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
     toggleSideBar(!isSideBarOpen);
   };
 
-  const WorkRoute = ({ exact, path, Component }) => {
+  const WorkRoute = ({ exact, path, headerName, Component }) => {
     return currentUser ? (
       <Route
         exact={exact}
@@ -36,6 +36,7 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
             <div className={styles.WorkSpace_Content}>
               <WorkspaceNavigationBar
                 handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+                headerName={headerName}
                 isSideBarOpen={isSideBarOpen}
               />
               <div className={styles.Content_Main}>
@@ -64,6 +65,7 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
               <WorkspaceNavigationBar
                 handleOnClickToggleSideBar={handleOnClickToggleSideBar}
                 isSideBarOpen={isSideBarOpen}
+                headerName={"User Profile"}
               />
               <div className={styles.Content_Main}>
                 <UserProfilePage props={props} userAccount={user} />
@@ -90,6 +92,7 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
               <WorkspaceNavigationBar
                 handleOnClickToggleSideBar={handleOnClickToggleSideBar}
                 isSideBarOpen={isSideBarOpen}
+                headerName={`Project: ${project.projectName}`}
               />
               <div className={styles.Content_Main}>
                 <ProjectPage props={props} project={project} />
@@ -107,9 +110,24 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
         <Route path="/" exact component={LandingPage} />
         <Route path="/registration" exact component={RegisterPage} />
         <Route path="/login" exact component={LoginPage} />
-        <WorkRoute path="/homepage" exact Component={HomePage} />
-        <WorkRoute path="/projects" exact Component={ProjectOverviewPage} />
-        <WorkRoute path="/tasks" exact Component={TaskPage} />
+        <WorkRoute
+          path="/homepage"
+          exact
+          Component={HomePage}
+          headerName="Homespace"
+        />
+        <WorkRoute
+          path="/projects"
+          exact
+          Component={ProjectOverviewPage}
+          headerName="Projects"
+        />
+        <WorkRoute
+          path="/tasks"
+          exact
+          Component={TaskPage}
+          headerName="My Tasks"
+        />
         {renderUserProfilePage()}
         {renderProjectPages()}
         <Route component={Error404NotFoundPage} />

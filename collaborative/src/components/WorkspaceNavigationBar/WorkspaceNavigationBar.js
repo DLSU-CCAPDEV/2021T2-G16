@@ -13,25 +13,13 @@ const WorkspaceNavigationBar = ({
   userLogout,
   handleOnClickToggleSideBar,
   currentUser,
+  headerName,
 }) => {
   //  TODO customize a hook inside of OverHeadMessage that will manage itself
   const [isMenuOpen, toggleMenuOpen] = useState(false);
 
   const handleOnClickToggleMenu = () => {
     toggleMenuOpen(!isMenuOpen);
-  };
-
-  const getHeaderLine = (location) => {
-    switch (location) {
-      case "/homepage":
-        return "Homepage";
-      case "/projects":
-        return "Projects";
-      case "/tasks":
-        return "My Tasks";
-      default:
-        return "[Unnamed Header]";
-    }
   };
 
   return (
@@ -44,7 +32,7 @@ const WorkspaceNavigationBar = ({
           onClick={() => handleOnClickToggleSideBar()}
         />
       )}
-      <h1>{getHeaderLine(useLocation().pathname)}</h1>
+      <h1>{headerName}</h1>
       <div className={styles.NavigationContent}>
         <img
           src={UserPortrait}
