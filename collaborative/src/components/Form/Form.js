@@ -6,6 +6,12 @@ import { userLogin, userRegistration, taskCreate } from "../../actions/index";
 import Warning_Logo from "../../assets/Warning_Logo.svg";
 import styles from "./Form.module.css";
 
+/**
+ * TODO Refactor component and its corresponding affected components
+ * make sure that the data collected is given to the component using it
+ * via customised hook. Also, the new Form's component would onyl be
+ * aesthetics!
+ */
 const Form = ({
   errorText,
   children,
@@ -29,6 +35,7 @@ const Form = ({
     event.preventDefault();
     let userAccount;
 
+    //  TODO refactor this so that it will only execute the callback function given to it
     switch (formPurpose) {
       case "login":
         /**
@@ -75,6 +82,10 @@ const Form = ({
         }
         break;
 
+      case "addProject":
+        forwardToLink();
+        break;
+
       case "addTask":
         console.table(formData);
         // taskCreate(formData, currentUser);
@@ -115,7 +126,11 @@ const Form = ({
         let { props } = item;
 
         return (
-          <div className={`${props.Column ? styles.Column : styles.Row}`}>
+          <div
+            className={`${props.Column ? styles.Column : styles.Row}`}
+            onClick={props.handleOnClick ? () => props.handleOnClick() : null}
+            style={renderStyle(props)}
+          >
             {renderChildren(item.props.children, initialValue)}
           </div>
         );
@@ -145,7 +160,9 @@ const Form = ({
 
       //  Otherwise, put into Wrapper and render as it is
       else {
+        console.table(item);
         let { props } = item;
+
         return (
           <div
             key={++initialValue}

@@ -1,0 +1,14 @@
+.ProjectNew {
+  padding: 50px;
+  display: flex;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+.ProjectNew_Left {
+  flex: 1;
+}
+
+.ProjectNew_Right {
+  flex: 1;
+}

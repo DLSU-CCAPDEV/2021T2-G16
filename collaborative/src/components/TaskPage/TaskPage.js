@@ -27,7 +27,6 @@ const TaskPage = () => {
         <Form
           width="600px"
           formPurpose="addTask"
-          linkTo="/login"
           handleOnSubmitCustomized={() => setAddTaskModalStatus(false)}
         >
           <img
