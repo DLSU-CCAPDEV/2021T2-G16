@@ -5,6 +5,7 @@ import Error404NotFoundPage from "../Error404NotFoundPage/Error404NotFoundPage";
 import HomePage from "../HomePage/HomePage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
+import ProjectNew from "../ProjectNew/ProjectNew";
 import ProjectOverviewPage from "../ProjectOverviewPage/ProjectOverviewPage";
 import ProjectPage from "../ProjectPage/ProjectPage";
 import RegisterPage from "../RegisterPage/RegistrationPage";
@@ -110,6 +111,7 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
         <Route path="/" exact component={LandingPage} />
         <Route path="/registration" exact component={RegisterPage} />
         <Route path="/login" exact component={LoginPage} />
+        <Route path="/projects/project=new" exact component={ProjectNew} />
         <WorkRoute
           path="/homepage"
           exact
