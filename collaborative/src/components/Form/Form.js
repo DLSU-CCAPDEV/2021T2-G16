@@ -166,7 +166,7 @@ const Form = ({
       $(
         `<div class=${styles.ErrorText}>
           <img src=${Warning_Logo} />
-          <span>${errorText}</span>
+          <div class=${styles.ErrorText_Text}>${errorText}</div>
          </div>`
       ).insertBefore(
         $("input")
@@ -185,7 +185,7 @@ const Form = ({
       action="#"
       method="post"
       onSubmit={(event) => {
-        handleOnSubmitCustomized();
+        handleOnSubmitCustomized && handleOnSubmitCustomized();
         handleOnSubmit(event, handleForwardToLink);
       }}
     >

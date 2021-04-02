@@ -20,7 +20,6 @@
 }
 
 .ErrorText {
-  color: red;
   display: flex;
   text-align: left;
   gap: 10px;
@@ -30,7 +29,8 @@
   width: 35px;
 }
 
-.ErrorText span {
+.ErrorText_Text {
+  color: red;
   align-self: center;
 }
 
