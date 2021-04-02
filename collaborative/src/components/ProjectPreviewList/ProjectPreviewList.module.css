@@ -2,6 +2,6 @@
   display: flex;
   gap: 18px;
   overflow-x: auto;
-  min-height: 250px;
-  max-height: 250px;
+  min-height: 260px;
+  max-height: 260px;
 }
