@@ -19,9 +19,7 @@ const ProjectPreviewList = ({
     return [
       ...projectItems.map((item, index) => {
         if (
-          (index + 1 > maximumTreshold ||
-            index === projectItems.length ||
-            (horizontalScroll && noTreshold)) &&
+          (index + 1 < maximumTreshold || horizontalScroll || noTreshold) &&
           ((onlyFavourites && item.favoured) || !onlyFavourites)
         ) {
           return (
@@ -44,11 +42,11 @@ const ProjectPreviewList = ({
 
 const mapStateToProps = (state) => {
   const { projectReducer, currentUserReducer } = state;
-
+  console.table(projectReducer);
   return {
-    projectItems: projectReducer.filter(
-      (item) => item.uniqueID === currentUserReducer.uniqueID
-    ),
+    projectItems: projectReducer.filter((item) => {
+      return item.uniqueID === currentUserReducer.uniqueID;
+    }),
   };
 };
 
