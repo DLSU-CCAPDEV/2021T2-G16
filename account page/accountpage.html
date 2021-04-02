@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <body>
+    <head>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="accountpage.css">
+    </head>
 
-            <!-- Side Bar From W3 -->
+    <body>
+        <!-- Side Bar From W3 -->
     <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none; background-color: #141A25; color : #C0C0C0 ; min-width: 16%; max-width: 16%" id="sidebar">
         <div style="display:flex; flex-direction: row" id="returnButton">
             <img src="png/mainlogo.png" style="margin-left: 25px; margin-top: auto; margin-bottom: auto;" width="209px"
@@ -32,18 +34,25 @@
             <button id="sideButton" style="border: none; background-color : #FFFFFF; margin-left:5%" onmouseover="hover()" onmouseout="out()" onclick="w3_open()">
                 <img src="png/lines.png">
             </button>
-            <h2 style="font-size: 30pt ;margin-left: 1% ; color : #000000; font-family: 'Lato', sans-serif;">Tasks</h2>
+            <h2 style="font-size: 30pt ;margin-left: 1% ; color : #000000; font-family: 'Lato', sans-serif;">Account profile</h2>
     
             <!-- Link by changing # -->
-            <a href="#" style="margin-left : 80%; margin-top: 10px;"> <img src="png/accountlogo.png" width="57px" height="57px"> </a>
-    
+            <a href="#" style="margin-left : 74.1%; margin-top: 10px;"> <img src="png/accountlogo.png" width="57px" height="57px"> </a>
+        </div>
+        <img src="png/accountlogo.png" width="500px" height="500px" style="margin: auto;margin-top: 100px;border-radius: 250px;"></img>
+        <div id="name">
+            <h1 style ="font-size:100px ;">Insert Name</h1>
+        </div>
+        <div id="bio">
+            <p style ="font-size:50px ;">Chicks with bricks come. Chicks with blocks come. Chicks with bricks and blocks and clocks come.</p>
+        </div>
+        <div id="edit">
+            <p>Edit Profile</p>
         </div>
     </div>
-        
-        
         <!-- End -->
-      <script>
-          // Used for Sidebar
+        <script>
+            // Used for Sidebar
         function out() {
             document.getElementById("sideButton").style.backgroundColor = "#FFFFFF";
         }
@@ -59,7 +68,6 @@
             document.getElementById("sidebar").style.display = "none";
         }
         // End
-      </script>
+        </script>
     </body>
-  </head>
 </html>
