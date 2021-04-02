@@ -17,6 +17,7 @@ const ProjectPreviewList = ({
 
   const renderProjectItems = () => {
     return [
+      !onlyFavourites && horizontalScroll && <ProjectPreviewItem newProject />,
       ...projectItems.map((item, index) => {
         if (
           (index + 1 < maximumTreshold || horizontalScroll || noTreshold) &&
@@ -31,7 +32,7 @@ const ProjectPreviewList = ({
           return null;
         }
       }),
-      !onlyFavourites && <ProjectPreviewItem newProject />,
+      !onlyFavourites && !horizontalScroll && <ProjectPreviewItem newProject />,
     ];
   };
 

@@ -45,7 +45,7 @@ const ProjectNew = () => {
           <input type="submit" value="Create Project" />
         </Form>
       </div>
-      <div className={styles.ProjectNew_Right}>Right</div>
+      <div className={styles.ProjectNew_Right}></div>
     </section>
   );
 };

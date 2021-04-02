@@ -1,14 +1,16 @@
 .ProjectNew {
-  padding: 50px;
   display: flex;
   min-height: 100vh;
   max-height: 100vh;
 }
 
 .ProjectNew_Left {
-  flex: 1;
+  padding: 50px;
+  flex: 0 0 50%;
 }
 
 .ProjectNew_Right {
-  flex: 1;
+  flex: 0 0 50%;
+  background: url("../../assets/ProjectNewIcon.svg") center center no-repeat;
+  background-size: cover;
 }
