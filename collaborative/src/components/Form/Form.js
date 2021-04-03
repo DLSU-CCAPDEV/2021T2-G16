@@ -8,9 +8,9 @@ import styles from "./Form.module.css";
 
 /**
  * TODO Refactor component and its corresponding affected components
- * make sure that the data collected is given to the component using it
- * via customised hook. Also, the new Form's component would onyl be
- * aesthetics!
+ * make sure that the data collected is given to the component
+ * via customised hooks. Aside from that, the new Form's component woul
+ * only be affecting the aesthetics!
  */
 const Form = ({
   errorText,

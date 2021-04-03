@@ -58,21 +58,23 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
         path={`/userprofile=${user.uniqueID}`}
         key={`userprofile-${user.uniqueID}`}
         render={(props) => {
-          <div className={styles.WorkSpace} style={{ height: "100vh" }}>
-            {isSideBarOpen ? (
-              <SideBar handleOnClick={handleOnClickToggleSideBar} />
-            ) : null}
-            <div className={styles.WorkSpace_Content}>
-              <WorkspaceNavigationBar
-                handleOnClickToggleSideBar={handleOnClickToggleSideBar}
-                isSideBarOpen={isSideBarOpen}
-                headerName={"User Profile"}
-              />
-              <div className={styles.Content_Main}>
-                <UserProfilePage props={props} userAccount={user} />
+          return (
+            <div className={styles.WorkSpace} style={{ height: "100vh" }}>
+              {isSideBarOpen ? (
+                <SideBar handleOnClick={handleOnClickToggleSideBar} />
+              ) : null}
+              <div className={styles.WorkSpace_Content}>
+                <WorkspaceNavigationBar
+                  handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+                  isSideBarOpen={isSideBarOpen}
+                  headerName={"User Profile"}
+                />
+                <div className={styles.Content_Main}>
+                  <UserProfilePage props={props} userAccount={user} />
+                </div>
               </div>
             </div>
-          </div>;
+          );
         }}
       />
     ));
@@ -84,23 +86,25 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
         exact
         path={`/projects/project=${formalizeProjectName(project.projectName)}`}
         key={`project-${formalizeProjectName(project.projectName)}`}
-        render={(props) => (
-          <div className={styles.WorkSpace} style={{ height: "100vh" }}>
-            {isSideBarOpen ? (
-              <SideBar handleOnClick={handleOnClickToggleSideBar} />
-            ) : null}
-            <div className={styles.WorkSpace_Content}>
-              <WorkspaceNavigationBar
-                handleOnClickToggleSideBar={handleOnClickToggleSideBar}
-                isSideBarOpen={isSideBarOpen}
-                headerName={`Project: ${project.projectName}`}
-              />
-              <div className={styles.Content_Main}>
-                <ProjectPage props={props} project={project} />
+        render={(props) => {
+          return (
+            <div className={styles.WorkSpace} style={{ height: "100vh" }}>
+              {isSideBarOpen ? (
+                <SideBar handleOnClick={handleOnClickToggleSideBar} />
+              ) : null}
+              <div className={styles.WorkSpace_Content}>
+                <WorkspaceNavigationBar
+                  handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+                  isSideBarOpen={isSideBarOpen}
+                  headerName={`Project: ${project.projectName}`}
+                />
+                <div className={styles.Content_Main}>
+                  <ProjectPage props={props} project={project} />
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          );
+        }}
       />
     ));
   };
