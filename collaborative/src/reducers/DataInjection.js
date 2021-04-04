@@ -3,7 +3,7 @@ export const userDatabaseInject = [
     uniqueID: "1",
     firstName: "Test User",
     lastName: "Industries",
-    email: "a",
+    email: "a@gmail.com",
     password: "a",
   },
   {

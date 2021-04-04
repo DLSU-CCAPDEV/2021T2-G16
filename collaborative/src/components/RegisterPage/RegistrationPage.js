@@ -54,7 +54,7 @@ const RegistrationPage = ({ currentUser }) => {
               />
             </div>
             <input
-              type="text"
+              type="email"
               name="name-input"
               id="emailInput"
               placeholder="Your Email"
