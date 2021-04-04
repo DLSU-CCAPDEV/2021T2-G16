@@ -1,0 +1,17 @@
+    email: "a",
+    password: "a",
+	
+    email: "Alyssa21@gmail.com",
+    password: "WhitePeopleHappy",
+
+    email: "JMLeniel@dlsu.dasma.com.ph",
+    password: "Jokrill",
+
+    email: "Malakai@yahoo.com",
+    password: "boyoingOW",
+
+    email: "OPFracture@yahoo.com",
+    password: "SolarMower",
+
+    email: "Qazujm@daporta.com.eu",
+    password: "KP0c@vGu7ysp4EgoFHOUdqv*Tb#m2^K8NW^T!cc8KO!XSOn&K#yUz25DJmYzFTGCq9lrTjy#",
