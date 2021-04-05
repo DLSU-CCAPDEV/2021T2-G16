@@ -1,9 +1,12 @@
 .WorkSpace {
   display: flex;
   flex: 0 0 100%;
+  max-width: 100wh;
+  overflow: hidden;
 }
 
 .WorkSpace_Content {
+  overflow-x: auto;
   max-height: 100vh;
   display: flex;
   flex-direction: column;

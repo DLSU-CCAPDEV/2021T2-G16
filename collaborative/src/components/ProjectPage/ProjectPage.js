@@ -85,7 +85,11 @@ const ProjectPage = ({ projectItems }) => {
           overflow: "auto",
           overflowY: "hidden",
         }}
-        cardStyle={{ backgroundColor: "white", borderRadius: "5px" }}
+        cardStyle={{
+          backgroundColor: "white",
+          borderRadius: "5px",
+          maxWidth: "100wh",
+        }}
         laneStyle={{}}
         components={
           {
