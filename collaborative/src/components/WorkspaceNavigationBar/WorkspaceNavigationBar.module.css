@@ -1,13 +1,20 @@
 .WorkspaceNavigationBar {
-  padding: 15px 30px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
   z-index: 100;
   box-shadow: 1px 0 5px 2px rgba(209, 209, 209, 0.575);
 }
 
-.WorkspaceNavigationBar h1 {
+.Main {
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.Main__isProject {
+  border-bottom: 1px solid gainsboro;
+}
+
+.Main h1 {
   font-size: 20px;
   font-weight: 600;
 }
@@ -42,4 +49,26 @@
   position: absolute;
   top: 70px;
   right: 30px;
+}
+
+.ProjectBar {
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+}
+
+.ProjectBar_Members {
+  display: flex;
+  gap: 5px;
+}
+
+.ProjectBar_Members span {
+  align-self: center;
+  margin-right: 10px;
+}
+
+.ProjectBar_Members img {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
 }

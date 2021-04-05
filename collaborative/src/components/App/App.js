@@ -96,6 +96,7 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
                 <WorkspaceNavigationBar
                   handleOnClickToggleSideBar={handleOnClickToggleSideBar}
                   isSideBarOpen={isSideBarOpen}
+                  isProject
                   headerName={`Project: ${project.projectName}`}
                 />
                 <div className={styles.Content_Main}>
