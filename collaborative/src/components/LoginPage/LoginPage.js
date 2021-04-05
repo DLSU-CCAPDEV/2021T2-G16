@@ -37,7 +37,7 @@ const LoginPage = ({ currentUser }) => {
           </div>
           <hr />
           <input
-            type="text"
+            type="email"
             name="name-input"
             id="emailInput"
             placeholder="Your Email"
