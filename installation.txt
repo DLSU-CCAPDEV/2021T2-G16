@@ -1,0 +1,3 @@
+cd collaborative
+npm i 
+npm start
