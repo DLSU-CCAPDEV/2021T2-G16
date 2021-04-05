@@ -88,7 +88,7 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
         key={`project-${formalizeProjectName(project.projectName)}`}
         render={(props) => {
           return (
-            <div className={styles.WorkSpace} style={{ height: "100vh" }}>
+            <div className={styles.WorkSpace}>
               {isSideBarOpen ? (
                 <SideBar handleOnClick={handleOnClickToggleSideBar} />
               ) : null}

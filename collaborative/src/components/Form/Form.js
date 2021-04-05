@@ -195,7 +195,7 @@ const Form = ({
 
   return (
     <form
-      className={`${styles.Form} ${!noPadding && styles.Form__Padding}`}
+      className={`${styles.Form} ${noPadding && styles.Form__noPadding}`}
       id="form"
       style={{ width }}
       action="#"

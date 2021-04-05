@@ -1,3 +1,7 @@
+.ProjectPage {
+}
+
 .TrelloBackground {
   background-color: white;
+  overflow: auto;
 }

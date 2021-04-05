@@ -71,7 +71,7 @@ const data = {
 // TODO check if it is possible to attach a CSS sheet to an inline-style
 const ProjectPage = ({ projectItems }) => {
   return (
-    <section>
+    <section className={styles.ProjectPage}>
       <TrelloBoard
         data={data}
         draggable
@@ -80,7 +80,11 @@ const ProjectPage = ({ projectItems }) => {
         editable
         canAddLanes
         editLaneTitle
-        style={{ backgroundColor: "#F6F8F9" }}
+        style={{
+          backgroundColor: "#F6F8F9",
+          overflow: "auto",
+          overflowY: "hidden",
+        }}
         cardStyle={{ backgroundColor: "white", borderRadius: "5px" }}
         laneStyle={{}}
         components={

@@ -5,10 +5,11 @@
   width: 100%;
   border-radius: 5px;
   gap: 20px;
+  padding: 20px;
 }
 
-.Form__padding {
-  padding: 20px;
+.Form__noPadding {
+  padding: 0;
 }
 
 .Column {
