@@ -22,6 +22,7 @@ const Form = ({
   userDatabase,
   handleOnSubmitCustomized,
   linkTo,
+  noPadding,
 }) => {
   const [formData, updateFormData] = useState({});
   const [hasError, updateError] = useState(false);
@@ -194,7 +195,7 @@ const Form = ({
 
   return (
     <form
-      className={styles.Form}
+      className={`${styles.Form} ${!noPadding && styles.Form__Padding}`}
       id="form"
       style={{ width }}
       action="#"

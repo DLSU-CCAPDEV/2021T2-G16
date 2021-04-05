@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import AddMember_Icon from "../../assets/AddMember_Icon.svg";
+import Form from "../Form/Form";
 import Hamburger from "../../assets/Hamburger.svg";
 import OverHeadMessage from "../OverHeadMessage/OverHeadMessage";
+import Search from "../../assets/Search.svg";
 import UserPortrait from "../../assets/UserPortrait.svg";
 import { userLogout } from "../../actions";
 import styles from "./WorkspaceNavigationBar.module.css";
@@ -78,6 +80,17 @@ const WorkspaceNavigationBar = ({
               alt="Add A New Member"
               title="Add a New Member"
             />
+          </div>
+          <div className={styles.ProjectBar_SearchBar}>
+            <Form noPadding>
+              <input
+                type="text"
+                name="term-search"
+                id="termSearch"
+                placeholder="Search"
+                required
+              />
+            </Form>
           </div>
         </div>
       )}

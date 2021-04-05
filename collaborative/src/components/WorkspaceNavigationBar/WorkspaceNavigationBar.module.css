@@ -72,3 +72,7 @@
   width: 40px;
   cursor: pointer;
 }
+
+.ProjectBar_SearchBar {
+  margin-left: auto;
+}
