@@ -1,0 +1,68 @@
+.FormDesign {
+}
+
+.FormDesign h1 {
+  color: #333941;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.FormDesign p {
+  font-size: 16px;
+  font-weight: lighter;
+  text-align: justify;
+}
+
+.FormDesign a {
+  text-decoration: none;
+  color: #3d7eeb;
+}
+
+.FormDesign__Primary * {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.FormDesign__Primary {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.FormDesign__Primary input {
+  font-size: 16px;
+}
+
+.FormDesign__Primary input:not(input[type="submit"]) {
+  padding: 10px 12px;
+  background-color: #e2e4e6;
+  border: none;
+}
+
+.FormDesign__Primary input[type="submit"] {
+  padding: 10px 40px;
+  transition: background 0.2s;
+  background-color: #35c53f;
+  color: white;
+  display: flex;
+  align-items: center;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.FormDesign__Primary input[type="submit"]:hover {
+  background-color: #31b83a;
+}
+
+.RowDivision {
+  display: flex;
+  flex-direction: row;
+}
+
+.Division {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
