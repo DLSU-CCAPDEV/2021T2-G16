@@ -1,12 +1,24 @@
 import React, { useCallback } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 import { Formik, Form, Field } from "formik";
+import { Link, useHistory } from "react-router-dom";
+import * as Yup from "yup";
 import styles from "./RegistrationPage.module.css";
 
 import CloseButton from "../../assets/CloseButton.svg";
 import Logo from "../Logo/Logo";
-import { connect } from "react-redux";
 import { FormDesign, RowDivision, Division } from "../FormDesign/FormDesign";
+
+const registrationSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .required("First Name is required.")
+    .min(2, "Entry is too short - at least 2 characters."),
+  lastName: Yup.string()
+    .required("Last Name is required.")
+    .min(2, "Entry is too short - at least 2 characters."),
+  email: Yup.string().email("Invalid Email").required("Email is required."),
+  password: Yup.string().required("Password is required."),
+});
 
 const RegistrationPage = ({ currentUser }) => {
   const history = useHistory();
@@ -29,9 +41,10 @@ const RegistrationPage = ({ currentUser }) => {
               email: "",
               password: "",
             }}
-            onSubmit={async (values) => {
-              await new Promise((resolve) => setTimeout(resolve, 500));
-              alert(JSON.stringify(values, null, 2));
+            validationSchema={registrationSchema}
+            onSubmit={(formData) => {
+              const data = JSON.stringify(formData, null, 2);
+              alert(data);
             }}
           >
             <Form>
@@ -52,26 +65,14 @@ const RegistrationPage = ({ currentUser }) => {
                     name="firstName"
                     type="text"
                     placeholder="First Name"
-                    required
                   />
-                  <Field
-                    name="lastName"
-                    type="text"
-                    placeholder="Last Name"
-                    required
-                  />
+                  <Field name="lastName" type="text" placeholder="Last Name" />
                 </RowDivision>
-                <Field
-                  name="email"
-                  type="email"
-                  placeholder="Your Email"
-                  required
-                />
+                <Field name="email" type="email" placeholder="Your Email" />
                 <Field
                   name="password"
                   type="password"
                   placeholder="Your Super Secure Password"
-                  required
                 />
               </Division>
               <p>
