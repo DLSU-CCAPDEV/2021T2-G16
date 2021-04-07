@@ -12,11 +12,12 @@ import {
 } from "../FormDesign/FormDesign";
 import GoBack from "../../assets/GoBack.svg";
 
-const projectScheme = Yup.object().shape({
+const projectSchema = Yup.object().shape({
   projectName: Yup.string()
     .required("Project must have a name")
     .min(5, "Project name is too short - at least 5 characters.")
     .max(40, "Project name is too long - at most 40 characters."),
+  projectDescription: Yup.string(),
   projectPriority: Yup.number(),
 });
 
@@ -39,19 +40,18 @@ const ProjectNew = () => {
           <Formik
             initialValues={{
               projectName: "",
+              projectDescription: "",
+              projectBackgroundImage: 1,
             }}
-            validationSchema={projectScheme}
+            validationSchema={projectSchema}
             onSubmit={(formData) => {
               const data = JSON.stringify(formData, null, 2);
-              alert(data);
               handleOnClick();
             }}
           >
             <Form>
               <Division gap="20px">
-                <h1 style={{ textTransform: "capitalize" }}>
-                  Create a New Project
-                </h1>
+                <h1>Create a New Project</h1>
                 <FieldWithError
                   name="projectName"
                   type="text"
@@ -66,7 +66,7 @@ const ProjectNew = () => {
                   />
                 </Division>
                 <RowDivision>
-                  <label for="priorities">Background Image</label>
+                  <label>Background Image</label>
                   <Field name="projectBackgroundImage" as="select">
                     <option value="1">1</option>
                     <option value="2">2</option>
