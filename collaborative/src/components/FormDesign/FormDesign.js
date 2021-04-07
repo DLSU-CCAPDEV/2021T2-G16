@@ -54,13 +54,20 @@ export const Division = ({ gap = "15px", children }) => {
   );
 };
 
-export const FormDesign = ({ width, primary, children }) => {
+export const FormDesign = ({
+  width,
+  primary,
+  className,
+  children,
+  ...props
+}) => {
   return (
     <div
       className={`${styles.FormDesign} ${
         primary ? styles.FormDesign__Primary : styles.FormDesign__Secondary
-      }`}
+      } ${className}`}
       style={{ width: width ? `${width.replace(/[^\d.-]/g, "")}px` : "100%" }}
+      props={props}
     >
       {children}
     </div>

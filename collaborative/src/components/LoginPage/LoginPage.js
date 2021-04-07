@@ -20,7 +20,7 @@ const LoginPage = () => {
   return (
     <section className={styles.LoginPage}>
       <Logo />
-      <FormDesign primary width="400px">
+      <FormDesign primary width="400px" className={styles.LoginPage_Form}>
         <Formik
           initialValues={{
             email: "",

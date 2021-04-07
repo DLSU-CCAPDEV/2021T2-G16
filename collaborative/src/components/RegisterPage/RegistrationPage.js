@@ -30,7 +30,11 @@ const RegistrationPage = () => {
   return (
     <section className={styles.RegistrationPage}>
       <Logo />
-      <FormDesign primary width="450px">
+      <FormDesign
+        primary
+        width="450px"
+        className={styles.RegistrationPage_Form}
+      >
         <Formik
           initialValues={{
             username: "",

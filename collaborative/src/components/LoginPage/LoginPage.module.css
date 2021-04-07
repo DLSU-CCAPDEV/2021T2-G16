@@ -13,3 +13,9 @@
   flex-direction: column;
   padding: 40px 0 100px 0;
 }
+
+.LoginPage_Form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}

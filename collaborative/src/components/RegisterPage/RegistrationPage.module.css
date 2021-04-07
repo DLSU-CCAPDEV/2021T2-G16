@@ -11,3 +11,9 @@
   flex-direction: column;
   gap: 30px;
 }
+
+.RegistrationPage_Form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
