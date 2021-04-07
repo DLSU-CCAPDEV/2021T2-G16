@@ -18,6 +18,18 @@
   color: #3d7eeb;
 }
 
+.FormDesign label {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #8c8c8c;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.FormDesign select {
+  padding: 2px 15px;
+}
+
 .FormDesign__Primary * {
   display: flex;
   flex-direction: column;
@@ -40,20 +52,43 @@
   border: none;
 }
 
-.FormDesign__Primary input[type="submit"] {
+.FormDesign__Secondary input:not([type="submit"]) {
+  border: none;
+  border-bottom: 1px solid gainsboro;
+  padding: 8px;
+  font-size: 20px;
+}
+
+.FormDesign__Primary input[type="submit"],
+.FormDesign__Secondary input[type="submit"] {
   padding: 10px 40px;
   transition: background 0.2s;
   background-color: #35c53f;
   color: white;
+  font-size: 16px;
   display: flex;
   align-items: center;
+  justify-content: center;
   border: none;
   font-weight: bold;
   cursor: pointer;
 }
 
-.FormDesign__Primary input[type="submit"]:hover {
+.FormDesign__Primary input[type="submit"]:hover,
+.FormDesign__Secondary input[type="submit"]:hover {
   background-color: #31b83a;
+}
+
+.FormDesign__Secondary textarea {
+  line-height: 150%;
+  padding: 5px 10px;
+  font-size: 16px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 175px;
+  max-height: 175px;
+  border-color: gainsboro;
+  resize: none;
 }
 
 .WarningMessage {
@@ -64,11 +99,21 @@
 }
 
 .FieldWithError {
+  min-height: 60px;
+}
+
+.FieldWithError__TopDown {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  min-height: 60px;
   justify-content: flex-end;
+  gap: 2px;
+}
+
+.FieldWithError__BottomUp {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 2px;
 }
 
 .WarningMessage img {

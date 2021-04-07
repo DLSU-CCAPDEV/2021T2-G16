@@ -4,9 +4,21 @@ import styles from "./FormDesign.module.css";
 
 import Warning_Logo from "../../assets/Warning_Logo.svg";
 
-export const FieldWithError = ({ name, type, placeHolder, ...props }) => {
+export const FieldWithError = ({
+  name,
+  type,
+  placeHolder,
+  reverse,
+  ...props
+}) => {
   return (
-    <div className={styles.FieldWithError}>
+    <div
+      className={`${styles.FieldWithError} ${
+        reverse
+          ? styles.FieldWithError__BottomUp
+          : styles.FieldWithError__TopDown
+      }`}
+    >
       <ErrorMessage name={name}>
         {(message) => (
           <div className={styles.WarningMessage}>
@@ -20,8 +32,15 @@ export const FieldWithError = ({ name, type, placeHolder, ...props }) => {
   );
 };
 
-export const RowDivision = ({ children }) => {
-  return <div className={styles.RowDivision}>{children}</div>;
+export const RowDivision = ({ gap = "15px", children }) => {
+  return (
+    <div
+      className={styles.RowDivision}
+      style={{ gap: `${gap.replace(/[^\d.-]/g, "")}px` }}
+    >
+      {children}
+    </div>
+  );
 };
 
 export const Division = ({ gap = "15px", children }) => {
@@ -35,13 +54,13 @@ export const Division = ({ gap = "15px", children }) => {
   );
 };
 
-export const FormDesign = ({ width = "500px", primary, children }) => {
+export const FormDesign = ({ width, primary, children }) => {
   return (
     <div
       className={`${styles.FormDesign} ${
-        primary ? styles.FormDesign__Primary : null
+        primary ? styles.FormDesign__Primary : styles.FormDesign__Secondary
       }`}
-      style={{ width: `${width.replace(/[^\d.-]/g, "")}px` }}
+      style={{ width: width ? `${width.replace(/[^\d.-]/g, "")}px` : "100%" }}
     >
       {children}
     </div>

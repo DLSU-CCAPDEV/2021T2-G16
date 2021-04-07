@@ -40,7 +40,7 @@ const RegistrationPage = () => {
           validationSchema={registrationSchema}
           onSubmit={(formData) => {
             const data = JSON.stringify(formData, null, 2);
-            //  TODO replace with server-side redirection
+            //  TODO Refactor all client-side redirection to server-side
             redirectUser();
           }}
         >

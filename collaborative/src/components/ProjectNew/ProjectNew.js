@@ -1,8 +1,24 @@
 import React, { useCallback } from "react";
-import Form from "../Form/Form";
-import { useHistory } from "react-router";
-import GoBack from "../../assets/GoBack.svg";
+import { Link, useHistory } from "react-router-dom";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 import styles from "./ProjectNew.module.css";
+
+import {
+  Division,
+  FormDesign,
+  FieldWithError,
+  RowDivision,
+} from "../FormDesign/FormDesign";
+import GoBack from "../../assets/GoBack.svg";
+
+const projectScheme = Yup.object().shape({
+  projectName: Yup.string()
+    .required("Project must have a name")
+    .min(5, "Project name is too short - at least 5 characters.")
+    .max(40, "Project name is too long - at most 40 characters."),
+  projectPriority: Yup.number(),
+});
 
 const ProjectNew = () => {
   const history = useHistory();
@@ -11,47 +27,57 @@ const ProjectNew = () => {
   return (
     <section className={styles.ProjectNew}>
       <div className={styles.ProjectNew_Left}>
-        <Form formPurpose="addProject" linkTo="/projects">
-          <div handleOnClick={() => handleOnClick()} clickable>
-            <img
-              src={GoBack}
-              alt="Go Back"
-              style={{ width: "25px", height: "25px" }}
-            />
-            <h1 style={{ fontSize: "20px" }}>Go Back</h1>
-          </div>
-          <label for="taskNameInput">
-            <h1 style={{ textTransform: "capitalize" }}>
-              Create a New Project
-            </h1>
-          </label>
-          <div Column>
-            <input
-              type="text"
-              name="task-name-input"
-              id="taskNameInput"
-              placeholder="Project Name"
-              required
-              editableText
-            />
-            <div Column>
-              <label for="descriptionInput">Project Description</label>
-              <textarea
-                id="descriptionInput"
-                placeholder="Project description."
-              />
-            </div>
-          </div>
-          <div>
-            <label for="priorities">Background Image</label>
-            <select id="priorities" name="priorityInput" required>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </div>
-          <input type="submit" value="Create Project" />
-        </Form>
+        <Link to="/projects" className={styles.Left_GoBack}>
+          <img
+            src={GoBack}
+            alt="Go Back"
+            style={{ width: "25px", height: "25px" }}
+          />
+          <span>Go Back</span>
+        </Link>
+        <FormDesign>
+          <Formik
+            initialValues={{
+              projectName: "",
+            }}
+            validationSchema={projectScheme}
+            onSubmit={(formData) => {
+              const data = JSON.stringify(formData, null, 2);
+              alert(data);
+              handleOnClick();
+            }}
+          >
+            <Form>
+              <Division gap="20px">
+                <h1 style={{ textTransform: "capitalize" }}>
+                  Create a New Project
+                </h1>
+                <FieldWithError
+                  name="projectName"
+                  type="text"
+                  placeHolder="Project Name"
+                />
+                <Division gap="10px">
+                  <label>Project Description</label>
+                  <Field
+                    name="projectDescription"
+                    as="textarea"
+                    placeHolder="Your Project Description"
+                  />
+                </Division>
+                <RowDivision>
+                  <label for="priorities">Background Image</label>
+                  <Field name="projectBackgroundImage" as="select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </Field>
+                </RowDivision>
+                <Field type="submit" value="Create Project" />
+              </Division>
+            </Form>
+          </Formik>
+        </FormDesign>
       </div>
       <div className={styles.ProjectNew_Right}></div>
     </section>

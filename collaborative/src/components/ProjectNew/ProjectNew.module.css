@@ -7,6 +7,23 @@
 .ProjectNew_Left {
   padding: 50px;
   flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.Left_GoBack {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  width: 150px;
+}
+
+.Left_GoBack span {
+  color: #333941;
+  font-weight: bold;
+  font-size: 25px;
 }
 
 .ProjectNew_Right {
