@@ -9,6 +9,7 @@ export const FieldWithError = ({
   type,
   placeHolder,
   reverse,
+  className,
   ...props
 }) => {
   return (
@@ -17,7 +18,7 @@ export const FieldWithError = ({
         reverse
           ? styles.FieldWithError__BottomUp
           : styles.FieldWithError__TopDown
-      }`}
+      } ${className}`}
     >
       <ErrorMessage name={name}>
         {(message) => (
@@ -32,10 +33,10 @@ export const FieldWithError = ({
   );
 };
 
-export const RowDivision = ({ gap = "15px", children }) => {
+export const RowDivision = ({ gap = "15px", className, children }) => {
   return (
     <div
-      className={styles.RowDivision}
+      className={`${styles.RowDivision} ${className}`}
       style={{ gap: `${gap.replace(/[^\d.-]/g, "")}px` }}
     >
       {children}
@@ -43,10 +44,10 @@ export const RowDivision = ({ gap = "15px", children }) => {
   );
 };
 
-export const Division = ({ gap = "15px", children }) => {
+export const Division = ({ gap = "15px", className, children }) => {
   return (
     <div
-      className={styles.Division}
+      className={`${styles.Division} ${className}}`}
       style={{ gap: `${gap.replace(/[^\d.-]/g, "")}px` }}
     >
       {children}

@@ -1,0 +1,23 @@
+.SearchBar_Submit {
+  width: 300px;
+}
+
+.SearchBar_Submit input:not(input[type="submit"]) {
+  border: 1px solid gainsboro;
+  font-size: 16px;
+  flex: 1;
+}
+
+.SearchBar_Submit input[type="submit"] {
+  background: url("../../assets/Search.svg") center center no-repeat;
+  background-color: white;
+  border-radius: 5px;
+  transition: all 0.2s;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.SearchBar_Submit input[type="submit"]:hover {
+  background-color: gainsboro;
+}

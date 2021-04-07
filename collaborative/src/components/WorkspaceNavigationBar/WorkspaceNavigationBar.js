@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import styles from "./WorkspaceNavigationBar.module.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { userLogout } from "../../actions";
 import AddMember_Icon from "../../assets/AddMember_Icon.svg";
-import Form from "../Form/Form";
 import Hamburger from "../../assets/Hamburger.svg";
 import OverHeadMessage from "../OverHeadMessage/OverHeadMessage";
-import Search from "../../assets/Search.svg";
 import UserPortrait from "../../assets/UserPortrait.svg";
-import { userLogout } from "../../actions";
-import styles from "./WorkspaceNavigationBar.module.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 const WorkspaceNavigationBar = ({
   isSideBarOpen,
@@ -82,15 +82,7 @@ const WorkspaceNavigationBar = ({
             />
           </div>
           <div className={styles.ProjectBar_SearchBar}>
-            <Form noPadding>
-              <input
-                type="text"
-                name="term-search"
-                id="termSearch"
-                placeholder="Search"
-                required
-              />
-            </Form>
+            <SearchBar />
           </div>
         </div>
       )}
