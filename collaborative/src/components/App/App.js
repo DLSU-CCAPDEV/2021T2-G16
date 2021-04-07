@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
+import styles from "./App.module.css";
+
 import Error404NotFoundPage from "../Error404NotFoundPage/Error404NotFoundPage";
 import HomePage from "../HomePage/HomePage";
 import LandingPage from "../LandingPage/LandingPage";
@@ -15,7 +17,6 @@ import TaskPage from "../TaskPage/TaskPage";
 import UserProfilePage from "../UserProfilePage/UserProfilePage";
 import WorkspaceNavigationBar from "../WorkspaceNavigationBar/WorkspaceNavigationBar";
 import { formalizeProjectName } from "../../logic";
-import styles from "./App.module.css";
 import "./App.css";
 
 const App = ({ userDatabase, projectDatabase, currentUser }) => {
@@ -32,7 +33,7 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
         <div className={styles.WorkSpace} style={{ height: "100vh" }}>
           <CSSTransition
             in={isSideBarOpen}
-            classNames={"example"}
+            classNames={"sidebar-transition"}
             timeout={500}
             unmountOnExit
             onEnter={() => toggleSideBar(true)}

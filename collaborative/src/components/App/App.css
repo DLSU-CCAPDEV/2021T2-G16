@@ -42,22 +42,22 @@
   box-shadow: 0px 0px 3px #dfdfdf inset;
 }
 
-.example-enter {
+.sidebar-transition-enter {
   width: 0;
 }
 
-.example-enter-active {
+.sidebar-transition-enter-active {
   overflow: hidden;
   white-space: nowrap;
   width: 275px;
   transition: width 0.5s;
 }
 
-.example-exit {
+.sidebar-transition-exit {
   width: 275px;
 }
 
-.example-exit-active {
+.sidebar-transition-exit-active {
   overflow: hidden;
   white-space: nowrap;
   width: 0;
