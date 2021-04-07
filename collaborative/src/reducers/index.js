@@ -26,8 +26,7 @@ const userReducer = (userDatabase = userDatabaseInject, action) => {
   }
 };
 
-//  TODO Before production, remove test User
-const currentUserReducer = (currentUser = null, action) => {
+const currentUserReducer = (currentUser = userDatabaseInject[0], action) => {
   switch (action.type) {
     case "USER_LOGIN":
       return action.payload;

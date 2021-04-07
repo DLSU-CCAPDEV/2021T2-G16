@@ -6,12 +6,7 @@ import styles from "./RegistrationPage.module.css";
 
 import CloseButton from "../../assets/CloseButton.svg";
 import Logo from "../Logo/Logo";
-import {
-  Division,
-  FieldWithError,
-  FormDesign,
-  RowDivision,
-} from "../FormDesign/FormDesign";
+import { Division, FieldWithError, FormDesign } from "../FormDesign/FormDesign";
 
 const registrationSchema = Yup.object().shape({
   username: Yup.string()
@@ -34,8 +29,7 @@ const RegistrationPage = () => {
       <FormDesign primary width="450px">
         <Formik
           initialValues={{
-            firstName: "",
-            lastName: "",
+            username: "",
             email: "",
             password: "",
           }}
