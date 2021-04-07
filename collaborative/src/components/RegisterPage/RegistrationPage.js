@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { connect } from "react-redux";
-import { ErrorMessage, Formik, Form, Field } from "formik";
+import { Formik, Form, Field } from "formik";
 import { Link, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import styles from "./RegistrationPage.module.css";
@@ -12,7 +12,6 @@ import {
   FieldWithError,
   FormDesign,
   RowDivision,
-  WarningMessage,
 } from "../FormDesign/FormDesign";
 
 const registrationSchema = Yup.object().shape({
@@ -52,7 +51,6 @@ const RegistrationPage = ({ currentUser }) => {
             validationSchema={registrationSchema}
             onSubmit={(formData) => {
               const data = JSON.stringify(formData, null, 2);
-              alert(data);
             }}
           >
             <Form>
@@ -65,8 +63,8 @@ const RegistrationPage = ({ currentUser }) => {
                   Prepared to start an impact? Please fill-in this form to
                   create a Collaborative account.
                 </p>
+                <hr />
               </Division>
-              <hr />
               <Division gap="5px">
                 <RowDivision>
                   <FieldWithError
