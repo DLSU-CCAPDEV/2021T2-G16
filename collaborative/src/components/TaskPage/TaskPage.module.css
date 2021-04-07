@@ -6,8 +6,10 @@
   height: 100%;
 }
 
-.Priorities {
-  background-color: rebeccapurple;
+.TaskPage_Form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
 }
 
 .List {
