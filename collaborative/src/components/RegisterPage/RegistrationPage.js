@@ -1,13 +1,19 @@
 import React, { useCallback } from "react";
 import { connect } from "react-redux";
-import { Formik, Form, Field } from "formik";
+import { ErrorMessage, Formik, Form, Field } from "formik";
 import { Link, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import styles from "./RegistrationPage.module.css";
 
 import CloseButton from "../../assets/CloseButton.svg";
 import Logo from "../Logo/Logo";
-import { FormDesign, RowDivision, Division } from "../FormDesign/FormDesign";
+import {
+  Division,
+  FieldWithError,
+  FormDesign,
+  RowDivision,
+  WarningMessage,
+} from "../FormDesign/FormDesign";
 
 const registrationSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -17,7 +23,9 @@ const registrationSchema = Yup.object().shape({
     .required("Last Name is required.")
     .min(2, "Entry is too short - at least 2 characters."),
   email: Yup.string().email("Invalid Email").required("Email is required."),
-  password: Yup.string().required("Password is required."),
+  password: Yup.string()
+    .min(5, "Passwords must be at least be 5 characters")
+    .required("Password is required."),
 });
 
 const RegistrationPage = ({ currentUser }) => {
@@ -33,7 +41,7 @@ const RegistrationPage = ({ currentUser }) => {
     return (
       <section className={styles.RegistrationPage}>
         <Logo />
-        <FormDesign primary width="450px">
+        <FormDesign primary width="500px">
           <Formik
             initialValues={{
               firstName: "",
@@ -59,20 +67,28 @@ const RegistrationPage = ({ currentUser }) => {
                 </p>
               </Division>
               <hr />
-              <Division>
+              <Division gap="5px">
                 <RowDivision>
-                  <Field
+                  <FieldWithError
                     name="firstName"
                     type="text"
-                    placeholder="First Name"
+                    placeHolder="First Name"
                   />
-                  <Field name="lastName" type="text" placeholder="Last Name" />
+                  <FieldWithError
+                    name="lastName"
+                    type="text"
+                    placeHolder="Last Name"
+                  />
                 </RowDivision>
-                <Field name="email" type="email" placeholder="Your Email" />
-                <Field
+                <FieldWithError
+                  name="email"
+                  type="email"
+                  placeHolder="Email Address"
+                />
+                <FieldWithError
                   name="password"
                   type="password"
-                  placeholder="Your Super Secure Password"
+                  placeHolder="Your Super Secure Password"
                 />
               </Division>
               <p>

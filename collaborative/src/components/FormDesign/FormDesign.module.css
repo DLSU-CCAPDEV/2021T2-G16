@@ -56,13 +56,40 @@
   background-color: #31b83a;
 }
 
-.RowDivision {
+.WarningMessage {
   display: flex;
   flex-direction: row;
+  gap: 5px;
+  color: red;
+}
+
+.FieldWithError {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 60px;
+  justify-content: flex-end;
+}
+
+.WarningMessage img {
+  width: 15px;
+  height: 15px;
+}
+
+.WarningMessage span {
+  font-size: 14px;
 }
 
 .Division {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+}
+
+.RowDivision {
+  display: flex;
+  flex-direction: row;
+}
+
+.RowDivision div {
+  flex: 1;
 }
