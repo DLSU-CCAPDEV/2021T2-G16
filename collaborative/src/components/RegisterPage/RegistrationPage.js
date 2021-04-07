@@ -11,6 +11,10 @@ import { Division, FieldWithError, FormDesign } from "../FormDesign/FormDesign";
 const registrationSchema = Yup.object().shape({
   username: Yup.string()
     .required("Username is required.")
+    .matches(
+      /^[A-Za-z0-9 ]*$/,
+      "Usernames must only be Latin Characters and Digits."
+    )
     .min(5, "Username is too short - at least 5 characters."),
   email: Yup.string().email("Invalid Email").required("Email is required."),
   password: Yup.string()
@@ -36,6 +40,7 @@ const RegistrationPage = () => {
           validationSchema={registrationSchema}
           onSubmit={(formData) => {
             const data = JSON.stringify(formData, null, 2);
+            //  TODO replace with server-side redirection
             redirectUser();
           }}
         >
