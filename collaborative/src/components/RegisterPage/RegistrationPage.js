@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import { connect } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { Link, useHistory } from "react-router-dom";
 import * as Yup from "yup";
@@ -15,100 +14,80 @@ import {
 } from "../FormDesign/FormDesign";
 
 const registrationSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .required("First Name is required.")
-    .min(2, "Entry is too short - at least 2 characters."),
-  lastName: Yup.string()
-    .required("Last Name is required.")
-    .min(2, "Entry is too short - at least 2 characters."),
+  username: Yup.string()
+    .required("Username is required.")
+    .min(5, "Username is too short - at least 5 characters."),
   email: Yup.string().email("Invalid Email").required("Email is required."),
   password: Yup.string()
     .min(5, "Passwords must be at least be 5 characters")
     .required("Password is required."),
 });
 
-const RegistrationPage = ({ currentUser }) => {
+const RegistrationPage = () => {
+  //  TODO do authentication redirection
   const history = useHistory();
-  const handleNoCurrentUser = useCallback(() => history.push("/homepage"), [
-    history,
-  ]);
+  const redirectUser = useCallback(() => history.push("/homepage"), [history]);
 
-  if (currentUser) {
-    handleNoCurrentUser();
-    return null;
-  } else {
-    return (
-      <section className={styles.RegistrationPage}>
-        <Logo />
-        <FormDesign primary width="500px">
-          <Formik
-            initialValues={{
-              firstName: "",
-              lastName: "",
-              email: "",
-              password: "",
-            }}
-            validationSchema={registrationSchema}
-            onSubmit={(formData) => {
-              const data = JSON.stringify(formData, null, 2);
-            }}
-          >
-            <Form>
-              <Link to="/" style={{ alignSelf: "flex-end" }}>
-                <img src={CloseButton} alt="Close Button" />
-              </Link>
-              <Division>
-                <h1>Registration</h1>
-                <p>
-                  Prepared to start an impact? Please fill-in this form to
-                  create a Collaborative account.
-                </p>
-                <hr />
-              </Division>
-              <Division gap="5px">
-                <RowDivision>
-                  <FieldWithError
-                    name="firstName"
-                    type="text"
-                    placeHolder="First Name"
-                  />
-                  <FieldWithError
-                    name="lastName"
-                    type="text"
-                    placeHolder="Last Name"
-                  />
-                </RowDivision>
-                <FieldWithError
-                  name="email"
-                  type="email"
-                  placeHolder="Email Address"
-                />
-                <FieldWithError
-                  name="password"
-                  type="password"
-                  placeHolder="Your Super Secure Password"
-                />
-              </Division>
+  return (
+    <section className={styles.RegistrationPage}>
+      <Logo />
+      <FormDesign primary width="450px">
+        <Formik
+          initialValues={{
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+          }}
+          validationSchema={registrationSchema}
+          onSubmit={(formData) => {
+            const data = JSON.stringify(formData, null, 2);
+            redirectUser();
+          }}
+        >
+          <Form>
+            <Link to="/" style={{ alignSelf: "flex-end" }}>
+              <img src={CloseButton} alt="Close Button" />
+            </Link>
+            <Division>
+              <h1>Registration</h1>
               <p>
-                By registering a Collaborative account, you confirm that you
-                hereby read and agree to the Terms of Service and Privacy
-                Policy.
+                Prepared to start an impact? Please fill-in this form to create
+                a Collaborative account.
               </p>
-              <Field type="submit" value="Register Your Account" />
               <hr />
-              <Link to="/login" style={{ textAlign: "center" }}>
-                Already have an account? Log In
-              </Link>
-            </Form>
-          </Formik>
-        </FormDesign>
-      </section>
-    );
-  }
+            </Division>
+            <Division gap="5px">
+              <FieldWithError
+                name="username"
+                type="text"
+                placeHolder="Username"
+              />
+              <FieldWithError
+                name="email"
+                type="email"
+                placeHolder="Email Address"
+              />
+              <FieldWithError
+                name="password"
+                type="password"
+                placeHolder="Your Super Secure Password"
+              />
+            </Division>
+            <p>
+              By registering a Collaborative account, you confirm that you
+              hereby read and agree to the Terms of Service and Privacy Policy.
+            </p>
+            <Field type="submit" value="Register Your Account" />
+            <hr />
+            <Link to="/login" style={{ textAlign: "center" }}>
+              Already have an account? Log In
+            </Link>
+          </Form>
+        </Formik>
+      </FormDesign>
+    </section>
+  );
 };
 
-const mapStateToProps = (state) => {
-  return { currentUser: state.currentUserReducer };
-};
-
-export default connect(mapStateToProps)(RegistrationPage);
+export default RegistrationPage;

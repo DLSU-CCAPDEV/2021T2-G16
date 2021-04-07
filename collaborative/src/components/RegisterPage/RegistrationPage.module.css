@@ -2,12 +2,12 @@
   background: url("../../assets/RegistrationLoginBackground.svg") no-repeat
     center fixed;
   background-size: cover;
-  margin: 0;
-  min-height: 100vh;
   background-position-y: calc(70% - 5px);
+  min-height: 100vh;
+  padding: 0 0 100px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
   flex-direction: column;
+  gap: 30px;
 }
