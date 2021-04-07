@@ -1,68 +1,71 @@
 import React, { useCallback } from "react";
+import { Formik, Form, Field } from "formik";
 import { Link, useHistory } from "react-router-dom";
+import * as Yup from "yup";
 import styles from "./LoginPage.module.css";
-import Form from "../Form/Form";
+
+import { Division, FormDesign, FieldWithError } from "../FormDesign/FormDesign";
 import Logo from "../Logo/Logo";
 import CloseButton from "../../assets/CloseButton.svg";
-import { connect } from "react-redux";
 
-const LoginPage = ({ currentUser }) => {
+const loginSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid Email").required("Email is required."),
+  password: Yup.string().required("Password is required."),
+});
+
+const LoginPage = () => {
   const history = useHistory();
-  const handleNoCurrentUser = useCallback(() => history.push("/homepage"), [
-    history,
-  ]);
+  const redirectUser = useCallback(() => history.push("/homepage"), [history]);
 
-  if (currentUser) {
-    handleNoCurrentUser();
-    return null;
-  } else {
-    return (
-      <section className={styles.LoginPage}>
-        <Logo />
-        <Form
-          width="400px"
-          formPurpose="login"
-          errorText="Sorry. The email and password provided is incorrect. Please try again."
-          linkTo="/homepage"
+  return (
+    <section className={styles.LoginPage}>
+      <Logo />
+      <FormDesign primary width="400px">
+        <Formik
+          initialValues={{
+            email: "",
+            password: "",
+          }}
+          validationSchema={loginSchema}
+          onSubmit={(formData) => {
+            const data = JSON.stringify(formData, null, 2);
+            redirectUser();
+          }}
         >
-          <div Column>
-            <Link to="/" flex__end>
+          <Form>
+            <Link to="/" style={{ alignSelf: "flex-end" }}>
               <img src={CloseButton} alt="Close Button" />
             </Link>
-            <h1>Log In</h1>
-            <p>
-              Welcome back! It is nice to see you again. Please fill-in the
-              credentials of your Collaborative account.
-            </p>
-          </div>
-          <hr />
-          <input
-            type="email"
-            name="name-input"
-            id="emailInput"
-            placeholder="Your Email"
-            required
-          />
-          <input
-            type="password"
-            name="name-input"
-            id="passwordInput"
-            placeholder="Your Password"
-            required
-          />
-          <input type="submit" value="Log In" />
-          <hr />
-          <Link to="/registration" flex__center>
-            Don’t have an account yet? Register here
-          </Link>
-        </Form>
-      </section>
-    );
-  }
+            <Division>
+              <h1>Log In</h1>
+              <p>
+                Welcome back! It is nice to see you again. Please fill-in the
+                credentials of your Collaborative account.
+              </p>
+              <hr />
+            </Division>
+            <Division gap="5px">
+              <FieldWithError
+                name="email"
+                type="email"
+                placeHolder="Email Address"
+              />
+              <FieldWithError
+                name="password"
+                type="password"
+                placeHolder="Password"
+              />
+            </Division>
+            <Field type="submit" value="Log In" />
+            <hr />
+            <Link to="/registration" style={{ alignSelf: "center" }}>
+              Don’t have an account yet? Register here
+            </Link>
+          </Form>
+        </Formik>
+      </FormDesign>
+    </section>
+  );
 };
 
-const mapStateToProps = (state) => {
-  return { currentUser: state.currentUserReducer };
-};
-
-export default connect(mapStateToProps)(LoginPage);
+export default LoginPage;

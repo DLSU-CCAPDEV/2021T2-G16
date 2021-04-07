@@ -4,9 +4,9 @@ import { Link, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import styles from "./RegistrationPage.module.css";
 
+import { Division, FieldWithError, FormDesign } from "../FormDesign/FormDesign";
 import CloseButton from "../../assets/CloseButton.svg";
 import Logo from "../Logo/Logo";
-import { Division, FieldWithError, FormDesign } from "../FormDesign/FormDesign";
 
 const registrationSchema = Yup.object().shape({
   username: Yup.string()
