@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./WorkspaceNavigationBar.module.css";
 import { connect } from "react-redux";
+import { CSSTransition } from "react-transition-group";
 import { Link } from "react-router-dom";
 
 import { userLogout } from "../../actions";
@@ -9,6 +10,7 @@ import Hamburger from "../../assets/Hamburger.svg";
 import OverHeadMessage from "../OverHeadMessage/OverHeadMessage";
 import UserPortrait from "../../assets/UserPortrait.svg";
 import SearchBar from "../SearchBar/SearchBar";
+import "./WorkspaceNavigationBar.css";
 
 const WorkspaceNavigationBar = ({
   isSideBarOpen,
@@ -28,15 +30,18 @@ const WorkspaceNavigationBar = ({
   return (
     <nav className={styles.WorkspaceNavigationBar}>
       <div className={`${styles.Main} ${isProject && styles.Main__isProject}`}>
-        {isSideBarOpen ? null : (
-          <img
-            src={Hamburger}
-            alt="Cheese Hamburger"
+        <CSSTransition
+          in={!isSideBarOpen}
+          classNames={"hamburger-transition"}
+          timeout={500}
+          unmountOnExit
+        >
+          <div
             className={styles.Hamburger}
             onClick={() => handleOnClickToggleSideBar()}
           />
-        )}
-        <h1>{headerName}</h1>
+        </CSSTransition>
+        <h1 className={styles.Header}>{headerName}</h1>
         <div className={styles.NavigationContent}>
           <img
             src={UserPortrait}
@@ -46,6 +51,7 @@ const WorkspaceNavigationBar = ({
               handleOnClickToggleMenu();
             }}
           />
+
           {isMenuOpen ? (
             <div className={styles.Menu}>
               <OverHeadMessage

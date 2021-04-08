@@ -1,0 +1,19 @@
+.hamburger-transition-enter {
+  width: 0px;
+}
+
+.hamburger-transition-enter-active {
+  overflow: hidden;
+  width: 50px;
+  transition: all 0.5s;
+}
+
+.hamburger-transition-exit {
+  width: 50px;
+}
+
+.hamburger-transition-exit-active {
+  overflow: hidden;
+  width: 0px;
+  transition: all 0.5s;
+}
