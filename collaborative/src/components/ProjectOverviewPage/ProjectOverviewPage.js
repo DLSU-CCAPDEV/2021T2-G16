@@ -12,11 +12,6 @@ const ProjectOverviewPage = ({ projectItems }) => {
         <div className={styles.ListHeader}>
           <div className={styles.ListHeader_Divider}>
             <div className={styles.ListHeader_Text}>
-              {/* <img
-                src={Project_Icon__Black}
-                alt="Project_Icon"
-                className={styles.ProjectIcon}
-              /> */}
               <span>Favourite Boards</span>
             </div>
             <hr />
@@ -28,11 +23,6 @@ const ProjectOverviewPage = ({ projectItems }) => {
         <div className={styles.ListHeader}>
           <div className={styles.ListHeader_Divider}>
             <div className={styles.ListHeader_Text}>
-              {/* <img
-                src={Project_Icon__Black}
-                alt="Project_Icon"
-                className={styles.ProjectIcon}
-              /> */}
               <span>All My Boards</span>
             </div>
             <hr />
