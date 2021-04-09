@@ -7,6 +7,8 @@ import SideBar from "../../SideBar/SideBar";
 import WorkspaceNavigationBar from "../../WorkspaceNavigationBar/WorkspaceNavigationBar";
 import "./WorkRoute.css";
 
+//  TODO Check if it is possible to detach Component from the layout
+//  TODO Check if this component can latch to its parent's hook  for 'isSideBarOpen' state
 const WorkRoute = ({
   path,
   exact,
@@ -35,9 +37,7 @@ const WorkRoute = ({
             headerName={headerName}
             isSideBarOpen={isSideBarOpen}
           />
-          <div className={styles.Content_Main}>
-            <Component />
-          </div>
+          <div className={styles.Content_Main}>{Component}</div>
         </div>
       </div>
     </Route>
