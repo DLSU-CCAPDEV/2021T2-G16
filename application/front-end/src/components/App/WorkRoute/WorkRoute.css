@@ -1,0 +1,21 @@
+.sidebar-transition-enter {
+  width: 0;
+}
+
+.sidebar-transition-enter-active {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 275px;
+  transition: width 0.5s;
+}
+
+.sidebar-transition-exit {
+  width: 275px;
+}
+
+.sidebar-transition-exit-active {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  transition: all 0.5s;
+}
