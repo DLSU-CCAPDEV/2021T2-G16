@@ -19,6 +19,7 @@ import "./App.css";
 
 const App = ({ userDatabase, projectDatabase, currentUser }) => {
   const [isSideBarOpen, toggleSideBar] = useState(false);
+  const [token, setToken] = useState();
 
   const handleOnClickToggleSideBar = () => {
     toggleSideBar(!isSideBarOpen);
