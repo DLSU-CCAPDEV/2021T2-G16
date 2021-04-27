@@ -14,6 +14,10 @@ app.post("/api/registerUser", (req, res) => {
   console.table(req.query);
 });
 
+app.post("/api/loginUser", (req, res) => {
+  console.table(req.query);
+});
+
 // Bounding Server (Essentially checking if the server is listening (working))
 app.listen(port, hostname, function () {
   console.log("Server Running at:");
