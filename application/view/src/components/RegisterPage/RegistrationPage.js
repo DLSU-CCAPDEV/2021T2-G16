@@ -1,3 +1,4 @@
+import Axios from "axios";
 import React, { useCallback } from "react";
 import { Formik, Form, Field } from "formik";
 import { Link, useHistory } from "react-router-dom";
@@ -44,7 +45,9 @@ const RegistrationPage = () => {
           validationSchema={registrationSchema}
           onSubmit={(formData) => {
             const data = JSON.stringify(formData, null, 2);
-            //  TODO Refactor all client-side redirection to server-side
+
+            Axios.post("/api/registerUser", data);
+
             redirectUser();
           }}
         >

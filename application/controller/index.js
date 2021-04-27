@@ -1,4 +1,4 @@
-const db = require("./models/db.js");
+const db = require("../model/db");
 const dotenv = require("dotenv");
 const express = require("express");
 const fs = require("fs");
@@ -7,7 +7,7 @@ const app = express(); // Initialize Express Server
 
 dotenv.config();
 
-port = process.env.PORT;
+port = process.env.PORT || 3000;
 hostname = process.env.HOSTNAME;
 
 app.post("/api/registerUser", (req, res) => {

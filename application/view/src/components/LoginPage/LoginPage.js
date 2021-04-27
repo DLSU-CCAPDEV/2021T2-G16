@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useCallback } from "react";
 import { Formik, Form, Field } from "formik";
 import { Link, useHistory } from "react-router-dom";
@@ -28,8 +29,7 @@ const LoginPage = () => {
           }}
           validationSchema={loginSchema}
           onSubmit={(formData) => {
-            const data = JSON.stringify(formData, null, 2);
-            redirectUser();
+            axios.post("/api/loginUser", data);
           }}
         >
           <Form>
