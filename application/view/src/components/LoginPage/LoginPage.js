@@ -32,6 +32,8 @@ const LoginPage = () => {
             const data = JSON.stringify(formData, null, 2);
 
             axios.post("/api/loginUser", data);
+
+            redirectUser();
           }}
         >
           <Form>

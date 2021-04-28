@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
@@ -52,6 +53,18 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
       />
     ));
   };
+
+  const getUserProfile = () => {
+    axios
+      .get("/api/getUser", {
+        params: {
+          uniqueID: 1,
+        },
+      })
+      .then((res) => console.log(res));
+  };
+
+  getUserProfile();
 
   return (
     <HashRouter>
