@@ -1,4 +1,5 @@
-import Axios from "axios";
+import axios from "axios";
+import qs from "qs";
 import React, { useCallback } from "react";
 import { Formik, Form, Field } from "formik";
 import { Link, useHistory } from "react-router-dom";
@@ -26,7 +27,7 @@ const registrationSchema = Yup.object().shape({
 const RegistrationPage = () => {
   //  TODO do authentication redirection
   const history = useHistory();
-  const redirectUser = useCallback(() => history.push("/homepage"), [history]);
+  const redirectUser = useCallback(() => history.push("/login"), [history]);
 
   return (
     <section className={styles.RegistrationPage}>
@@ -43,12 +44,20 @@ const RegistrationPage = () => {
             password: "",
           }}
           validationSchema={registrationSchema}
-          onSubmit={(formData) => {
-            const data = JSON.stringify(formData, null, 2);
-
-            Axios.post("/api/registerUser", data);
-
-            redirectUser();
+          onSubmit={async (formData) => {
+            //  TODO Hashing password & Convert to corresponding content-type | This is temporary solution
+            await axios
+              .post(
+                `/api/registerUser?email=${formData.email}&password=${formData.password}&username=${formData.username}`
+              )
+              .then((res) => {
+                switch (res.status) {
+                  case 200:
+                    redirectUser();
+                  default:
+                    console.log("Error");
+                }
+              });
           }}
         >
           <Form>

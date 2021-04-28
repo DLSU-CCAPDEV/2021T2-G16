@@ -1,9 +1,11 @@
-import db from "../model/db";
-import dotenv from "dotenv";
-import express from "express";
-import path from "path";
+const db = require("../model/db");
+const dotenv = require("dotenv");
+const express = require("express");
+const fs = require("fs");
+const path = require("path");
 
-const app = express();
+const app = express(); // Initialize Express Server
+
 dotenv.config();
 
 port = process.env.PORT || 3000;
@@ -13,64 +15,70 @@ hostname = process.env.HOSTNAME;
 const users = [
   {
     uniqueID: "1",
-    firstName: "Test User",
-    lastName: "Industries",
+    username: "Test User",
     email: "a@gmail.com",
     password: "a",
   },
   {
     uniqueID: "2",
-    firstName: "Alyssa Merkadio",
-    lastName: "De Laysia",
+    username: "Alyssa Merkadio",
     email: "Alyssa21@gmail.com",
     password: "WhitePeopleHappy",
   },
   {
     uniqueID: "3",
-    firstName: "Jenkins Marcolo",
-    lastName: "Lenielamo",
+    username: "Jenkins Marcolo",
     email: "JMLeniel@dlsu.dasma.com.ph",
     password: "Jokrill",
   },
   {
     uniqueID: "4",
-    firstName: "Malakai Merquin",
-    lastName: "Bobbyacu",
+    username: "Malakai Merquin",
     email: "Malakai@yahoo.com",
     password: "boyoingOW",
   },
   {
     uniqueID: "5",
-    firstName: "Pantene Denise",
-    lastName: "Danjikwa",
+    username: "Pantene Denise",
     email: "OPFracture@yahoo.com",
     password: "SolarMower",
   },
   {
     uniqueID: "6",
-    firstName: "Quene Victoria",
-    lastName: "Taenoda",
+    username: "Quene Victoria",
     email: "Qazujm@daporta.com.eu",
     password:
       "KP0c@vGu7ysp4EgoFHOUdqv*Tb#m2^K8NW^T!cc8KO!XSOn&K#yUz25DJmYzFTGCq9lrTjy#",
   },
 ];
 
-//  Get specific User
-//  TODO: Link to database
-app.get("/api/getUser", (req, res) => {
-  const user = users.find((user) => user.uniqueID == req.query.uniqueID);
-  res.send(user);
+app.get("/api/checkUsernameAvailability", (req, res) => {
+  const user = users.find((user) => user.username === req.query.username);
+
+  if (!user) {
+    res.status(401);
+  }
+
+  res.send("");
 });
 
 app.post("/api/registerUser", (req, res) => {
   users.push(req.query);
-  printUsers();
   res.send("Received");
 });
 
 app.post("/api/loginUser", (req, res) => {
-  const user = users.find((user) => user.uniqueID == req.query.uniqueID);
+  const user = users.find(
+    (user) =>
+      user.email.toLowerCase() === req.query.email.toLowerCase() &&
+      user.password === req.query.password
+  );
+
+  //  User does not exists
+  if (!user) {
+    res.status(401);
+  }
+
   res.send(user);
 });
 

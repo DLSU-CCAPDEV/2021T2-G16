@@ -62,8 +62,6 @@ const App = ({ userDatabase, projectDatabase }) => {
       .then((res) => console.log(res));
   };
 
-  getUserProfile();
-
   return (
     <HashRouter>
       <Switch>

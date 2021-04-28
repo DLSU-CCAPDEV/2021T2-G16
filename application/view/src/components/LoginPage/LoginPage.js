@@ -28,10 +28,25 @@ const LoginPage = () => {
             password: "",
           }}
           validationSchema={loginSchema}
-          onSubmit={(formData) => {
-            const data = JSON.stringify(formData, null, 2);
-
-            axios.post("/api/loginUser", data);
+          onSubmit={async (formData) => {
+            //  TODO Hashing password
+            //  TODO Convert to corresponding content-type | This is temporary solution
+            await axios
+              .post(
+                `/api/loginUser?email=${formData.email}&password=${formData.password}`
+              )
+              .then((res) => {
+                switch (res.status) {
+                  case 200:
+                    redirectUser();
+                    break;
+                  case 401:
+                    console.log("Credentials Mismatch. Please try again.");
+                    break;
+                  default:
+                    console.log("Error");
+                }
+              });
 
             redirectUser();
           }}
