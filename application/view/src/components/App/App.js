@@ -1,4 +1,3 @@
-import Axios from "axios";
 import React, { useState } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
