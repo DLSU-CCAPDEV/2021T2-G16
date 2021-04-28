@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, { useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import styles from "./App.module.css";
 
@@ -55,7 +55,7 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
   };
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/registration" exact component={RegisterPage} />
@@ -89,7 +89,7 @@ const App = ({ userDatabase, projectDatabase, currentUser }) => {
         {renderUserProfilePages()}
         <Route component={Error404NotFoundPage} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

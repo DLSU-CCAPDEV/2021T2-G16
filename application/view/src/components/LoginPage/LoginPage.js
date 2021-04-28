@@ -30,6 +30,7 @@ const LoginPage = () => {
           validationSchema={loginSchema}
           onSubmit={(formData) => {
             const data = JSON.stringify(formData, null, 2);
+
             axios.post("/api/loginUser", data);
           }}
         >
