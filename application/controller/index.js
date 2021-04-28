@@ -1,11 +1,9 @@
-const db = require("../model/db");
-const dotenv = require("dotenv");
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
+import db from "../model/db";
+import dotenv from "dotenv";
+import express from "express";
+import path from "path";
 
-const app = express(); // Initialize Express Server
-
+const app = express();
 dotenv.config();
 
 port = process.env.PORT || 3000;
@@ -62,7 +60,6 @@ const users = [
 //  TODO: Link to database
 app.get("/api/getUser", (req, res) => {
   const user = users.find((user) => user.uniqueID == req.query.uniqueID);
-  console.log(user);
   res.send(user);
 });
 
@@ -73,9 +70,8 @@ app.post("/api/registerUser", (req, res) => {
 });
 
 app.post("/api/loginUser", (req, res) => {
-  users.push(req.query);
-  printUsers();
-  res.send("Received");
+  const user = users.find((user) => user.uniqueID == req.query.uniqueID);
+  res.send(user);
 });
 
 app.use(

@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import styles from "./App.module.css";
 
 import Error404NotFoundPage from "../Error404NotFoundPage/Error404NotFoundPage";
 import HomePage from "../HomePage/HomePage";
@@ -18,9 +17,8 @@ import WorkRoute from "./WorkRoute/WorkRoute";
 import { formalizeProjectName } from "../../logic";
 import "./App.css";
 
-const App = ({ userDatabase, projectDatabase, currentUser }) => {
+const App = ({ userDatabase, projectDatabase }) => {
   const [isSideBarOpen, toggleSideBar] = useState(false);
-  const [token, setToken] = useState();
 
   const handleOnClickToggleSideBar = () => {
     toggleSideBar(!isSideBarOpen);
