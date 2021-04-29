@@ -19,6 +19,7 @@ import "./App.css";
 
 const App = ({ userDatabase, projectDatabase }) => {
   const [isSideBarOpen, toggleSideBar] = useState(false);
+  const [token, setToken] = useState();
 
   const handleOnClickToggleSideBar = () => {
     toggleSideBar(!isSideBarOpen);
@@ -67,7 +68,11 @@ const App = ({ userDatabase, projectDatabase }) => {
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/registration" exact component={RegisterPage} />
-        <Route path="/login" exact component={LoginPage} />
+        <Route
+          path="/login"
+          exact
+          render={(props) => <LoginPage {...props} handleLogIn={setToken} />}
+        />
         <Route path="/projects/project=new" exact component={ProjectNew} />
         <WorkRoute
           path="/homepage"
@@ -76,6 +81,7 @@ const App = ({ userDatabase, projectDatabase }) => {
           handleOnClickToggleSideBar={handleOnClickToggleSideBar}
           isSideBarOpen={isSideBarOpen}
           Component={<HomePage />}
+          isAuthenticated
         />
         <WorkRoute
           path="/projects"
@@ -84,6 +90,7 @@ const App = ({ userDatabase, projectDatabase }) => {
           handleOnClickToggleSideBar={handleOnClickToggleSideBar}
           isSideBarOpen={isSideBarOpen}
           Component={<ProjectOverviewPage />}
+          isAuthenticated
         />
         <WorkRoute
           path="/tasks"
@@ -92,6 +99,7 @@ const App = ({ userDatabase, projectDatabase }) => {
           handleOnClickToggleSideBar={handleOnClickToggleSideBar}
           isSideBarOpen={isSideBarOpen}
           Component={<TaskPage />}
+          isAuthenticated
         />
         {renderProjectPages()}
         {renderUserProfilePages()}

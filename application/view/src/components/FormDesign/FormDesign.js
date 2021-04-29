@@ -33,6 +33,15 @@ export const FieldWithError = ({
   );
 };
 
+export const WarningMessage = ({ message }) => {
+  return (
+    <span className={styles.WarningMessage}>
+      <img src={Warning_Logo} alt="Error" />
+      {message}
+    </span>
+  );
+};
+
 export const RowDivision = ({ gap = "15px", className, children }) => {
   return (
     <div

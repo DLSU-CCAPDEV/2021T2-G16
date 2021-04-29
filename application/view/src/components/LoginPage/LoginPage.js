@@ -1,11 +1,17 @@
 import axios from "axios";
-import React, { useCallback } from "react";
+import propTypes from "prop-types";
+import React, { useCallback, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { Link, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import styles from "./LoginPage.module.css";
 
-import { Division, FormDesign, FieldWithError } from "../FormDesign/FormDesign";
+import {
+  Division,
+  FormDesign,
+  FieldWithError,
+  WarningMessage,
+} from "../FormDesign/FormDesign";
 import Logo from "../Logo/Logo";
 import CloseButton from "../../assets/CloseButton.svg";
 
@@ -14,9 +20,10 @@ const loginSchema = Yup.object().shape({
   password: Yup.string().required("Password is required."),
 });
 
-const LoginPage = () => {
+const LoginPage = ({ handleLogIn }) => {
+  const [errorMessage, setErrorMessage] = useState(null);
   const history = useHistory();
-  const redirectUser = useCallback(() => history.push("/homepage"), [history]);
+  const redirectuser = useCallback(() => history.push("/homepage"));
 
   return (
     <section className={styles.LoginPage}>
@@ -36,19 +43,23 @@ const LoginPage = () => {
                 `/api/loginUser?email=${formData.email}&password=${formData.password}`
               )
               .then((res) => {
-                switch (res.status) {
-                  case 200:
-                    redirectUser();
-                    break;
+                handleLogIn(res.token);
+                redirectuser();
+              })
+              .catch((error) => {
+                switch (error.response.status) {
                   case 401:
-                    console.log("Credentials Mismatch. Please try again.");
+                    setErrorMessage(
+                      "Mismatching Credentials. Please try again."
+                    );
+                    break;
+                  case 500:
+                    setErrorMessage("Website's server is not running.");
                     break;
                   default:
-                    console.log("Error");
+                    setErrorMessage("Uncaught Error.");
                 }
               });
-
-            redirectUser();
           }}
         >
           <Form>
@@ -75,6 +86,9 @@ const LoginPage = () => {
                 placeHolder="Password"
               />
             </Division>
+            {errorMessage === null ? null : (
+              <WarningMessage message={errorMessage} />
+            )}
             <Field type="submit" value="Log In" />
             <hr />
             <Link to="/registration" style={{ alignSelf: "center" }}>
@@ -85,6 +99,10 @@ const LoginPage = () => {
       </FormDesign>
     </section>
   );
+};
+
+LoginPage.propTypes = {
+  handleLogIn: propTypes.func.isRequired,
 };
 
 export default LoginPage;

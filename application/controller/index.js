@@ -1,3 +1,4 @@
+const cors = require("cors");
 const db = require("../model/db");
 const dotenv = require("dotenv");
 const express = require("express");
@@ -74,13 +75,14 @@ app.post("/api/loginUser", (req, res) => {
       user.password === req.query.password
   );
 
-  //  User does not exists
   if (!user) {
-    res.status(401);
+    res.status(401).send("Mismatching Credentials");
+  } else {
+    res.send({ token: "test123" });
   }
-
-  res.send(user);
 });
+
+app.use(cors());
 
 app.use(
   "/static",

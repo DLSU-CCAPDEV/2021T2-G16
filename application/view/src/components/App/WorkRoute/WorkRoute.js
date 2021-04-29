@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { CSSTransition } from "react-transition-group";
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import styles from "./WorkRoute.module.css";
 
 import SideBar from "../../SideBar/SideBar";
@@ -16,8 +16,9 @@ const WorkRoute = ({
   handleOnClickToggleSideBar,
   isSideBarOpen,
   Component,
+  isAuthenticated,
 }) => {
-  return (
+  return isAuthenticated ? (
     <Route exact={exact} path={path}>
       <div className={styles.WorkSpace} style={{ height: "100vh" }}>
         <CSSTransition
@@ -41,6 +42,8 @@ const WorkRoute = ({
         </div>
       </div>
     </Route>
+  ) : (
+    <Redirect to={{ pathname: "/login" }} />
   );
 };
 
