@@ -1,0 +1,31 @@
+html
+{
+    zoom : 70%;
+    font-family: 'Lato', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+#mainDiv
+{
+    display:flex;
+    flex-direction: column;
+}
+
+#header
+{
+    display:flex;
+    flex-direction: row;
+}
+
+#name{
+    margin: auto;
+    font-family: 'Lato', sans-serif;
+    margin-top: 50px;
+}
+
+#bio{
+    margin: auto;
+    font-family: 'Lato', sans-serif;
+    margin-top: 50px;
+}
