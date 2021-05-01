@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const db = require("../model/db");
+const db = require("../database-model/db");
 const dotenv = require("dotenv");
 const express = require("express");
 const path = require("path");
@@ -110,12 +110,12 @@ app.post("/api/loginUser", (req, res) => {
 
 app.use(
   "/static",
-  express.static(path.join(__dirname, "../view/build//static"))
+  express.static(path.join(__dirname, "../client-view/build//static"))
 );
 
 app.get("*", function (req, res) {
   res.sendFile("index.html", {
-    root: path.join(__dirname, "../view/build/"),
+    root: path.join(__dirname, "../client-view/build/"),
   });
 });
 
