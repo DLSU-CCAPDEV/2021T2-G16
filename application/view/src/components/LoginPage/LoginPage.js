@@ -36,12 +36,10 @@ const LoginPage = ({ handleLogIn }) => {
           }}
           validationSchema={loginSchema}
           onSubmit={async (formData) => {
-            //  TODO Hashing password
-            //  TODO Convert to corresponding content-type | This is temporary solution
+            const queryString = new URLSearchParams(formData).toString();
+
             await axios
-              .post(
-                `/api/loginUser?email=${formData.email}&password=${formData.password}`
-              )
+              .post("/api/loginUser", queryString)
               .then((res) => {
                 handleLogIn(res.token);
                 redirectuser();

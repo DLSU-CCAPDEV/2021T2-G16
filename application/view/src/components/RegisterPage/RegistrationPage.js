@@ -45,19 +45,16 @@ const RegistrationPage = () => {
           }}
           validationSchema={registrationSchema}
           onSubmit={async (formData) => {
-            //  TODO Hashing password & Convert to corresponding content-type | This is temporary solution
-            await axios
-              .post(
-                `/api/registerUser?email=${formData.email}&password=${formData.password}&username=${formData.username}`
-              )
-              .then((res) => {
-                switch (res.status) {
-                  case 200:
-                    redirectUser();
-                  default:
-                    console.log("Error");
-                }
-              });
+            const queryString = new URLSearchParams(formData).toString();
+
+            await axios.post("/api/registerUser", queryString).then((res) => {
+              switch (res.status) {
+                case 200:
+                  redirectUser();
+                default:
+                  console.log("Error");
+              }
+            });
           }}
         >
           <Form>

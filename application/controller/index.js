@@ -1,8 +1,8 @@
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("../model/db");
 const dotenv = require("dotenv");
 const express = require("express");
-const fs = require("fs");
 const path = require("path");
 
 const app = express(); // Initialize Express Server
@@ -11,6 +11,8 @@ dotenv.config();
 
 port = process.env.PORT || 3000;
 hostname = process.env.HOSTNAME;
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //  TODO: Delete this temp injection
 const users = [
@@ -64,15 +66,20 @@ app.get("/api/checkUsernameAvailability", (req, res) => {
 });
 
 app.post("/api/registerUser", (req, res) => {
-  users.push(req.query);
+  const { username, email, password } = req.body;
+
+  users.push({ username, email, password });
+
   res.send("Received");
 });
 
 app.post("/api/loginUser", (req, res) => {
+  const { email, password } = req.body;
+
   const user = users.find(
     (user) =>
-      user.email.toLowerCase() === req.query.email.toLowerCase() &&
-      user.password === req.query.password
+      user.email.toLowerCase() === email.toLowerCase() &&
+      user.password === password
   );
 
   if (!user) {
@@ -81,8 +88,6 @@ app.post("/api/loginUser", (req, res) => {
     res.send({ token: "test123" });
   }
 });
-
-app.use(cors());
 
 app.use(
   "/static",

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { formalizeProjectName } from "../../../logic";
 import styles from "./ProjectPreviewItem.module.css";
 
 const ProjectPreviewItem = ({ itemProp, newProject }) => {
@@ -24,7 +23,7 @@ const ProjectPreviewItem = ({ itemProp, newProject }) => {
       to={
         newProject
           ? "/projects/project=new"
-          : `/projects/project=${formalizeProjectName(itemProp.projectName)}`
+          : `/projects/project=${itemProp.projectName}`
       }
       title={newProject ? "New Project" : itemProp.projectName}
       onMouseEnter={() => toggleHover(true)}
