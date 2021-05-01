@@ -90,6 +90,7 @@ const RegistrationPage = () => {
                 switch (promise.status) {
                   case 200:
                     redirectUser();
+                    break;
                   default:
                     console.log("Error");
                 }

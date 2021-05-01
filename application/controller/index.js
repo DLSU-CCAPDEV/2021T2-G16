@@ -1,9 +1,12 @@
+const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("../model/db");
 const dotenv = require("dotenv");
 const express = require("express");
 const path = require("path");
+
+const saltRounds = 10;
 
 const app = express(); // Initialize Express Server
 
@@ -12,6 +15,8 @@ dotenv.config();
 port = process.env.PORT || 3000;
 hostname = process.env.HOSTNAME;
 
+//  TODO add cors() for extra security
+// app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -71,25 +76,36 @@ app.post("/api/checkEmailAvailability", (req, res) => {
 app.post("/api/registerUser", (req, res) => {
   const { username, email, password } = req.body;
 
-  users.push({ username, email, password });
+  bcrypt.hash(password, saltRounds, (error, hashPassword) => {
+    if (error) {
+      console.log(error);
+    }
 
-  res.send("Received");
+    //  TODO inject into mongoDB in this statement
+    users.push({ username, email, password: hashPassword });
+  });
+
+  //  TODO Check if it is possible that there is an error
+  res.send("User Registered");
 });
 
 app.post("/api/loginUser", (req, res) => {
   const { email, password } = req.body;
 
+  //  TODO request from mongoDB in this statement
   const user = users.find(
-    (user) =>
-      user.email.toLowerCase() === email.toLowerCase() &&
-      user.password === password
+    (user) => user.email.toLowerCase() === email.toLowerCase()
   );
 
-  if (!user) {
-    res.status(401).send("Mismatching Credentials");
-  } else {
-    res.send({ token: "test123" });
-  }
+  user
+    ? bcrypt.compare(password, user.password, (error, result) => {
+        if (result) {
+          res.send(result);
+        } else {
+          res.sendStatus(401);
+        }
+      })
+    : res.sendStatus(401);
 });
 
 app.use(
