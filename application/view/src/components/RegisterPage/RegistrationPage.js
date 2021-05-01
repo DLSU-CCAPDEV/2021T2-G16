@@ -13,6 +13,7 @@ import Logo from "../Logo/Logo";
 const registrationSchema = Yup.object().shape({
   username: Yup.string()
     .required("Username is required.")
+    .trim("")
     .matches(
       /^[A-Za-z0-9]*$/,
       "Usernames must only be Latin Characters and Digits."
@@ -36,6 +37,7 @@ const registrationSchema = Yup.object().shape({
       }
     ),
   email: Yup.string()
+    .trim("")
     .email("Invalid Email")
     .required("Email is required.")
     .test(

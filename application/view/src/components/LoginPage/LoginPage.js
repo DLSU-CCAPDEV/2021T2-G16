@@ -16,7 +16,10 @@ import Logo from "../Logo/Logo";
 import CloseButton from "../../assets/CloseButton.svg";
 
 const loginSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid Email").required("Email is required."),
+  email: Yup.string()
+    .trim("")
+    .email("Invalid Email")
+    .required("Email is required."),
   password: Yup.string().required("Password is required."),
 });
 
