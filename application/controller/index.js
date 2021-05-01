@@ -19,31 +19,31 @@ app.use(bodyParser.json());
 const users = [
   {
     uniqueID: "1",
-    username: "Test User",
+    username: "TestUser",
     email: "a@gmail.com",
     password: "a",
   },
   {
     uniqueID: "2",
-    username: "Alyssa Merkadio",
+    username: "AlyssaMerkadio",
     email: "Alyssa21@gmail.com",
     password: "WhitePeopleHappy",
   },
   {
     uniqueID: "3",
-    username: "Jenkins Marcolo",
+    username: "JenkinsMarcolo",
     email: "JMLeniel@dlsu.dasma.com.ph",
     password: "Jokrill",
   },
   {
     uniqueID: "4",
-    username: "Malakai Merquin",
+    username: "MalakaiMerquin",
     email: "Malakai@yahoo.com",
     password: "boyoingOW",
   },
   {
     uniqueID: "5",
-    username: "Pantene Denise",
+    username: "PanteneDenise",
     email: "OPFracture@yahoo.com",
     password: "SolarMower",
   },

@@ -14,7 +14,7 @@ const registrationSchema = Yup.object().shape({
   username: Yup.string()
     .required("Username is required.")
     .matches(
-      /^[A-Za-z0-9 ]*$/,
+      /^[A-Za-z0-9]*$/,
       "Usernames must only be Latin Characters and Digits."
     )
     .min(5, "Username is too short - at least 5 characters.")
@@ -48,7 +48,6 @@ const registrationSchema = Yup.object().shape({
             return response;
           })
           .catch((error) => {
-            console.log(error);
             return error;
           });
 
