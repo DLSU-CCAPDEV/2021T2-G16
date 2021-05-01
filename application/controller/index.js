@@ -13,6 +13,7 @@ port = process.env.PORT || 3000;
 hostname = process.env.HOSTNAME;
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //  TODO: Delete this temp injection
 const users = [
@@ -55,14 +56,16 @@ const users = [
   },
 ];
 
-app.get("/api/checkUsernameAvailability", (req, res) => {
-  const user = users.find((user) => user.username === req.query.username);
+app.post("/api/checkUsernameAvailability", (req, res) => {
+  const user = users.find((user) => user.username === req.body.username);
 
-  if (!user) {
-    res.status(401);
-  }
+  user ? res.sendStatus(409) : res.sendStatus(200);
+});
 
-  res.send("");
+app.post("/api/checkEmailAvailability", (req, res) => {
+  const user = users.find((user) => user.email === req.body.email);
+
+  user ? res.sendStatus(409) : res.sendStatus(200);
 });
 
 app.post("/api/registerUser", (req, res) => {

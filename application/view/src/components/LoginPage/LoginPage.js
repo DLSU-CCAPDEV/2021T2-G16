@@ -40,8 +40,8 @@ const LoginPage = ({ handleLogIn }) => {
 
             await axios
               .post("/api/loginUser", queryString)
-              .then((res) => {
-                handleLogIn(res.token);
+              .then((promise) => {
+                handleLogIn(promise.token);
                 redirectuser();
               })
               .catch((error) => {

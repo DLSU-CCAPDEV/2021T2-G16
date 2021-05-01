@@ -17,8 +17,44 @@ const registrationSchema = Yup.object().shape({
       /^[A-Za-z0-9 ]*$/,
       "Usernames must only be Latin Characters and Digits."
     )
-    .min(5, "Username is too short - at least 5 characters."),
-  email: Yup.string().email("Invalid Email").required("Email is required."),
+    .min(5, "Username is too short - at least 5 characters.")
+    .test(
+      "Username-Exists",
+      "This username has already been taken.",
+      async (username) => {
+        const response = await axios
+          .post("/api/checkUsernameAvailability", { username })
+          .then((response) => {
+            return response;
+          })
+          .catch((error) => {
+            console.log(error);
+            return error;
+          });
+
+        return response.status === 200;
+      }
+    ),
+  email: Yup.string()
+    .email("Invalid Email")
+    .required("Email is required.")
+    .test(
+      "Email-Exists",
+      "This email has already been used by an account.",
+      async (email) => {
+        const response = await axios
+          .post("/api/checkEmailAvailability", { email })
+          .then((response) => {
+            return response;
+          })
+          .catch((error) => {
+            console.log(error);
+            return error;
+          });
+
+        return response.status === 200;
+      }
+    ),
   password: Yup.string()
     .min(5, "Passwords must be at least be 5 characters")
     .required("Password is required."),
@@ -47,14 +83,16 @@ const RegistrationPage = () => {
           onSubmit={async (formData) => {
             const queryString = new URLSearchParams(formData).toString();
 
-            await axios.post("/api/registerUser", queryString).then((res) => {
-              switch (res.status) {
-                case 200:
-                  redirectUser();
-                default:
-                  console.log("Error");
-              }
-            });
+            await axios
+              .post("/api/registerUser", queryString)
+              .then((promise) => {
+                switch (promise.status) {
+                  case 200:
+                    redirectUser();
+                  default:
+                    console.log("Error");
+                }
+              });
           }}
         >
           <Form>
