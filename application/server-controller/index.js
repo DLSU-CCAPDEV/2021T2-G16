@@ -1,12 +1,10 @@
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const db = require("../database-model/db");
 const dotenv = require("dotenv");
 const express = require("express");
 const path = require("path");
-const sessions = require("express-session");
 
 const saltRounds = 10;
 
@@ -68,18 +66,6 @@ addToUserDatabase({
 // app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(
-  sessions({
-    key: "userID",
-    secret: "PogChamp",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 60 * 60 * 24,
-    },
-  })
-);
 
 app.post("/api/checkUsernameAvailability", (req, res) => {
   const user = users.find((user) => user.username === req.body.username);
