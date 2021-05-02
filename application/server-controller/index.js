@@ -4,6 +4,7 @@ const cors = require("cors");
 const db = require("../database-model/db");
 const dotenv = require("dotenv");
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const path = require("path");
 
 const saltRounds = 10;
@@ -66,6 +67,7 @@ addToUserDatabase({
 // app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.json());
 
 app.post("/api/checkUsernameAvailability", (req, res) => {
   const user = users.find((user) => user.username === req.body.username);
@@ -97,9 +99,13 @@ app.post("/api/loginUser", (req, res) => {
   user
     ? bcrypt.compare(password, user.password, (error, result) => {
         if (result) {
-          req.session.user = result;
-          console.log(req.session.user);
-          res.send(result);
+          //  TODO replace property value w/ uniqueID
+          const accessToken = jwt.sign(
+            { sub: user.username },
+            process.env.ACCESS_TOKEN_SECRET
+          );
+          
+          res.json({ accessToken });
         } else {
           res.sendStatus(401);
         }
