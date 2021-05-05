@@ -1,11 +1,11 @@
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const db = require("../database-model/db");
 const dotenv = require("dotenv");
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const path = require("path");
+const collaborativeDB = require("../database-model/db");
 
 const saltRounds = 10;
 
@@ -19,11 +19,21 @@ hostname = process.env.HOSTNAME;
 //  TODO inject into mongoDB in this statement
 const addToUserDatabase = ({ uniqueID, username, email, password }) => {
   bcrypt.hash(password, saltRounds, (error, hashedPassword) => {
+    
     if (error) {
       console.log(error);
     }
 
-    users.push({ uniqueID, username, email, password: hashedPassword });
+    var user = {
+        uniqueID : uniqueID,
+        username : username,
+        email : email, 
+        password : hashedPassword
+    }
+
+    collaborativeDB.insertOne('users' , user);
+    
+   // users.push({ uniqueID, username, email, password: hashedPassword });
   });
 };
 
