@@ -24,16 +24,6 @@ const App = ({ userDatabase, projectDatabase }) => {
     toggleSideBar(!isSideBarOpen);
   };
 
-  const getUserProfile = () => {
-    axios
-      .get("/api/getUser", {
-        params: {
-          uniqueID: 1,
-        },
-      })
-      .then((res) => console.log(res));
-  };
-
   return (
     <HashRouter>
       <Switch>
