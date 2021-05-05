@@ -1,8 +1,7 @@
 import axios from "axios";
-import qs from "qs";
 import React, { useCallback } from "react";
 import { Formik, Form, Field } from "formik";
-import { Link, useHistory } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import styles from "./RegistrationPage.module.css";
 
@@ -66,7 +65,9 @@ const RegistrationPage = () => {
   const history = useHistory();
   const redirectUser = useCallback(() => history.push("/login"), [history]);
 
-  return (
+  return localStorage.getItem("accessToken") ? (
+    <Redirect to="/homepage" />
+  ) : (
     <section className={styles.RegistrationPage}>
       <Logo />
       <FormDesign

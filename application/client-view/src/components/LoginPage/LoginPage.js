@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { Link, useHistory } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import styles from "./LoginPage.module.css";
 
@@ -27,7 +27,9 @@ const LoginPage = () => {
   const history = useHistory();
   const redirectuser = useCallback(() => history.push("/homepage"));
 
-  return (
+  return localStorage.getItem("accessToken") ? (
+    <Redirect to="/homepage" />
+  ) : (
     <section className={styles.LoginPage}>
       <Logo />
       <FormDesign primary width="400px" className={styles.LoginPage_Form}>
@@ -43,6 +45,7 @@ const LoginPage = () => {
             await axios
               .post("/api/loginUser", queryString)
               .then((promise) => {
+                localStorage.removeItem("accessToken");
                 localStorage.setItem("accessToken", promise.data.accessToken);
                 redirectuser();
               })

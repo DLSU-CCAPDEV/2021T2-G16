@@ -12,8 +12,8 @@ const ProjectPreviewList = ({
 }) => {
   const [projectItems, setProjectItems] = useState([]);
 
-  useEffect(() => {
-    axios
+  useEffect(async () => {
+    await axios
       .get("/api/projects", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

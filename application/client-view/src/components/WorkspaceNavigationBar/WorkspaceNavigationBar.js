@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import styles from "./WorkspaceNavigationBar.module.css";
-import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import { Link } from "react-router-dom";
 
-import { userLogout } from "../../actions";
 import AddMember_Icon from "../../assets/AddMember_Icon.svg";
-import Hamburger from "../../assets/Hamburger.svg";
 import OverHeadMessage from "../OverHeadMessage/OverHeadMessage";
 import UserPortrait from "../../assets/UserPortrait.svg";
 import SearchBar from "../SearchBar/SearchBar";
@@ -14,9 +11,7 @@ import "./WorkspaceNavigationBar.css";
 
 const WorkspaceNavigationBar = ({
   isSideBarOpen,
-  userLogout,
   handleOnClickToggleSideBar,
-  currentUser,
   headerName,
   isProject,
 }) => {
@@ -58,13 +53,13 @@ const WorkspaceNavigationBar = ({
                 closeMenu={() => handleOnClickToggleMenu()}
                 width="150"
               >
-                <Link to={`/userprofile=${currentUser.uniqueID}`}>
+                {/* <Link to={`/userprofile=${currentUser.uniqueID}`}>
                   My Profile
-                </Link>
+                </Link> */}
                 <Link
                   to="/"
                   onClick={() => {
-                    userLogout();
+                    localStorage.removeItem("accessToken");
                   }}
                 >
                   Log Out
@@ -96,8 +91,4 @@ const WorkspaceNavigationBar = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return { currentUser: state.currentUserReducer };
-};
-
-export default connect(mapStateToProps, { userLogout })(WorkspaceNavigationBar);
+export default WorkspaceNavigationBar;

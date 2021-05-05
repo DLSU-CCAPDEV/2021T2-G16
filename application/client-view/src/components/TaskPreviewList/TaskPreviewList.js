@@ -11,9 +11,9 @@ import styles from "./TaskPreviewList.module.css";
 const TaskPreviewList = ({ taskDelete, primary, handleOnClick }) => {
   const [taskItems, setTaskItems] = useState([]);
 
-  useEffect(() => {
+  useEffect(async () => {
     //  TODO Display "Error" design when error promise
-    axios
+    await axios
       .get("/api/tasks", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
