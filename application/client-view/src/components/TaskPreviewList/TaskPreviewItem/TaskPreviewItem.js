@@ -10,11 +10,11 @@ const TaskPreviewItem = ({ taskProps, handleOnDelete, handleOnClick }) => {
   const [isHoveredOn, toggleHover] = useState(false);
 
   const renderPriority = () => {
-    if (taskProps.priority === "high") {
+    if (taskProps.taskPriority === "high") {
       return <PrioritySignal high />;
-    } else if (taskProps.priority === "medium") {
+    } else if (taskProps.taskPriority === "medium") {
       return <PrioritySignal medium />;
-    } else if (taskProps.priority === "low") {
+    } else if (taskProps.taskPriority === "low") {
       return <PrioritySignal low />;
     }
   };

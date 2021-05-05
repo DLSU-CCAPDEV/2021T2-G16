@@ -23,7 +23,7 @@ const taskSchema = Yup.object().shape({
     .min(5, "Task name is too short - at least 5 characters.")
     .max(20, "Task name is too long - at most 20 characters."),
   taskDescription: Yup.string(),
-  taskPriority: Yup.number(),
+  taskPriority: Yup.string(),
 });
 
 // TODO Fix misalignment styling whenever there there is no more scroll
@@ -46,14 +46,15 @@ const TaskPage = () => {
             initialValues={{
               taskName: "",
               taskDescription: "",
-              taskPriority: 1,
+              taskPriority: "low",
             }}
             validationSchema={taskSchema}
             onSubmit={async (formData) => {
+              console.table(formData);
               const queryString = new URLSearchParams(formData).toString();
 
               await axios
-                .post("/api/tasks/create", formData, {
+                .post("/api/tasks/create", queryString, {
                   headers: {
                     Authorization: `Bearer ${localStorage.getItem(
                       "accessToken"
@@ -95,8 +96,8 @@ const TaskPage = () => {
                     />
                   </Division>
                   <RowDivision>
-                    <label for="priorities">Priority</label>
-                    <Field name="priorities" as="select">
+                    <label for="taskPriority">Priority</label>
+                    <Field name="taskPriority" as="select">
                       <option value="low">Low</option>
                       <option value="medium">Medium</option>
                       <option value="high">High</option>
