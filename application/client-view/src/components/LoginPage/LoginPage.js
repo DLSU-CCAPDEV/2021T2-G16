@@ -1,5 +1,4 @@
 import axios from "axios";
-import propTypes from "prop-types";
 import React, { useCallback, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { Link, useHistory } from "react-router-dom";
@@ -23,7 +22,7 @@ const loginSchema = Yup.object().shape({
   password: Yup.string().required("Password is required."),
 });
 
-const LoginPage = ({ handleLogIn }) => {
+const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const history = useHistory();
   const redirectuser = useCallback(() => history.push("/homepage"));
@@ -44,7 +43,7 @@ const LoginPage = ({ handleLogIn }) => {
             await axios
               .post("/api/loginUser", queryString)
               .then((promise) => {
-                handleLogIn(promise.token);
+                localStorage.setItem("accessToken", promise.data.accessToken);
                 redirectuser();
               })
               .catch((error) => {
@@ -100,10 +99,6 @@ const LoginPage = ({ handleLogIn }) => {
       </FormDesign>
     </section>
   );
-};
-
-LoginPage.propTypes = {
-  handleLogIn: propTypes.func.isRequired,
 };
 
 export default LoginPage;

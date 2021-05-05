@@ -25,7 +25,7 @@ const HomePage = ({ currentUser }) => {
       <div className={styles.Header}>
         <img src={HomePage_Logo} alt="Your Workspace" />
         <div className={styles.Header_Text}>
-          <h1>Welcome to your workstation, {currentUser.firstName}!</h1>
+          <h1>Welcome to your workstation!</h1>
           <p>
             Collaborative provides you with your own battlestation. Through this
             page, you can overseer your upcoming tasks, and access your utmost

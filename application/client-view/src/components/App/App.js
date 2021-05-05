@@ -16,9 +16,8 @@ import UserProfilePage from "../UserProfilePage/UserProfilePage";
 import WorkRoute from "./WorkRoute/WorkRoute";
 import "./App.css";
 
-const App = ({ userDatabase, projectDatabase }) => {
+const App = () => {
   const [isSideBarOpen, toggleSideBar] = useState(false);
-  const [token, setToken] = useState();
 
   const handleOnClickToggleSideBar = () => {
     toggleSideBar(!isSideBarOpen);
@@ -29,11 +28,7 @@ const App = ({ userDatabase, projectDatabase }) => {
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/registration" exact component={RegisterPage} />
-        <Route
-          path="/login"
-          exact
-          render={(props) => <LoginPage {...props} handleLogIn={setToken} />}
-        />
+        <Route path="/login" exact component={LoginPage} />
         <Route path="/projects/project=new" exact component={ProjectNew} />
         <WorkRoute
           path="/homepage"
@@ -87,12 +82,4 @@ const App = ({ userDatabase, projectDatabase }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    userDatabase: state.userReducer,
-    projectDatabase: state.projectReducer,
-    currentUser: state.currentUserReducer,
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;

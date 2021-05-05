@@ -1,17 +1,29 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Confetti from "../../assets/Confetti.svg";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Confetti from "../../assets/Confetti.svg";
 import { taskDelete } from "../../actions";
+
 import TaskPreviewItem from "./TaskPreviewItem/TaskPreviewItem";
 import styles from "./TaskPreviewList.module.css";
 
-const TaskPreviewList = ({
-  taskItems = [],
-  taskDelete,
-  primary,
-  handleOnClick,
-}) => {
+const TaskPreviewList = ({ taskDelete, primary, handleOnClick }) => {
+  const [taskItems, setTaskItems] = useState([]);
+
+  useEffect(() => {
+    //  TODO Display "Error" design when error promise
+    axios
+      .get("/api/tasks", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        setTaskItems(response.data);
+      });
+  }, []);
+
   const handleOnDelete = (taskProps) => {
     taskDelete(taskProps);
   };

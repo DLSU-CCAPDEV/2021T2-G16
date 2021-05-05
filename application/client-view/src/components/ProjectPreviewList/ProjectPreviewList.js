@@ -1,14 +1,29 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import ProjectPreviewItem from "./ProjectPreviewItem/ProjectPreviewItem";
 import styles from "./ProjectPreviewList.module.css";
 
+import ProjectPreviewItem from "./ProjectPreviewItem/ProjectPreviewItem";
+
 const ProjectPreviewList = ({
-  projectItems = [],
   noTreshold,
   horizontalScroll,
   onlyFavourites,
 }) => {
+  const [projectItems, setProjectItems] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/api/projects", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        setProjectItems(response.data);
+      });
+  }, []);
+
   const projectPreviewListWidth = 900;
   const projectPreviewItemWidth = 205;
   const maximumTreshold =
