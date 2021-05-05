@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./PrioritySignal.module.css";
 
 const PrioritySignal = ({ high, medium, low }) => {
+  console.log("Rendered");
   const renderDesign = () => {
     if (high) {
       return styles.High;

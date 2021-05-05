@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { isEqual } from "lodash";
 import styles from "./ProjectPreviewList.module.css";
 
 import ProjectPreviewItem from "./ProjectPreviewItem/ProjectPreviewItem";
@@ -20,7 +21,8 @@ const ProjectPreviewList = ({
         },
       })
       .then((response) => {
-        setProjectItems(response.data);
+        if (!isEqual(response.data, projectItems))
+          setProjectItems(response.data);
       });
   });
 

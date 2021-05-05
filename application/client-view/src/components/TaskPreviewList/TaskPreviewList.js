@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Confetti from "../../assets/Confetti.svg";
 import { connect } from "react-redux";
+import { isEqual } from "lodash";
 import { Link } from "react-router-dom";
 import { taskDelete } from "../../actions";
 
@@ -20,7 +21,9 @@ const TaskPreviewList = ({ taskDelete, primary, handleOnClick }) => {
         },
       })
       .then((response) => {
-        setTaskItems(response.data);
+        if (!isEqual(response.data, taskItems)) {
+          setTaskItems(response.data);
+        }
       });
   });
 

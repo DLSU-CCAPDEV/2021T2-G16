@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import styles from "./TaskPreviewItem.module.css";
+
 import CheckMark from "../../../assets/Checkmark.svg";
 import CheckMark__Checked from "../../../assets/Checkmark__Checked.svg";
 import EditTask from "../../../assets/EditTask.svg";
 import PrioritySignal from "../PrioritySignal/PrioritySignal";
-import styles from "./TaskPreviewItem.module.css";
 
 const TaskPreviewItem = ({ taskProps, handleOnDelete, handleOnClick }) => {
   const [isHoveredOn, toggleHover] = useState(false);
