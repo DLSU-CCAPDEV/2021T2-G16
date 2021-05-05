@@ -3,45 +3,45 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const client = mongodb.MongoClient; // connecting to db
-const url = process.env.DB_URL; // getting url of db
-const options = {useUnifiedTopology: true}; // needed for mongo db
+const client = mongodb.MongoClient; 
+const url = "mongodb://localhost:27017"; // temporary URL will change this to a remote database
+const options = {useUnifiedTopology: true};
 
 const collaborativeDB = {
 
-    // Insert One Document in DB
+    
     insertOne: function(collection, doc) {
         client.connect(url , options , function(err , db) {
             if(err) throw err;
-            var database = db.db('database'); // accessing database putting it in a var
-            database.collection(collection).insertOne(doc , function(err, res){ // collection = table , inserting document to the collection (insertOne())
-                if(err) throw err; // just checks for error
+            var database = db.db('collaborativeDB'); 
+            database.collection(collection).insertOne(doc , function(err, res){ 
+                if(err) throw err; 
                 console.log('1 document inserted');
-                db.close(); // closing connection
+                db.close();
             });
         });
 
     },
 
-    // Insert Many Documents in DB
+    
     insertMany: function(collection, doc) {
         client.connect(url , options , function(err , db) {
             if(err) throw err;
-            var database = db.db('database'); // accessing database putting it in a var
-            database.collection(collection).insertMany(doc , function(err, res){ // collection = table , inserting document to the collection (insertOne())
-                if(err) throw err; // just checks for error
-                console.log('Document inserted' + res.insertedCount); // Number of Inserted
-                db.close(); // closing connection
+            var database = db.db('collaborativeDB'); 
+            database.collection(collection).insertMany(doc , function(err, res){ 
+                if(err) throw err; 
+                console.log('Document inserted' + res.insertedCount); 
+                db.close(); 
             });
         });
 
     },
 
-    // Retrieving OneOperation for DB
+    
     findOne: function(collection , query , callback) {
         client.connect(url, options , function(err, db){
             if(err) throw err;
-            var database = db.db('database');
+            var database = db.db('collaborativeDB');
             database.collection(collection).findOne(query , function(err , result){
                 if(err) throw err;
                 db.close();
@@ -51,13 +51,13 @@ const collaborativeDB = {
 
     },
 
-    // Retrieving many
+
     findMany: function(collection , query , sort=null , projection = null) {
         client.connect(url, options , function(err, db){
             if(err) throw err;
-            var database = db.db('database');
+            var database = db.db('collaborativeDB');
             database.collection(collection)
-            .find(query,{projection : projection}) // projection = specific
+            .find(query,{projection : projection}) 
             .sort(sort).toArray(function(err , result){
                 if(err) throw err;
                 console.log(result);
@@ -70,7 +70,7 @@ const collaborativeDB = {
     deleteOne: function(collection , filter) {
         client.connect(url, options , function(err, db){
             if(err) throw err;
-            var database = db.db('database');
+            var database = db.db('collaborativeDB');
             database.collection(collection)
             .deleteOne(filter ,function(err , res){
                 if(err) throw err;
@@ -84,7 +84,7 @@ const collaborativeDB = {
     deleteMany: function(collection , filter) {
         client.connect(url, options , function(err, db){
             if(err) throw err;
-            var database = db.db('database');
+            var database = db.db('collaborativeDB');
             database.collection(collection)
             .deleteMany(filter ,function(err , res){
                 if(err) throw err;
@@ -98,7 +98,7 @@ const collaborativeDB = {
     updateOne: function(collection , filter , update) {
         client.connect(url , options , function(err , db) {
             if(err) throw err;
-            var database = db.db('database');
+            var database = db.db('collaborativeDB');
             database.collection(collection)
             database.collection(collection).updateOne(filter , update , function(err , res){
                 if(err) throw err;
@@ -112,7 +112,7 @@ const collaborativeDB = {
     updateMany: function(collection , filter , update) {
         client.connect(url , options , function(err , db) {
             if(err) throw err;
-            var database = db.db('database');
+            var database = db.db('collaborativeDB');
             database.collection(collection)
             database.collection(collection).updateMany(filter , update , function(err , res){
                 if(err) throw err;
