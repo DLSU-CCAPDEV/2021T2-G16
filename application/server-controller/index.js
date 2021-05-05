@@ -557,15 +557,37 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 app.post("/api/checkUsernameAvailability", (req, res) => {
+
+
+  collaborativeDB.findOne('users' , {username : req.body.username} , function(results) {
+      if(results != null)
+        res.sendStatus(409);
+      else
+        res.sendStatus(200);
+    });
+
+
+  /*
   const user = users.find((user) => user.username === req.body.username);
 
   user ? res.sendStatus(409) : res.sendStatus(200);
+  */
 });
 
 app.post("/api/checkEmailAvailability", (req, res) => {
+
+  collaborativeDB.findOne('users' , {email : req.body.email} , function(results) {
+      if(results != null)
+        res.sendStatus(409);
+      else
+        res.sendStatus(200);
+  });
+
+  /*
   const user = users.find((user) => user.username === req.user.sub);
 
   user ? res.sendStatus(409) : res.sendStatus(200);
+  */
 });
 
 app.get("/api/tasks", authenticateToken, (req, res) => {
@@ -623,11 +645,37 @@ app.post("/api/registerUser", (req, res) => {
 app.post("/api/loginUser", (req, res) => {
   const { email, password } = req.body;
 
-  //  TODO request from mongoDB in this statement
+  //  TODO request from mongoDB in this statemen
+  /*
   const user = users.find(
     (user) => user.email.toLowerCase() === email.toLowerCase()
   );
+  */
+  collaborativeDB.findOne('users' , {email : req.body.email} , function(results){
+    if(results != null)
+      bcrypt.compare(password, results.password, (error, result) => {
+        if (result) {
+          //  TODO replace property value w/ uniqueID
+          const accessToken = jwt.sign(
+            { sub: results.username },
+            process.env.ACCESS_TOKEN_SECRET
+          );
 
+          res.json({ accessToken });
+        } else {
+          res.sendStatus(401);
+        }
+      })
+    else
+      res.sendStatus(401);
+  });
+
+
+
+
+
+
+  /*
   user
     ? bcrypt.compare(password, user.password, (error, result) => {
         if (result) {
@@ -643,6 +691,8 @@ app.post("/api/loginUser", (req, res) => {
         }
       })
     : res.sendStatus(401);
+
+    */
 });
 
 //  TODO Debug tool, Remove when deployed
