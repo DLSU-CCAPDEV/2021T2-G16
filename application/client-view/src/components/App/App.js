@@ -37,7 +37,6 @@ const App = () => {
           handleOnClickToggleSideBar={handleOnClickToggleSideBar}
           isSideBarOpen={isSideBarOpen}
           Component={<HomePage />}
-          isAuthenticated
         />
         <WorkRoute
           path="/projects"
@@ -46,7 +45,6 @@ const App = () => {
           handleOnClickToggleSideBar={handleOnClickToggleSideBar}
           isSideBarOpen={isSideBarOpen}
           Component={<ProjectOverviewPage />}
-          isAuthenticated
         />
         <WorkRoute
           path="/tasks"
@@ -55,7 +53,6 @@ const App = () => {
           handleOnClickToggleSideBar={handleOnClickToggleSideBar}
           isSideBarOpen={isSideBarOpen}
           Component={<TaskPage />}
-          isAuthenticated
         />
         {/* <WorkRoute
           path={`/userprofile=${user.uniqueID}`}
@@ -64,7 +61,6 @@ const App = () => {
           handleOnClickToggleSideBar={handleOnClickToggleSideBar}
           isSideBarOpen={isSideBarOpen}
           Component={<UserProfilePage userAccount={user} />}
-          isAuthenticated
         />
         <WorkRoute
           path={`/projects/project=${formalizeProjectName(

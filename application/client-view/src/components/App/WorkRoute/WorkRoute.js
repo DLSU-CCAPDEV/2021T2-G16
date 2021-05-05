@@ -16,9 +16,8 @@ const WorkRoute = ({
   handleOnClickToggleSideBar,
   isSideBarOpen,
   Component,
-  isAuthenticated,
 }) => {
-  return isAuthenticated ? (
+  return localStorage.getItem("accessToken") ? (
     <Route exact={exact} path={path}>
       <div className={styles.WorkSpace} style={{ height: "100vh" }}>
         <CSSTransition
@@ -43,7 +42,7 @@ const WorkRoute = ({
       </div>
     </Route>
   ) : (
-    <Redirect to={{ pathname: "/login" }} />
+    <Redirect to={"/login"} />
   );
 };
 

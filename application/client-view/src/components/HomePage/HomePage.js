@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import HomePage_Logo from "../../assets/HomePage_Logo.svg";
 import Project_Icon__Black from "../../assets/Projects_Icon__Black.svg";
@@ -8,15 +7,11 @@ import TaskPrevewList from "../TaskPreviewList/TaskPreviewList";
 import Tasks_Icon__Black from "../../assets/Tasks_Icon__Black.svg";
 import styles from "../HomePage/HomePage.module.css";
 
-const HomePage = ({ currentUser }) => {
-  const history = useHistory();
-  const handleNoCurrentUser = useCallback(() => history.push("/login"), [
-    history,
-  ]);
-  const handleOnEdit = useCallback(() => history.push("/tasks"), [history]);
+const HomePage = () => {
+  // const handleOnEdit = useCallback(() => history.push("/tasks"), [history]);
 
   const handleOnClickEdit = () => {
-    handleOnEdit();
+    // handleOnEdit();
     //  TODO pass the respective task item
   };
 
@@ -71,8 +66,4 @@ const HomePage = ({ currentUser }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { currentUser: state.currentUserReducer };
-};
-
-export default connect(mapStateToProps)(HomePage);
+export default HomePage;

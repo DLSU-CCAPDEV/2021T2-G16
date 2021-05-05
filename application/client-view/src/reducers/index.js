@@ -1,46 +1,7 @@
 import { combineReducers } from "redux";
 import { isEqual } from "lodash";
-import {
-  userDatabaseInject,
-  projectDatabaseInject,
-  taskDatabseInject,
-} from "./DataInjection";
 
-const userReducer = (userDatabase = userDatabaseInject, action) => {
-  switch (action.type) {
-    case "USER_REGISTRATION":
-      const highestID = Math.max.apply(
-        Math,
-        userDatabase.map(function (item) {
-          return item.uniqueID;
-        })
-      );
-
-      const newUniqueID = highestID + 1;
-
-      action.payload.uniqueID = newUniqueID;
-
-      return [...userDatabase, action.payload];
-    default:
-      return userDatabase;
-  }
-};
-
-const currentUserReducer = (currentUser = userDatabaseInject[0], action) => {
-  switch (action.type) {
-    case "USER_LOGIN":
-      return action.payload;
-    case "USER_LOGOUT":
-      return null;
-    default:
-      return currentUser;
-  }
-};
-
-const projectReducer = (
-  projectDatabaseReducer = projectDatabaseInject,
-  action
-) => {
+const projectReducer = (projectDatabaseReducer = [], action) => {
   switch (action.type) {
     case "PROJECT_CREATE":
       return [...projectDatabaseReducer, action.payload];
@@ -49,20 +10,9 @@ const projectReducer = (
   }
 };
 
-const taskReducer = (taskDatabaseReducer = taskDatabseInject, action) => {
+const taskReducer = (taskDatabaseReducer = [], action) => {
   switch (action.type) {
     case "TASK_CREATE":
-      //  TODO make task uniqueID
-      // const highestID = Math.max.apply(
-      //   Math,
-      //   taskDatabaseReducer.map(function (item) {
-      //     return ;
-      //   })
-      // );
-
-      // const newUniqueID = highestID + 1;
-
-      // action.payload.uniqueID = newUniqueID;
       return [...taskDatabaseReducer, action.payload];
     case "TASK_DELETE":
       return taskDatabaseReducer.filter(
@@ -74,8 +24,6 @@ const taskReducer = (taskDatabaseReducer = taskDatabseInject, action) => {
 };
 
 export default combineReducers({
-  currentUserReducer,
   projectReducer,
   taskReducer,
-  userReducer,
 });
