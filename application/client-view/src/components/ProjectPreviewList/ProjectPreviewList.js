@@ -22,7 +22,7 @@ const ProjectPreviewList = ({
       .then((response) => {
         setProjectItems(response.data);
       });
-  }, []);
+  });
 
   const projectPreviewListWidth = 900;
   const projectPreviewItemWidth = 205;

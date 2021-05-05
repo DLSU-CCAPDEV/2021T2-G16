@@ -322,249 +322,219 @@ projectDatabaseInject = [
 const taskDatabseInject = [
   {
     uniqueID: "1",
-    taskID: "1",
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "1",
-    taskID: "2",
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "1",
-    taskID: "3",
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
-    priority: "low",
+    taskPriority: "low",
   },
   {
     uniqueID: "1",
-    taskID: "4",
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
     kanbanID: "",
-    priority: "medium",
+    taskPriority: "medium",
   },
   {
     uniqueID: "1",
-    taskID: "5",
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "2",
-    taskID: "1",
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "2",
-    taskID: "2",
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "2",
-    taskID: "3",
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
-    priority: "low",
+    taskPriority: "low",
   },
   {
     uniqueID: "2",
-    taskID: "4",
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
     kanbanID: "",
-    priority: "medium",
+    taskPriority: "medium",
   },
   {
     uniqueID: "2",
-    taskID: "5",
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "3",
-    taskID: "1",
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "3",
-    taskID: "2",
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "3",
-    taskID: "3",
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
-    priority: "low",
+    taskPriority: "low",
   },
   {
     uniqueID: "3",
-    taskID: "4",
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
     kanbanID: "",
-    priority: "medium",
+    taskPriority: "medium",
   },
   {
     uniqueID: "3",
-    taskID: "5",
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "4",
-    taskID: "1",
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "4",
-    taskID: "2",
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "4",
-    taskID: "3",
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
-    priority: "low",
+    taskPriority: "low",
   },
   {
     uniqueID: "4",
-    taskID: "4",
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
     kanbanID: "",
-    priority: "medium",
+    taskPriority: "medium",
   },
   {
     uniqueID: "4",
-    taskID: "5",
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "5",
-    taskID: "1",
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "5",
-    taskID: "2",
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "5",
-    taskID: "3",
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
-    priority: "low",
+    taskPriority: "low",
   },
   {
     uniqueID: "5",
-    taskID: "4",
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
     kanbanID: "",
-    priority: "medium",
+    taskPriority: "medium",
   },
   {
     uniqueID: "5",
-    taskID: "5",
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "6",
-    taskID: "1",
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "6",
-    taskID: "2",
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
   {
     uniqueID: "6",
-    taskID: "3",
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
-    priority: "low",
+    taskPriority: "low",
   },
   {
     uniqueID: "6",
-    taskID: "4",
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
     kanbanID: "",
-    priority: "medium",
+    taskPriority: "medium",
   },
   {
     uniqueID: "6",
-    taskID: "5",
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
-    priority: "high",
+    taskPriority: "high",
   },
 ];
 
@@ -591,7 +561,6 @@ app.post("/api/checkEmailAvailability", (req, res) => {
 app.get("/api/tasks", authenticateToken, (req, res) => {
   //  TODO temporary expression, just to match-up username to uniqueID
   const user = users.find((user) => user.username === req.user.sub);
-  console.table(user);
   //
 
   user
@@ -599,6 +568,25 @@ app.get("/api/tasks", authenticateToken, (req, res) => {
         taskDatabseInject.filter((task) => task.uniqueID === user.uniqueID)
       )
     : res.sendStatus(401);
+});
+
+app.post("/api/tasks/create", authenticateToken, (req, res) => {
+  //  TODO temporary expression, just to match-up username to uniqueID
+  const user = users.find((user) => user.username === req.user.sub);
+  const { taskName, taskDescription, taskPriority } = req.body;
+  //
+
+  if (user) {
+    taskDatabseInject.push({
+      uniqueID: user.uniqueID,
+      taskName,
+      taskDescription,
+      taskPriority,
+    });
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(401);
+  }
 });
 
 app.get("/api/projects", authenticateToken, (req, res) => {
@@ -619,7 +607,7 @@ app.post("/api/registerUser", (req, res) => {
   addToUserDatabase(req.body);
 
   //  TODO Check if it is possible that there is an error
-  res.send("User Registered");
+  res.sendStatus(200);
 });
 
 app.post("/api/loginUser", (req, res) => {

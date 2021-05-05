@@ -22,7 +22,7 @@ const TaskPreviewList = ({ taskDelete, primary, handleOnClick }) => {
       .then((response) => {
         setTaskItems(response.data);
       });
-  }, []);
+  });
 
   const handleOnDelete = (taskProps) => {
     taskDelete(taskProps);

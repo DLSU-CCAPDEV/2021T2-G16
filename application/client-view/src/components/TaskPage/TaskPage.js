@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
@@ -43,14 +44,25 @@ const TaskPage = () => {
         <FormDesign width="500px" className={styles.TaskPage_Form}>
           <Formik
             initialValues={{
-              // TODO inject what the task's data in initialValues
               taskName: "",
               taskDescription: "",
               taskPriority: 1,
             }}
             validationSchema={taskSchema}
-            onSubmit={(formData) => {
-              const data = JSON.stringify(formData, null, 2);
+            onSubmit={async (formData) => {
+              const queryString = new URLSearchParams(formData).toString();
+
+              await axios
+                .post("/api/tasks/create", formData, {
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem(
+                      "accessToken"
+                    )}`,
+                  },
+                })
+                .then((response) => {})
+                .catch((error) => console.log(error));
+
               setAddTaskModalStatus(false);
             }}
           >

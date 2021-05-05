@@ -87,15 +87,10 @@ const RegistrationPage = () => {
 
             await axios
               .post("/api/registerUser", queryString)
-              .then((promise) => {
-                switch (promise.status) {
-                  case 200:
-                    redirectUser();
-                    break;
-                  default:
-                    console.log("Error");
-                }
-              });
+              .then((promise) => {  
+                redirectUser();
+              })
+              .catch((error) => console.log(error));
           }}
         >
           <Form>
