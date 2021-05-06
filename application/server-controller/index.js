@@ -11,7 +11,7 @@ const saltRounds = 10;
 
 const app = express(); // Initialize Express Server
 
-var totalID = 1; // total Amount of UniqueID's in the database
+var totalID; // total Amount of UniqueID's in the database
 
 dotenv.config();
 
@@ -19,7 +19,8 @@ port = process.env.PORT || 3000;
 hostname = process.env.HOSTNAME;
 
 // This is to get the total amount of users saved in the database
-collaborativeDB.totalCount('users' , function(results) {
+// TODO this might duplicate, replace w/ get the max then + 1
+collaborativeDB.totalCount("users", function (results) {
   totalID = results.count;
 });
 
@@ -48,29 +49,19 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 app.post("/api/checkUsernameAvailability", (req, res) => {
+  let username = req.body.username.toLowerCase();
 
-  var username = req.body.username.toLowerCase();
-
-  collaborativeDB.findOne(
-    "users",
-    { username: username },
-    function (results) {
-      results ? res.sendStatus(409) : res.sendStatus(200);
-    }
-  );
+  collaborativeDB.findOne("users", { username: username }, function (results) {
+    results ? res.sendStatus(409) : res.sendStatus(200);
+  });
 });
 
 app.post("/api/checkEmailAvailability", (req, res) => {
-  
-  var userEmail = req.body.email.toLowerCase();
-  
-  collaborativeDB.findOne(
-    "users",
-    { email: userEmail },
-    function (results) {
-      results ? res.sendStatus(409) : res.sendStatus(200);
-    }
-  );
+  let userEmail = req.body.email.toLowerCase();
+
+  collaborativeDB.findOne("users", { email: userEmail }, function (results) {
+    results ? res.sendStatus(409) : res.sendStatus(200);
+  });
 });
 
 app.get("/api/tasks", authenticateToken, (req, res) => {
@@ -180,18 +171,17 @@ app.post("/debug/projects/create", (req, res) => {
 });
 
 app.post("/api/registerUser", (req, res) => {
-  const { uniqueID, username, email, password } = req.body;
+  const { username, email, password } = req.body;
 
   bcrypt.hash(password, saltRounds, (error, hashedPassword) => {
     if (error) {
       console.log(error);
     }
-    
 
     let user = {
-      uniqueID : totalID,
-      username : username.toLowerCase(),
-      email : email.toLowerCase(),
+      uniqueID: totalID,
+      username: username.toLowerCase(),
+      email: email.toLowerCase(),
       password: hashedPassword,
     };
 
@@ -203,28 +193,57 @@ app.post("/api/registerUser", (req, res) => {
   res.sendStatus(200);
 });
 
+app.post("/debug/registerUser", (req, res) => {
+  const { uniqueID, username, email, password } = req.body;
+
+  bcrypt.hash(password, saltRounds, (error, hashedPassword) => {
+    if (error) {
+      console.log(error);
+    }
+
+    let user = {
+      uniqueID,
+      username: username.toLowerCase(),
+      email: email.toLowerCase(),
+      password: hashedPassword,
+    };
+
+    collaborativeDB.insertOne("users", user);
+  });
+
+  //  TODO Check if it is possible that there is an error
+  res.sendStatus(200);
+});
+
 app.post("/api/loginUser", (req, res) => {
   const { email, password } = req.body;
 
-  collaborativeDB.findOne("users", { email : email.toLowerCase() }, function (results) {
-    if (results) {
-      bcrypt.compare(password, results.password, (error, result) => {
-        if (result) {
-          const accessToken = jwt.sign(
-            { sub: results.username },
-            process.env.ACCESS_TOKEN_SECRET
-          );
+  collaborativeDB.findOne(
+    "users",
+    { email: email.toLowerCase() },
+    function (results) {
+      if (results) {
+        bcrypt.compare(
+          password,
+          results.password,
+          (error, authenticationResult) => {
+            if (authenticationResult) {
+              const accessToken = jwt.sign(
+                { sub: results.username },
+                process.env.ACCESS_TOKEN_SECRET
+              );
 
-          res.json({ accessToken });
-        } else {
-          console.log(error);
-          res.sendStatus(401);
-        }
-      });
-    } else {
-      res.sendStatus(401);
+              res.json({ accessToken });
+            } else {
+              res.sendStatus(401);
+            }
+          }
+        );
+      } else {
+        res.sendStatus(401);
+      }
     }
-  });
+  );
 });
 
 app.use(

@@ -4,37 +4,37 @@ const axios = require("axios");
 // default Users Listed in Remote DB
 const users = [
   {
-    uniqueID: "0",
+    uniqueID: 0,
     username: "testuser",
     email: "a@gmail.com",
     password: "aaaaa",
   },
   {
-    uniqueID: "1",
+    uniqueID: 1,
     username: "alyssamerkadio",
     email: "alyssa21@gmail.com",
     password: "WhitePeopleHappy",
   },
   {
-    uniqueID: "2",
+    uniqueID: 2,
     username: "jenkinsmarcolo",
     email: "jmleniel@dlsu.dasma.com.ph",
     password: "Jokrill",
   },
   {
-    uniqueID: "3",
+    uniqueID: 3,
     username: "malakaimerquin",
     email: "malakai@yahoo.com",
     password: "boyoingOW",
   },
   {
-    uniqueID: "4",
+    uniqueID: 4,
     username: "pantenedenise",
     email: "opfracture@yahoo.com",
     password: "SolarMower",
   },
   {
-    uniqueID: "5",
+    uniqueID: 5,
     username: "quenevictoria",
     email: "Qazujm@daporta.com.eu",
     password:
@@ -44,27 +44,27 @@ const users = [
 
 projectDatabaseInject = [
   {
-    uniqueID: "1",
+    uniqueID: 0,
     favoured: true,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Grocery Store - Application",
     backgroundID: "2",
     description: "Application for simulating grocery stores.",
     kanbanID: "",
   },
   {
-    uniqueID: "1",
+    uniqueID: 0,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Redux Project",
     backgroundID: "3",
     description: "Project Stack of Redux",
     kanbanID: "",
   },
   {
-    uniqueID: "1",
+    uniqueID: 0,
     favoured: true,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Hot tub Stream OTW",
     backgroundID: "1",
     description:
@@ -72,7 +72,7 @@ projectDatabaseInject = [
     kanbanID: "",
   },
   {
-    uniqueID: "1",
+    uniqueID: 0,
     favoured: false,
     members: [],
     projectName: "Memorial Queza",
@@ -82,72 +82,72 @@ projectDatabaseInject = [
     kanbanID: "",
   },
   {
-    uniqueID: "2",
+    uniqueID: 1,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Roblox Project",
     backgroundID: "2",
     description: "This project is for fun and to build a house in roblox",
     kanbanID: "",
   },
   {
-    uniqueID: "2",
+    uniqueID: 1,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Minecraft Mansion",
     backgroundID: "3",
     description: "Build the Tower of your dreams in minecraft!",
     kanbanID: "",
   },
   {
-    uniqueID: "2",
+    uniqueID: 1,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "New PC Building with 0 dollars",
     backgroundID: "1",
     description: "Help us build a PC using 0 Dollars",
     kanbanID: "",
   },
   {
-    uniqueID: "2",
+    uniqueID: 1,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Web Application",
     backgroundID: "2",
     description: "Grocery Web Application",
     kanbanID: "",
   },
   {
-    uniqueID: "3",
+    uniqueID: 2,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Web Application",
     backgroundID: "3",
     description: "New Forum Web Application!",
     kanbanID: "",
   },
   {
-    uniqueID: "3",
+    uniqueID: 2,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "New Company Set",
     backgroundID: "1",
     description: "New Company Set for Recording ads!",
     kanbanID: "",
   },
   {
-    uniqueID: "3",
+    uniqueID: 2,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Advertise",
     backgroundID: "3",
     description: "Advertisement for our company",
     kanbanID: "",
   },
   {
-    uniqueID: "3",
+    uniqueID: 2,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Rearrangement of Equipments",
     backgroundID: "2",
     description: "Rearrangement or Fixing of Equipments",
@@ -155,9 +155,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "4",
+    uniqueID: 3,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Poster for Church",
     backgroundID: "1",
     description: "Poster that needed to be submitted",
@@ -165,9 +165,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "4",
+    uniqueID: 3,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Research Paper about Computer Vision",
     backgroundID: "2",
     description: "Making of Research Paper needed for submission",
@@ -175,9 +175,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "4",
+    uniqueID: 3,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Fixing of Keyboard",
     backgroundID: "1",
     description: "Fix all Company Keyboards",
@@ -185,9 +185,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "4",
+    uniqueID: 3,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Upgrade of PC's",
     backgroundID: "3",
     description: "Upgrading of all PC's in the company",
@@ -195,9 +195,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "5",
+    uniqueID: 4,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Fixing of Roof",
     backgroundID: "2",
     description: "Fixing of Company Roof",
@@ -205,9 +205,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "5",
+    uniqueID: 4,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Soccer Competition",
     backgroundID: "3",
     description: "Soccer Competition for Employees!",
@@ -215,9 +215,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "5",
+    uniqueID: 4,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Bonus Payment",
     backgroundID: "2",
     description: "Calculation of All Bonus Payment for the Company",
@@ -225,9 +225,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "5",
+    uniqueID: 4,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Renovation",
     backgroundID: "3",
     description: "All Required Renovation for the Company",
@@ -235,9 +235,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "6",
+    uniqueID: 5,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 5 }],
     projectName: "Renovation of Kitchen",
     backgroundID: "2",
     description: "Renovation of Kitchen at home",
@@ -245,9 +245,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "6",
+    uniqueID: 5,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 1 }],
     projectName: "Meeting with Investors",
     backgroundID: "1",
     description: "Preparation of the Meeting with Investors",
@@ -255,9 +255,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "6",
+    uniqueID: 5,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 3 }],
     projectName: "Construction of New Building",
     backgroundID: "1",
     description: "Future Company Building Project",
@@ -265,9 +265,9 @@ projectDatabaseInject = [
   },
 
   {
-    uniqueID: "6",
+    uniqueID: 5,
     favoured: false,
-    members: [{ uniqueID: "6" }],
+    members: [{ uniqueID: 4 }],
     projectName: "Weekly Revenue Meetings",
     backgroundID: "3",
     description: "Week 51 Revenue meeting for the company",
@@ -277,28 +277,28 @@ projectDatabaseInject = [
 
 const taskDatabaseInject = [
   {
-    uniqueID: "1",
+    uniqueID: 0,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "1",
+    uniqueID: 0,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "1",
+    uniqueID: 0,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
     taskPriority: "low",
   },
   {
-    uniqueID: "1",
+    uniqueID: 0,
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
@@ -306,35 +306,35 @@ const taskDatabaseInject = [
     taskPriority: "medium",
   },
   {
-    uniqueID: "1",
+    uniqueID: 0,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "2",
+    uniqueID: 1,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "2",
+    uniqueID: 1,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "2",
+    uniqueID: 1,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
     taskPriority: "low",
   },
   {
-    uniqueID: "2",
+    uniqueID: 1,
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
@@ -342,35 +342,35 @@ const taskDatabaseInject = [
     taskPriority: "medium",
   },
   {
-    uniqueID: "2",
+    uniqueID: 1,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "3",
+    uniqueID: 2,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "3",
+    uniqueID: 2,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "3",
+    uniqueID: 2,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
     taskPriority: "low",
   },
   {
-    uniqueID: "3",
+    uniqueID: 2,
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
@@ -378,35 +378,35 @@ const taskDatabaseInject = [
     taskPriority: "medium",
   },
   {
-    uniqueID: "3",
+    uniqueID: 2,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "4",
+    uniqueID: 3,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "4",
+    uniqueID: 3,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "4",
+    uniqueID: 3,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
     taskPriority: "low",
   },
   {
-    uniqueID: "4",
+    uniqueID: 3,
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
@@ -414,35 +414,35 @@ const taskDatabaseInject = [
     taskPriority: "medium",
   },
   {
-    uniqueID: "4",
+    uniqueID: 3,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "5",
+    uniqueID: 4,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "5",
+    uniqueID: 4,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "5",
+    uniqueID: 4,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
     taskPriority: "low",
   },
   {
-    uniqueID: "5",
+    uniqueID: 4,
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
@@ -450,35 +450,35 @@ const taskDatabaseInject = [
     taskPriority: "medium",
   },
   {
-    uniqueID: "5",
+    uniqueID: 4,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "6",
+    uniqueID: 5,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "6",
+    uniqueID: 5,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
     kanbanID: "",
     taskPriority: "high",
   },
   {
-    uniqueID: "6",
+    uniqueID: 5,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
     kanbanID: "",
     taskPriority: "low",
   },
   {
-    uniqueID: "6",
+    uniqueID: 5,
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
@@ -486,7 +486,7 @@ const taskDatabaseInject = [
     taskPriority: "medium",
   },
   {
-    uniqueID: "6",
+    uniqueID: 5,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
     kanbanID: "",
@@ -495,7 +495,7 @@ const taskDatabaseInject = [
 ];
 
 users.forEach(async (user) => {
-  await axios.post("http://localhost:3000/api/registerUser", user);
+  await axios.post("http://localhost:3000/debug/registerUser", user);
 });
 
 projectDatabaseInject.forEach(async (project) => {
