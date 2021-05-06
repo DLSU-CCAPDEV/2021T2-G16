@@ -11,10 +11,17 @@ const saltRounds = 10;
 
 const app = express(); // Initialize Express Server
 
+var totalID = 1; // total Amount of UniqueID's in the database
+
 dotenv.config();
 
 port = process.env.PORT || 3000;
 hostname = process.env.HOSTNAME;
+
+// This is to get the total amount of users saved in the database
+collaborativeDB.totalCount('users' , function(results) {
+  totalID = results.count;
+});
 
 const authenticateToken = (req, res, next) => {
   const authenticationHeader = req.headers["authorization"];
@@ -41,9 +48,12 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 app.post("/api/checkUsernameAvailability", (req, res) => {
+
+  var username = req.body.username.toLowerCase();
+
   collaborativeDB.findOne(
     "users",
-    { username: req.body.username },
+    { username: username },
     function (results) {
       results ? res.sendStatus(409) : res.sendStatus(200);
     }
@@ -51,9 +61,12 @@ app.post("/api/checkUsernameAvailability", (req, res) => {
 });
 
 app.post("/api/checkEmailAvailability", (req, res) => {
+  
+  var userEmail = req.body.email.toLowerCase();
+  
   collaborativeDB.findOne(
     "users",
-    { email: req.body.email },
+    { email: userEmail },
     function (results) {
       results ? res.sendStatus(409) : res.sendStatus(200);
     }
@@ -173,15 +186,17 @@ app.post("/api/registerUser", (req, res) => {
     if (error) {
       console.log(error);
     }
+    
 
     let user = {
-      uniqueID,
-      username,
-      email,
+      uniqueID : totalID,
+      username : username.toLowerCase(),
+      email : email.toLowerCase(),
       password: hashedPassword,
     };
 
     collaborativeDB.insertOne("users", user);
+    totalID = totalID + 1;
   });
 
   //  TODO Check if it is possible that there is an error
@@ -191,7 +206,7 @@ app.post("/api/registerUser", (req, res) => {
 app.post("/api/loginUser", (req, res) => {
   const { email, password } = req.body;
 
-  collaborativeDB.findOne("users", { email }, function (results) {
+  collaborativeDB.findOne("users", { email : email.toLowerCase() }, function (results) {
     if (results) {
       bcrypt.compare(password, results.password, (error, result) => {
         if (result) {

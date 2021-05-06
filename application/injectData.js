@@ -1,40 +1,41 @@
 const axios = require("axios");
 
 //  TODO Convert to JSON File
+// default Users Listed in Remote DB
 const users = [
   {
-    uniqueID: "1",
-    username: "TestUser",
+    uniqueID: "0",
+    username: "testuser",
     email: "a@gmail.com",
-    password: "a",
+    password: "aaaaa",
   },
   {
-    uniqueID: "2",
-    username: "AlyssaMerkadio",
-    email: "Alyssa21@gmail.com",
+    uniqueID: "1",
+    username: "alyssamerkadio",
+    email: "alyssa21@gmail.com",
     password: "WhitePeopleHappy",
   },
   {
-    uniqueID: "3",
-    username: "JenkinsMarcolo",
-    email: "JMLeniel@dlsu.dasma.com.ph",
+    uniqueID: "2",
+    username: "jenkinsmarcolo",
+    email: "jmleniel@dlsu.dasma.com.ph",
     password: "Jokrill",
   },
   {
-    uniqueID: "4",
-    username: "MalakaiMerquin",
-    email: "Malakai@yahoo.com",
+    uniqueID: "3",
+    username: "malakaimerquin",
+    email: "malakai@yahoo.com",
     password: "boyoingOW",
   },
   {
-    uniqueID: "5",
-    username: "PanteneDenise",
-    email: "OPFracture@yahoo.com",
+    uniqueID: "4",
+    username: "pantenedenise",
+    email: "opfracture@yahoo.com",
     password: "SolarMower",
   },
   {
-    uniqueID: "6",
-    username: "Quene Victoria",
+    uniqueID: "5",
+    username: "quenevictoria",
     email: "Qazujm@daporta.com.eu",
     password:
       "KP0c@vGu7ysp4EgoFHOUdqv*Tb#m2^K8NW^T!cc8KO!XSOn&K#yUz25DJmYzFTGCq9lrTjy#",

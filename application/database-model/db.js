@@ -4,10 +4,25 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const client = mongodb.MongoClient;
-const url = "mongodb://localhost:27017"; // temporary URL will change this to a remote database
+const url = "mongodb+srv://admin:admin@collaborativedb-ccapdev.ck8cf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"; // Connected to a Remote Database
 const options = { useUnifiedTopology: true };
 
 const collaborativeDB = {
+
+    totalCount: function(collection , callback) {
+        client.connect(url , options , function(err , db) {
+            if(err) throw err;
+            var database = db.db('collaborativeDB');
+            database.collection(collection).stats(function(err , stats){
+               if(err) throw err;
+               db.close();
+               return callback(stats);
+               
+            });
+        });
+
+    },
+
   insertOne: function (collection, doc) {
     client.connect(url, options, function (err, db) {
       if (err) throw err;
