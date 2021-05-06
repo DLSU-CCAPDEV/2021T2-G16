@@ -61,21 +61,33 @@ app.post("/api/checkEmailAvailability", (req, res) => {
 });
 
 app.get("/api/tasks", authenticateToken, (req, res) => {
-  //  TODO temporary expression, just to match-up username to uniqueID
-  const user = users.find((user) => user.username === req.user.sub);
-  //
-
-  user
-    ? res.json(
-        taskDatabseInject.filter((task) => task.uniqueID === user.uniqueID)
-      )
-    : res.sendStatus(401);
+  collaborativeDB.findOne(
+    "users",
+    { username: req.user.sub },
+    function ({ uniqueID }) {
+      collaborativeDB.findMany(
+        "tasks",
+        {
+          uniqueID,
+        },
+        function (results) {
+          res.json(results);
+        }
+      );
+    }
+  );
 });
 
 //  TODO Check if there is still need to find the User, it could be shortened through uniqueID in JWT
 //  TODO sendStatus(401) when error
 app.post("/api/tasks/create", authenticateToken, (req, res) => {
-  const { taskName, taskDescription, taskPriority } = req.body;
+  const {
+    uniqueID,
+    taskName,
+    taskDescription,
+    taskPriority,
+    kanbanID,
+  } = req.body;
 
   collaborativeDB.findOne(
     "users",
@@ -86,6 +98,7 @@ app.post("/api/tasks/create", authenticateToken, (req, res) => {
         taskName,
         taskDescription,
         taskPriority,
+        kanbanID,
       });
 
       res.sendStatus(200);
@@ -113,17 +126,21 @@ app.post("/debug/tasks/create", (req, res) => {
 });
 
 app.get("/api/projects", authenticateToken, (req, res) => {
-  //  TODO temporary expression, just to match-up username to uniqueID
-  const user = users.find((user) => user.username === req.user.sub);
-  //
-
-  user
-    ? res.json(
-        projectDatabaseInject.filter(
-          (projects) => projects.uniqueID === user.uniqueID
-        )
-      )
-    : res.sendStatus(401);
+  collaborativeDB.findOne(
+    "users",
+    { username: req.user.sub },
+    function ({ uniqueID }) {
+      collaborativeDB.findMany(
+        "projects",
+        {
+          uniqueID,
+        },
+        function (results) {
+          res.json(results);
+        }
+      );
+    }
+  );
 });
 
 app.post("/debug/projects/create", (req, res) => {

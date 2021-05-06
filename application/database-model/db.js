@@ -44,7 +44,13 @@ const collaborativeDB = {
     });
   },
 
-  findMany: function (collection, query, sort = null, projection = null) {
+  findMany: function (
+    collection,
+    query,
+    callback,
+    sort = null,
+    projection = null
+  ) {
     client.connect(url, options, function (err, db) {
       if (err) throw err;
       var database = db.db("collaborativeDB");
@@ -54,8 +60,8 @@ const collaborativeDB = {
         .sort(sort)
         .toArray(function (err, result) {
           if (err) throw err;
-          console.log(result);
           db.close();
+          callback(result);
         });
     });
   },
