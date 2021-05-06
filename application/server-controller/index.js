@@ -48,9 +48,12 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 app.post("/api/checkUsernameAvailability", (req, res) => {
+
+  var username = req.body.username.toLowerCase();
+
   collaborativeDB.findOne(
     "users",
-    { username: req.body.username },
+    { username: username },
     function (results) {
       results ? res.sendStatus(409) : res.sendStatus(200);
     }
@@ -58,9 +61,12 @@ app.post("/api/checkUsernameAvailability", (req, res) => {
 });
 
 app.post("/api/checkEmailAvailability", (req, res) => {
+  
+  var userEmail = req.body.email.toLowerCase();
+  
   collaborativeDB.findOne(
     "users",
-    { email: req.body.email },
+    { email: userEmail },
     function (results) {
       results ? res.sendStatus(409) : res.sendStatus(200);
     }
@@ -167,8 +173,8 @@ app.post("/api/registerUser", (req, res) => {
 
     let user = {
       uniqueID : totalID,
-      username,
-      email,
+      username : username.toLowerCase(),
+      email : email.toLowerCase(),
       password: hashedPassword,
     };
 
@@ -183,7 +189,7 @@ app.post("/api/registerUser", (req, res) => {
 app.post("/api/loginUser", (req, res) => {
   const { email, password } = req.body;
 
-  collaborativeDB.findOne("users", { email }, function (results) {
+  collaborativeDB.findOne("users", { email : email.toLowerCase() }, function (results) {
     if (results) {
       bcrypt.compare(password, results.password, (error, result) => {
         if (result) {

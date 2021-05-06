@@ -5,37 +5,37 @@ const axios = require("axios");
 const users = [
   {
     uniqueID: "0",
-    username: "TestUser",
+    username: "testuser",
     email: "a@gmail.com",
     password: "aaaaa",
   },
   {
     uniqueID: "1",
-    username: "AlyssaMerkadio",
-    email: "Alyssa21@gmail.com",
+    username: "alyssamerkadio",
+    email: "alyssa21@gmail.com",
     password: "WhitePeopleHappy",
   },
   {
     uniqueID: "2",
-    username: "JenkinsMarcolo",
-    email: "JMLeniel@dlsu.dasma.com.ph",
+    username: "jenkinsmarcolo",
+    email: "jmleniel@dlsu.dasma.com.ph",
     password: "Jokrill",
   },
   {
     uniqueID: "3",
-    username: "MalakaiMerquin",
-    email: "Malakai@yahoo.com",
+    username: "malakaimerquin",
+    email: "malakai@yahoo.com",
     password: "boyoingOW",
   },
   {
     uniqueID: "4",
-    username: "PanteneDenise",
-    email: "OPFracture@yahoo.com",
+    username: "pantenedenise",
+    email: "opfracture@yahoo.com",
     password: "SolarMower",
   },
   {
     uniqueID: "5",
-    username: "QueneVictoria",
+    username: "quenevictoria",
     email: "Qazujm@daporta.com.eu",
     password:
       "KP0c@vGu7ysp4EgoFHOUdqv*Tb#m2^K8NW^T!cc8KO!XSOn&K#yUz25DJmYzFTGCq9lrTjy#",
