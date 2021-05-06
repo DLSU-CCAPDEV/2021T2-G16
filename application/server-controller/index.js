@@ -1,11 +1,11 @@
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
+const collaborativeDB = require("../database-model/db");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const express = require("express");
+const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 const path = require("path");
-const collaborativeDB = require("../database-model/db");
 
 const saltRounds = 10;
 
@@ -15,27 +15,6 @@ dotenv.config();
 
 port = process.env.PORT || 3000;
 hostname = process.env.HOSTNAME;
-
-//  TODO inject into mongoDB in this statement
-const addToUserDatabase = ({ uniqueID, username, email, password }) => {
-  bcrypt.hash(password, saltRounds, (error, hashedPassword) => {
-    
-    if (error) {
-      console.log(error);
-    }
-
-    var user = {
-        uniqueID : uniqueID,
-        username : username,
-        email : email, 
-        password : hashedPassword
-    }
-
-    collaborativeDB.insertOne('users' , user);
-    
-   // users.push({ uniqueID, username, email, password: hashedPassword });
-  });
-};
 
 const authenticateToken = (req, res, next) => {
   const authenticationHeader = req.headers["authorization"];
@@ -55,45 +34,140 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-//  TODO: Delete this temp injection
-const users = [];
+//  TODO add cors() for extra security
+// app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.json());
 
-addToUserDatabase({
-  uniqueID: "1",
-  username: "TestUser",
-  email: "a@gmail.com",
-  password: "a",
+app.post("/api/checkUsernameAvailability", (req, res) => {
+  collaborativeDB.findOne(
+    "users",
+    { username: req.body.username },
+    function (results) {
+      results ? res.sendStatus(409) : res.sendStatus(200);
+    }
+  );
 });
-addToUserDatabase({
-  uniqueID: "2",
-  username: "AlyssaMerkadio",
-  email: "Alyssa21@gmail.com",
-  password: "WhitePeopleHappy",
+
+app.post("/api/checkEmailAvailability", (req, res) => {
+  collaborativeDB.findOne(
+    "users",
+    { email: req.body.email },
+    function (results) {
+      results ? res.sendStatus(409) : res.sendStatus(200);
+    }
+  );
 });
-addToUserDatabase({
-  uniqueID: "3",
-  username: "JenkinsMarcolo",
-  email: "JMLeniel@dlsu.dasma.com.ph",
-  password: "Jokrill",
+
+//  TODO db
+app.get("/api/tasks", authenticateToken, (req, res) => {
+  //  TODO temporary expression, just to match-up username to uniqueID
+  const user = users.find((user) => user.username === req.user.sub);
+  //
+
+  user
+    ? res.json(
+        taskDatabseInject.filter((task) => task.uniqueID === user.uniqueID)
+      )
+    : res.sendStatus(401);
 });
-addToUserDatabase({
-  uniqueID: "4",
-  username: "MalakaiMerquin",
-  email: "Malakai@yahoo.com",
-  password: "boyoingOW",
+
+//  TODO db
+app.post("/api/tasks/create", authenticateToken, (req, res) => {
+  //  TODO temporary expression, just to match-up username to uniqueID
+  const user = users.find((user) => user.username === req.user.sub);
+  const { taskName, taskDescription, taskPriority } = req.body;
+  //
+
+  if (user) {
+    taskDatabseInject.push({
+      uniqueID: user.uniqueID,
+      taskName,
+      taskDescription,
+      taskPriority,
+    });
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(401);
+  }
 });
-addToUserDatabase({
-  uniqueID: "5",
-  username: "PanteneDenise",
-  email: "OPFracture@yahoo.com",
-  password: "SolarMower",
+
+//  TODO db
+app.get("/api/projects", authenticateToken, (req, res) => {
+  //  TODO temporary expression, just to match-up username to uniqueID
+  const user = users.find((user) => user.username === req.user.sub);
+  //
+
+  user
+    ? res.json(
+        projectDatabaseInject.filter(
+          (projects) => projects.uniqueID === user.uniqueID
+        )
+      )
+    : res.sendStatus(401);
 });
-addToUserDatabase({
-  uniqueID: "6",
-  username: "Quene Victoria",
-  email: "Qazujm@daporta.com.eu",
-  password:
-    "KP0c@vGu7ysp4EgoFHOUdqv*Tb#m2^K8NW^T!cc8KO!XSOn&K#yUz25DJmYzFTGCq9lrTjy#",
+
+app.post("/api/registerUser", (req, res) => {
+  const { uniqueID, username, email, password } = req.body;
+
+  bcrypt.hash(password, saltRounds, (error, hashedPassword) => {
+    if (error) {
+      console.log(error);
+    }
+
+    let user = {
+      uniqueID,
+      username,
+      email,
+      password: hashedPassword,
+    };
+
+    collaborativeDB.insertOne("users", user);
+  });
+
+  //  TODO Check if it is possible that there is an error
+  res.sendStatus(200);
+});
+
+app.post("/api/loginUser", (req, res) => {
+  const { email, password } = req.body;
+
+  collaborativeDB.findOne("users", { email }, function (results) {
+    if (!results) {
+      bcrypt.compare(password, results.password, (error, result) => {
+        if (result) {
+          const accessToken = jwt.sign(
+            { sub: results.username },
+            process.env.ACCESS_TOKEN_SECRET
+          );
+
+          res.json({ accessToken });
+        } else {
+          console.log(error);
+          res.sendStatus(401);
+        }
+      });
+    } else {
+      res.sendStatus(401);
+    }
+  });
+});
+
+app.use(
+  "/static",
+  express.static(path.join(__dirname, "../client-view/build//static"))
+);
+
+app.get("*", (req, res) => {
+  res.sendFile("index.html", {
+    root: path.join(__dirname, "../client-view/build/"),
+  });
+});
+
+app.listen(port, hostname, function () {
+  console.log("Server Running at:");
+  console.log("http://" + hostname + ":" + port);
 });
 
 projectDatabaseInject = [
@@ -547,172 +621,3 @@ const taskDatabseInject = [
     taskPriority: "high",
   },
 ];
-
-//
-
-//  TODO add cors() for extra security
-// app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.json());
-
-app.post("/api/checkUsernameAvailability", (req, res) => {
-
-
-  collaborativeDB.findOne('users' , {username : req.body.username} , function(results) {
-      if(results != null)
-        res.sendStatus(409);
-      else
-        res.sendStatus(200);
-    });
-
-
-  /*
-  const user = users.find((user) => user.username === req.body.username);
-
-  user ? res.sendStatus(409) : res.sendStatus(200);
-  */
-});
-
-app.post("/api/checkEmailAvailability", (req, res) => {
-
-  collaborativeDB.findOne('users' , {email : req.body.email} , function(results) {
-      if(results != null)
-        res.sendStatus(409);
-      else
-        res.sendStatus(200);
-  });
-
-  /*
-  const user = users.find((user) => user.username === req.user.sub);
-
-  user ? res.sendStatus(409) : res.sendStatus(200);
-  */
-});
-
-app.get("/api/tasks", authenticateToken, (req, res) => {
-  //  TODO temporary expression, just to match-up username to uniqueID
-  const user = users.find((user) => user.username === req.user.sub);
-  //
-
-  user
-    ? res.json(
-        taskDatabseInject.filter((task) => task.uniqueID === user.uniqueID)
-      )
-    : res.sendStatus(401);
-});
-
-app.post("/api/tasks/create", authenticateToken, (req, res) => {
-  //  TODO temporary expression, just to match-up username to uniqueID
-  const user = users.find((user) => user.username === req.user.sub);
-  const { taskName, taskDescription, taskPriority } = req.body;
-  //
-
-  if (user) {
-    taskDatabseInject.push({
-      uniqueID: user.uniqueID,
-      taskName,
-      taskDescription,
-      taskPriority,
-    });
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(401);
-  }
-});
-
-app.get("/api/projects", authenticateToken, (req, res) => {
-  //  TODO temporary expression, just to match-up username to uniqueID
-  const user = users.find((user) => user.username === req.user.sub);
-  //
-
-  user
-    ? res.json(
-        projectDatabaseInject.filter(
-          (projects) => projects.uniqueID === user.uniqueID
-        )
-      )
-    : res.sendStatus(401);
-});
-
-app.post("/api/registerUser", (req, res) => {
-  addToUserDatabase(req.body);
-
-  //  TODO Check if it is possible that there is an error
-  res.sendStatus(200);
-});
-
-app.post("/api/loginUser", (req, res) => {
-  const { email, password } = req.body;
-
-  //  TODO request from mongoDB in this statemen
-  /*
-  const user = users.find(
-    (user) => user.email.toLowerCase() === email.toLowerCase()
-  );
-  */
-  collaborativeDB.findOne('users' , {email : req.body.email} , function(results){
-    if(results != null)
-      bcrypt.compare(password, results.password, (error, result) => {
-        if (result) {
-          //  TODO replace property value w/ uniqueID
-          const accessToken = jwt.sign(
-            { sub: results.username },
-            process.env.ACCESS_TOKEN_SECRET
-          );
-
-          res.json({ accessToken });
-        } else {
-          res.sendStatus(401);
-        }
-      })
-    else
-      res.sendStatus(401);
-  });
-
-
-
-
-
-
-  /*
-  user
-    ? bcrypt.compare(password, user.password, (error, result) => {
-        if (result) {
-          //  TODO replace property value w/ uniqueID
-          const accessToken = jwt.sign(
-            { sub: user.username },
-            process.env.ACCESS_TOKEN_SECRET
-          );
-
-          res.json({ accessToken });
-        } else {
-          res.sendStatus(401);
-        }
-      })
-    : res.sendStatus(401);
-
-    */
-});
-
-//  TODO Debug tool, Remove when deployed
-app.get("/debug/userProfiles", (req, res) => {
-  res.send(users);
-});
-
-app.use(
-  "/static",
-  express.static(path.join(__dirname, "../client-view/build//static"))
-);
-
-app.get("*", (req, res) => {
-  res.sendFile("index.html", {
-    root: path.join(__dirname, "../client-view/build/"),
-  });
-});
-
-// Bounding Server (Essentially checking if the server is listening (working))
-app.listen(port, hostname, function () {
-  console.log("Server Running at:");
-  console.log("http://" + hostname + ":" + port);
-});
