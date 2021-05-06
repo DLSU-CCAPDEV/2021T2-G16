@@ -11,10 +11,17 @@ const saltRounds = 10;
 
 const app = express(); // Initialize Express Server
 
+var totalID = 1; // total Amount of UniqueID's in the database
+
 dotenv.config();
 
 port = process.env.PORT || 3000;
 hostname = process.env.HOSTNAME;
+
+// This is to get the total amount of users saved in the database
+collaborativeDB.totalCount('users' , function(results) {
+  totalID = results.count;
+});
 
 const authenticateToken = (req, res, next) => {
   const authenticationHeader = req.headers["authorization"];
@@ -156,15 +163,17 @@ app.post("/api/registerUser", (req, res) => {
     if (error) {
       console.log(error);
     }
+    
 
     let user = {
-      uniqueID,
+      uniqueID : totalID,
       username,
       email,
       password: hashedPassword,
     };
 
     collaborativeDB.insertOne("users", user);
+    totalID = totalID + 1;
   });
 
   //  TODO Check if it is possible that there is an error
