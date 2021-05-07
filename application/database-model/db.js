@@ -9,17 +9,6 @@ const url =
 const options = { useUnifiedTopology: true };
 
 const collaborativeDB = {
-  totalCount: function (collection, callback) {
-    client.connect(url, options, function (err, db) {
-      if (err) throw err;
-      var database = db.db("collaborativeDB");
-      database.collection(collection).stats(function (err, stats) {
-        if (err) throw err;
-        db.close();
-        return callback(stats);
-      });
-    });
-  },
 
   insertOne: function (collection, doc) {
     client.connect(url, options, function (err, db) {
