@@ -5,3 +5,10 @@
   min-height: 260px;
   max-height: 260px;
 }
+
+.ProjectPreviewList_Loader {
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}

@@ -2,10 +2,8 @@ import axios from "axios";
 import Confetti from "../../assets/Confetti.svg";
 import Loader from "react-loader-spinner";
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 import { isEqual } from "lodash";
 import { Link } from "react-router-dom";
-import { taskDelete } from "../../actions";
 
 import TaskPreviewItem from "./TaskPreviewItem/TaskPreviewItem";
 import styles from "./TaskPreviewList.module.css";
@@ -110,14 +108,4 @@ const TaskPreviewList = ({ taskDelete, primary, handleOnClick }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { taskReducer, currentUserReducer } = state;
-
-  return {
-    taskItems: taskReducer.filter(
-      (item) => item.uniqueID === currentUserReducer.uniqueID
-    ),
-  };
-};
-
-export default connect(mapStateToProps, { taskDelete })(TaskPreviewList);
+export default TaskPreviewList;

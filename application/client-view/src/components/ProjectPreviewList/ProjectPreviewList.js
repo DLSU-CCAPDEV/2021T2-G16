@@ -1,6 +1,6 @@
 import axios from "axios";
+import Loader from "react-loader-spinner";
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 import { isEqual } from "lodash";
 import styles from "./ProjectPreviewList.module.css";
 
@@ -11,9 +11,10 @@ const ProjectPreviewList = ({
   horizontalScroll,
   onlyFavourites,
 }) => {
-  const [projectItems, setProjectItems] = useState([]);
+  const [projectItems, setProjectItems] = useState(null);
 
   useEffect(async () => {
+    //  TODO Display "Error" design when error promise
     await axios
       .get("/api/projects", {
         headers: {
@@ -54,17 +55,16 @@ const ProjectPreviewList = ({
   };
 
   return (
-    <div className={styles.ProjectPreviewList}>{renderProjectItems()}</div>
+    <div className={styles.ProjectPreviewList}>
+      {projectItems ? (
+        renderProjectItems()
+      ) : (
+        <div className={styles.ProjectPreviewList_Loader}>
+          <Loader type="Oval" color="gainsboro" height={100} width={100} />
+        </div>
+      )}
+    </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  const { projectReducer, currentUserReducer } = state;
-  return {
-    projectItems: projectReducer.filter((item) => {
-      return item.uniqueID === currentUserReducer.uniqueID;
-    }),
-  };
-};
-
-export default connect(mapStateToProps)(ProjectPreviewList);
+export default ProjectPreviewList;
