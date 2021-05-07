@@ -9,7 +9,20 @@ const url =
 const options = { useUnifiedTopology: true };
 
 const collaborativeDB = {
+  //  MISCELLANEOUS
+  totalCount: function (collection, callback) {
+    client.connect(url, options, function (err, db) {
+      if (err) throw err;
+      var database = db.db("collaborativeDB");
+      database.collection(collection).stats(function (err, stats) {
+        if (err) throw err;
+        db.close();
+        return callback(stats);
+      });
+    });
+  },
 
+  //  CREATE
   insertOne: function (collection, doc) {
     client.connect(url, options, function (err, db) {
       if (err) throw err;
@@ -34,6 +47,7 @@ const collaborativeDB = {
     });
   },
 
+  //  READ
   findOne: function (collection, query, callback) {
     client.connect(url, options, function (err, db) {
       if (err) throw err;
@@ -68,30 +82,7 @@ const collaborativeDB = {
     });
   },
 
-  deleteOne: function (collection, filter) {
-    client.connect(url, options, function (err, db) {
-      if (err) throw err;
-      var database = db.db("collaborativeDB");
-      database.collection(collection).deleteOne(filter, function (err, res) {
-        if (err) throw err;
-        console.log("1 document deleted");
-        db.close();
-      });
-    });
-  },
-
-  deleteMany: function (collection, filter) {
-    client.connect(url, options, function (err, db) {
-      if (err) throw err;
-      var database = db.db("collaborativeDB");
-      database.collection(collection).deleteMany(filter, function (err, res) {
-        if (err) throw err;
-        console.log("Document deleted :" + res.deletedCount);
-        db.close();
-      });
-    });
-  },
-
+  //  UPDATE
   updateOne: function (collection, filter, update) {
     client.connect(url, options, function (err, db) {
       if (err) throw err;
@@ -119,6 +110,31 @@ const collaborativeDB = {
           console.log("Document updated :" + res.modifiedCount);
           db.close();
         });
+    });
+  },
+
+  //  DELETE
+  deleteOne: function (collection, filter) {
+    client.connect(url, options, function (err, db) {
+      if (err) throw err;
+      var database = db.db("collaborativeDB");
+      database.collection(collection).deleteOne(filter, function (err, res) {
+        if (err) throw err;
+        console.log("1 document deleted");
+        db.close();
+      });
+    });
+  },
+
+  deleteMany: function (collection, filter) {
+    client.connect(url, options, function (err, db) {
+      if (err) throw err;
+      var database = db.db("collaborativeDB");
+      database.collection(collection).deleteMany(filter, function (err, res) {
+        if (err) throw err;
+        console.log("Document deleted :" + res.deletedCount);
+        db.close();
+      });
     });
   },
 };

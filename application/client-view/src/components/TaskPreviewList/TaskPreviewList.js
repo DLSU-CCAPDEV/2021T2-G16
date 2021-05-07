@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import TaskPreviewItem from "./TaskPreviewItem/TaskPreviewItem";
 import styles from "./TaskPreviewList.module.css";
 
-const TaskPreviewList = ({ taskDelete, primary, handleOnClick }) => {
+const TaskPreviewList = ({ taskDelete, primary, handleOnEdit }) => {
   const [taskItems, setTaskItems] = useState(null);
 
   useEffect(async () => {
@@ -34,16 +34,16 @@ const TaskPreviewList = ({ taskDelete, primary, handleOnClick }) => {
     const tasksTreshold = 5;
 
     return [
-      ...taskItems.map((item, index) => {
+      ...taskItems.map((taskItem, index) => {
         if (index + 1 < tasksTreshold || primary) {
           return (
             <div>
               <div className={styles.Item__Border}>
                 <TaskPreviewItem
-                  taskProps={item}
+                  taskProps={taskItem}
+                  handleOnEdit={handleOnEdit}
                   handleOnDelete={handleOnDelete}
                   primary={primary}
-                  handleOnClick={handleOnClick}
                 />
               </div>
               {primary && index + 1 === taskItems.length ? null : <hr />}

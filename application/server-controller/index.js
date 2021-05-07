@@ -84,13 +84,7 @@ app.get("/api/tasks", authenticateToken, (req, res) => {
 //  TODO Check if there is still need to find the User, it could be shortened through uniqueID in JWT
 //  TODO sendStatus(401) when error
 app.post("/api/tasks/create", authenticateToken, (req, res) => {
-  const {
-    uniqueID,
-    taskName,
-    taskDescription,
-    taskPriority,
-    kanbanID,
-  } = req.body;
+  const { taskName, taskDescription, taskPriority, kanbanID } = req.body;
 
   collaborativeDB.findOne(
     "users",
@@ -103,6 +97,34 @@ app.post("/api/tasks/create", authenticateToken, (req, res) => {
         taskPriority,
         kanbanID,
       });
+
+      res.sendStatus(200);
+    }
+  );
+});
+
+app.post("/api/tasks/update", authenticateToken, (req, res) => {
+  const { taskName, taskDescription, taskPriority, oldTaskName } = req.body;
+
+  collaborativeDB.findOne(
+    "users",
+    { username: req.user.sub },
+    function ({ uniqueID }) {
+      collaborativeDB.findOne(
+        "tasks",
+        {
+          uniqueID,
+        },
+        function (results) {
+          collaborativeDB.updateOne(
+            "tasks",
+            { uniqueID, taskName: oldTaskName },
+            {
+              $set: { taskName: taskName, taskDescription, taskPriority },
+            }
+          );
+        }
+      );
 
       res.sendStatus(200);
     }

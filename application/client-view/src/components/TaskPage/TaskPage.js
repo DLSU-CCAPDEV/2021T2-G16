@@ -1,10 +1,10 @@
+import * as Yup from "yup";
 import axios from "axios";
+import Popup from "reactjs-popup";
 import React, { useState } from "react";
+import styles from "./TaskPage.module.css";
 import { Formik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
-import Popup from "reactjs-popup";
-import * as Yup from "yup";
-import styles from "./TaskPage.module.css";
 
 import {
   Division,
@@ -21,7 +21,7 @@ const taskSchema = Yup.object().shape({
   taskName: Yup.string()
     .required("Task must have a name")
     .min(5, "Task name is too short - at least 5 characters.")
-    .max(20, "Task name is too long - at most 20 characters."),
+    .max(50, "Task name is too long - at most 50 characters."),
   taskDescription: Yup.string(),
   taskPriority: Yup.string(),
 });
@@ -30,6 +30,7 @@ const taskSchema = Yup.object().shape({
 const TaskPage = () => {
   const [isAddTaskModalEnabled, setAddTaskModalStatus] = useState(false);
   const [isEditTaskModalEnabled, setEditTaskModalStatus] = useState(false);
+  const [taskToBeEdited, setTaskToBeEdited] = useState(null);
 
   const renderAddTaskModal = () => {
     return (
@@ -50,7 +51,6 @@ const TaskPage = () => {
             }}
             validationSchema={taskSchema}
             onSubmit={async (formData) => {
-              console.table(formData);
               const queryString = new URLSearchParams(formData).toString();
 
               await axios
@@ -126,14 +126,25 @@ const TaskPage = () => {
         <FormDesign width="500px" className={styles.TaskPage_Form}>
           <Formik
             initialValues={{
-              // TODO inject what the task's data in initialValues
-              taskName: "",
-              taskDescription: "",
-              taskPriority: 1,
+              taskName: taskToBeEdited ? taskToBeEdited.taskName : "",
+              taskDescription: taskToBeEdited
+                ? taskToBeEdited.taskDescription
+                : "",
+              taskPriority: taskToBeEdited ? taskToBeEdited.taskPriority : "",
             }}
             validationSchema={taskSchema}
-            onSubmit={(formData) => {
-              const data = JSON.stringify(formData, null, 2);
+            onSubmit={async (formData) => {
+              formData.oldTaskName = taskToBeEdited.taskName;
+
+              const queryString = new URLSearchParams(formData).toString();
+
+              await axios.post("/api/tasks/update", queryString, {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem(
+                    "accessToken"
+                  )}`,
+                },
+              });
               setEditTaskModalStatus(false);
             }}
           >
@@ -190,7 +201,8 @@ const TaskPage = () => {
       <div className={`narrowPage ${styles.List}`}>
         <TaskPreviewList
           primary
-          handleOnClick={() => {
+          handleOnEdit={(taskItem) => {
+            setTaskToBeEdited(taskItem);
             setEditTaskModalStatus(true);
           }}
         />
