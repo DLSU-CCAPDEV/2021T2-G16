@@ -19,11 +19,9 @@ port = process.env.PORT || 3000;
 hostname = process.env.HOSTNAME;
 
 // This is to get the total amount of Unique ID's given to the user
-collaborativeDB.findOne("IDSettings" , { } , function(results){
+collaborativeDB.findOne("IDSettings", {}, function (results) {
   totalID = results.max_id;
 });
-
-
 
 const authenticateToken = (req, res, next) => {
   const authenticationHeader = req.headers["authorization"];
@@ -187,12 +185,15 @@ app.post("/api/registerUser", (req, res) => {
     };
 
     collaborativeDB.insertOne("users", user);
-    collaborativeDB.updateOne("IDSettings" , { max_id : totalID } , {
-      $set : {
-        max_id : totalID + 1,
+    collaborativeDB.updateOne(
+      "IDSettings",
+      { max_id: totalID },
+      {
+        $set: {
+          max_id: totalID + 1,
+        },
       }
-        
-    });
+    );
 
     totalID += 1;
   });
