@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import Confetti from "../../assets/Confetti.svg";
+import Loader from "react-loader-spinner";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { isEqual } from "lodash";
 import { Link } from "react-router-dom";
@@ -10,7 +11,7 @@ import TaskPreviewItem from "./TaskPreviewItem/TaskPreviewItem";
 import styles from "./TaskPreviewList.module.css";
 
 const TaskPreviewList = ({ taskDelete, primary, handleOnClick }) => {
-  const [taskItems, setTaskItems] = useState([]);
+  const [taskItems, setTaskItems] = useState(null);
 
   useEffect(async () => {
     //  TODO Display "Error" design when error promise
@@ -66,8 +67,8 @@ const TaskPreviewList = ({ taskDelete, primary, handleOnClick }) => {
     <div
       className={`${styles.TaskPreviewList} ${
         primary
-          ? styles.TaskPreviewList_Primary
-          : styles.TaskPreviewList_Secondary
+          ? styles.TaskPreviewList__Primary
+          : styles.TaskPreviewList__Secondary
       }`}
     >
       <div className={styles.Header}>
@@ -83,18 +84,26 @@ const TaskPreviewList = ({ taskDelete, primary, handleOnClick }) => {
         </span>
       </div>
       <hr />
-      {taskItems.length >= 1 ? (
-        <ul
-          className={`${styles.List} ${
-            primary ? styles.List__Primary : styles.List__Secondary
-          }`}
-        >
-          {renderTaskItems()}
-        </ul>
+      {taskItems ? (
+        taskItems.length >= 1 ? (
+          <ul
+            className={`${styles.List} ${
+              primary ? styles.List__Primary : styles.List__Secondary
+            }`}
+          >
+            {renderTaskItems()}
+          </ul>
+        ) : (
+          <div
+            className={`${styles.Message} ${styles.TaskPreviewList_Display}`}
+          >
+            <img src={Confetti} alt="Confetti!" />
+            <span>Congratulations! You currently have no impending tasks.</span>
+          </div>
+        )
       ) : (
-        <div className={styles.Message}>
-          <img src={Confetti} alt="Confetti!" />
-          <span>Congratulations! You currently have no impending tasks.</span>
+        <div className={`${styles.Message} ${styles.TaskPreviewList_Display}`}>
+          <Loader type="Grid" color="gainsboro" height={100} width={100} />
         </div>
       )}
     </div>

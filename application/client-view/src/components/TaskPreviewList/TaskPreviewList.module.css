@@ -6,9 +6,10 @@
 }
 
 .TaskPreviewList__Primary {
+  flex: 1 1 auto;
 }
 
-.TaskPreviewList_Secondary {
+.TaskPreviewList__Secondary {
   box-shadow: 0 0 5px 3px #c0c0c0;
   padding: 20px 30px;
   border-radius: 10px;
@@ -16,6 +17,14 @@
 
 .TaskPreviewList hr {
   border: 1px solid #b0c3dc65;
+}
+
+.TaskPreviewList_Display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 1 100%;
+  overflow-y: auto;
 }
 
 .Header {
