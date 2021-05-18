@@ -1,5 +1,3 @@
-import { isEqual } from "lodash";
-
 const initialState = {
   loading: false,
   tasks: [],

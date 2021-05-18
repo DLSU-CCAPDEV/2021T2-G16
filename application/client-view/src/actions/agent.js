@@ -9,6 +9,7 @@ var authenticationHeader = {
 const TaskAPI = {
   get: async (dispatch) => {
     dispatch({ type: "TASK_FETCH_REQUEST" });
+
     await axios.get("/api/tasks/get", authenticationHeader).then((res) => {
       dispatch({ type: "TASK_FETCH_SUCCESS", payload: res.data });
     });
@@ -42,6 +43,19 @@ const TaskAPI = {
   },
 };
 
+const ProjectAPI = {
+  get: async (dispatch) => {
+    dispatch({ type: "PROJECT_FETCH_REQUEST" });
+
+    await axios
+      .get("/api/projects/get", authenticationHeader)
+      .then((res) =>
+        dispatch({ type: "PROJECT_FETCH_SUCCESS", payload: res.data })
+      );
+  },
+};
+
 export default {
+  ProjectAPI,
   TaskAPI,
 };

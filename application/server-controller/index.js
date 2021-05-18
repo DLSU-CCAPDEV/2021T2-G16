@@ -158,7 +158,7 @@ app.post("/debug/tasks/create", (req, res) => {
   res.sendStatus(200);
 });
 
-app.get("/api/projects", authenticateToken, (req, res) => {
+app.get("/api/projects/get", authenticateToken, (req, res) => {
   collaborativeDB.findOne(
     "users",
     { username: req.user.sub },

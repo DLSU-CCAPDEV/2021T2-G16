@@ -1,9 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
-import ProjectPreviewList from "../ProjectPreviewList/ProjectPreviewList";
 import styles from "./ProjectOverviewPage.module.css";
 
-const ProjectOverviewPage = ({ projectItems }) => {
+import ProjectPreviewList from "../ProjectPreviewList/ProjectPreviewList";
+
+const ProjectOverviewPage = () => {
   return (
     <section
       className={`narrowPage minisculePage ${styles.ProjectOverviewPage}`}
@@ -34,14 +34,4 @@ const ProjectOverviewPage = ({ projectItems }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { projectReducer, currentUserReducer } = state;
-
-  return {
-    projectItems: projectReducer.filter(
-      (item) => item.uniqueID === currentUserReducer.uniqueID
-    ),
-  };
-};
-
-export default connect(mapStateToProps)(ProjectOverviewPage);
+export default ProjectOverviewPage;

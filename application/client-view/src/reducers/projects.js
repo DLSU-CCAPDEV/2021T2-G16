@@ -1,8 +1,21 @@
-export default (projectDatabaseReducer = [], action) => {
+const initialState = {
+  loading: false,
+  projects: [],
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
-    case "PROJECT_CREATE":
-      return [...projectDatabaseReducer, action.payload];
+    case "PROJECT_FETCH_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "PROJECT_FETCH_SUCCESS":
+      return {
+        loading: false,
+        projects: action.payload,
+      };
     default:
-      return projectDatabaseReducer;
+      return state;
   }
 };
