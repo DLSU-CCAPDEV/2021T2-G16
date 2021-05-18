@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import HomePage_Logo from "../../assets/HomePage_Logo.svg";
 import Project_Icon__Black from "../../assets/Projects_Icon__Black.svg";
 import ProjectPreviewList from "../ProjectPreviewList/ProjectPreviewList";

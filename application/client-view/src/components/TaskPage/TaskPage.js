@@ -1,21 +1,21 @@
 import * as Yup from "yup";
-import axios from "axios";
 import Popup from "reactjs-popup";
 import React, { useState } from "react";
 import styles from "./TaskPage.module.css";
+import { connect } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import { Link } from "react-router-dom";
 
+import agent from "../../actions/agent";
+import Button from "../Button/Button";
+import CloseButton from "../../assets/CloseButton.svg";
+import New__White from "../../assets/New__White.svg";
+import TaskPreviewList from "../TaskPreviewList/TaskPreviewList";
 import {
   Division,
   FormDesign,
   FieldWithError,
   RowDivision,
 } from "../FormDesign/FormDesign";
-import Button from "../Button/Button";
-import CloseButton from "../../assets/CloseButton.svg";
-import New__White from "../../assets/New__White.svg";
-import TaskPreviewList from "../TaskPreviewList/TaskPreviewList";
 
 const taskSchema = Yup.object().shape({
   taskName: Yup.string()
@@ -26,8 +26,13 @@ const taskSchema = Yup.object().shape({
   taskPriority: Yup.string(),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onCreate: (taskData) => agent.TaskAPI.create(dispatch, taskData),
+  onEdit: (taskData) => agent.TaskAPI.edit(dispatch, taskData),
+});
+
 // TODO Fix misalignment styling whenever there there is no more scroll
-const TaskPage = () => {
+const TaskPage = ({ onCreate, onEdit }) => {
   const [isAddTaskModalEnabled, setAddTaskModalStatus] = useState(false);
   const [isEditTaskModalEnabled, setEditTaskModalStatus] = useState(false);
   const [taskToBeEdited, setTaskToBeEdited] = useState(null);
@@ -50,20 +55,8 @@ const TaskPage = () => {
               taskPriority: "low",
             }}
             validationSchema={taskSchema}
-            onSubmit={async (formData) => {
-              const queryString = new URLSearchParams(formData).toString();
-
-              await axios
-                .post("/api/tasks/create", queryString, {
-                  headers: {
-                    Authorization: `Bearer ${localStorage.getItem(
-                      "accessToken"
-                    )}`,
-                  },
-                })
-                .then((response) => {})
-                .catch((error) => console.log(error));
-
+            onSubmit={(formData) => {
+              onCreate(formData);
               setAddTaskModalStatus(false);
             }}
           >
@@ -136,15 +129,7 @@ const TaskPage = () => {
             onSubmit={async (formData) => {
               formData.oldTaskName = taskToBeEdited.taskName;
 
-              const queryString = new URLSearchParams(formData).toString();
-
-              await axios.post("/api/tasks/update", queryString, {
-                headers: {
-                  Authorization: `Bearer ${localStorage.getItem(
-                    "accessToken"
-                  )}`,
-                },
-              });
+              onEdit(formData);
               setEditTaskModalStatus(false);
             }}
           >
@@ -177,8 +162,8 @@ const TaskPage = () => {
                     />
                   </Division>
                   <RowDivision>
-                    <label for="priorities">Priority</label>
-                    <Field name="priorities" as="select">
+                    <label for="taskPriority">Priority</label>
+                    <Field name="taskPriority" as="select">
                       <option value="low">Low</option>
                       <option value="medium">Medium</option>
                       <option value="high">High</option>
@@ -227,4 +212,4 @@ const TaskPage = () => {
   );
 };
 
-export default TaskPage;
+export default connect(() => {}, mapDispatchToProps)(TaskPage);

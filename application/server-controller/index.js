@@ -63,7 +63,7 @@ app.post("/api/checkEmailAvailability", (req, res) => {
   });
 });
 
-app.get("/api/tasks", authenticateToken, (req, res) => {
+app.get("/api/tasks/get", authenticateToken, (req, res) => {
   collaborativeDB.findOne(
     "users",
     { username: req.user.sub },
@@ -131,14 +131,22 @@ app.post("/api/tasks/update", authenticateToken, (req, res) => {
   );
 });
 
-app.post("/debug/tasks/create", (req, res) => {
-  const {
-    uniqueID,
+app.post("/api/tasks/delete", authenticateToken, (req, res) => {
+  const { uniqueID, taskName, taskDescription, taskPriority } = req.body;
+
+  collaborativeDB.deleteOne("tasks", {
+    uniqueID: Number.parseInt(uniqueID),
     taskName,
     taskDescription,
     taskPriority,
-    kanbanID,
-  } = req.body;
+  });
+
+  res.sendStatus(200);
+});
+
+app.post("/debug/tasks/create", (req, res) => {
+  const { uniqueID, taskName, taskDescription, taskPriority, kanbanID } =
+    req.body;
 
   collaborativeDB.insertOne("tasks", {
     uniqueID,

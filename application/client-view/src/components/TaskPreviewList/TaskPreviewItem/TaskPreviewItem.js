@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import styles from "./TaskPreviewItem.module.css";
+import { connect } from "react-redux";
 
+import agent from "../../../actions/agent";
 import CheckMark from "../../../assets/Checkmark.svg";
 import CheckMark__Checked from "../../../assets/Checkmark__Checked.svg";
 import EditTask from "../../../assets/EditTask.svg";
 import PrioritySignal from "../PrioritySignal/PrioritySignal";
 
-const TaskPreviewItem = ({ taskProps, handleOnDelete, handleOnEdit }) => {
+const mapDispatchToProps = (dispatch) => ({
+  onDelete: (taskData) => agent.TaskAPI.delete(dispatch, taskData),
+});
+
+const TaskPreviewItem = ({ taskProps, onDelete, handleOnEdit }) => {
   const [isHoveredOn, toggleHover] = useState(false);
 
   const renderPriority = () => {
@@ -31,7 +37,7 @@ const TaskPreviewItem = ({ taskProps, handleOnDelete, handleOnEdit }) => {
         src={isHoveredOn ? CheckMark__Checked : CheckMark}
         onMouseEnter={() => toggleHover(true)}
         onMouseLeave={() => toggleHover(false)}
-        onClick={() => handleOnDelete(taskProps)}
+        onClick={() => onDelete(taskProps)}
         alt="Check this Task"
         className={styles.TaskPreviewItem_Check}
       />
@@ -41,4 +47,4 @@ const TaskPreviewItem = ({ taskProps, handleOnDelete, handleOnEdit }) => {
   );
 };
 
-export default TaskPreviewItem;
+export default connect(null, mapDispatchToProps)(TaskPreviewItem);

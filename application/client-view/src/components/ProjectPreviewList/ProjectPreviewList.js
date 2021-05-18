@@ -18,7 +18,7 @@ const ProjectPreviewList = ({
     await axios
       .get("/api/projects", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer  `,
         },
       })
       .then((response) => {

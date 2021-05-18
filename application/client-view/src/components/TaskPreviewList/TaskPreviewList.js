@@ -1,40 +1,31 @@
-import axios from "axios";
-import Confetti from "../../assets/Confetti.svg";
 import Loader from "react-loader-spinner";
-import React, { useEffect, useState } from "react";
-import { isEqual } from "lodash";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./TaskPreviewList.module.css";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import agent from "../../actions/agent";
+import Confetti from "../../assets/Confetti.svg";
 import TaskPreviewItem from "./TaskPreviewItem/TaskPreviewItem";
-import styles from "./TaskPreviewList.module.css";
 
-const TaskPreviewList = ({ taskDelete, primary, handleOnEdit }) => {
-  const [taskItems, setTaskItems] = useState(null);
+const mapStateToProps = (state) => {
+  return { taskItems: state.taskReducer };
+};
 
-  useEffect(async () => {
-    //  TODO Display "Error" design when error promise
-    await axios
-      .get("/api/tasks", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        if (!isEqual(response.data, taskItems)) {
-          setTaskItems(response.data);
-        }
-      });
-  });
+const mapDispatchToProps = (dispatch) => ({
+  onLoad: () => agent.TaskAPI.get(dispatch),
+});
 
-  const handleOnDelete = (taskProps) => {
-    taskDelete(taskProps);
-  };
+const TaskPreviewList = ({ taskItems, onLoad, handleOnEdit, primary }) => {
+  useEffect(() => {
+    onLoad();
+  }, []);
 
   const renderTaskItems = () => {
     const tasksTreshold = 5;
 
     return [
-      ...taskItems.map((taskItem, index) => {
+      ...taskItems.tasks.map((taskItem, index) => {
         if (index + 1 < tasksTreshold || primary) {
           return (
             <div>
@@ -42,7 +33,6 @@ const TaskPreviewList = ({ taskDelete, primary, handleOnEdit }) => {
                 <TaskPreviewItem
                   taskProps={taskItem}
                   handleOnEdit={handleOnEdit}
-                  handleOnDelete={handleOnDelete}
                   primary={primary}
                 />
               </div>
@@ -82,30 +72,26 @@ const TaskPreviewList = ({ taskDelete, primary, handleOnEdit }) => {
         </span>
       </div>
       <hr />
-      {taskItems ? (
-        taskItems.length >= 1 ? (
-          <ul
-            className={`${styles.List} ${
-              primary ? styles.List__Primary : styles.List__Secondary
-            }`}
-          >
-            {renderTaskItems()}
-          </ul>
-        ) : (
-          <div
-            className={`${styles.Message} ${styles.TaskPreviewList_Display}`}
-          >
-            <img src={Confetti} alt="Confetti!" />
-            <span>Congratulations! You currently have no impending tasks.</span>
-          </div>
-        )
-      ) : (
+      {taskItems.loading ? (
         <div className={`${styles.Message} ${styles.TaskPreviewList_Display}`}>
           <Loader type="Grid" color="gainsboro" height={100} width={100} />
+        </div>
+      ) : taskItems.tasks.length >= 1 ? (
+        <ul
+          className={`${styles.List} ${
+            primary ? styles.List__Primary : styles.List__Secondary
+          }`}
+        >
+          {renderTaskItems()}
+        </ul>
+      ) : (
+        <div className={`${styles.Message} ${styles.TaskPreviewList_Display}`}>
+          <img src={Confetti} alt="Confetti!" />
+          <span>Congratulations! You currently have no impending tasks.</span>
         </div>
       )}
     </div>
   );
 };
 
-export default TaskPreviewList;
+export default connect(mapStateToProps, mapDispatchToProps)(TaskPreviewList);
