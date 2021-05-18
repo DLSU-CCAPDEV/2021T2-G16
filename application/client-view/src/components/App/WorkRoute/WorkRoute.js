@@ -31,7 +31,6 @@ const WorkRoute = ({
         <div className={styles.WorkSpace_Content}>
           <WorkspaceNavigationBar
             handleOnClickToggleSideBar={() => {
-              console.log("clicked");
               handleOnClickToggleSideBar();
             }}
             headerName={headerName}

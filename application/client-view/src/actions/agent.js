@@ -1,9 +1,12 @@
 import axios from "axios";
 
-var authenticationHeader = {
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  },
+var authenticationHeader = null;
+var loadAccessToken = (accessToken) => {
+  return {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
 };
 
 const TaskAPI = {
@@ -55,7 +58,19 @@ const ProjectAPI = {
   },
 };
 
+const userAPI = {
+  login: (accessToken) => {
+    authenticationHeader = loadAccessToken(accessToken);
+    localStorage.setItem("accessToken", accessToken);
+  },
+  logout: () => {
+    authenticationHeader = null;
+    localStorage.removeItem("accessToken");
+  },
+};
+
 export default {
   ProjectAPI,
   TaskAPI,
+  userAPI,
 };

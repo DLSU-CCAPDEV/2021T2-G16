@@ -1,18 +1,19 @@
+import * as Yup from "yup";
 import axios from "axios";
 import React, { useCallback, useState } from "react";
+import styles from "./LoginPage.module.css";
 import { Formik, Form, Field } from "formik";
 import { Link, Redirect, useHistory } from "react-router-dom";
-import * as Yup from "yup";
-import styles from "./LoginPage.module.css";
 
+import agent from "../../actions/agent";
+import Logo from "../Logo/Logo";
+import CloseButton from "../../assets/CloseButton.svg";
 import {
   Division,
   FormDesign,
   FieldWithError,
   WarningMessage,
 } from "../FormDesign/FormDesign";
-import Logo from "../Logo/Logo";
-import CloseButton from "../../assets/CloseButton.svg";
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -45,8 +46,9 @@ const LoginPage = () => {
             await axios
               .post("/api/loginUser", queryString)
               .then((promise) => {
-                localStorage.removeItem("accessToken");
-                localStorage.setItem("accessToken", promise.data.accessToken);
+                agent.userAPI.logout();
+                agent.userAPI.login(promise.data.accessToken);
+                console.log("Redirected User");
                 redirectuser();
               })
               .catch((error) => {
