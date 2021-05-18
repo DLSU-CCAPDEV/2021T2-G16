@@ -46,8 +46,8 @@ const LoginPage = () => {
             await axios
               .post("/api/loginUser", queryString)
               .then((promise) => {
-                agent.userAPI.logout();
-                agent.userAPI.login(promise.data.accessToken);
+                agent.UserAPI.logout();
+                agent.UserAPI.login(promise.data.accessToken);
                 console.log("Redirected User");
                 redirectuser();
               })

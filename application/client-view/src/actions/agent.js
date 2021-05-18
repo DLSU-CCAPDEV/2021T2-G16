@@ -1,6 +1,12 @@
 import axios from "axios";
 
-var authenticationHeader = null;
+var authenticationHeader = localStorage.getItem("accessToken")
+  ? {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }
+  : null;
 var loadAccessToken = (accessToken) => {
   return {
     headers: {
@@ -58,7 +64,7 @@ const ProjectAPI = {
   },
 };
 
-const userAPI = {
+const UserAPI = {
   login: (accessToken) => {
     authenticationHeader = loadAccessToken(accessToken);
     localStorage.setItem("accessToken", accessToken);
@@ -72,5 +78,5 @@ const userAPI = {
 export default {
   ProjectAPI,
   TaskAPI,
-  userAPI,
+  UserAPI,
 };
