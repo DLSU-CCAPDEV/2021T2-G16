@@ -1,11 +1,16 @@
 import React, { useCallback } from "react";
 import styles from "./UserProfilePage.module.css";
+import { connect } from "react-redux";
 import { useHistory } from "react-router";
 
 import UserPortrait from "../../assets/UserPortrait.svg";
 import UserProfileIcon from "../../assets/UserProfileIcon.svg";
 
-const UserProfilePage = () => {
+const mapStateToProps = (state) => {
+  return { currentUser: state.userReducer };
+};
+
+const UserProfilePage = ({ currentUser }) => {
   return (
     <div className={styles.UserProfilePage}>
       <div className={styles.UserProfilePage_BG} />
@@ -15,11 +20,10 @@ const UserProfilePage = () => {
           alt="User Portrait"
           className={styles.UserPortrait}
         />
-        <h1>Profile Name</h1>
-        <span className={styles.Email}>Email@email.com</span>
+        <h1>{currentUser.username}</h1>
       </div>
     </div>
   );
 };
 
-export default UserProfilePage;
+export default connect(mapStateToProps)(UserProfilePage);

@@ -1,23 +1,21 @@
 import axios from "axios";
 
-var authenticationHeader = localStorage.getItem("accessToken")
-  ? {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }
-  : null;
+var authenticationHeader = null;
+
 const logout = () => {
-  authenticationHeader = null;
+  setToken(null);
   localStorage.removeItem("accessToken");
 };
 const login = (accessToken) => {
+  setToken(accessToken);
+  localStorage.setItem("accessToken", accessToken);
+};
+const setToken = (accessToken) => {
   authenticationHeader = {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   };
-  localStorage.setItem("accessToken", accessToken);
 };
 
 const TaskAPI = {
@@ -70,14 +68,15 @@ const ProjectAPI = {
 };
 
 const UserAPI = {
-  login: async (formData) => {
+  //  TODO Centralized login methods
+  login: async (dispatch, formData) => {
     const queryString = new URLSearchParams(formData).toString();
     const responseStatus = await axios
       .post("/api/loginUser", queryString)
       .then((res) => {
         logout();
         login(res.data.accessToken);
-
+        ConfigurationAPI.onLoad(dispatch);
         return res.status;
       })
       .catch((error) => {
@@ -91,7 +90,21 @@ const UserAPI = {
   },
 };
 
+const ConfigurationAPI = {
+  onLoad: async (dispatch) => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      setToken(accessToken);
+
+      await axios.get("/api/users/get", authenticationHeader).then((res) => {
+        dispatch({ type: "APP_LOAD", payload: res.data });
+      });
+    }
+  },
+};
+
 export default {
+  ConfigurationAPI,
   ProjectAPI,
   TaskAPI,
   UserAPI,

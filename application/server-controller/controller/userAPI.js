@@ -13,6 +13,26 @@ collaborativeDB.findOne("IDSettings", {}, function (results) {
 });
 
 const userAPI = {
+  fetchUser: (req, res) => {
+    const authenticationHeader = req.headers["authorization"];
+    const token = authenticationHeader && authenticationHeader.split(" ")[1];
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (error, user) => {
+      if (error) {
+        return res.sendStatus(403);
+      }
+
+      collaborativeDB.findOne(
+        "users",
+        { username: user.sub },
+        function (results) {
+          const { uniqueID, username } = results;
+
+          res.json({ uniqueID, username });
+        }
+      );
+    });
+  },
   registerUser: (req, res) => {
     const { username, email, password } = req.body;
 

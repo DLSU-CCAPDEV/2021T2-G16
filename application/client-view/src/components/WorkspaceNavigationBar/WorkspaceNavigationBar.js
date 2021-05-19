@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./WorkspaceNavigationBar.module.css";
+import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import { Link } from "react-router-dom";
 
@@ -9,11 +10,21 @@ import UserPortrait from "../../assets/UserPortrait.svg";
 import SearchBar from "../SearchBar/SearchBar";
 import "./WorkspaceNavigationBar.css";
 
+const mapStateToProps = (state) => {
+  return { currentUser: state.userReducer };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onLogout: () => dispatch({ type: "USER_LOGOUT" }),
+});
+
 const WorkspaceNavigationBar = ({
   isSideBarOpen,
   isProject,
   headerName,
   handleOnClickToggleSideBar,
+  currentUser,
+  onLogout,
 }) => {
   //  TODO customize a hook inside of OverHeadMessage that will manage itself
   const [isMenuOpen, toggleMenuOpen] = useState(false);
@@ -53,13 +64,14 @@ const WorkspaceNavigationBar = ({
                 closeMenu={() => handleOnClickToggleMenu()}
                 width="150"
               >
-                {/* <Link to={`/userprofile   ?userID=${currentUser.uniqueID}`}>
+                <Link to={`/userprofile?username=${currentUser.username}`}>
                   My Profile
-                </Link> */}
+                </Link>
                 <Link
                   to="/"
                   onClick={() => {
                     localStorage.removeItem("accessToken");
+                    onLogout();
                   }}
                 >
                   Log Out
@@ -91,4 +103,7 @@ const WorkspaceNavigationBar = ({
   );
 };
 
-export default WorkspaceNavigationBar;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WorkspaceNavigationBar);

@@ -25,7 +25,7 @@ const loginSchema = Yup.object().shape({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLogin: (formData) => agent.UserAPI.login(formData),
+  onLogin: (formData) => agent.UserAPI.login(dispatch, formData),
 });
 
 const LoginPage = ({ onLogin }) => {
