@@ -1,7 +1,8 @@
 import * as Yup from "yup";
 import axios from "axios";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./LoginPage.module.css";
+import { connect } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { Link, Redirect, useHistory } from "react-router-dom";
 
@@ -23,7 +24,11 @@ const loginSchema = Yup.object().shape({
   password: Yup.string().required("Password is required."),
 });
 
-const LoginPage = () => {
+const mapDispatchToProps = (dispatch) => ({
+  onLogin: (formData) => agent.UserAPI.login(formData),
+});
+
+const LoginPage = ({ onLogin }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const history = useHistory();
   const redirectuser = useCallback(() => history.push("/homepage"));
@@ -40,31 +45,22 @@ const LoginPage = () => {
             password: "",
           }}
           validationSchema={loginSchema}
-          onSubmit={async (formData) => {
-            const queryString = new URLSearchParams(formData).toString();
-
-            await axios
-              .post("/api/loginUser", queryString)
-              .then((promise) => {
-                agent.UserAPI.logout();
-                agent.UserAPI.login(promise.data.accessToken);
-                console.log("Redirected User");
-                redirectuser();
-              })
-              .catch((error) => {
-                switch (error.response.status) {
-                  case 401:
-                    setErrorMessage(
-                      "Mismatching Credentials. Please try again."
-                    );
-                    break;
-                  case 500:
-                    setErrorMessage("Website's server is not running.");
-                    break;
-                  default:
-                    setErrorMessage("Uncaught Error.");
-                }
-              });
+          onSubmit={(formData) => {
+            onLogin(formData).then((responseStatus) => {
+              switch (responseStatus) {
+                case 200:
+                  redirectuser();
+                  break;
+                case 401:
+                  setErrorMessage("Mismatching Credentials. Please try again.");
+                  break;
+                case 500:
+                  setErrorMessage("Website's server is not running.");
+                  break;
+                default:
+                  setErrorMessage("Uncaught Error.");
+              }
+            });
           }}
         >
           <Form>
@@ -106,4 +102,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default connect(() => {}, mapDispatchToProps)(LoginPage);

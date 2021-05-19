@@ -11,9 +11,9 @@ import "./WorkspaceNavigationBar.css";
 
 const WorkspaceNavigationBar = ({
   isSideBarOpen,
-  handleOnClickToggleSideBar,
-  headerName,
   isProject,
+  headerName,
+  handleOnClickToggleSideBar,
 }) => {
   //  TODO customize a hook inside of OverHeadMessage that will manage itself
   const [isMenuOpen, toggleMenuOpen] = useState(false);
@@ -53,7 +53,7 @@ const WorkspaceNavigationBar = ({
                 closeMenu={() => handleOnClickToggleMenu()}
                 width="150"
               >
-                {/* <Link to={`/userprofile=${currentUser.uniqueID}`}>
+                {/* <Link to={`/userprofile   ?userID=${currentUser.uniqueID}`}>
                   My Profile
                 </Link> */}
                 <Link

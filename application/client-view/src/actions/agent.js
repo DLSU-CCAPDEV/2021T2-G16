@@ -7,12 +7,17 @@ var authenticationHeader = localStorage.getItem("accessToken")
       },
     }
   : null;
-var loadAccessToken = (accessToken) => {
-  return {
+const logout = () => {
+  authenticationHeader = null;
+  localStorage.removeItem("accessToken");
+};
+const login = (accessToken) => {
+  authenticationHeader = {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   };
+  localStorage.setItem("accessToken", accessToken);
 };
 
 const TaskAPI = {
@@ -65,13 +70,24 @@ const ProjectAPI = {
 };
 
 const UserAPI = {
-  login: (accessToken) => {
-    authenticationHeader = loadAccessToken(accessToken);
-    localStorage.setItem("accessToken", accessToken);
+  login: async (formData) => {
+    const queryString = new URLSearchParams(formData).toString();
+    const responseStatus = await axios
+      .post("/api/loginUser", queryString)
+      .then((res) => {
+        logout();
+        login(res.data.accessToken);
+
+        return res.status;
+      })
+      .catch((error) => {
+        return error.response.status;
+      });
+
+    return Promise.resolve(responseStatus);
   },
   logout: () => {
-    authenticationHeader = null;
-    localStorage.removeItem("accessToken");
+    logout();
   },
 };
 

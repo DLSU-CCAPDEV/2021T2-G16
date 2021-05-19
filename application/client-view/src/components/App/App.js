@@ -16,7 +16,11 @@ import UserProfilePage from "../UserProfilePage/UserProfilePage";
 import WorkRoute from "./WorkRoute/WorkRoute";
 import "./App.css";
 
-const App = () => {
+const mapStateToProps = (state) => {
+  return { currentUser: state.currentUserReducer };
+};
+
+const App = ({ currentUser }) => {
   const [isSideBarOpen, toggleSideBar] = useState(false);
 
   const handleOnClickToggleSideBar = () => {
@@ -55,13 +59,14 @@ const App = () => {
           Component={<TaskPage />}
         />
         {/* <WorkRoute
-          path={`/userprofile=${user.uniqueID}`}
+          path={`/userprofile=${currentUser.uniqueID}`}
           exact
           headerName={"User Profile"}
           handleOnClickToggleSideBar={handleOnClickToggleSideBar}
           isSideBarOpen={isSideBarOpen}
-          Component={<UserProfilePage userAccount={user} />}
-        />
+          Component={<UserProfilePage userAccount={currentUser} />}
+        /> */}
+        {/* 
         <WorkRoute
           path={`/projects/project=${formalizeProjectName(
             project.projectName
@@ -78,4 +83,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect(mapStateToProps)(App);
