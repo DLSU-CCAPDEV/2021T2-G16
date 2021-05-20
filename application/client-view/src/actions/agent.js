@@ -65,13 +65,16 @@ const ProjectAPI = {
         dispatch({ type: "PROJECT_FETCH_SUCCESS", payload: res.data })
       );
   },
-};
+  create: async (dispatch, projectData) => {
+    const queryString = new URLSearchParams(projectData).toString();
 
-// const KanbanAPI = {
-//   get: async (dispatch, projectName) => {
-//     dispatch;
-//   },
-// };
+    await axios
+      .post("/api/projects/create", queryString, authenticationHeader)
+      .then((res) => {
+        dispatch({ type: "PROJECT_CREATE", payload: projectData });
+      });
+  },
+};
 
 const UserAPI = {
   //  TODO Centralized login methods

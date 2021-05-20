@@ -21,12 +21,13 @@ const taskAPI = {
   createTask: (req, res) => {
     //  TODO Check if there is still need to find the User, it could be shortened through uniqueID in JWT
     //  TODO sendStatus(401) when error
-    const { taskName, taskDescription, taskPriority, kanbanID } = req.body;
 
     collaborativeDB.findOne(
       "users",
       { username: req.user.sub },
       function ({ uniqueID }) {
+        const { taskName, taskDescription, taskPriority, kanbanID } = req.body;
+
         collaborativeDB.insertOne("tasks", {
           uniqueID,
           taskName,

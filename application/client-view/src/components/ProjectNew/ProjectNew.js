@@ -1,17 +1,19 @@
+import * as Yup from "yup";
 import axios from "axios";
 import React, { useCallback } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
 import styles from "./ProjectNew.module.css";
+import { connect } from "react-redux";
+import { Formik, Form, Field } from "formik";
+import { Link, useHistory } from "react-router-dom";
 
+import agent from "../../actions/agent";
+import GoBack from "../../assets/GoBack.svg";
 import {
   Division,
   FormDesign,
   FieldWithError,
   RowDivision,
 } from "../FormDesign/FormDesign";
-import GoBack from "../../assets/GoBack.svg";
 
 const projectSchema = Yup.object().shape({
   projectName: Yup.string()
@@ -22,7 +24,11 @@ const projectSchema = Yup.object().shape({
   projectPriority: Yup.number(),
 });
 
-const ProjectNew = () => {
+const mapDispatchToProps = (dispatch) => ({
+  onCreate: (projectData) => agent.ProjectAPI.create(dispatch, projectData),
+});
+
+const ProjectNew = ({ onCreate }) => {
   const history = useHistory();
   const handleOnClick = useCallback(() => history.push("/projects"), [history]);
 
@@ -45,18 +51,8 @@ const ProjectNew = () => {
               projectBackgroundImage: 1,
             }}
             validationSchema={projectSchema}
-            onSubmit={async (formData) => {  
-            const queryString = new URLSearchParams(formData).toString();
-
-              await axios
-                .post("/api/projects/create", queryString, {
-                  headers: {
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-                  },
-                })
-                .then((promise) => {})
-                .catch((error) => console.log(error));
-              handleOnClick();
+            onSubmit={async (formData) => {
+              onCreate(formData);
               handleOnClick();
             }}
           >
@@ -95,4 +91,4 @@ const ProjectNew = () => {
   );
 };
 
-export default ProjectNew;
+export default connect(() => {}, mapDispatchToProps)(ProjectNew);

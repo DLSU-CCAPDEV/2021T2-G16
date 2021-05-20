@@ -15,6 +15,21 @@ export default (state = initialState, action) => {
         loading: false,
         projects: action.payload,
       };
+    case "PROJECT_CREATE":
+      return {
+        ...state,
+        projects: [...state.projects, action.payload],
+      };
+    case "PROJECT_DELETE": {
+      const { projectName } = action.payload;
+
+      return {
+        ...state,
+        projects: state.projects.filter(
+          (project) => !(project.projectName === projectName)
+        ),
+      };
+    }
     default:
       return state;
   }
