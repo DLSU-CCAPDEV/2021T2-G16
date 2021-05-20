@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import { Link } from "react-router-dom";
 
+import agent from "../../actions/agent";
 import AddMember_Icon from "../../assets/AddMember_Icon.svg";
 import OverHeadMessage from "../OverHeadMessage/OverHeadMessage";
 import UserPortrait from "../../assets/UserPortrait.svg";
@@ -15,7 +16,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onLogout: () => dispatch({ type: "USER_LOGOUT" }),
+  onLogout: () => agent.UserAPI.logout(dispatch),
 });
 
 const WorkspaceNavigationBar = ({

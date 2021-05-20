@@ -90,8 +90,9 @@ const UserAPI = {
 
     return Promise.resolve(responseStatus);
   },
-  logout: () => {
+  logout: (dispatch) => {
     logout();
+    dispatch({ type: "USER_LOGOUT" });
   },
 };
 
