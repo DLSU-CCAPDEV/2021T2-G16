@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
@@ -18,7 +17,9 @@ import WorkRoute from "./WorkRoute/WorkRoute";
 import "./App.css";
 
 const mapStateToProps = (state) => {
-  return { currentUser: state.userReducer };
+  return {
+    currentUser: state.userReducer,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -41,25 +42,12 @@ const App = ({ currentUser, onLoad }) => {
     toggleSideBar(!isSideBarOpen);
   };
 
-  //  TODO Request specific page of the Project
-  // const renderProjectPages = () => {
-  //   <WorkRoute
-  //     path={`/projects/project`}
-  //     exact
-  //     headerName={`Project: ${project.projectName}`}
-  //     handleOnClickToggleSideBar={handleOnClickToggleSideBar}
-  //     isSideBarOpen={isSideBarOpen}
-  //     Component={<ProjectPage />}
-  //   />;
-  // };
-
   return (
     <HashRouter>
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/registration" exact component={RegisterPage} />
         <Route path="/login" exact component={LoginPage} />
-        <Route path="/projects/project=new" exact component={ProjectNew} />
         {isDataLoaded ? (
           <>
             <WorkRoute
@@ -87,14 +75,21 @@ const App = ({ currentUser, onLoad }) => {
               Component={<TaskPage />}
             />
             <WorkRoute
-              path={`/userprofile/:username`}
+              path="/userprofile/:username"
               exact
               headerName={"User Profile"}
               handleOnClickToggleSideBar={handleOnClickToggleSideBar}
               isSideBarOpen={isSideBarOpen}
               Component={<UserProfilePage />}
             />
-            {/* {renderProjectPages()} */}
+            <WorkRoute
+              path="/projects/view/:slug"
+              exact
+              handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+              isSideBarOpen={isSideBarOpen}
+              Component={<ProjectPage />}
+            />
+            <Route path="/projects/new" exact component={ProjectNew} />
           </>
         ) : null}
         <Route component={Error404NotFoundPage} />
