@@ -21,12 +21,12 @@ app.use("/", routes);
 
 app.use(
   "/static",
-  express.static(path.join(__dirname, "../../client-view/build//static"))
+  express.static(path.join(__dirname, "../client-view/build//static"))
 );
 
 app.get("*", (req, res) => {
   res.sendFile("index.html", {
-    root: path.join(__dirname, "../../client-view/build/"),
+    root: path.join(__dirname, "../client-view/build/"),
   });
 });
 
