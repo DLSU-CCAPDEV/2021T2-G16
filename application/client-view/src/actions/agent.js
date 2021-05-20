@@ -140,13 +140,12 @@ const UserAPI = {
 };
 
 const ConfigurationAPI = {
-  onLoad: async (dispatch, setIsDataLoaded) => {
+  onLoad: async (dispatch) => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
       login(accessToken);
       await axios.get("/api/users/get", authenticationHeader).then((res) => {
         dispatch({ type: "USER_LOGIN", payload: res.data });
-        setIsDataLoaded(true);
       });
     }
   },

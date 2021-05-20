@@ -7,6 +7,7 @@ import Error404NotFoundPage from "../Error404NotFoundPage/Error404NotFoundPage";
 import HomePage from "../HomePage/HomePage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import ProjectNew from "../ProjectNew/ProjectNew";
 import ProjectOverviewPage from "../ProjectOverviewPage/ProjectOverviewPage";
 import ProjectPage from "../ProjectPage/ProjectPage";
@@ -29,11 +30,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 const App = ({ currentUser, onLoad }) => {
   const [isSideBarOpen, toggleSideBar] = useState(false);
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(
     () => {
-      onLoad(setIsDataLoaded);
+      onLoad();
     },
     currentUser ? [currentUser.username] : []
   );
@@ -43,55 +43,54 @@ const App = ({ currentUser, onLoad }) => {
   };
 
   return (
+    
     <HashRouter>
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/registration" exact component={RegisterPage} />
         <Route path="/login" exact component={LoginPage} />
-        {isDataLoaded ? (
-          <>
-            <WorkRoute
-              path="/homepage"
-              exact
-              headerName="Homespace"
-              handleOnClickToggleSideBar={handleOnClickToggleSideBar}
-              isSideBarOpen={isSideBarOpen}
-              Component={<HomePage />}
-            />
-            <WorkRoute
-              path="/projects"
-              exact
-              headerName="Projects"
-              handleOnClickToggleSideBar={handleOnClickToggleSideBar}
-              isSideBarOpen={isSideBarOpen}
-              Component={<ProjectOverviewPage />}
-            />
-            <WorkRoute
-              path="/tasks"
-              exact
-              headerName="My Tasks"
-              handleOnClickToggleSideBar={handleOnClickToggleSideBar}
-              isSideBarOpen={isSideBarOpen}
-              Component={<TaskPage />}
-            />
-            <WorkRoute
-              path="/userprofile/:username"
-              exact
-              headerName={"User Profile"}
-              handleOnClickToggleSideBar={handleOnClickToggleSideBar}
-              isSideBarOpen={isSideBarOpen}
-              Component={<UserProfilePage />}
-            />
-            <WorkRoute
-              path="/projects/view/:slug"
-              exact
-              handleOnClickToggleSideBar={handleOnClickToggleSideBar}
-              isSideBarOpen={isSideBarOpen}
-              Component={<ProjectPage />}
-            />
-            <Route path="/projects/new" exact component={ProjectNew} />
-          </>
-        ) : null}
+        <PrivateRoute>
+          <WorkRoute
+            path="/homepage"
+            exact
+            headerName="Homespace"
+            handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+            isSideBarOpen={isSideBarOpen}
+            Component={<HomePage />}
+          />
+          <WorkRoute
+            path="/projects"
+            exact
+            headerName="Projects"
+            handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+            isSideBarOpen={isSideBarOpen}
+            Component={<ProjectOverviewPage />}
+          />
+          <WorkRoute
+            path="/tasks"
+            exact
+            headerName="My Tasks"
+            handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+            isSideBarOpen={isSideBarOpen}
+            Component={<TaskPage />}
+          />
+          <WorkRoute
+            path="/userprofile/:username"
+            exact
+            headerName={"User Profile"}
+            handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+            isSideBarOpen={isSideBarOpen}
+            Component={<UserProfilePage />}
+          />
+          <WorkRoute
+            path="/projects/view/:slug"
+            exact
+            handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+            isSideBarOpen={isSideBarOpen}
+            Component={<ProjectPage />}
+          />
+          <Route path="/projects/new" exact component={ProjectNew} />
+        </PrivateRoute>
         <Route component={Error404NotFoundPage} />
       </Switch>
     </HashRouter>

@@ -6,11 +6,7 @@ const Error404NotFoundPage = () => {
   return (
     <section className={styles.Error404NotFoundPage}>
       <h1>ERROR 404:</h1>
-      <h2>
-        BRUH... <br />
-        There is nothing here. <br />
-        F-Freak off!
-      </h2>
+      <h2>The page that you are looking for does not exist.</h2>
       <br />
       <Link to="/">{"< Go Back"}</Link>
     </section>

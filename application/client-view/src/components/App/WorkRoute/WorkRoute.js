@@ -1,6 +1,6 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import styles from "./WorkRoute.module.css";
 
 import SideBar from "../../SideBar/SideBar";
@@ -17,7 +17,7 @@ const WorkRoute = ({
   isSideBarOpen,
   Component,
 }) => {
-  return localStorage.getItem("accessToken") ? (
+  return (
     <Route exact={exact} path={path}>
       <div className={styles.WorkSpace} style={{ height: "100vh" }}>
         <CSSTransition
@@ -40,8 +40,6 @@ const WorkRoute = ({
         </div>
       </div>
     </Route>
-  ) : (
-    <Redirect to={"/login"} />
   );
 };
 

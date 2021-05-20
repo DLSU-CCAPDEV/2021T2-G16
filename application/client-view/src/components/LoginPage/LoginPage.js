@@ -1,10 +1,9 @@
 import * as Yup from "yup";
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./LoginPage.module.css";
 import { connect } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import agent from "../../actions/agent";
 import Logo from "../Logo/Logo";
@@ -24,18 +23,18 @@ const loginSchema = Yup.object().shape({
   password: Yup.string().required("Password is required."),
 });
 
+const mapStateToProps = (state) => {
+  return { currentUser: state.userReducer };
+};
+
 const mapDispatchToProps = (dispatch) => ({
   onLogin: (formData) => agent.UserAPI.login(dispatch, formData),
 });
 
-const LoginPage = ({ onLogin }) => {
+const LoginPage = ({ currentUser, onLogin }) => {
   const [errorMessage, setErrorMessage] = useState(null);
-  const history = useHistory();
-  const redirectuser = useCallback(() => history.push("/homepage"));
 
-  return localStorage.getItem("accessToken") ? (
-    <Redirect to="/homepage" />
-  ) : (
+  return currentUser.username === null ? (
     <section className={styles.LoginPage}>
       <Logo />
       <FormDesign primary width="400px" className={styles.LoginPage_Form}>
@@ -49,7 +48,7 @@ const LoginPage = ({ onLogin }) => {
             onLogin(formData).then((responseStatus) => {
               switch (responseStatus) {
                 case 200:
-                  redirectuser();
+                  <Redirect to={"/homepage"} />;
                   break;
                 case 401:
                   setErrorMessage("Mismatching Credentials. Please try again.");
@@ -99,7 +98,9 @@ const LoginPage = ({ onLogin }) => {
         </Formik>
       </FormDesign>
     </section>
+  ) : (
+    <Redirect to="/homepage" />
   );
 };
 
-export default connect(() => {}, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
