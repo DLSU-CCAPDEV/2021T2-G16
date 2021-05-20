@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./WorkspaceNavigationBar.module.css";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
@@ -33,10 +33,6 @@ const WorkspaceNavigationBar = ({
   const handleOnClickToggleMenu = () => {
     toggleMenuOpen(!isMenuOpen);
   };
-
-  useEffect(() => {
-    console.log(currentUser);
-  }, []);
 
   return (
     <nav className={styles.WorkspaceNavigationBar}>

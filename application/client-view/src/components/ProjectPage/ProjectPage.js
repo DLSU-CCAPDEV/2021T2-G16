@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TrelloBoard from "react-trello";
-import { connect } from "react-redux";
 import styles from "./ProjectPage.module.css";
+import { useParams } from "react-router";
 
 const data = {
   lanes: [
@@ -69,7 +69,16 @@ const data = {
 };
 
 // TODO check if it is possible to attach a CSS sheet to an inline-style
-const ProjectPage = ({ projectItems }) => {
+const ProjectPage = ({ project }) => {
+  const { slug } = useParams();
+
+  // useEffect(async () => {
+  // const queryString = new URLSearchParams({ username }).toString();
+  // await axios.post("/api/userProfile/get", queryString).then((res) => {
+  //   setData(res.data);
+  // });
+  // });
+
   return (
     <section className={styles.ProjectPage}>
       <TrelloBoard
@@ -99,16 +108,12 @@ const ProjectPage = ({ projectItems }) => {
       />
     </section>
   );
+
+  // : (
+  //   <div className={styles.UserProfilePage_Loader}>
+  //     <Loader type="Oval" color="gainsboro" height={200} width={200} />
+  //   </div>
+  // );
 };
 
-const mapStateToProps = (state) => {
-  const { projectReducer, currentUserReducer } = state;
-
-  return {
-    projectItems: projectReducer.filter(
-      (item) => item.uniqueID === currentUserReducer.uniqueID
-    ),
-  };
-};
-
-export default connect(mapStateToProps)(ProjectPage);
+export default ProjectPage;

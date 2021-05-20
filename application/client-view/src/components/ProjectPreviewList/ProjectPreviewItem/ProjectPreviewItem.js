@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./ProjectPreviewItem.module.css";
 
+import { formalizeProjectName } from "../../../logic/index";
+
 const ProjectPreviewItem = ({ itemProp, newProject }) => {
   const [isHoveredOn, toggleHover] = useState(false);
 
@@ -22,8 +24,8 @@ const ProjectPreviewItem = ({ itemProp, newProject }) => {
     <Link
       to={
         newProject
-          ? "/projects/project=new"
-          : `/projects/project=${itemProp.projectName}`
+          ? "/projects/new"
+          : `/projects/view/${formalizeProjectName(itemProp.projectName)}`
       }
       title={newProject ? "New Project" : itemProp.projectName}
       onMouseEnter={() => toggleHover(true)}

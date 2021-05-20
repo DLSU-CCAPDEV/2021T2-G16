@@ -67,6 +67,12 @@ const ProjectAPI = {
   },
 };
 
+// const KanbanAPI = {
+//   get: async (dispatch, projectName) => {
+//     dispatch;
+//   },
+// };
+
 const UserAPI = {
   //  TODO Centralized login methods
   login: async (dispatch, formData) => {
