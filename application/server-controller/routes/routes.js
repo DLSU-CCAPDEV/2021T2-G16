@@ -28,6 +28,14 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
+//  KANBAN API
+app.post("/api/projects/get", authenticateToken, kanbanAPI.getKanban);
+app.post(
+  "/api/projects/kanban/update",
+  authenticateToken,
+  kanbanAPI.updateKanban
+);
+
 //  Task API
 app.get("/api/tasks/get", authenticateToken, taskAPI.getTasks);
 app.post("/api/tasks/create", authenticateToken, taskAPI.createTask);
@@ -40,7 +48,6 @@ app.post("/api/userProfile/get", profileAPI.fetchUserProfilePage);
 
 //  Project API
 app.get("/api/projects/get", authenticateToken, projectAPI.getProjects);
-app.post("/api/projects/get", authenticateToken, kanbanAPI.getProject);
 app.post("/api/projects/create", authenticateToken, projectAPI.createProject);
 app.post("/api/projects/update", authenticateToken, projectAPI.updateProject);
 app.post("/api/projects/delete", authenticateToken, projectAPI.deleteProject);

@@ -1,7 +1,7 @@
 const collaborativeDB = require("../../database-model/db");
 
 const kanbanAPI = {
-  getProject: (req, res) => {
+  getKanban: (req, res) => {
     collaborativeDB.findOne(
       "users",
       { username: req.user.sub },
@@ -16,6 +16,30 @@ const kanbanAPI = {
             res.json(results);
           }
         );
+      }
+    );
+  },
+  updateKanban: (req, res) => {
+    const { projectName, newData } = req.body;
+
+    collaborativeDB.findOne(
+      "users",
+      { username: req.user.sub },
+      function ({ uniqueID }) {
+        collaborativeDB.updateOne(
+          "projects",
+          {
+            uniqueID,
+            projectName,
+          },
+          {
+            $set: {
+              kanbanData: newData,
+            },
+          }
+        );
+
+        res.sendStatus(200);
       }
     );
   },

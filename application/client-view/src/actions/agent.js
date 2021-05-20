@@ -22,16 +22,32 @@ const setToken = (accessToken) => {
 const KanbanAPI = {
   get: async (dispatch, projectName, toggleHasFetched) => {
     const queryString = new URLSearchParams({
-      projectName: projectName,
+      projectName,
     }).toString();
 
     dispatch({ type: "KANBAN_FETCH_REQUEST" });
 
+    const myHeader = authenticationHeader;
+    myHeader["headers"]["Content-Type"] = "application/x-www-form-urlencoded";
+
+    await axios.post("/api/projects/get", queryString, myHeader).then((res) => {
+      dispatch({ type: "KANBAN_FETCH_SUCCESS", payload: res.data });
+      toggleHasFetched(true);
+    });
+  },
+  edit: async (dispatch, projectName, newData) => {
+    const queryJSON = JSON.stringify({
+      projectName,
+      newData,
+    });
+
+    const myHeader = authenticationHeader;
+    myHeader["headers"]["Content-Type"] = "application/json";
+
     await axios
-      .post("/api/projects/get", queryString, authenticationHeader)
+      .post("/api/projects/kanban/update", queryJSON, myHeader)
       .then((res) => {
-        dispatch({ type: "KANBAN_FETCH_SUCCESS", payload: res.data });
-        toggleHasFetched(true);
+        dispatch({ type: "KANBAN_UPDATE", payload: newData });
       });
   },
 };

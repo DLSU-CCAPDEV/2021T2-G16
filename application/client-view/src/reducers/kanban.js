@@ -18,8 +18,12 @@ export default (state = initialState, action) => {
       };
     }
     case "KANBAN_UPDATE": {
+      const newProject = state.project;
+      newProject.kanbanData = action.payload;
+
       return {
-        project: action.payload,
+        ...state,
+        project: newProject,
       };
     }
     default:

@@ -14,10 +14,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   onLoad: (projectName, toggleHasFetched) =>
     agent.KanbanAPI.get(dispatch, projectName, toggleHasFetched),
+  onUpdate: (projectName, newData) =>
+    agent.KanbanAPI.edit(dispatch, projectName, newData),
 });
 
 // TODO check if it is possible to attach a CSS sheet to an inline-style
-const ProjectPage = ({ project, onLoad }) => {
+const ProjectPage = ({ project, onLoad, onUpdate }) => {
   const [hasFetched, toggleHasFetched] = useState(false);
   const { slug } = useParams();
 
@@ -35,6 +37,11 @@ const ProjectPage = ({ project, onLoad }) => {
         editable
         canAddLanes
         editLaneTitle
+        onDataChange={(newData) => {
+          const { projectName } = project.project;
+
+          onUpdate(projectName, newData);
+        }}
         style={{
           backgroundColor: "#F6F8F9",
           overflow: "auto",
