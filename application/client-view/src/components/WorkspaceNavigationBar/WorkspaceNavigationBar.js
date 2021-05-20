@@ -69,7 +69,7 @@ const WorkspaceNavigationBar = ({
                 closeMenu={() => handleOnClickToggleMenu()}
                 width="150"
               >
-                <Link to={`/userprofile?username=${currentUser.username}`}>
+                <Link to={`/userprofile/${currentUser.username}`}>
                   My Profile
                 </Link>
                 <Link

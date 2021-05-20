@@ -87,7 +87,7 @@ const App = ({ currentUser, onLoad }) => {
               Component={<TaskPage />}
             />
             <WorkRoute
-              path={`/userprofile`}
+              path={`/userprofile/:username`}
               exact
               headerName={"User Profile"}
               handleOnClickToggleSideBar={handleOnClickToggleSideBar}

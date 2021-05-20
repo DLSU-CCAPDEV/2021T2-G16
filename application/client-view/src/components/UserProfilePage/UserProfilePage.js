@@ -1,14 +1,14 @@
 import Loader from "react-loader-spinner";
 import React, { useEffect, useState } from "react";
 import styles from "./UserProfilePage.module.css";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
 
 import UserPortrait from "../../assets/UserPortrait.svg";
 import axios from "axios";
 
 const UserProfilePage = () => {
   const [data, setData] = useState(undefined);
-  const username = useLocation()["search"].substring("?username=".length);
+  const { username } = useParams();
 
   useEffect(async () => {
     const queryString = new URLSearchParams({ username }).toString();
@@ -16,7 +16,7 @@ const UserProfilePage = () => {
     await axios.post("/api/userProfile/get", queryString).then((res) => {
       setData(res.data);
     });
-  }, [username]);
+  });
 
   return data ? (
     <div className={styles.UserProfilePage}>
