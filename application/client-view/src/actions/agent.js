@@ -76,7 +76,12 @@ const UserAPI = {
       .then((res) => {
         logout();
         login(res.data.accessToken);
-        ConfigurationAPI.onLoad(dispatch);
+
+        dispatch({
+          type: "USER_LOGIN",
+          payload: { username: res.data.username, uniqueID: res.data.uniqueID },
+        });
+
         return res.status;
       })
       .catch((error) => {
@@ -97,7 +102,7 @@ const ConfigurationAPI = {
       setToken(accessToken);
 
       await axios.get("/api/users/get", authenticationHeader).then((res) => {
-        dispatch({ type: "APP_LOAD", payload: res.data });
+        dispatch({ type: "USER_LOGIN", payload: res.data });
       });
     }
   },

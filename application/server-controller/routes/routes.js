@@ -35,7 +35,6 @@ app.post("/debug/tasks/create", taskAPI.debug__createTask);
 app.get("/api/projects/get", authenticateToken, projectAPI.getProjects);
 
 //  User API
-app.get("/api/users/get", userAPI.fetchUser);
 app.post("/api/registerUser", userAPI.registerUser);
 app.post("/api/loginUser", userAPI.loginUser);
 app.post("/api/checkUsernameAvailability", userAPI.checkUsernameAvailablity);

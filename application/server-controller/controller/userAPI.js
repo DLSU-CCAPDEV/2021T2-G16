@@ -33,6 +33,38 @@ const userAPI = {
       );
     });
   },
+  loginUser: (req, res) => {
+    const { email, password } = req.body;
+
+    collaborativeDB.findOne(
+      "users",
+      { email: email.toLowerCase() },
+      function (results) {
+        const { uniqueID, username } = results;
+
+        if (results) {
+          bcrypt.compare(
+            password,
+            results.password,
+            (error, authenticationResult) => {
+              if (authenticationResult) {
+                const accessToken = jwt.sign(
+                  { sub: results.username },
+                  process.env.ACCESS_TOKEN_SECRET
+                );
+
+                res.json({ accessToken, uniqueID, username });
+              } else {
+                res.sendStatus(401);
+              }
+            }
+          );
+        } else {
+          res.sendStatus(401);
+        }
+      }
+    );
+  },
   registerUser: (req, res) => {
     const { username, email, password } = req.body;
 
@@ -64,36 +96,6 @@ const userAPI = {
 
     //  TODO Check if it is possible that there is an error
     res.sendStatus(200);
-  },
-  loginUser: (req, res) => {
-    const { email, password } = req.body;
-
-    collaborativeDB.findOne(
-      "users",
-      { email: email.toLowerCase() },
-      function (results) {
-        if (results) {
-          bcrypt.compare(
-            password,
-            results.password,
-            (error, authenticationResult) => {
-              if (authenticationResult) {
-                const accessToken = jwt.sign(
-                  { sub: results.username },
-                  process.env.ACCESS_TOKEN_SECRET
-                );
-
-                res.json({ accessToken });
-              } else {
-                res.sendStatus(401);
-              }
-            }
-          );
-        } else {
-          res.sendStatus(401);
-        }
-      }
-    );
   },
   checkUsernameAvailablity: (req, res) => {
     const username = req.body.username.toLowerCase();
