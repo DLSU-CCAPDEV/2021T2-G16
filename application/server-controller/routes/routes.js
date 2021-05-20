@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const profileAPI = require("../controller/profileAPI");
 const projectAPI = require("../controller/projectAPI");
 const taskAPI = require("../controller/taskAPI");
 const userAPI = require("../controller/userAPI");
@@ -31,10 +32,14 @@ app.post("/api/tasks/update", authenticateToken, taskAPI.updateTask);
 app.post("/api/tasks/delete", authenticateToken, taskAPI.deleteTask);
 app.post("/debug/tasks/create", taskAPI.debug__createTask);
 
+//  Profile API
+app.post("/api/userProfile/get", profileAPI.fetchUserProfilePage);
+
 //  Project API
 app.get("/api/projects/get", authenticateToken, projectAPI.getProjects);
 
 //  User API
+app.get("/api/users/get", authenticateToken, userAPI.fetchUser);
 app.post("/api/registerUser", userAPI.registerUser);
 app.post("/api/loginUser", userAPI.loginUser);
 app.post("/api/checkUsernameAvailability", userAPI.checkUsernameAvailablity);

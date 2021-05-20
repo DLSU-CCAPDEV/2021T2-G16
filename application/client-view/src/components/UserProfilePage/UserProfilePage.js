@@ -1,17 +1,24 @@
-import React, { useCallback } from "react";
+import Loader from "react-loader-spinner";
+import React, { useEffect, useState } from "react";
 import styles from "./UserProfilePage.module.css";
-import { connect } from "react-redux";
-import { useHistory } from "react-router";
+import { useLocation } from "react-router";
 
 import UserPortrait from "../../assets/UserPortrait.svg";
-import UserProfileIcon from "../../assets/UserProfileIcon.svg";
+import axios from "axios";
 
-const mapStateToProps = (state) => {
-  return { currentUser: state.userReducer };
-};
+const UserProfilePage = () => {
+  const [data, setData] = useState(undefined);
+  const username = useLocation()["search"].substring("?username=".length);
 
-const UserProfilePage = ({ currentUser }) => {
-  return (
+  useEffect(async () => {
+    const queryString = new URLSearchParams({ username }).toString();
+
+    await axios.post("/api/userProfile/get", queryString).then((res) => {
+      setData(res.data);
+    });
+  }, [username]);
+
+  return data ? (
     <div className={styles.UserProfilePage}>
       <div className={styles.UserProfilePage_BG} />
       <div className={styles.UserProfilePage_Content}>
@@ -20,10 +27,14 @@ const UserProfilePage = ({ currentUser }) => {
           alt="User Portrait"
           className={styles.UserPortrait}
         />
-        <h1>{currentUser.username}</h1>
+        <h1>{data.username}</h1>
       </div>
+    </div>
+  ) : (
+    <div className={styles.UserProfilePage_Loader}>
+      <Loader type="Oval" color="gainsboro" height={200} width={200} />
     </div>
   );
 };
 
-export default connect(mapStateToProps)(UserProfilePage);
+export default UserProfilePage;

@@ -5,6 +5,13 @@
   height: 100%;
 }
 
+.UserProfilePage_Loader {
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
 .UserProfilePage_BG {
   background: url("../../assets/UserProfileIcon.svg") top center no-repeat;
   background-size: cover;

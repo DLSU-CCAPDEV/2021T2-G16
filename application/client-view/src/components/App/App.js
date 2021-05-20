@@ -22,21 +22,36 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoad: () => agent.ConfigurationAPI.onLoad(dispatch),
+  onLoad: (setIsDataLoaded) =>
+    agent.ConfigurationAPI.onLoad(dispatch, setIsDataLoaded),
 });
 
 const App = ({ currentUser, onLoad }) => {
   const [isSideBarOpen, toggleSideBar] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
-  useEffect(() => {
-    onLoad();
-    setIsDataLoaded(true);
-  }, [currentUser.username]);
+  useEffect(
+    () => {
+      onLoad(setIsDataLoaded);
+    },
+    currentUser ? [currentUser.username] : []
+  );
 
   const handleOnClickToggleSideBar = () => {
     toggleSideBar(!isSideBarOpen);
   };
+
+  //  TODO Request specific page of the Project
+  // const renderProjectPages = () => {
+  //   <WorkRoute
+  //     path={`/projects/project`}
+  //     exact
+  //     headerName={`Project: ${project.projectName}`}
+  //     handleOnClickToggleSideBar={handleOnClickToggleSideBar}
+  //     isSideBarOpen={isSideBarOpen}
+  //     Component={<ProjectPage />}
+  //   />;
+  // };
 
   return (
     <HashRouter>
@@ -71,7 +86,6 @@ const App = ({ currentUser, onLoad }) => {
               isSideBarOpen={isSideBarOpen}
               Component={<TaskPage />}
             />
-            {console.log(`/userprofile?username=${currentUser.username}`)}
             <WorkRoute
               path={`/userprofile`}
               exact
@@ -80,17 +94,7 @@ const App = ({ currentUser, onLoad }) => {
               isSideBarOpen={isSideBarOpen}
               Component={<UserProfilePage />}
             />
-            {/* 
-        <WorkRoute
-          path={`/projects/project=${formalizeProjectName(
-            project.projectName
-          )}`}
-          exact
-          headerName={`Project: ${project.projectName}`}
-          handleOnClickToggleSideBar={handleOnClickToggleSideBar}
-          isSideBarOpen={isSideBarOpen}
-          Component={<ProjectPage project={project} />}
-        /> */}{" "}
+            {/* {renderProjectPages()} */}
           </>
         ) : null}
         <Route component={Error404NotFoundPage} />

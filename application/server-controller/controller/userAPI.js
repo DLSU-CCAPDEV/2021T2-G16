@@ -16,7 +16,9 @@ const userAPI = {
   fetchUser: (req, res) => {
     const authenticationHeader = req.headers["authorization"];
     const token = authenticationHeader && authenticationHeader.split(" ")[1];
-
+    if (!token) {
+      return res.sendStatus(401);
+    }
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (error, user) => {
       if (error) {
         return res.sendStatus(403);
@@ -24,11 +26,15 @@ const userAPI = {
 
       collaborativeDB.findOne(
         "users",
-        { username: user.sub },
+        { username: user.sub.toLowerCase() },
         function (results) {
-          const { uniqueID, username } = results;
+          if (results) {
+            const { uniqueID, username } = results;
 
-          res.json({ uniqueID, username });
+            res.json({ uniqueID, username });
+          } else {
+            res.sendStatus(404);
+          }
         }
       );
     });
