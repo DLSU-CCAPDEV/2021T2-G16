@@ -22,16 +22,9 @@ const projectAPI = {
     );
   },
 
-  createProjects: (req, res) => {
+  createProject: (req, res) => {
 
-
-    collaborativeDB.findOne("users" , 
-    {username : req.user.sub} , function({uniqueID}){
-      ID = uniqueID;
-    });
-
-
-    var members = [ID];
+    var members = [ID]; // Temp
 
     var project = 
     {
@@ -39,15 +32,39 @@ const projectAPI = {
       favoured : false, // Can be changed later just a temp value
       members : members, // can be changed later just a temp value
       projectName : req.body.projectName,
-      backgroundID : req.body.backgroundID,
-      description : req.body.description,
-      kanbanID : req.body.kanbanID,
+      backgroundID : req.body.projectBackgroundImage,
+      description : req.body.projectDescription,
+      kanbanID : "",
     };
-    
-    console.log(project);
+
     collaborativeDB.insertOne("projects" , project);
+    res.sendStatus(200);
+  },
+  
+  updateProject: (req, res) => {
+    
+    var members = [ID]; // Temp
+
+    collaborativeDB.updateOne(
+              "projects",
+              { ID, projectName: oldProjectName },
+              {
+                $set: { projectName : req.body.projectName,
+                        backgroundID : req.body.projectBackgroundImage,
+                        description : req.body.projectDescription,
+                        members : members
+                      },
+              }
+            );
+  },
+
+
+  deleteProject: (req , res) => {
+
+    collaborativeDB.deleteOne("projects" , {uniqueID : ID , projectName : req.body.projectName});
   },
 };
+
 
 
 // app.post("/debug/projects/create", (req, res) => {

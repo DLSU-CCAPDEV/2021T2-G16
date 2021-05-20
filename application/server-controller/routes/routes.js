@@ -37,6 +37,9 @@ app.post("/api/userProfile/get", profileAPI.fetchUserProfilePage);
 
 //  Project API
 app.get("/api/projects/get", authenticateToken, projectAPI.getProjects);
+app.post("/api/projects/create", authenticateToken, projectAPI.createProject);
+app.post("/api/projects/update", authenticateToken, projectAPI.updateProject);
+app.post("/api/projects/delete", authenticateToken, projectAPI.deleteProject);
 
 //  User API
 app.get("/api/users/get", authenticateToken, userAPI.fetchUser);
