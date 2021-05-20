@@ -14,30 +14,19 @@ collaborativeDB.findOne("IDSettings", {}, function (results) {
 
 const userAPI = {
   fetchUser: (req, res) => {
-    const authenticationHeader = req.headers["authorization"];
-    const token = authenticationHeader && authenticationHeader.split(" ")[1];
-    if (!token) {
-      return res.sendStatus(401);
-    }
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (error, user) => {
-      if (error) {
-        return res.sendStatus(403);
-      }
+    collaborativeDB.findOne(
+      "users",
+      { username: req.user.sub.toLowerCase() },
+      function (results) {
+        if (results) {
+          const { uniqueID, username } = results;
 
-      collaborativeDB.findOne(
-        "users",
-        { username: user.sub.toLowerCase() },
-        function (results) {
-          if (results) {
-            const { uniqueID, username } = results;
-
-            res.json({ uniqueID, username });
-          } else {
-            res.sendStatus(404);
-          }
+          res.json({ uniqueID, username });
+        } else {
+          res.sendStatus(404);
         }
-      );
-    });
+      }
+    );
   },
   loginUser: (req, res) => {
     const { email, password } = req.body;

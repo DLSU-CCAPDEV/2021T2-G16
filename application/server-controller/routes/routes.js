@@ -1,6 +1,8 @@
 const dotenv = require("dotenv");
 const express = require("express");
 const jwt = require("jsonwebtoken");
+
+const kanbanAPI = require("../controller/kanbanAPI");
 const profileAPI = require("../controller/profileAPI");
 const projectAPI = require("../controller/projectAPI");
 const taskAPI = require("../controller/taskAPI");
@@ -10,6 +12,7 @@ const app = express();
 
 dotenv.config({ path: "../" });
 
+//  TODO Do a middleware that could inject the user's uniqueID
 const authenticateToken = (req, res, next) => {
   const authenticationHeader = req.headers["authorization"];
   const token = authenticationHeader && authenticationHeader.split(" ")[1];
@@ -37,9 +40,11 @@ app.post("/api/userProfile/get", profileAPI.fetchUserProfilePage);
 
 //  Project API
 app.get("/api/projects/get", authenticateToken, projectAPI.getProjects);
+app.post("/api/projects/get", authenticateToken, kanbanAPI.getProject);
 app.post("/api/projects/create", authenticateToken, projectAPI.createProject);
 app.post("/api/projects/update", authenticateToken, projectAPI.updateProject);
 app.post("/api/projects/delete", authenticateToken, projectAPI.deleteProject);
+app.post("/debug/projects/create", projectAPI.debug__createProject);
 
 //  User API
 app.get("/api/users/get", authenticateToken, userAPI.fetchUser);

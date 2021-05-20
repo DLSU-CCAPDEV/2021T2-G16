@@ -13,7 +13,6 @@ const projectAPI = {
           },
           function (results) {
             res.json(results);
-            ID = results.uniqueID;
           }
         );
       }
@@ -36,7 +35,6 @@ const projectAPI = {
           description: projectDescription,
           kanbanData: null,
         });
-
         res.sendStatus(200);
       }
     );
@@ -71,7 +69,7 @@ const projectAPI = {
       projectName,
       backgroundID,
       description,
-      kanbanID,
+      kanbanData,
     } = req.body;
 
     collaborativeDB.insertOne("projects", {
@@ -81,7 +79,7 @@ const projectAPI = {
       projectName,
       backgroundID,
       description,
-      kanbanID,
+      kanbanData,
     });
     res.sendStatus(200);
   },

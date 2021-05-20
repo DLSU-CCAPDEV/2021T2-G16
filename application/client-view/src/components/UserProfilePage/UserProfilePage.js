@@ -1,7 +1,7 @@
 import Loader from "react-loader-spinner";
 import React, { useEffect, useState } from "react";
 import styles from "./UserProfilePage.module.css";
-import { useLocation, useParams } from "react-router";
+import { useParams } from "react-router";
 
 import UserPortrait from "../../assets/UserPortrait.svg";
 import axios from "axios";

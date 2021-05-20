@@ -23,9 +23,7 @@ const ProjectPreviewItem = ({ itemProp, newProject }) => {
   return (
     <Link
       to={
-        newProject
-          ? "/projects/new"
-          : `/projects/view/${formalizeProjectName(itemProp.projectName)}`
+        newProject ? "/projects/new" : `/projects/view/${itemProp.projectName}`
       }
       title={newProject ? "New Project" : itemProp.projectName}
       onMouseEnter={() => toggleHover(true)}

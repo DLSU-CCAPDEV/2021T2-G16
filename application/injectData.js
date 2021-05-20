@@ -42,6 +42,107 @@ const users = [
   },
 ];
 
+const kanbanDataPreset1 = {
+  lanes: [
+    {
+      id: "lane1",
+      title: "Planned Tasks",
+      label: "2/2",
+      cards: [
+        {
+          id: "Card1",
+          title: "Write Blog",
+          description: "Can AI make memes",
+          label: "30 mins",
+        },
+        {
+          id: "Card2",
+          title: "Pay Rent",
+          description: "Transfer via NEFT",
+          label: "5 mins",
+          metadata: { sha: "be312a1" },
+        },
+      ],
+    },
+    {
+      id: "lane2",
+      title: "Completed",
+      label: "0/0",
+      cards: [],
+    },
+    {
+      id: "lane2",
+      title: "Demo",
+      label: "2/2",
+      cards: [
+        {
+          id: "Card3",
+          title: "Prepare false data",
+          description:
+            "It has to make sense and not that damned copy-pasta text.",
+          label: "2 hours?",
+        },
+        {
+          id: "Card4",
+          title: "Last minute fixes",
+          description:
+            "Better to throw your whole project to the ground by making some last-minute, untested 'fixes' to your work!",
+          label: "1 minute",
+        },
+      ],
+    },
+    {
+      id: "lane2",
+      title: "Next Unit Test",
+      label: "1/1",
+      cards: [
+        {
+          id: "Card5",
+          title: "Test your projects",
+          description:
+            "Check every nook & cranny of your project to make sure everything works as planned",
+        },
+      ],
+    },
+  ],
+};
+
+const kanbanDataPreset2 = {
+  lanes: [
+    {
+      id: "lane1",
+      title: "Webdevelopment Blog",
+      label: "2/2",
+      cards: [
+        {
+          id: "Card1",
+          title: "Devlog v0.2",
+          description: "Understanding API Calls",
+        },
+        {
+          id: "Card2",
+          title: "Segmantic Fault",
+          description:
+            "Understand error codes in procedural programming languages",
+          label: "1 Hour",
+        },
+      ],
+    },
+    {
+      id: "lane2",
+      title: "Research Sampling",
+      label: "0/0",
+      cards: [
+        {
+          id: "Card3",
+          title: "Determine Research Sampling Methodology",
+          label: "Expendable",
+        },
+      ],
+    },
+  ],
+};
+
 projectDatabaseInject = [
   {
     uniqueID: 0,
@@ -50,7 +151,7 @@ projectDatabaseInject = [
     projectName: "Grocery Store - Application",
     backgroundID: "2",
     description: "Application for simulating grocery stores.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
   {
     uniqueID: 0,
@@ -59,7 +160,7 @@ projectDatabaseInject = [
     projectName: "Redux Project",
     backgroundID: "3",
     description: "Project Stack of Redux",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
   {
     uniqueID: 0,
@@ -69,7 +170,7 @@ projectDatabaseInject = [
     backgroundID: "1",
     description:
       "Get your friends in a all-in-one hang-out in a Hot tub party!",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
   {
     uniqueID: 0,
@@ -79,7 +180,7 @@ projectDatabaseInject = [
     backgroundID: "2",
     description:
       "This is a test project purposely made for fake data injection.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
   {
     uniqueID: 1,
@@ -88,7 +189,7 @@ projectDatabaseInject = [
     projectName: "Roblox Project",
     backgroundID: "2",
     description: "This project is for fun and to build a house in roblox",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
   {
     uniqueID: 1,
@@ -97,7 +198,7 @@ projectDatabaseInject = [
     projectName: "Minecraft Mansion",
     backgroundID: "3",
     description: "Build the Tower of your dreams in minecraft!",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
   {
     uniqueID: 1,
@@ -106,7 +207,7 @@ projectDatabaseInject = [
     projectName: "New PC Building with 0 dollars",
     backgroundID: "1",
     description: "Help us build a PC using 0 Dollars",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
   {
     uniqueID: 1,
@@ -115,7 +216,7 @@ projectDatabaseInject = [
     projectName: "Web Application",
     backgroundID: "2",
     description: "Grocery Web Application",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
   {
     uniqueID: 2,
@@ -124,7 +225,7 @@ projectDatabaseInject = [
     projectName: "Web Application",
     backgroundID: "3",
     description: "New Forum Web Application!",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
   {
     uniqueID: 2,
@@ -133,7 +234,7 @@ projectDatabaseInject = [
     projectName: "New Company Set",
     backgroundID: "1",
     description: "New Company Set for Recording ads!",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
   {
     uniqueID: 2,
@@ -142,7 +243,7 @@ projectDatabaseInject = [
     projectName: "Advertise",
     backgroundID: "3",
     description: "Advertisement for our company",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
   {
     uniqueID: 2,
@@ -151,7 +252,7 @@ projectDatabaseInject = [
     projectName: "Rearrangement of Equipments",
     backgroundID: "2",
     description: "Rearrangement or Fixing of Equipments",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
 
   {
@@ -161,7 +262,7 @@ projectDatabaseInject = [
     projectName: "Poster for Church",
     backgroundID: "1",
     description: "Poster that needed to be submitted",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
 
   {
@@ -171,7 +272,7 @@ projectDatabaseInject = [
     projectName: "Research Paper about Computer Vision",
     backgroundID: "2",
     description: "Making of Research Paper needed for submission",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
 
   {
@@ -181,7 +282,7 @@ projectDatabaseInject = [
     projectName: "Fixing of Keyboard",
     backgroundID: "1",
     description: "Fix all Company Keyboards",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
 
   {
@@ -191,7 +292,7 @@ projectDatabaseInject = [
     projectName: "Upgrade of PC's",
     backgroundID: "3",
     description: "Upgrading of all PC's in the company",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
 
   {
@@ -201,7 +302,7 @@ projectDatabaseInject = [
     projectName: "Fixing of Roof",
     backgroundID: "2",
     description: "Fixing of Company Roof",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
 
   {
@@ -211,7 +312,7 @@ projectDatabaseInject = [
     projectName: "Soccer Competition",
     backgroundID: "3",
     description: "Soccer Competition for Employees!",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
 
   {
@@ -221,7 +322,7 @@ projectDatabaseInject = [
     projectName: "Bonus Payment",
     backgroundID: "2",
     description: "Calculation of All Bonus Payment for the Company",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
 
   {
@@ -231,7 +332,7 @@ projectDatabaseInject = [
     projectName: "Renovation",
     backgroundID: "3",
     description: "All Required Renovation for the Company",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
 
   {
@@ -241,7 +342,7 @@ projectDatabaseInject = [
     projectName: "Renovation of Kitchen",
     backgroundID: "2",
     description: "Renovation of Kitchen at home",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
 
   {
@@ -251,7 +352,7 @@ projectDatabaseInject = [
     projectName: "Meeting with Investors",
     backgroundID: "1",
     description: "Preparation of the Meeting with Investors",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
   },
 
   {
@@ -261,7 +362,7 @@ projectDatabaseInject = [
     projectName: "Construction of New Building",
     backgroundID: "1",
     description: "Future Company Building Project",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
 
   {
@@ -271,7 +372,7 @@ projectDatabaseInject = [
     projectName: "Weekly Revenue Meetings",
     backgroundID: "3",
     description: "Week 51 Revenue meeting for the company",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
   },
 ];
 
@@ -280,21 +381,21 @@ const taskDatabaseInject = [
     uniqueID: 0,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 0,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
     taskPriority: "high",
   },
   {
     uniqueID: 0,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
     taskPriority: "low",
   },
   {
@@ -302,35 +403,35 @@ const taskDatabaseInject = [
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "medium",
   },
   {
     uniqueID: 0,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 1,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 1,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 1,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "low",
   },
   {
@@ -338,35 +439,35 @@ const taskDatabaseInject = [
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "medium",
   },
   {
     uniqueID: 1,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 2,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
     taskPriority: "high",
   },
   {
     uniqueID: 2,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 2,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "low",
   },
   {
@@ -374,35 +475,35 @@ const taskDatabaseInject = [
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "medium",
   },
   {
     uniqueID: 2,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 3,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 3,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 3,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
     taskPriority: "low",
   },
   {
@@ -410,35 +511,35 @@ const taskDatabaseInject = [
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "medium",
   },
   {
     uniqueID: 3,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 4,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 4,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
     taskPriority: "high",
   },
   {
     uniqueID: 4,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset2,
     taskPriority: "low",
   },
   {
@@ -446,35 +547,35 @@ const taskDatabaseInject = [
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "medium",
   },
   {
     uniqueID: 4,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 5,
     taskName: "Jump 3 miles instaneously.",
     taskDescription: "The federation requires you to do it.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 5,
     taskName: "Go insane on a bike.",
     taskDescription: "Swing it!",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
   {
     uniqueID: 5,
     taskName: "Do your projects.",
     taskDescription: "Do your boring projects duud.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "low",
   },
   {
@@ -482,26 +583,26 @@ const taskDatabaseInject = [
     taskName:
       "Ask why your program isn't doing what you want it to do, despite you telling it what to do.",
     taskDescription: "Life of a programmer, ey?",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "medium",
   },
   {
     uniqueID: 5,
     taskName: "LSS - dance your favorite song",
     taskDescription: "Nothing beats chilling and beating.",
-    kanbanID: "",
+    kanbanData: kanbanDataPreset1,
     taskPriority: "high",
   },
 ];
 
-users.forEach(async (user) => {
-  await axios.post("http://localhost:3000/debug/registerUser", user);
-});
+// users.forEach(async (user) => {
+//   await axios.post("http://localhost:3000/debug/registerUser", user);
+// });
 
 projectDatabaseInject.forEach(async (project) => {
   await axios.post("http://localhost:3000/debug/projects/create", project);
 });
 
-taskDatabaseInject.forEach(async (task) => {
-  await axios.post("http://localhost:3000/debug/tasks/create", task);
-});
+// taskDatabaseInject.forEach(async (task) => {
+//   await axios.post("http://localhost:3000/debug/tasks/create", task);
+// });

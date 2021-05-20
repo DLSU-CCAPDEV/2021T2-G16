@@ -1,6 +1,14 @@
 .ProjectPage {
 }
 
+.ProjectPage__loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Temporary Hack */
+  margin-top: 150px;
+}
+
 .TrelloBackground {
   background-color: white;
   overflow: auto;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { delay } from "lodash";
 
 var authenticationHeader = null;
 
@@ -16,6 +17,23 @@ const setToken = (accessToken) => {
       Authorization: `Bearer ${accessToken}`,
     },
   };
+};
+
+const KanbanAPI = {
+  get: async (dispatch, projectName, toggleHasFetched) => {
+    const queryString = new URLSearchParams({
+      projectName: projectName,
+    }).toString();
+
+    dispatch({ type: "KANBAN_FETCH_REQUEST" });
+
+    await axios
+      .post("/api/projects/get", queryString, authenticationHeader)
+      .then((res) => {
+        dispatch({ type: "KANBAN_FETCH_SUCCESS", payload: res.data });
+        toggleHasFetched(true);
+      });
+  },
 };
 
 const TaskAPI = {
@@ -120,6 +138,7 @@ const ConfigurationAPI = {
 
 export default {
   ConfigurationAPI,
+  KanbanAPI,
   ProjectAPI,
   TaskAPI,
   UserAPI,
