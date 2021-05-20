@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useCallback } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
@@ -44,8 +45,18 @@ const ProjectNew = () => {
               projectBackgroundImage: 1,
             }}
             validationSchema={projectSchema}
-            onSubmit={(formData) => {
-              const data = JSON.stringify(formData, null, 2);
+            onSubmit={async (formData) => {  
+            const queryString = new URLSearchParams(formData).toString();
+
+              await axios
+                .post("/api/projects/create", queryString, {
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                  },
+                })
+                .then((promise) => {})
+                .catch((error) => console.log(error));
+              handleOnClick();
               handleOnClick();
             }}
           >
