@@ -66,12 +66,6 @@ const kanbanDataPreset1 = {
     },
     {
       id: "lane2",
-      title: "Completed",
-      label: "0/0",
-      cards: [],
-    },
-    {
-      id: "lane2",
       title: "Demo",
       label: "2/2",
       cards: [
@@ -92,7 +86,7 @@ const kanbanDataPreset1 = {
       ],
     },
     {
-      id: "lane2",
+      id: "lane3",
       title: "Next Unit Test",
       label: "1/1",
       cards: [

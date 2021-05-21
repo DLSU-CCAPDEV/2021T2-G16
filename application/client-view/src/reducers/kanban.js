@@ -17,6 +17,12 @@ export default (state = initialState, action) => {
         project: action.payload,
       };
     }
+    case "KANBAN_UNLOAD": {
+      return {
+        ...state,
+        project: null,
+      };
+    }
     case "KANBAN_UPDATE": {
       const newProject = state.project;
       newProject.kanbanData = action.payload;

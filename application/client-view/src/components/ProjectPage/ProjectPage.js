@@ -2,7 +2,8 @@ import Loader from "react-loader-spinner";
 import React, { useEffect, useState } from "react";
 import TrelloBoard from "react-trello";
 import styles from "./ProjectPage.module.css";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { isEqual } from "lodash";
 import { useParams } from "react-router";
 
 import agent from "../../actions/agent";
@@ -21,10 +22,17 @@ const mapDispatchToProps = (dispatch) => ({
 // TODO check if it is possible to attach a CSS sheet to an inline-style
 const ProjectPage = ({ project, onLoad, onUpdate }) => {
   const [hasFetched, toggleHasFetched] = useState(false);
+  const dispatch = useDispatch();
   const { slug } = useParams();
 
   useEffect(() => {
-    onLoad(slug, toggleHasFetched);
+    if (!project.project) {
+      onLoad(slug, toggleHasFetched);
+    }
+
+    return () => {
+      dispatch({ type: "KANBAN_UNLOAD" });
+    };
   }, []);
 
   return hasFetched ? (
@@ -38,9 +46,11 @@ const ProjectPage = ({ project, onLoad, onUpdate }) => {
         canAddLanes
         editLaneTitle
         onDataChange={(newData) => {
-          const { projectName } = project.project;
+          if (!isEqual(project.project.kanbanData, newData)) {
+            const { projectName } = project.project;
 
-          onUpdate(projectName, newData);
+            onUpdate(projectName, newData);
+          }
         }}
         style={{
           backgroundColor: "#F6F8F9",
