@@ -43,7 +43,6 @@ const App = ({ currentUser, onLoad }) => {
   };
 
   return (
-    
     <HashRouter>
       <Switch>
         <Route path="/" exact component={LandingPage} />
@@ -56,7 +55,7 @@ const App = ({ currentUser, onLoad }) => {
             headerName="Homespace"
             handleOnClickToggleSideBar={handleOnClickToggleSideBar}
             isSideBarOpen={isSideBarOpen}
-            Component={<HomePage />}
+            Component={HomePage}
           />
           <WorkRoute
             path="/projects"
@@ -64,7 +63,7 @@ const App = ({ currentUser, onLoad }) => {
             headerName="Projects"
             handleOnClickToggleSideBar={handleOnClickToggleSideBar}
             isSideBarOpen={isSideBarOpen}
-            Component={<ProjectOverviewPage />}
+            Component={ProjectOverviewPage}
           />
           <WorkRoute
             path="/tasks"
@@ -72,7 +71,7 @@ const App = ({ currentUser, onLoad }) => {
             headerName="My Tasks"
             handleOnClickToggleSideBar={handleOnClickToggleSideBar}
             isSideBarOpen={isSideBarOpen}
-            Component={<TaskPage />}
+            Component={TaskPage}
           />
           <WorkRoute
             path="/userprofile/:username"
@@ -80,14 +79,15 @@ const App = ({ currentUser, onLoad }) => {
             headerName={"User Profile"}
             handleOnClickToggleSideBar={handleOnClickToggleSideBar}
             isSideBarOpen={isSideBarOpen}
-            Component={<UserProfilePage />}
+            Component={UserProfilePage}
           />
           <WorkRoute
             path="/projects/view/:slug"
             exact
+            dynamic
             handleOnClickToggleSideBar={handleOnClickToggleSideBar}
             isSideBarOpen={isSideBarOpen}
-            Component={<ProjectPage />}
+            Component={ProjectPage}
           />
           <Route path="/projects/new" exact component={ProjectNew} />
         </PrivateRoute>

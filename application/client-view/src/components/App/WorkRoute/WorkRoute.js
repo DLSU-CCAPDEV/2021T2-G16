@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import styles from "./WorkRoute.module.css";
 
 import SideBar from "../../SideBar/SideBar";
@@ -13,11 +13,16 @@ const WorkRoute = ({
   path,
   exact,
   headerName,
+  dynamic,
   handleOnClickToggleSideBar,
   isSideBarOpen,
   Component,
 }) => {
-  return (
+  const [dynamicHeaderName, setHeaderName] = useState(headerName);
+
+  useEffect(() => {}, [dynamicHeaderName]);
+
+  return localStorage.getItem("accessToken") ? (
     <Route exact={exact} path={path}>
       <div className={styles.WorkSpace} style={{ height: "100vh" }}>
         <CSSTransition
@@ -33,13 +38,17 @@ const WorkRoute = ({
             handleOnClickToggleSideBar={() => {
               handleOnClickToggleSideBar();
             }}
-            headerName={headerName}
+            headerName={dynamic ? dynamicHeaderName : headerName}
             isSideBarOpen={isSideBarOpen}
           />
-          <div className={styles.Content_Main}>{Component}</div>
+          <div className={styles.Content_Main}>
+            <Component setHeaderName={dynamic ? setHeaderName : null} />
+          </div>
         </div>
       </div>
     </Route>
+  ) : (
+    <Redirect to={"/login"} />
   );
 };
 

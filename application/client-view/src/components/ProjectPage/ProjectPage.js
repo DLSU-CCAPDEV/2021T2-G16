@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // TODO check if it is possible to attach a CSS sheet to an inline-style
-const ProjectPage = ({ project, onLoad, onUpdate }) => {
+const ProjectPage = ({ project, onLoad, onUpdate, setHeaderName }) => {
   const [hasFetched, toggleHasFetched] = useState(false);
   const dispatch = useDispatch();
   const { slug } = useParams();
@@ -28,6 +28,7 @@ const ProjectPage = ({ project, onLoad, onUpdate }) => {
   useEffect(() => {
     if (!project.project) {
       onLoad(slug, toggleHasFetched);
+      setHeaderName("Project: " + slug);
     }
 
     return () => {
