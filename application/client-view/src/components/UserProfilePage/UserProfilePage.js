@@ -6,11 +6,12 @@ import { useParams } from "react-router";
 import UserPortrait from "../../assets/UserPortrait.svg";
 import axios from "axios";
 
-const UserProfilePage = () => {
+const UserProfilePage = ({ setHeaderName }) => {
   const [data, setData] = useState(undefined);
   const { username } = useParams();
 
   useEffect(async () => {
+    setHeaderName("User Profile: " + username);
     const queryString = new URLSearchParams({ username }).toString();
 
     await axios.post("/api/userProfile/get", queryString).then((res) => {

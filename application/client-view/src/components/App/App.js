@@ -76,7 +76,7 @@ const App = ({ currentUser, onLoad }) => {
           <WorkRoute
             path="/userprofile/:username"
             exact
-            headerName={"User Profile"}
+            dynamic
             handleOnClickToggleSideBar={handleOnClickToggleSideBar}
             isSideBarOpen={isSideBarOpen}
             Component={UserProfilePage}
