@@ -13,6 +13,7 @@ const WorkRoute = ({
   path,
   exact,
   headerName,
+  subBar,
   dynamic,
   handleOnClickToggleSideBar,
   isSideBarOpen,
@@ -40,6 +41,7 @@ const WorkRoute = ({
             }}
             headerName={dynamic ? dynamicHeaderName : headerName}
             isSideBarOpen={isSideBarOpen}
+            subBar={subBar}
           />
           <div className={styles.Content_Main}>
             <Component setHeaderName={dynamic ? setHeaderName : null} />

@@ -4,12 +4,16 @@ import TrelloBoard from "react-trello";
 import styles from "./ProjectPage.module.css";
 import { connect, useDispatch } from "react-redux";
 import { isEqual } from "lodash";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 
+import AddMember_Icon from "../../assets/AddMember_Icon.svg";
 import agent from "../../actions/agent";
+import SearchBar from "../SearchBar/SearchBar";
+import UserPortrait from "../../assets/UserPortrait.svg";
 
 const mapStateToProps = (state) => {
-  return { project: state.kanbanReducer };
+  return { currentUser: state.userReducer, project: state.kanbanReducer };
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -20,7 +24,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // TODO check if it is possible to attach a CSS sheet to an inline-style
-const ProjectPage = ({ project, onLoad, onUpdate, setHeaderName }) => {
+const ProjectPage = ({
+  currentUser,
+  project,
+  onLoad,
+  onUpdate,
+  setHeaderName,
+}) => {
   const [hasFetched, toggleHasFetched] = useState(false);
   const dispatch = useDispatch();
   const { slug } = useParams();
@@ -36,8 +46,36 @@ const ProjectPage = ({ project, onLoad, onUpdate, setHeaderName }) => {
     };
   }, []);
 
+  const renderMembers = () => {
+    return project.project.members.map((member) => {
+      const { username } = member;
+
+      return (
+        <Link to={`/userprofile/${username}`}>
+          <img src={UserPortrait} alt="User" title={`${username}`} />
+        </Link>
+      );
+    });
+  };
   return hasFetched ? (
     <section className={styles.ProjectPage}>
+      <div className={styles.ProjectBar}>
+        <div className={styles.ProjectBar_Members}>
+          <span>Project Members: </span>
+          <Link to={`/userprofile/${currentUser.username}`}>
+            <img src={UserPortrait} alt="User" title="You" />
+          </Link>
+          {renderMembers()}
+          <img
+            src={AddMember_Icon}
+            alt="Add A New Member"
+            title="Add a New Member"
+          />
+        </div>
+        <div className={styles.ProjectBar_SearchBar}>
+          <SearchBar />
+        </div>
+      </div>
       <TrelloBoard
         data={project.project.kanbanData}
         draggable

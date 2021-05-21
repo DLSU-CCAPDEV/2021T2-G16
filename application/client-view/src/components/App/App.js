@@ -85,6 +85,7 @@ const App = ({ currentUser, onLoad }) => {
             path="/projects/view/:slug"
             exact
             dynamic
+            subBar
             handleOnClickToggleSideBar={handleOnClickToggleSideBar}
             isSideBarOpen={isSideBarOpen}
             Component={ProjectPage}

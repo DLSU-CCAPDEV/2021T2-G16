@@ -13,3 +13,29 @@
   background-color: white;
   overflow: auto;
 }
+
+.ProjectBar {
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+}
+
+.ProjectBar_Members {
+  display: flex;
+  gap: 5px;
+}
+
+.ProjectBar_Members span {
+  align-self: center;
+  margin-right: 10px;
+}
+
+.ProjectBar_Members img {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.ProjectBar_SearchBar {
+  margin-left: auto;
+}

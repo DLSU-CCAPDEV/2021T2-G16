@@ -141,7 +141,7 @@ projectDatabaseInject = [
   {
     uniqueID: 0,
     favoured: true,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Grocery Store - Application",
     backgroundID: "2",
     description: "Application for simulating grocery stores.",
@@ -150,7 +150,7 @@ projectDatabaseInject = [
   {
     uniqueID: 0,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Redux Project",
     backgroundID: "3",
     description: "Project Stack of Redux",
@@ -159,7 +159,7 @@ projectDatabaseInject = [
   {
     uniqueID: 0,
     favoured: true,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Hot tub Stream OTW",
     backgroundID: "1",
     description:
@@ -179,7 +179,7 @@ projectDatabaseInject = [
   {
     uniqueID: 1,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Roblox Project",
     backgroundID: "2",
     description: "This project is for fun and to build a house in roblox",
@@ -188,7 +188,7 @@ projectDatabaseInject = [
   {
     uniqueID: 1,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Minecraft Mansion",
     backgroundID: "3",
     description: "Build the Tower of your dreams in minecraft!",
@@ -197,7 +197,7 @@ projectDatabaseInject = [
   {
     uniqueID: 1,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "New PC Building with 0 dollars",
     backgroundID: "1",
     description: "Help us build a PC using 0 Dollars",
@@ -206,7 +206,7 @@ projectDatabaseInject = [
   {
     uniqueID: 1,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Web Application",
     backgroundID: "2",
     description: "Grocery Web Application",
@@ -215,7 +215,7 @@ projectDatabaseInject = [
   {
     uniqueID: 2,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Web Application",
     backgroundID: "3",
     description: "New Forum Web Application!",
@@ -224,7 +224,7 @@ projectDatabaseInject = [
   {
     uniqueID: 2,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "New Company Set",
     backgroundID: "1",
     description: "New Company Set for Recording ads!",
@@ -233,7 +233,7 @@ projectDatabaseInject = [
   {
     uniqueID: 2,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Advertise",
     backgroundID: "3",
     description: "Advertisement for our company",
@@ -242,7 +242,7 @@ projectDatabaseInject = [
   {
     uniqueID: 2,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Rearrangement of Equipments",
     backgroundID: "2",
     description: "Rearrangement or Fixing of Equipments",
@@ -252,7 +252,7 @@ projectDatabaseInject = [
   {
     uniqueID: 3,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Poster for Church",
     backgroundID: "1",
     description: "Poster that needed to be submitted",
@@ -262,7 +262,7 @@ projectDatabaseInject = [
   {
     uniqueID: 3,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Research Paper about Computer Vision",
     backgroundID: "2",
     description: "Making of Research Paper needed for submission",
@@ -272,7 +272,7 @@ projectDatabaseInject = [
   {
     uniqueID: 3,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Fixing of Keyboard",
     backgroundID: "1",
     description: "Fix all Company Keyboards",
@@ -282,7 +282,7 @@ projectDatabaseInject = [
   {
     uniqueID: 3,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Upgrade of PC's",
     backgroundID: "3",
     description: "Upgrading of all PC's in the company",
@@ -292,7 +292,7 @@ projectDatabaseInject = [
   {
     uniqueID: 4,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Fixing of Roof",
     backgroundID: "2",
     description: "Fixing of Company Roof",
@@ -302,7 +302,7 @@ projectDatabaseInject = [
   {
     uniqueID: 4,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Soccer Competition",
     backgroundID: "3",
     description: "Soccer Competition for Employees!",
@@ -312,7 +312,7 @@ projectDatabaseInject = [
   {
     uniqueID: 4,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Bonus Payment",
     backgroundID: "2",
     description: "Calculation of All Bonus Payment for the Company",
@@ -322,7 +322,7 @@ projectDatabaseInject = [
   {
     uniqueID: 4,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Renovation",
     backgroundID: "3",
     description: "All Required Renovation for the Company",
@@ -332,7 +332,7 @@ projectDatabaseInject = [
   {
     uniqueID: 5,
     favoured: false,
-    members: [{ uniqueID: 5 }],
+    members: [{ username: "jenkinsmarcolo" }],
     projectName: "Renovation of Kitchen",
     backgroundID: "2",
     description: "Renovation of Kitchen at home",
