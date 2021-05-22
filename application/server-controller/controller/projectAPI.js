@@ -33,7 +33,7 @@ const projectAPI = {
           projectName,
           backgroundID: projectBackgroundImage,
           description: projectDescription,
-          kanbanData: null,
+          kanbanData: { lanes: [] },
         });
         res.sendStatus(200);
       }
