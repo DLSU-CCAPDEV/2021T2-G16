@@ -589,14 +589,14 @@ const taskDatabaseInject = [
   },
 ];
 
-// users.forEach(async (user) => {
-//   await axios.post("http://localhost:3000/debug/registerUser", user);
-// });
+users.forEach(async (user) => {
+  await axios.post("http://localhost:3000/debug/registerUser", user);
+});
 
 projectDatabaseInject.forEach(async (project) => {
   await axios.post("http://localhost:3000/debug/projects/create", project);
 });
 
-// taskDatabaseInject.forEach(async (task) => {
-//   await axios.post("http://localhost:3000/debug/tasks/create", task);
-// });
+taskDatabaseInject.forEach(async (task) => {
+  await axios.post("http://localhost:3000/debug/tasks/create", task);
+});

@@ -36,6 +36,18 @@
   cursor: pointer;
 }
 
-.ProjectBar_SearchBar {
+.ProjectBar_Settings {
+  cursor: pointer;
   margin-left: auto;
+}
+
+.ProjectBar_Settings img {
+  width: 40px;
+  height: 40px;
+}
+
+.ProjectPage_Form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
 }

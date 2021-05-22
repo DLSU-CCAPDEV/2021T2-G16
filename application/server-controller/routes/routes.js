@@ -29,7 +29,7 @@ const authenticateToken = (req, res, next) => {
 };
 
 //  KANBAN API
-app.post("/api/projects/get", authenticateToken, kanbanAPI.getKanban);
+app.post("/api/projects/kanban/get", authenticateToken, kanbanAPI.getKanban);
 app.post(
   "/api/projects/kanban/update",
   authenticateToken,

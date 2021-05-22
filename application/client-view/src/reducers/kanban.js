@@ -1,6 +1,7 @@
 const initialState = {
+  hasFetched: false,
   loading: false,
-  project: null,
+  board: null,
 };
 
 export default (state = initialState, action) => {
@@ -13,23 +14,35 @@ export default (state = initialState, action) => {
     }
     case "KANBAN_FETCH_SUCCESS": {
       return {
+        hasFetched: true,
         loading: false,
-        project: action.payload,
+        board: action.payload,
       };
     }
     case "KANBAN_UNLOAD": {
       return {
         ...state,
-        project: null,
+        hasFetched: false,
+        board: null,
       };
     }
     case "KANBAN_UPDATE": {
-      const newProject = state.project;
+      const newProject = state.board;
       newProject.kanbanData = action.payload;
 
       return {
         ...state,
-        project: newProject,
+        board: newProject,
+      };
+    }
+    case "PROJECT_UPDATE": {
+      const { kanban } = action.payload;
+
+      console.log("Here");
+      console.log(kanban);
+      return {
+        ...state,
+        board: kanban,
       };
     }
     default:

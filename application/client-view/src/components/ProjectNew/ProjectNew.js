@@ -1,5 +1,4 @@
 import * as Yup from "yup";
-import axios from "axios";
 import React, { useCallback } from "react";
 import styles from "./ProjectNew.module.css";
 import { connect } from "react-redux";

@@ -30,6 +30,23 @@ export default (state = initialState, action) => {
         ),
       };
     }
+    case "PROJECT_UPDATE": {
+      const { oldProjectName, newProjectData } = action.payload;
+
+      return {
+        ...state,
+        projects: state.projects.map((project) =>
+          project.projectName === oldProjectName
+            ? {
+                ...project,
+                projectName: newProjectData.projectName,
+                description: newProjectData.description,
+                backgroundID: newProjectData.backgroundID,
+              }
+            : project
+        ),
+      };
+    }
     default:
       return state;
   }

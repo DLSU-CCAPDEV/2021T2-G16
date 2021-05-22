@@ -40,18 +40,26 @@ const projectAPI = {
     );
   },
   updateProject: (req, res) => {
-    var members = [ID]; // Temp
+    collaborativeDB.findOne(
+      "users",
+      { username: req.user.sub },
+      function ({ uniqueID }) {
+        const { projectName, backgroundID, description } =
+          req.body.newProjectData;
 
-    collaborativeDB.updateOne(
-      "projects",
-      { ID, projectName: oldProjectName },
-      {
-        $set: {
-          projectName: req.body.projectName,
-          backgroundID: req.body.projectBackgroundImage,
-          description: req.body.projectDescription,
-          members: members,
-        },
+        collaborativeDB.updateOne(
+          "projects",
+          { uniqueID, projectName: req.body.oldProjectName },
+          {
+            $set: {
+              projectName: projectName,
+              backgroundID: backgroundID,
+              description: description,
+            },
+          }
+        );
+
+        res.sendStatus(200);
       }
     );
   },

@@ -20,7 +20,7 @@ const setToken = (accessToken) => {
 };
 
 const KanbanAPI = {
-  get: async (dispatch, projectName, toggleHasFetched) => {
+  get: async (dispatch, projectName) => {
     const queryString = new URLSearchParams({
       projectName,
     }).toString();
@@ -30,10 +30,11 @@ const KanbanAPI = {
     const myHeader = authenticationHeader;
     myHeader["headers"]["Content-Type"] = "application/x-www-form-urlencoded";
 
-    await axios.post("/api/projects/get", queryString, myHeader).then((res) => {
-      dispatch({ type: "KANBAN_FETCH_SUCCESS", payload: res.data });
-      toggleHasFetched(true);
-    });
+    await axios
+      .post("/api/projects/kanban/get", queryString, myHeader)
+      .then((res) => {
+        dispatch({ type: "KANBAN_FETCH_SUCCESS", payload: res.data });
+      });
   },
   edit: async (dispatch, projectName, newData) => {
     const queryJSON = JSON.stringify({
@@ -106,6 +107,25 @@ const ProjectAPI = {
       .post("/api/projects/create", queryString, authenticationHeader)
       .then((res) => {
         dispatch({ type: "PROJECT_CREATE", payload: projectData });
+      });
+  },
+  edit: async (dispatch, oldProjectName, newProjectData, kanban) => {
+    const queryJSON = JSON.stringify({
+      oldProjectName,
+      newProjectData,
+      kanban,
+    });
+
+    const myHeader = authenticationHeader;
+    myHeader["headers"]["Content-Type"] = "application/json";
+
+    await axios
+      .post("/api/projects/update", queryJSON, myHeader)
+      .then((res) => {
+        dispatch({
+          type: "PROJECT_UPDATE",
+          payload: { oldProjectName, newProjectData, kanban },
+        });
       });
   },
 };
