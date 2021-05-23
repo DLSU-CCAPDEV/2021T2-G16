@@ -47,3 +47,7 @@ The following items below are the default users and their credentials. Use this 
 
 This project is a product of our passion. We could have done more if we had much more time, but
 it is a learning experience - and a fun one, at that. Have fun!
+
+NOTE: There is a bug in terms of editing the Kanban data. Adding and deleting files works
+as intended; however, editing the data does not change it. We would like to let you know
+that the problem may rest in the dependency itself and not the program.
