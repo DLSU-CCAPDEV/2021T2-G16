@@ -38,8 +38,6 @@ export default (state = initialState, action) => {
     case "PROJECT_UPDATE": {
       const { kanban } = action.payload;
 
-      console.log("Here");
-      console.log(kanban);
       return {
         ...state,
         board: kanban,

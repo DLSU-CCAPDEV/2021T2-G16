@@ -51,6 +51,31 @@ const KanbanAPI = {
         dispatch({ type: "KANBAN_UPDATE", payload: newData });
       });
   },
+  addMember: async (dispatch, userToBeAdded, kanban) => {
+    const newMembers = [...kanban.members, userToBeAdded];
+
+    kanban.members = newMembers;
+
+    const queryJSON = JSON.stringify({ newData: kanban });
+
+    const myHeader = authenticationHeader;
+    myHeader["headers"]["Content-Type"] = "application/json";
+
+    await axios.post("/api/projects/kanban/member", queryJSON, myHeader);
+  },
+  removeMember: async (dispatch, userToBeRemoved, kanban) => {
+    const newMembers = kanban.members.filter(
+      (member) => member.username !== userToBeRemoved
+    );
+    kanban.members = newMembers;
+
+    const queryJSON = JSON.stringify({ newData: kanban });
+
+    const myHeader = authenticationHeader;
+    myHeader["headers"]["Content-Type"] = "application/json";
+
+    await axios.post("/api/projects/kanban/member", queryJSON, myHeader);
+  },
 };
 
 const TaskAPI = {
@@ -126,6 +151,18 @@ const ProjectAPI = {
           type: "PROJECT_UPDATE",
           payload: { oldProjectName, newProjectData, kanban },
         });
+      });
+  },
+  delete: async (dispatch, kanbanData) => {
+    const queryJSON = JSON.stringify(kanbanData);
+
+    const myHeader = authenticationHeader;
+    myHeader["headers"]["Content-Type"] = "application/json";
+
+    await axios
+      .post("/api/projects/delete", queryJSON, myHeader)
+      .then((res) => {
+        //TODO Dispatch
       });
   },
 };

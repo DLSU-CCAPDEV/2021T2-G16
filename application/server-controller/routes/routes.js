@@ -35,6 +35,11 @@ app.post(
   authenticateToken,
   kanbanAPI.updateKanban
 );
+app.post(
+  "/api/projects/kanban/member",
+  authenticateToken,
+  kanbanAPI.editMemberList
+);
 
 //  Task API
 app.get("/api/tasks/get", authenticateToken, taskAPI.getTasks);

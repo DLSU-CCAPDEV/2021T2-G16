@@ -45,7 +45,7 @@ export const WarningMessage = ({ message }) => {
 export const RowDivision = ({ gap = "15px", className, children }) => {
   return (
     <div
-      className={`${styles.RowDivision} ${className}`}
+      className={`${styles.RowDivision} ${className} ${styles.FormDesign__Primary}`}
       style={{ gap: `${gap.replace(/[^\d.-]/g, "")}px` }}
     >
       {children}
@@ -56,7 +56,7 @@ export const RowDivision = ({ gap = "15px", className, children }) => {
 export const Division = ({ gap = "15px", className, children }) => {
   return (
     <div
-      className={`${styles.Division} ${className}}`}
+      className={`${styles.Division} ${className} ${styles.FormDesign__Primary}`}
       style={{ gap: `${gap.replace(/[^\d.-]/g, "")}px` }}
     >
       {children}

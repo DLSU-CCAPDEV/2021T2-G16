@@ -18,6 +18,7 @@
   padding: 10px 30px;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid rgba(209, 209, 209, 0.575);
 }
 
 .ProjectBar_Members {
@@ -50,4 +51,87 @@
   background-color: white;
   padding: 20px;
   border-radius: 5px;
+}
+
+.AddMembersForm {
+  height: 400px;
+  width: 750px;
+  display: flex;
+  flex-direction: column;
+}
+
+.AddMembersForm__Content hr {
+  color: rgba(209, 209, 209, 0.575);
+}
+
+.AddMembersForm__Content {
+  flex: 1;
+}
+
+.AddMembersForm__Headers {
+  display: flex;
+  padding: 10px 0;
+}
+
+.AddMembersForm__Headers h2 {
+  flex: 1;
+}
+
+.AddMembersForm__MembersList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.AddMembersForm__Member {
+  display: flex;
+  align-items: center;
+  padding: 5px 2px;
+  font-size: 18px;
+}
+
+.AddMembersForm__Member p {
+  margin-left: 20px;
+}
+
+.AddMembersForm__Member img {
+  width: 40px;
+  height: 40px;
+}
+
+.AddMembersForm__Member__Delete {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.AddMembersForm__Member__Delete img {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.AddMembersForm__AddMemberBar {
+  padding: 10px 0;
+  display: flex;
+}
+
+.AddMembersForm__AddMemberBar div {
+  flex: 1;
+}
+
+.AddMemberBar__Header {
+  display: flex;
+  align-items: center;
+  font-size: 18pdx;
+}
+
+.DeleteProject {
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  background-color: red;
+  padding: 10px;
+  text-align: center;
 }

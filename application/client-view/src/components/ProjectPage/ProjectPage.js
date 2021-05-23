@@ -1,14 +1,15 @@
 import * as Yup from "yup";
+import axios from "axios";
 import Loader from "react-loader-spinner";
 import Popup from "reactjs-popup";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import TrelloBoard from "react-trello";
 import styles from "./ProjectPage.module.css";
 import { connect, useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { isEqual } from "lodash";
 import { Link } from "react-router-dom";
-import { Redirect, useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 
 import AddMember_Icon from "../../assets/AddMember_Icon.svg";
 import agent from "../../actions/agent";
@@ -33,6 +34,35 @@ const mapDispatchToProps = (dispatch) => ({
     agent.KanbanAPI.edit(dispatch, projectName, newData),
   onProjectUpdate: (oldProjectName, projectData, kanban) =>
     agent.ProjectAPI.edit(dispatch, oldProjectName, projectData, kanban),
+  onProjectDelete: (kanban) => agent.ProjectAPI.delete(dispatch, kanban),
+  onAddMember: (userToBeAdded, kanban) =>
+    agent.KanbanAPI.addMember(dispatch, userToBeAdded, kanban),
+  onRemoveMember: (userToBeRemoved, kanban) =>
+    agent.KanbanAPI.removeMember(dispatch, userToBeRemoved, kanban),
+});
+
+const searchSchema = Yup.object().shape({
+  username: Yup.string()
+    .required("Username is required.")
+    .trim("")
+    .matches(
+      /^[A-Za-z0-9]*$/,
+      "Usernames must only be Latin Characters and Digits."
+    )
+    .min(5, "Username is too short - at least 5 characters.")
+    .test("Username-Exists", "User does not exist.", async (username) => {
+      const response = await axios
+        .post("/api/checkUsernameAvailability", { username })
+        .then((response) => {
+          return response;
+        })
+        .catch((error) => {
+          console.log(error);
+          return error;
+        });
+
+      return response.status !== 200;
+    }),
 });
 
 const projectSchema = Yup.object().shape({
@@ -50,13 +80,18 @@ const ProjectPage = ({
   kanban,
   onLoad,
   onKanbanUpdate,
+  onAddMember,
   onProjectUpdate,
+  onProjectDelete,
+  onRemoveMember,
   setHeaderName,
 }) => {
   const [isEditProjectModalEnabled, setEditProjectModalEnabled] =
     useState(false);
   const [isAddMemberModalEnabled, setAddMemberModalEnabled] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const redirectUser = useCallback(() => history.push("/projects"), [history]);
   const { slug } = useParams();
 
   useEffect(() => {
@@ -92,8 +127,9 @@ const ProjectPage = ({
               const { projectName } = kanban.board;
 
               onProjectUpdate(projectName, newProjectData, kanban.board);
-
               setEditProjectModalEnabled(false);
+
+              redirectUser();
             }}
           >
             <Form>
@@ -133,11 +169,20 @@ const ProjectPage = ({
                     </Field>
                   </RowDivision>
                   <Field type="submit" value="Save Edited Project" />
-                  {/* <hr />
+                  <hr />
                   <RowDivision>
-                    <label>Delete this Project</label>
-                    <Button backgroundColor="#35C53F" color="white" primary />
-                  </RowDivision> */}
+                    <div
+                      className={styles.DeleteProject}
+                      onClick={() => {
+                        onProjectDelete(kanban.board);
+
+                        setEditProjectModalEnabled(false);
+                        redirectUser();
+                      }}
+                    >
+                      Delete this Project
+                    </div>
+                  </RowDivision>
                 </Division>
               </Division>
             </Form>
@@ -147,7 +192,101 @@ const ProjectPage = ({
     );
   };
 
-  const renderMembers = () => {
+  const renderMembersInAddMemberModel = () =>
+    kanban.board.members.map((member, index) => {
+      const { username } = member;
+
+      return (
+        <li className={`${styles.AddMembersForm__Member}`}>
+          <Link to={`/userprofile/${username}`}>
+            <img src={UserPortrait} alt="User" title={`${username}`} />
+          </Link>
+          <p>{username}</p>
+          <div className={styles.AddMembersForm__Member__Delete}>
+            <img
+              src={CloseButton}
+              alt="Close Button"
+              onClick={() => onRemoveMember(username, kanban.board)}
+            />
+          </div>
+          <hr />
+        </li>
+      );
+    });
+
+  const renderAddMemberModal = () => {
+    return (
+      <Popup
+        open={isAddMemberModalEnabled}
+        modal
+        closeOnEscape={false}
+        overlayStyle={{ backgroundColor: "rgba(29, 24, 37, 0.836)" }}
+        position="center center"
+        onClose={() => setAddMemberModalEnabled(false)}
+      >
+        <div className={`${styles.ProjectPage_Form} ${styles.AddMembersForm}`}>
+          <div className={styles.AddMembersForm__Content}>
+            <div className={styles.AddMembersForm__Headers}>
+              <h2>Project Members</h2>
+              <img
+                src={CloseButton}
+                alt="Close Button"
+                onClick={() => setAddMemberModalEnabled(false)}
+                style={{
+                  cursor: "pointer",
+                  width: "30px",
+                  height: "30px",
+                }}
+              />
+            </div>
+            <hr />
+            <ul className={styles.AddMembersForm__MembersList}>
+              <li className={styles.AddMembersForm__Member}>
+                <img
+                  src={UserPortrait}
+                  alt="User"
+                  title={currentUser.username}
+                />
+                <p>{`Owner`}</p>
+              </li>
+              {renderMembersInAddMemberModel()}
+            </ul>
+          </div>
+          <hr />
+          <div className={styles.AddMembersForm__AddMemberBar}>
+            <div className={styles.AddMemberBar__Header}>
+              <h3>Add Member</h3>
+            </div>
+            <div>
+              <FormDesign className={styles.SearchBar}>
+                <Formik
+                  initialValues={{ username: "" }}
+                  validationSchema={searchSchema}
+                  onSubmit={(usernameToBeAdded, { resetForm }) => {
+                    onAddMember(usernameToBeAdded, kanban.board);
+                    resetForm();
+                  }}
+                >
+                  <Form>
+                    <RowDivision className={styles.SearchBar_Submit}>
+                      <FieldWithError
+                        name="username"
+                        type="text"
+                        placeholder="Their Username"
+                      />
+                      <Field type="submit" value="Send Invitation" />
+                    </RowDivision>
+                  </Form>
+                </Formik>
+              </FormDesign>
+            </div>
+          </div>
+        </div>
+      </Popup>
+    );
+  };
+
+  const renderMembersInBar = () => {
     return kanban.board.members.map((member) => {
       const { username } = member;
 
@@ -161,29 +300,34 @@ const ProjectPage = ({
 
   return kanban.board ? (
     <section className={styles.ProjectPage}>
+      {renderAddMemberModal()}
       {renderEditProjectModal()}
       <div className={styles.ProjectBar}>
         <div className={styles.ProjectBar_Members}>
           <span>Project Members: </span>
-          <Link to={`/userprofile/${currentUser.username}`}>
-            <img src={UserPortrait} alt="User" title="You" />
-          </Link>
-          {renderMembers()}
-          <img
-            src={AddMember_Icon}
-            alt="Add A New Member"
-            title="Add a New Member"
-          />
+          <img src={UserPortrait} alt="User" title={`Owner`} />
+          {renderMembersInBar()}
+          {/* TODO Actual Authorization */}
+          {currentUser.uniqueID === kanban.board.uniqueID ? (
+            <img
+              src={AddMember_Icon}
+              alt="Add A New Member"
+              title="Add a New Member"
+              onClick={() => setAddMemberModalEnabled(true)}
+            />
+          ) : null}
         </div>
-        <div className={styles.ProjectBar_Settings}>
-          <img
-            src={Gear}
-            alt="Settings"
-            onClick={() => {
-              setEditProjectModalEnabled(true);
-            }}
-          />
-        </div>
+        {currentUser.uniqueID === kanban.board.uniqueID ? (
+          <div className={styles.ProjectBar_Settings}>
+            <img
+              src={Gear}
+              alt="Settings"
+              onClick={() => {
+                setEditProjectModalEnabled(true);
+              }}
+            />
+          </div>
+        ) : null}
       </div>
       <TrelloBoard
         data={kanban.board.kanbanData}

@@ -11,8 +11,16 @@ const projectAPI = {
           {
             uniqueID,
           },
-          function (results) {
-            res.json(results);
+          function (myProjects) {
+            collaborativeDB.findMany(
+              "projects",
+              { members: { $in: [{ username: req.user.sub }] } },
+              function (othersProjects) {
+                myProjects.push(...othersProjects);
+
+                res.json(myProjects);
+              }
+            );
           }
         );
       }
@@ -64,10 +72,14 @@ const projectAPI = {
     );
   },
   deleteProject: (req, res) => {
+    const { uniqueID, projectName } = req.body;
+
     collaborativeDB.deleteOne("projects", {
-      uniqueID: ID,
-      projectName: req.body.projectName,
+      uniqueID,
+      projectName,
     });
+
+    res.sendStatus(200);
   },
   debug__createProject: (req, res) => {
     const {
