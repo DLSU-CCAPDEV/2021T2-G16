@@ -8,7 +8,7 @@ const ProjectOverviewPage = () => {
     <section
       className={`narrowPage minisculePage ${styles.ProjectOverviewPage}`}
     >
-      <div className={styles.List}>
+      {/* <div className={styles.List}>
         <div className={styles.ListHeader}>
           <div className={styles.ListHeader_Divider}>
             <div className={styles.ListHeader_Text}>
@@ -18,7 +18,7 @@ const ProjectOverviewPage = () => {
           </div>
         </div>
         <ProjectPreviewList noTreshold horizontalScroll onlyFavourites />
-      </div>
+      </div> */}
       <div className={styles.List}>
         <div className={styles.ListHeader}>
           <div className={styles.ListHeader_Divider}>
