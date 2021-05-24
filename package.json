@@ -4,7 +4,8 @@
   "description": "![Landing Page](./github-assets/Collaborative.png)\r # Collaborative\r Decsription",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "cd application && npm i && cd client-view && npm i && npm run build && cd .. && cd server-controller && node index.js",
+    "heroku-postbuild": "cd application && npm i && cd client-view && npm i && npm run build && cd .. && cd server-controller",
+    "start" : "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
