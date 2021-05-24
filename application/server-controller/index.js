@@ -9,7 +9,7 @@ const app = express();
 
 dotenv.config();
 
-port = process.env.PORT || 3000;
+port = process.env.PORT || 5000;
 hostname = process.env.HOSTNAME;
 
 //  TODO add cors() for extra security
