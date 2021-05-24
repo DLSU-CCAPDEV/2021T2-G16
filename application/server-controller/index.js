@@ -10,7 +10,7 @@ const app = express();
 dotenv.config();
 
 port = process.env.PORT || 3000;
-hostname = process.env.HOSTNAME || 0.0.0.0;
+hostname = process.env.HOSTNAME || '0.0.0.0';
 
 //  TODO add cors() for extra security
 // app.use(cors());
