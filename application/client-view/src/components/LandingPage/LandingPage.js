@@ -11,6 +11,9 @@ const LandingPage = () => {
         <Logo fontSize={40} />
         <div className={styles.Navigation_links}>
           <Button backgroundColor="white" color="white">
+            <Link to="/about">About Us</Link>
+          </Button>
+          <Button backgroundColor="white" color="white">
             <Link to="/login">Log In</Link>
           </Button>
           <Button backgroundColor="#35C53F" color="white" primary>

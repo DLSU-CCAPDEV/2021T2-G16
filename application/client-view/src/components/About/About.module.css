@@ -1,0 +1,10 @@
+.AboutPage {
+  padding: 50px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.AboutPage ul {
+  list-style: none;
+}

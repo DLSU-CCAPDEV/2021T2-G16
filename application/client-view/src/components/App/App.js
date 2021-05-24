@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
+import About from "../About/About";
 import agent from "../../actions/agent";
 import Error404NotFoundPage from "../Error404NotFoundPage/Error404NotFoundPage";
 import HomePage from "../HomePage/HomePage";
@@ -46,6 +47,7 @@ const App = ({ currentUser, onLoad }) => {
     <HashRouter>
       <Switch>
         <Route path="/" exact component={LandingPage} />
+        <Route path="/about" exact component={About} />
         <Route path="/registration" exact component={RegisterPage} />
         <Route path="/login" exact component={LoginPage} />
         <PrivateRoute>
