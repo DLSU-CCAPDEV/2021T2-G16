@@ -1,6 +1,7 @@
 ![Landing Page](./github-assets/Collaborative.png)
 # Collaborative
-Decsription
+COLLABORATIVE is an application meant for team collaboration projects using a Kanban Board.
+This idea is inspired directly from the Trello board, but we decided to put our own spin on it.
 
 
 ## Run in your Local Computer
