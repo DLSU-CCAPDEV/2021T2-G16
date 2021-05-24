@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "injectData.js",
-  "scripts": { "start" : "server-controller\index.js"
+  "scripts": { 
+    "heroku-postbuild" : "cd application && npm i && cd client-view && npm i && npm run build && cd .. && cd server-controller && npm run devstart"
+    "start" : "node index.js"
 	  
     "test": "echo \"Error: no test specified\" && exit 1"
   },
