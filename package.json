@@ -1,17 +1,20 @@
 {
-  "name": "application",
+  "name": "collaborative",
   "version": "1.0.0",
-  "description": "",
-  "main": "injectData.js",
-  "scripts": { 
-    "heroku-postbuild" : "cd application && npm i && cd client-view && npm i && npm run build && cd .. && cd server-controller && npm run devstart"
-    "start" : "node index.js"
-	  
+  "description": "![Landing Page](./github-assets/Collaborative.png)\r # Collaborative\r Decsription",
+  "main": "index.js",
+  "scripts": {
+	"heroku-postbuild" : "cd application && npm i && cd client-view && npm i && npm run build && cd .. && cd server-controller && npm run devstart"
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DLSU-CCAPDEV/2021T2-G16.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "axios": "^0.21.1"
-  }
+  "bugs": {
+    "url": "https://github.com/DLSU-CCAPDEV/2021T2-G16/issues"
+  },
+  "homepage": "https://github.com/DLSU-CCAPDEV/2021T2-G16#readme"
 }
