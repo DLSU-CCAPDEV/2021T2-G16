@@ -5,9 +5,7 @@
   "main": "injectData.js",
   "scripts": { 
     "heroku-postbuild" : "cd application && npm i && cd client-view && npm i && npm run build && cd .. && cd server-controller && npm run devstart"
-    "start" : "node index.js"
 	  
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
