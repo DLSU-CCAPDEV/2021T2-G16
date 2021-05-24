@@ -4,7 +4,7 @@
   "description": "![Landing Page](./github-assets/Collaborative.png)\r # Collaborative\r Decsription",
   "main": "index.js",
   "scripts": {
-	"heroku-postbuild" : "cd application && npm i && cd client-view && npm i && npm run build && cd .. && cd server-controller && npm run devstart"
+    "heroku-postbuild": "cd application && npm i && cd client-view && npm i && npm run build && cd .. && cd server-controller && npm run devstart",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/DLSU-CCAPDEV/2021T2-G16/issues"
   },
-  "homepage": "https://github.com/DLSU-CCAPDEV/2021T2-G16#readme"
+  "homepage": "https://github.com/DLSU-CCAPDEV/2021T2-G16#readme",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }
